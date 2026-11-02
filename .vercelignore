@@ -1,0 +1,23 @@
+# Only the built lesson (MTG2A01_L02_S01_DEV_HANDOFF/3_BUILD) has to reach the CDN; vercel.json's
+# rewrites point there. Everything else is authoring material: left in, it would be publicly
+# fetchable at its path and would add its weight to every deploy.
+
+# secrets - the Gemini key must NEVER be served
+**/.env
+**/.env.*
+
+# authoring material
+MTG2A01_L02_S01_DEV_HANDOFF/1_SPEC/
+MTG2A01_L02_S01_DEV_HANDOFF/2_BUILT_REVIEW_DECK/
+MTG2A01_L02_S01_DEV_HANDOFF/4_ENGINE/
+MTG2A01_L02_S01_DEV_HANDOFF/5_SCREENSHOTS/
+MTG2A01_L02_S01_DEV_HANDOFF/_v1_factory_build/
+MTG2A01_L02_S01_DEV_HANDOFF/celebration_kit/
+MTG2A01_L02_S01_DEV_HANDOFF/_rebuild.sh
+MTG2A01_L02_S01_DEV_HANDOFF/CHANGES.md
+MTG2A01_L02_S01_DEV_HANDOFF/README.md
+
+*.pptx
+*.xlsx
+.vscode/
+.git/

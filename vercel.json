@@ -1,0 +1,49 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/MTG2A01_L02_S01_DEV_HANDOFF/3_BUILD/MTG2A01_L02_S01.html"
+    },
+    {
+      "source": "/index.html",
+      "destination": "/MTG2A01_L02_S01_DEV_HANDOFF/3_BUILD/MTG2A01_L02_S01.html"
+    },
+    {
+      "source": "/MTG2A01_L02_S01.html",
+      "destination": "/MTG2A01_L02_S01_DEV_HANDOFF/3_BUILD/MTG2A01_L02_S01.html"
+    },
+    {
+      "source": "/assets/:path*",
+      "destination": "/MTG2A01_L02_S01_DEV_HANDOFF/3_BUILD/assets/:path*"
+    },
+    {
+      "source": "/card.json",
+      "destination": "/MTG2A01_L02_S01_DEV_HANDOFF/3_BUILD/card.json"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+    },
+    {
+      "source": "/(.*).html",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+    },
+    {
+      "source": "/card.json",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+    },
+    {
+      "source": "/assets/Audio/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
+  ]
+}
