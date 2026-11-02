@@ -1,0 +1,1685 @@
+{
+ "version": "0.2",
+ "skill_code": "MTG2A01_L02_S01",
+ "lo_code": "MTG2A01_L02",
+ "grade": "G2",
+ "attribute": "A01",
+ "skill_type": "CORE",
+ "part_label": "",
+ "title": {
+  "hi": "टप्पू मेंढक की कूद",
+  "en": "Skip counting by 2s, 5s and 10s (to 100)"
+ },
+ "subtitle_hi": "दो-दो, पाँच-पाँच, दस-दस की कूद",
+ "skill_description_hi": "दो-दो, पाँच-पाँच और दस-दस की कूद लगाकर सौ तक संख्या-क्रम पूरा करना।",
+ "theme": "toybox",
+ "landing_audio": "vo_landing",
+ "landing_hero": {
+  "kind": "frog_cover"
+ },
+ "phase_transition_audio": {
+  "tutorial": "vo_pt_tutorial",
+  "guided": "vo_pt_guided",
+  "practice": "vo_pt_practice"
+ },
+ "ui_sfx": {
+  "play": "sfx_play_button",
+  "next": "sfx_next_button"
+ },
+ "gate": {
+  "title_cue_ms": {
+   "tutorial": 3370,
+   "guided": 3520,
+   "practice": 940
+  }
+ },
+ "auto_advance_from": 3,
+ "phase_distribution": {
+  "tutorial": 3,
+  "guided": 7,
+  "practice": 1,
+  "mastery": 1
+ },
+ "scaffold_rules": {
+  "nudge_timeout_ms": {
+   "guided": 6000,
+   "practice": 8000
+  },
+  "max_attempts": 3,
+  "hint_levels": 3,
+  "hand_on_attempt": 3,
+  "hand_on_hint3": true,
+  "lock_after_hint3": true,
+  "reveal_on_attempt": null,
+  "silent_on_late_correct": true
+ },
+ "signals_expected": [
+  "slide_entered",
+  "slide_completed",
+  "teach_done",
+  "jump_pick_correct",
+  "seq_fill_correct",
+  "space_round_done",
+  "lesson_completed"
+ ],
+ "slides": [
+  {
+   "id": "T1",
+   "phase": "tutorial",
+   "eis": "iconic",
+   "type": "BRIDGE_TEACH",
+   "prompt_hi": "",
+   "audio": {
+    "prompt": "vo_t1_1a"
+   },
+   "data": {
+    "lo": 0,
+    "hi": 10,
+    "step": 2,
+    "friend_at": 10,
+    "heading": "दो-दो की गिनती",
+    "steps": [
+     {
+      "cap": "यह है टप्पू मेंढक। उसका दोस्त पुल के उस पार है। टप्पू दो-दो कदम की छलाँग लगाकर अपने दोस्त से मिलने जाएगा। आइए, उसके साथ गिनते हैं!",
+      "clips": [
+       {
+        "vo": "vo_t1_1a",
+        "focus": "tappu"
+       },
+       {
+        "vo": "vo_t1_1b",
+        "focus": "friend",
+        "wave": true
+       },
+       {
+        "vo": "vo_t1_1c"
+       }
+      ]
+     },
+     {
+      "cap": "टप्पू शून्य पर है। आइए, यहाँ से दो कदम आगे गिनते हैं—एक, दो। टप्पू दो कदम की छलाँग लगाकर दो की संख्या पर पहुँच गया!",
+      "clips": [
+       {
+        "vo": "vo_t1_2a",
+        "glow": 0
+       },
+       {
+        "vo": "vo_t1_2b"
+       },
+       {
+        "vo": "vo_c_1",
+        "dot": 1
+       },
+       {
+        "vo": "vo_c_2",
+        "dot": 2
+       },
+       {
+        "vo": "vo_t1_2c",
+        "jump": [
+         0,
+         2
+        ]
+       }
+      ]
+     },
+     {
+      "cap": "अब टप्पू दो पर है। वह दो कदम की छलाँग लगाकर कहाँ पहुँचेगा? आइए, दो से आगे दो कदम गिनते हैं—तीन, चार। टप्पू चार पर पहुँच गया!",
+      "clips": [
+       {
+        "vo": "vo_t1_3a",
+        "pause_after": 900
+       },
+       {
+        "vo": "vo_t1_3b"
+       },
+       {
+        "vo": "vo_c_3",
+        "dot": 3
+       },
+       {
+        "vo": "vo_c_4",
+        "dot": 4
+       },
+       {
+        "vo": "vo_t1_3c",
+        "jump": [
+         2,
+         4
+        ]
+       }
+      ]
+     },
+     {
+      "cap": "टप्पू ने फिर दो कदम की छलाँग लगाई और छह पर पहुँच गया!",
+      "clips": [
+       {
+        "vo": "vo_t1_4x",
+        "jump": [
+         4,
+         6
+        ]
+       }
+      ]
+     },
+     {
+      "cap": "टप्पू ने फिर दो कदम की छलाँग लगाई और आठ पर पहुँच गया!",
+      "clips": [
+       {
+        "vo": "vo_t1_4",
+        "jump": [
+         6,
+         8
+        ]
+       }
+      ]
+     },
+     {
+      "cap": "दो कदम की एक और छलाँग—दस! टप्पू अपने दोस्त से मिल गया!",
+      "clips": [
+       {
+        "vo": "vo_t1_5",
+        "jump": [
+         8,
+         10
+        ],
+        "wave_end": true
+       }
+      ]
+     },
+     {
+      "cap": "टप्पू अपने दोस्त से मिल गया! हमने दो-दो की गिनती करके उसे पुल पार कराया—दो, चार, छह, आठ, दस!",
+      "clips": [
+       {
+        "vo": "vo_t1_6a",
+        "happy": true
+       },
+       {
+        "vo": "vo_t1_6b"
+       },
+       {
+        "vo": "vo_c_2",
+        "mark": 2
+       },
+       {
+        "vo": "vo_c_4",
+        "mark": 4
+       },
+       {
+        "vo": "vo_c_6",
+        "mark": 6
+       },
+       {
+        "vo": "vo_c_8",
+        "mark": 8
+       },
+       {
+        "vo": "vo_c_10",
+        "mark": 10
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "T2",
+   "phase": "tutorial",
+   "eis": "iconic",
+   "type": "BRIDGE_TEACH",
+   "prompt_hi": "",
+   "audio": {
+    "prompt": "vo_t2_1"
+   },
+   "data": {
+    "lo": 0,
+    "hi": 30,
+    "step": 5,
+    "friend_at": 30,
+    "heading": "पाँच-पाँच की गिनती",
+    "steps": [
+     {
+      "cap": "टप्पू का एक और दोस्त पुल के उस पार इंतज़ार कर रहा है। इस बार टप्पू पाँच-पाँच कदम की छलाँग लगाकर उससे मिलने जाएगा। आइए, टप्पू के साथ गिनते हैं!",
+      "clips": [
+       {
+        "vo": "vo_t2_1",
+        "wave": true,
+        "glow_end": 0
+       }
+      ]
+     },
+     {
+      "cap": "टप्पू शून्य पर है। यहाँ से पाँच कदम आगे गिनते हैं—एक, दो, तीन, चार, पाँच। टप्पू पाँच पर पहुँच गया!",
+      "clips": [
+       {
+        "vo": "vo_t2_2a"
+       },
+       {
+        "vo": "vo_c_1",
+        "dot": 1
+       },
+       {
+        "vo": "vo_c_2",
+        "dot": 2
+       },
+       {
+        "vo": "vo_c_3",
+        "dot": 3
+       },
+       {
+        "vo": "vo_c_4",
+        "dot": 4
+       },
+       {
+        "vo": "vo_c_5",
+        "dot": 5
+       },
+       {
+        "vo": "vo_t2_2b",
+        "jump": [
+         0,
+         5
+        ]
+       }
+      ]
+     },
+     {
+      "cap": "टप्पू पाँच से पाँच कदम आगे कूदकर दस पर पहुँच गया!",
+      "clips": [
+       {
+        "vo": "vo_t2_3",
+        "jump": [
+         5,
+         10
+        ]
+       }
+      ]
+     },
+     {
+      "cap": "फिर पाँच कदम की छलाँग लगाई और पंद्रह पर पहुँच गया!",
+      "clips": [
+       {
+        "vo": "vo_t2_4",
+        "jump": [
+         10,
+         15
+        ]
+       }
+      ]
+     },
+     {
+      "cap": "एक और पाँच कदम की छलाँग! अब टप्पू बीस पर है।",
+      "clips": [
+       {
+        "vo": "vo_t2_5",
+        "jump": [
+         15,
+         20
+        ],
+        "pause_after": 700
+       }
+      ]
+     },
+     {
+      "cap": "अब आप टप्पू पर टैप कीजिए। वह पाँच कदम आगे कूदेगा!",
+      "clips": [
+       {
+        "vo": "vo_t2_6",
+        "tapcue": true
+       }
+      ]
+     },
+     {
+      "cap": "देखिए! टप्पू पच्चीस पर पहुँच गया!",
+      "wait_tap": true,
+      "clips": [
+       {
+        "vo": "vo_t2_7",
+        "jump": [
+         20,
+         25
+        ]
+       }
+      ]
+     },
+     {
+      "cap": "टप्पू पर फिर टैप कीजिए।",
+      "clips": [
+       {
+        "vo": "vo_t2_8",
+        "wave": true
+       }
+      ]
+     },
+     {
+      "cap": "पाँच कदम की एक और छलाँग लगाकर टप्पू तीस पर पहुँच गया!",
+      "wait_tap": true,
+      "clips": [
+       {
+        "vo": "vo_t2_9",
+        "jump": [
+         25,
+         30
+        ]
+       }
+      ]
+     },
+     {
+      "cap": "वाह! टप्पू अपने दोस्त से मिल गया!",
+      "clips": [
+       {
+        "vo": "vo_met",
+        "happy": true
+       }
+      ]
+     },
+     {
+      "cap": "पाँच, दस, पंद्रह, बीस, पच्चीस, तीस! ऐसे हम पाँच-पाँच करके गिनते हैं।",
+      "clips": [
+       {
+        "vo": "vo_c_5",
+        "mark": 5
+       },
+       {
+        "vo": "vo_c_10",
+        "mark": 10
+       },
+       {
+        "vo": "vo_c_15",
+        "mark": 15
+       },
+       {
+        "vo": "vo_c_20",
+        "mark": 20
+       },
+       {
+        "vo": "vo_c_25",
+        "mark": 25
+       },
+       {
+        "vo": "vo_c_30",
+        "mark": 30
+       },
+       {
+        "vo": "vo_t2_11"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "T3",
+   "phase": "tutorial",
+   "eis": "iconic",
+   "type": "BRIDGE_TEACH",
+   "prompt_hi": "",
+   "audio": {
+    "prompt": "vo_t3_1"
+   },
+   "data": {
+    "lo": 0,
+    "hi": 50,
+    "step": 10,
+    "friend_at": 50,
+    "heading": "दस-दस की गिनती",
+    "camera": true,
+    "steps": [
+     {
+      "cap": "टप्पू का एक और दोस्त पुल के उस पार है। इस बार टप्पू दस-दस कदम की छलाँग लगाकर उससे मिलने जाएगा। आइए, उसके साथ गिनते हैं!",
+      "clips": [
+       {
+        "vo": "vo_t3_1",
+        "wave": true,
+        "cam": "all"
+       }
+      ]
+     },
+     {
+      "cap": "टप्पू शून्य पर है। वह दस कदम की छलाँग लगाकर दस पर पहुँच गया!",
+      "clips": [
+       {
+        "vo": "vo_t3_2a",
+        "glow": 0,
+        "cam": "follow"
+       },
+       {
+        "vo": "vo_t3_2b",
+        "span": [
+         0,
+         10
+        ],
+        "jump": [
+         0,
+         10
+        ]
+       }
+      ]
+     },
+     {
+      "cap": "फिर दस कदम की छलाँग लगाई और बीस पर पहुँच गया!",
+      "clips": [
+       {
+        "vo": "vo_t3_3",
+        "jump": [
+         10,
+         20
+        ]
+       }
+      ]
+     },
+     {
+      "cap": "एक और दस कदम की छलाँग! अब टप्पू तीस पर है।",
+      "clips": [
+       {
+        "vo": "vo_t3_4",
+        "jump": [
+         20,
+         30
+        ],
+        "pause_after": 700
+       }
+      ]
+     },
+     {
+      "cap": "टप्पू पर टैप कीजिए।",
+      "clips": [
+       {
+        "vo": "vo_t3_5",
+        "cam": [
+         29,
+         53
+        ],
+        "tapcue": true
+       }
+      ]
+     },
+     {
+      "cap": "देखिए! टप्पू चालीस पर पहुँच गया!",
+      "wait_tap": true,
+      "clips": [
+       {
+        "vo": "vo_t3_6",
+        "jump": [
+         30,
+         40
+        ]
+       }
+      ]
+     },
+     {
+      "cap": "टप्पू पर फिर टैप कीजिए।",
+      "clips": [
+       {
+        "vo": "vo_t2_8",
+        "wave": true
+       }
+      ]
+     },
+     {
+      "cap": "दस कदम की एक और छलाँग लगाकर टप्पू पचास पर पहुँच गया!",
+      "wait_tap": true,
+      "clips": [
+       {
+        "vo": "vo_t3_8",
+        "jump": [
+         40,
+         50
+        ]
+       }
+      ]
+     },
+     {
+      "cap": "वाह! टप्पू अपने दोस्त से मिल गया! हमने दस-दस करके गिना—दस, बीस, तीस, चालीस, पचास!",
+      "clips": [
+       {
+        "vo": "vo_met",
+        "happy": true,
+        "cam": "all"
+       },
+       {
+        "vo": "vo_t3_9b"
+       },
+       {
+        "vo": "vo_c_10",
+        "mark": 10
+       },
+       {
+        "vo": "vo_c_20",
+        "mark": 20
+       },
+       {
+        "vo": "vo_c_30",
+        "mark": 30
+       },
+       {
+        "vo": "vo_c_40",
+        "mark": 40
+       },
+       {
+        "vo": "vo_c_50",
+        "mark": 50
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "G1",
+   "phase": "guided",
+   "eis": "iconic",
+   "type": "JUMP_PICK",
+   "prompt_hi": "सही संख्या पर टैप कीजिए।",
+   "audio": {
+    "prompt": "vo_q1_a",
+    "hint": "vo_q1_wa2",
+    "reveal": "vo_q1_wa3",
+    "correct": "vo_q1_ok"
+   },
+   "data": {
+    "lo": 40,
+    "hi": 65,
+    "prior": [
+     40,
+     45,
+     50
+    ],
+    "at": 50,
+    "step": 5,
+    "options": [
+     51,
+     55,
+     60
+    ],
+    "answer": 55,
+    "q": [
+     {
+      "vo": "vo_q1_a"
+     },
+     {
+      "vo": "vo_q1_b",
+      "glow": 50
+     },
+     {
+      "vo": "vo_q1_c"
+     }
+    ],
+    "ost": "सही संख्या पर टैप कीजिए।",
+    "wa1": {
+     "vo": "vo_q1_wa1",
+     "ost": "सही संख्या पर टैप कीजिए।"
+    },
+    "wa2": {
+     "vo": "vo_q1_wa2",
+     "ost": "पचास से पाँच कदम आगे देखिए।"
+    },
+    "wa3": {
+     "vo": "vo_q1_wa3",
+     "ost": "मेंढक पाँच कदम की छलाँग लगाकर पचपन पर पहुँचेगा।"
+    },
+    "correct": "vo_q1_ok",
+    "correct_ost": "शाबाश! 55"
+   }
+  },
+  {
+   "id": "G2",
+   "phase": "guided",
+   "eis": "iconic",
+   "type": "JUMP_PICK",
+   "prompt_hi": "सही संख्या पर टैप कीजिए।",
+   "audio": {
+    "prompt": "vo_q2_a",
+    "hint": "vo_q2_wa2",
+    "reveal": "vo_q2_wa3",
+    "correct": "vo_q2_ok"
+   },
+   "data": {
+    "lo": 8,
+    "hi": 20,
+    "prior": [
+     10,
+     12,
+     14
+    ],
+    "at": 14,
+    "step": 2,
+    "options": [
+     15,
+     16,
+     18
+    ],
+    "answer": 16,
+    "q": [
+     {
+      "vo": "vo_q2_a",
+      "glow": 14
+     },
+     {
+      "vo": "vo_q2_b"
+     }
+    ],
+    "ost": "सही संख्या पर टैप कीजिए।",
+    "wa1": {
+     "replay_q": true,
+     "ost": "सही संख्या पर टैप कीजिए।"
+    },
+    "wa2": {
+     "vo": "vo_q2_wa2",
+     "ost": "चौदह से दो कदम आगे देखिए।"
+    },
+    "wa3": {
+     "vo": "vo_q2_wa3",
+     "ost": "मेंढक दो कदम की छलाँग लगाकर सोलह पर पहुँचेगा।"
+    },
+    "correct": "vo_q2_ok",
+    "correct_ost": "सही! 16"
+   }
+  },
+  {
+   "id": "G3",
+   "phase": "guided",
+   "eis": "iconic",
+   "type": "JUMP_PICK",
+   "prompt_hi": "सही संख्या पर टैप कीजिए।",
+   "audio": {
+    "prompt": "vo_q3_a",
+    "hint": "vo_q3_wa2",
+    "reveal": "vo_q3_wa3",
+    "correct": "vo_q3_ok"
+   },
+   "data": {
+    "lo": 10,
+    "hi": 55,
+    "prior": [
+     10,
+     20,
+     30
+    ],
+    "at": 30,
+    "step": 10,
+    "options": [
+     35,
+     50,
+     40
+    ],
+    "answer": 40,
+    "q": [
+     {
+      "vo": "vo_q3_a",
+      "glow": 30
+     },
+     {
+      "vo": "vo_q3_b"
+     }
+    ],
+    "ost": "सही संख्या पर टैप कीजिए।",
+    "wa1": {
+     "replay_q": true,
+     "ost": "सही संख्या पर टैप कीजिए।"
+    },
+    "wa2": {
+     "vo": "vo_q3_wa2",
+     "ost": "तीस से दस कदम आगे देखिए।"
+    },
+    "wa3": {
+     "vo": "vo_q3_wa3",
+     "ost": "मेंढक दस कदम की छलाँग लगाकर चालीस पर पहुँचेगा।"
+    },
+    "correct": "vo_q3_ok",
+    "correct_ost": "सही! 40"
+   }
+  },
+  {
+   "id": "G4",
+   "phase": "guided",
+   "eis": "iconic",
+   "type": "SEQ_FILL",
+   "prompt_hi": "अगली सही संख्या पर टैप कीजिए।",
+   "audio": {
+    "prompt": "vo_q4_1",
+    "hint": "vo_q4_hint",
+    "reveal": "vo_q4_wa3",
+    "correct": "vo_q4_ok"
+   },
+   "data": {
+    "seq": [
+     30,
+     32,
+     34,
+     36,
+     null
+    ],
+    "options": [
+     40,
+     37,
+     38
+    ],
+    "animal": "chr_grasshopper",
+    "intro": [
+     {
+      "vo": "vo_q4_1",
+      "reveal": 0
+     },
+     {
+      "vo": "vo_q4_2",
+      "reveal": 1,
+      "hop": 1
+     },
+     {
+      "vo": "vo_q4_3",
+      "reveal": 2,
+      "hop": 2
+     },
+     {
+      "vo": "vo_q4_4",
+      "reveal": 3,
+      "hop": 3
+     }
+    ],
+    "q": [
+     {
+      "vo": "vo_q4_5",
+      "reveal_blank": true
+     }
+    ],
+    "ost": "अगली सही संख्या पर टैप कीजिए।",
+    "blanks": [
+     {
+      "answer": 38,
+      "from": 36,
+      "step": 2,
+      "correct": "vo_q4_ok",
+      "wa1": "vo_q4_wa1",
+      "wa1_ost": null,
+      "pre_hint": null,
+      "hint": "vo_q4_hint",
+      "hint_range": [
+       34,
+       40
+      ],
+      "after_hint": "vo_q4_after",
+      "wa3": "vo_q4_wa3",
+      "after_hint_ost": "अगली सही संख्या पर टैप कीजिए।"
+     }
+    ]
+   }
+  },
+  {
+   "id": "G5",
+   "phase": "guided",
+   "eis": "iconic",
+   "type": "SEQ_FILL",
+   "prompt_hi": "दो-दो करके गिनिए। सही संख्या पर टैप कीजिए।",
+   "audio": {
+    "prompt": "vo_q5_q",
+    "hint": "vo_q5_hint1",
+    "reveal": "vo_q5_wa3a",
+    "correct": "vo_q5_ok2"
+   },
+   "data": {
+    "seq": [
+     10,
+     12,
+     14,
+     16,
+     null,
+     null
+    ],
+    "options": [
+     17,
+     18,
+     19,
+     20
+    ],
+    "animal": "chr_rabbit",
+    "q": [
+     {
+      "vo": "vo_q5_q"
+     }
+    ],
+    "ost": "दो-दो करके गिनिए। सही संख्या पर टैप कीजिए।",
+    "blanks": [
+     {
+      "answer": 18,
+      "from": 16,
+      "step": 2,
+      "correct": "vo_q5_ok1",
+      "wa1": "vo_q5_wa1",
+      "wa1_ost": "सही संख्या पर टैप कीजिए।",
+      "pre_hint": null,
+      "hint": "vo_q5_hint1",
+      "hint_range": [
+       14,
+       20
+      ],
+      "after_hint": "vo_after_tap",
+      "wa3": "vo_q5_wa3a"
+     },
+     {
+      "answer": 20,
+      "from": 18,
+      "step": 2,
+      "correct": "vo_q5_ok2",
+      "wa1": "vo_q5_wa1",
+      "wa1_ost": "सही संख्या पर टैप कीजिए।",
+      "pre_hint": null,
+      "hint": "vo_q5_hint2",
+      "hint_range": [
+       16,
+       22
+      ],
+      "after_hint": "vo_after_tap",
+      "wa3": "vo_q5_wa3b"
+     }
+    ]
+   }
+  },
+  {
+   "id": "G6",
+   "phase": "guided",
+   "eis": "iconic",
+   "type": "SEQ_FILL",
+   "prompt_hi": "पाँच-पाँच करके गिनती पूरी कीजिए।",
+   "audio": {
+    "prompt": "vo_q6_q",
+    "hint": "vo_q6_hint1",
+    "reveal": "vo_q6_wa3a",
+    "correct": "vo_q6_ok2"
+   },
+   "data": {
+    "seq": [
+     55,
+     60,
+     65,
+     null,
+     null
+    ],
+    "options": [
+     66,
+     70,
+     75,
+     80
+    ],
+    "animal": "chr_squirrel",
+    "q": [
+     {
+      "vo": "vo_q6_q"
+     }
+    ],
+    "ost": "पाँच-पाँच करके गिनती पूरी कीजिए।",
+    "blanks": [
+     {
+      "answer": 70,
+      "from": 65,
+      "step": 5,
+      "correct": "vo_q6_ok1",
+      "wa1": "vo_q6_wa1",
+      "wa1_ost": "पाँच-पाँच करके गिनिए। सही संख्या पर टैप कीजिए।",
+      "pre_hint": null,
+      "hint": "vo_q6_hint1",
+      "hint_range": [
+       64,
+       70
+      ],
+      "after_hint": "vo_after_tap",
+      "wa3": "vo_q6_wa3a"
+     },
+     {
+      "answer": 75,
+      "from": 70,
+      "step": 5,
+      "correct": "vo_q6_ok2",
+      "wa1": "vo_q6_wa1",
+      "wa1_ost": "पाँच-पाँच करके गिनिए। सही संख्या पर टैप कीजिए।",
+      "pre_hint": null,
+      "hint": "vo_q6_hint2",
+      "hint_range": [
+       69,
+       75
+      ],
+      "after_hint": "vo_after_tap",
+      "wa3": "vo_q6_wa3b"
+     }
+    ]
+   }
+  },
+  {
+   "id": "G7",
+   "phase": "guided",
+   "eis": "iconic",
+   "type": "SEQ_FILL",
+   "prompt_hi": "सही संख्या पर टैप कीजिए।",
+   "audio": {
+    "prompt": "vo_q7_q",
+    "hint": "vo_q7_hint1",
+    "reveal": "vo_q7_wa3a",
+    "correct": "vo_q7_ok2"
+   },
+   "data": {
+    "seq": [
+     50,
+     60,
+     null,
+     80,
+     null,
+     100
+    ],
+    "options": [
+     61,
+     70,
+     75,
+     90
+    ],
+    "animal": "chr_grasshopper",
+    "q": [
+     {
+      "vo": "vo_q7_q"
+     }
+    ],
+    "ost": "सही संख्या पर टैप कीजिए।",
+    "blanks": [
+     {
+      "answer": 70,
+      "from": 60,
+      "step": 10,
+      "correct": "vo_q7_ok1",
+      "wa1": "vo_q7_wa1",
+      "wa1_ost": "दस-दस करके गिनिए। सही संख्या पर टैप कीजिए।",
+      "pre_hint": "vo_q7_pre1",
+      "hint": "vo_q7_hint1",
+      "hint_range": [
+       60,
+       70
+      ],
+      "after_hint": "vo_after_tap",
+      "wa3": "vo_q7_wa3a"
+     },
+     {
+      "answer": 90,
+      "from": 80,
+      "step": 10,
+      "correct": "vo_q7_ok2",
+      "wa1": "vo_q7_wa1",
+      "wa1_ost": "दस-दस करके गिनिए। सही संख्या पर टैप कीजिए।",
+      "pre_hint": "vo_q7_pre2",
+      "hint": "vo_q7_hint2",
+      "hint_range": [
+       80,
+       90
+      ],
+      "after_hint": "vo_after_tap",
+      "wa3": "vo_q7_wa3b"
+     }
+    ]
+   }
+  },
+  {
+   "id": "GAME",
+   "phase": "practice",
+   "eis": "iconic",
+   "type": "SPACE_PODS",
+   "prompt_hi": "",
+   "audio": {
+    "prompt": "vo_g_menu"
+   },
+   "data": {
+    "title": "अंतरिक्ष की सैर",
+    "levels": [
+     {
+      "step": 2,
+      "label": "दो-दो की गिनती",
+      "cast": "sp_frog",
+      "rounds": [
+       {
+        "seq": [
+         23,
+         25,
+         27,
+         29,
+         31
+        ],
+        "prefilled": [
+         0,
+         2
+        ],
+        "distractors": [
+         26
+        ],
+        "vo": "vo_g_r_2_1"
+       },
+       {
+        "seq": [
+         42,
+         44,
+         46,
+         48,
+         50
+        ],
+        "prefilled": [
+         0,
+         4
+        ],
+        "distractors": [
+         45
+        ],
+        "vo": "vo_g_r_2_2"
+       },
+       {
+        "seq": [
+         61,
+         63,
+         65,
+         67,
+         69
+        ],
+        "prefilled": [
+         0,
+         1
+        ],
+        "distractors": [
+         66,
+         68
+        ],
+        "vo": "vo_g_r_2_3"
+       }
+      ],
+      "wrong": "vo_g_wrong_2",
+      "done": "vo_g_done_2"
+     },
+     {
+      "step": 5,
+      "label": "पाँच-पाँच की गिनती",
+      "cast": "sp_rabbit",
+      "rounds": [
+       {
+        "seq": [
+         25,
+         30,
+         35,
+         40,
+         45
+        ],
+        "prefilled": [
+         0,
+         4
+        ],
+        "distractors": [
+         36
+        ],
+        "vo": "vo_g_r_5_1"
+       },
+       {
+        "seq": [
+         40,
+         45,
+         50,
+         55,
+         60
+        ],
+        "prefilled": [
+         0,
+         2
+        ],
+        "distractors": [
+         52
+        ],
+        "vo": "vo_g_r_5_2"
+       },
+       {
+        "seq": [
+         65,
+         70,
+         75,
+         80,
+         85
+        ],
+        "prefilled": [
+         0,
+         1
+        ],
+        "distractors": [
+         76,
+         84
+        ],
+        "vo": "vo_g_r_5_3"
+       }
+      ],
+      "wrong": "vo_g_wrong_5",
+      "done": "vo_g_done_5"
+     },
+     {
+      "step": 10,
+      "label": "दस-दस की गिनती",
+      "cast": "sp_grasshopper",
+      "rounds": [
+       {
+        "seq": [
+         30,
+         40,
+         50,
+         60,
+         70
+        ],
+        "prefilled": [
+         0,
+         1
+        ],
+        "distractors": [
+         55
+        ],
+        "vo": "vo_g_r_10_1"
+       },
+       {
+        "seq": [
+         50,
+         60,
+         70,
+         80,
+         90
+        ],
+        "prefilled": [
+         0,
+         2
+        ],
+        "distractors": [
+         75
+        ],
+        "vo": "vo_g_r_10_2"
+       },
+       {
+        "seq": [
+         60,
+         70,
+         80,
+         90,
+         100
+        ],
+        "prefilled": [
+         0,
+         4
+        ],
+        "distractors": [
+         85,
+         95
+        ],
+        "vo": "vo_g_r_10_3"
+       }
+      ],
+      "wrong": "vo_g_wrong_10",
+      "done": "vo_g_done_10"
+     }
+    ],
+    "menu_vo": "vo_g_menu",
+    "guide_vo": "vo_g_guide",
+    "round_done_vo": "vo_g_round_done",
+    "all_done_vo": "vo_g_all_done",
+    "inactivity_ms": 7000,
+    "badge": {
+     "sp_frog": [
+      0.6,
+      0.67
+     ],
+     "sp_rabbit": [
+      0.66,
+      0.8
+     ],
+     "sp_grasshopper": [
+      0.63,
+      0.67
+     ]
+    }
+   }
+  },
+  {
+   "id": "CEL",
+   "phase": "mastery",
+   "eis": "enactive",
+   "type": "CELEBRATION",
+   "prompt_hi": "शाबाश! तुमने कूद-कूद कर गिनती सीख ली!",
+   "audio": {
+    "prompt": "vo_well_done",
+    "sfx": "sfx_celebrate"
+   },
+   "data": {}
+  }
+ ],
+ "assets": {
+  "audio_ext": "ogg",
+  "img_ext": "webp",
+  "audio": {
+   "vo_t1_1a": "assets/Audio/vo_t1_1a.ogg",
+   "vo_t1_1b": "assets/Audio/vo_t1_1b.ogg",
+   "vo_t1_1c": "assets/Audio/vo_t1_1c.ogg",
+   "vo_t1_2a": "assets/Audio/vo_t1_2a.ogg",
+   "vo_t1_2b": "assets/Audio/vo_t1_2b.ogg",
+   "vo_c_1": "assets/Audio/vo_c_1.ogg",
+   "vo_c_2": "assets/Audio/vo_c_2.ogg",
+   "vo_t1_2c": "assets/Audio/vo_t1_2c.ogg",
+   "vo_t1_3a": "assets/Audio/vo_t1_3a.ogg",
+   "vo_t1_3b": "assets/Audio/vo_t1_3b.ogg",
+   "vo_c_3": "assets/Audio/vo_c_3.ogg",
+   "vo_c_4": "assets/Audio/vo_c_4.ogg",
+   "vo_t1_3c": "assets/Audio/vo_t1_3c.ogg",
+   "vo_t1_4x": "assets/Audio/vo_t1_4x.ogg",
+   "vo_t1_4": "assets/Audio/vo_t1_4.ogg",
+   "vo_t1_5": "assets/Audio/vo_t1_5.ogg",
+   "vo_t1_6a": "assets/Audio/vo_t1_6a.ogg",
+   "vo_t1_6b": "assets/Audio/vo_t1_6b.ogg",
+   "vo_c_6": "assets/Audio/vo_c_6.ogg",
+   "vo_c_8": "assets/Audio/vo_c_8.ogg",
+   "vo_c_10": "assets/Audio/vo_c_10.ogg",
+   "vo_t2_1": "assets/Audio/vo_t2_1.ogg",
+   "vo_t2_2a": "assets/Audio/vo_t2_2a.ogg",
+   "vo_c_5": "assets/Audio/vo_c_5.ogg",
+   "vo_t2_2b": "assets/Audio/vo_t2_2b.ogg",
+   "vo_t2_3": "assets/Audio/vo_t2_3.ogg",
+   "vo_t2_4": "assets/Audio/vo_t2_4.ogg",
+   "vo_t2_5": "assets/Audio/vo_t2_5.ogg",
+   "vo_t2_6": "assets/Audio/vo_t2_6.ogg",
+   "vo_t2_7": "assets/Audio/vo_t2_7.ogg",
+   "vo_t2_8": "assets/Audio/vo_t2_8.ogg",
+   "vo_t2_9": "assets/Audio/vo_t2_9.ogg",
+   "vo_met": "assets/Audio/vo_met.ogg",
+   "vo_c_15": "assets/Audio/vo_c_15.ogg",
+   "vo_c_20": "assets/Audio/vo_c_20.ogg",
+   "vo_c_25": "assets/Audio/vo_c_25.ogg",
+   "vo_c_30": "assets/Audio/vo_c_30.ogg",
+   "vo_t2_11": "assets/Audio/vo_t2_11.ogg",
+   "vo_t3_1": "assets/Audio/vo_t3_1.ogg",
+   "vo_t3_2a": "assets/Audio/vo_t3_2a.ogg",
+   "vo_t3_2b": "assets/Audio/vo_t3_2b.ogg",
+   "vo_t3_3": "assets/Audio/vo_t3_3.ogg",
+   "vo_t3_4": "assets/Audio/vo_t3_4.ogg",
+   "vo_t3_5": "assets/Audio/vo_t3_5.ogg",
+   "vo_t3_6": "assets/Audio/vo_t3_6.ogg",
+   "vo_t3_8": "assets/Audio/vo_t3_8.ogg",
+   "vo_t3_9b": "assets/Audio/vo_t3_9b.ogg",
+   "vo_c_40": "assets/Audio/vo_c_40.ogg",
+   "vo_c_50": "assets/Audio/vo_c_50.ogg",
+   "vo_q1_a": "assets/Audio/vo_q1_a.ogg",
+   "vo_q1_b": "assets/Audio/vo_q1_b.ogg",
+   "vo_q1_c": "assets/Audio/vo_q1_c.ogg",
+   "vo_q1_wa1": "assets/Audio/vo_q1_wa1.ogg",
+   "vo_q1_wa2": "assets/Audio/vo_q1_wa2.ogg",
+   "vo_q1_wa3": "assets/Audio/vo_q1_wa3.ogg",
+   "vo_q1_ok": "assets/Audio/vo_q1_ok.ogg",
+   "vo_q2_a": "assets/Audio/vo_q2_a.ogg",
+   "vo_q2_b": "assets/Audio/vo_q2_b.ogg",
+   "vo_q2_wa2": "assets/Audio/vo_q2_wa2.ogg",
+   "vo_q2_wa3": "assets/Audio/vo_q2_wa3.ogg",
+   "vo_q2_ok": "assets/Audio/vo_q2_ok.ogg",
+   "vo_q3_a": "assets/Audio/vo_q3_a.ogg",
+   "vo_q3_b": "assets/Audio/vo_q3_b.ogg",
+   "vo_q3_wa2": "assets/Audio/vo_q3_wa2.ogg",
+   "vo_q3_wa3": "assets/Audio/vo_q3_wa3.ogg",
+   "vo_q3_ok": "assets/Audio/vo_q3_ok.ogg",
+   "vo_q4_1": "assets/Audio/vo_q4_1.ogg",
+   "vo_q4_2": "assets/Audio/vo_q4_2.ogg",
+   "vo_q4_3": "assets/Audio/vo_q4_3.ogg",
+   "vo_q4_4": "assets/Audio/vo_q4_4.ogg",
+   "vo_q4_5": "assets/Audio/vo_q4_5.ogg",
+   "vo_q4_ok": "assets/Audio/vo_q4_ok.ogg",
+   "vo_q4_wa1": "assets/Audio/vo_q4_wa1.ogg",
+   "vo_q4_hint": "assets/Audio/vo_q4_hint.ogg",
+   "vo_q4_wa3": "assets/Audio/vo_q4_wa3.ogg",
+   "vo_q4_after": "assets/Audio/vo_q4_after.ogg",
+   "vo_q5_q": "assets/Audio/vo_q5_q.ogg",
+   "vo_q5_ok1": "assets/Audio/vo_q5_ok1.ogg",
+   "vo_q5_wa1": "assets/Audio/vo_q5_wa1.ogg",
+   "vo_q5_hint1": "assets/Audio/vo_q5_hint1.ogg",
+   "vo_q5_wa3a": "assets/Audio/vo_q5_wa3a.ogg",
+   "vo_after_tap": "assets/Audio/vo_after_tap.ogg",
+   "vo_q5_ok2": "assets/Audio/vo_q5_ok2.ogg",
+   "vo_q5_hint2": "assets/Audio/vo_q5_hint2.ogg",
+   "vo_q5_wa3b": "assets/Audio/vo_q5_wa3b.ogg",
+   "vo_q6_q": "assets/Audio/vo_q6_q.ogg",
+   "vo_q6_ok1": "assets/Audio/vo_q6_ok1.ogg",
+   "vo_q6_wa1": "assets/Audio/vo_q6_wa1.ogg",
+   "vo_q6_hint1": "assets/Audio/vo_q6_hint1.ogg",
+   "vo_q6_wa3a": "assets/Audio/vo_q6_wa3a.ogg",
+   "vo_q6_ok2": "assets/Audio/vo_q6_ok2.ogg",
+   "vo_q6_hint2": "assets/Audio/vo_q6_hint2.ogg",
+   "vo_q6_wa3b": "assets/Audio/vo_q6_wa3b.ogg",
+   "vo_q7_q": "assets/Audio/vo_q7_q.ogg",
+   "vo_q7_ok1": "assets/Audio/vo_q7_ok1.ogg",
+   "vo_q7_wa1": "assets/Audio/vo_q7_wa1.ogg",
+   "vo_q7_hint1": "assets/Audio/vo_q7_hint1.ogg",
+   "vo_q7_wa3a": "assets/Audio/vo_q7_wa3a.ogg",
+   "vo_q7_pre1": "assets/Audio/vo_q7_pre1.ogg",
+   "vo_q7_ok2": "assets/Audio/vo_q7_ok2.ogg",
+   "vo_q7_hint2": "assets/Audio/vo_q7_hint2.ogg",
+   "vo_q7_wa3b": "assets/Audio/vo_q7_wa3b.ogg",
+   "vo_q7_pre2": "assets/Audio/vo_q7_pre2.ogg",
+   "vo_landing": "assets/Audio/vo_landing.ogg",
+   "vo_pt_tutorial": "assets/Audio/vo_pt_tutorial.ogg",
+   "vo_pt_guided": "assets/Audio/vo_pt_guided.ogg",
+   "vo_pt_practice": "assets/Audio/vo_pt_practice.ogg",
+   "vo_well_done": "assets/Audio/vo_well_done.ogg",
+   "vo_g_n_23": "assets/Audio/vo_g_n_23.ogg",
+   "vo_g_n_25": "assets/Audio/vo_g_n_25.ogg",
+   "vo_g_n_27": "assets/Audio/vo_g_n_27.ogg",
+   "vo_g_n_29": "assets/Audio/vo_g_n_29.ogg",
+   "vo_g_n_31": "assets/Audio/vo_g_n_31.ogg",
+   "vo_g_r_2_1": "assets/Audio/vo_g_r_2_1.ogg",
+   "vo_g_n_42": "assets/Audio/vo_g_n_42.ogg",
+   "vo_g_n_44": "assets/Audio/vo_g_n_44.ogg",
+   "vo_g_n_46": "assets/Audio/vo_g_n_46.ogg",
+   "vo_g_n_48": "assets/Audio/vo_g_n_48.ogg",
+   "vo_g_n_50": "assets/Audio/vo_g_n_50.ogg",
+   "vo_g_r_2_2": "assets/Audio/vo_g_r_2_2.ogg",
+   "vo_g_n_61": "assets/Audio/vo_g_n_61.ogg",
+   "vo_g_n_63": "assets/Audio/vo_g_n_63.ogg",
+   "vo_g_n_65": "assets/Audio/vo_g_n_65.ogg",
+   "vo_g_n_67": "assets/Audio/vo_g_n_67.ogg",
+   "vo_g_n_69": "assets/Audio/vo_g_n_69.ogg",
+   "vo_g_r_2_3": "assets/Audio/vo_g_r_2_3.ogg",
+   "vo_g_wrong_2": "assets/Audio/vo_g_wrong_2.ogg",
+   "vo_g_done_2": "assets/Audio/vo_g_done_2.ogg",
+   "vo_g_n_30": "assets/Audio/vo_g_n_30.ogg",
+   "vo_g_n_35": "assets/Audio/vo_g_n_35.ogg",
+   "vo_g_n_40": "assets/Audio/vo_g_n_40.ogg",
+   "vo_g_n_45": "assets/Audio/vo_g_n_45.ogg",
+   "vo_g_r_5_1": "assets/Audio/vo_g_r_5_1.ogg",
+   "vo_g_n_55": "assets/Audio/vo_g_n_55.ogg",
+   "vo_g_n_60": "assets/Audio/vo_g_n_60.ogg",
+   "vo_g_r_5_2": "assets/Audio/vo_g_r_5_2.ogg",
+   "vo_g_n_70": "assets/Audio/vo_g_n_70.ogg",
+   "vo_g_n_75": "assets/Audio/vo_g_n_75.ogg",
+   "vo_g_n_80": "assets/Audio/vo_g_n_80.ogg",
+   "vo_g_n_85": "assets/Audio/vo_g_n_85.ogg",
+   "vo_g_r_5_3": "assets/Audio/vo_g_r_5_3.ogg",
+   "vo_g_wrong_5": "assets/Audio/vo_g_wrong_5.ogg",
+   "vo_g_done_5": "assets/Audio/vo_g_done_5.ogg",
+   "vo_g_r_10_1": "assets/Audio/vo_g_r_10_1.ogg",
+   "vo_g_n_90": "assets/Audio/vo_g_n_90.ogg",
+   "vo_g_r_10_2": "assets/Audio/vo_g_r_10_2.ogg",
+   "vo_g_n_100": "assets/Audio/vo_g_n_100.ogg",
+   "vo_g_r_10_3": "assets/Audio/vo_g_r_10_3.ogg",
+   "vo_g_wrong_10": "assets/Audio/vo_g_wrong_10.ogg",
+   "vo_g_done_10": "assets/Audio/vo_g_done_10.ogg",
+   "vo_g_menu": "assets/Audio/vo_g_menu.ogg",
+   "vo_g_guide": "assets/Audio/vo_g_guide.ogg",
+   "vo_g_round_done": "assets/Audio/vo_g_round_done.ogg",
+   "vo_g_all_done": "assets/Audio/vo_g_all_done.ogg",
+   "sfx_celebrate": "assets/Audio/sfx_celebrate.ogg",
+   "sfx_correct": "assets/Audio/sfx_correct.ogg",
+   "sfx_wrong": "assets/Audio/sfx_wrong.ogg",
+   "sfx_tap": "assets/Audio/sfx_tap.ogg",
+   "sfx_pop": "assets/Audio/sfx_pop.ogg",
+   "sfx_fb_correct": "assets/Audio/sfx_fb_correct.ogg",
+   "sfx_fb_incorrect": "assets/Audio/sfx_fb_incorrect.ogg",
+   "sfx_play_button": "assets/Audio/sfx_play_button.ogg",
+   "sfx_next_button": "assets/Audio/sfx_next_button.ogg",
+   "sfx_whoosh": "assets/Audio/sfx_whoosh.ogg",
+   "bgm_lesson": "assets/Audio/bgm_lesson.ogg"
+  },
+  "audio_text": {
+   "vo_t1_1a": "यह है टप्पू मेंढक।",
+   "vo_t1_1b": "उसका दोस्त पुल के उस पार है।",
+   "vo_t1_1c": "टप्पू दो-दो कदम की छलाँग लगाकर अपने दोस्त से मिलने जाएगा। आइए, उसके साथ गिनते हैं!",
+   "vo_t1_2a": "टप्पू शून्य पर है।",
+   "vo_t1_2b": "आइए, यहाँ से दो कदम आगे गिनते हैं—",
+   "vo_c_1": "एक,",
+   "vo_c_2": "दो,",
+   "vo_t1_2c": "टप्पू दो कदम की छलाँग लगाकर दो की संख्या पर पहुँच गया!",
+   "vo_t1_3a": "अब टप्पू दो पर है। वह दो कदम की छलाँग लगाकर कहाँ पहुँचेगा?",
+   "vo_t1_3b": "आइए, दो से आगे दो कदम गिनते हैं—",
+   "vo_c_3": "तीन,",
+   "vo_c_4": "चार,",
+   "vo_t1_3c": "टप्पू चार पर पहुँच गया!",
+   "vo_t1_4x": "टप्पू ने फिर दो कदम की छलाँग लगाई और छह पर पहुँच गया!",
+   "vo_t1_4": "टप्पू ने फिर दो कदम की छलाँग लगाई और आठ पर पहुँच गया!",
+   "vo_t1_5": "दो कदम की एक और छलाँग—दस! टप्पू अपने दोस्त से मिल गया!",
+   "vo_t1_6a": "टप्पू अपने दोस्त से मिल गया!",
+   "vo_t1_6b": "हमने दो-दो की गिनती करके उसे पुल पार कराया—",
+   "vo_c_6": "छह,",
+   "vo_c_8": "आठ,",
+   "vo_c_10": "दस,",
+   "vo_t2_1": "टप्पू का एक और दोस्त पुल के उस पार इंतज़ार कर रहा है। इस बार टप्पू पाँच-पाँच कदम की छलाँग लगाकर उससे मिलने जाएगा। आइए, टप्पू के साथ गिनते हैं!",
+   "vo_t2_2a": "टप्पू शून्य पर है। यहाँ से पाँच कदम आगे गिनते हैं—",
+   "vo_c_5": "पाँच,",
+   "vo_t2_2b": "टप्पू पाँच पर पहुँच गया!",
+   "vo_t2_3": "टप्पू पाँच से पाँच कदम आगे कूदकर दस पर पहुँच गया!",
+   "vo_t2_4": "फिर पाँच कदम की छलाँग लगाई और पंद्रह पर पहुँच गया!",
+   "vo_t2_5": "एक और पाँच कदम की छलाँग! अब टप्पू बीस पर है।",
+   "vo_t2_6": "अब आप टप्पू पर टैप कीजिए। वह पाँच कदम आगे कूदेगा!",
+   "vo_t2_7": "देखिए! टप्पू पच्चीस पर पहुँच गया!",
+   "vo_t2_8": "टप्पू पर फिर टैप कीजिए।",
+   "vo_t2_9": "पाँच कदम की एक और छलाँग लगाकर टप्पू तीस पर पहुँच गया!",
+   "vo_met": "वाह! टप्पू अपने दोस्त से मिल गया!",
+   "vo_c_15": "पंद्रह,",
+   "vo_c_20": "बीस,",
+   "vo_c_25": "पच्चीस,",
+   "vo_c_30": "तीस,",
+   "vo_t2_11": "ऐसे हम पाँच-पाँच करके गिनते हैं।",
+   "vo_t3_1": "टप्पू का एक और दोस्त पुल के उस पार है। इस बार टप्पू दस-दस कदम की छलाँग लगाकर उससे मिलने जाएगा। आइए, उसके साथ गिनते हैं!",
+   "vo_t3_2a": "टप्पू शून्य पर है।",
+   "vo_t3_2b": "वह दस कदम की छलाँग लगाकर दस पर पहुँच गया!",
+   "vo_t3_3": "फिर दस कदम की छलाँग लगाई और बीस पर पहुँच गया!",
+   "vo_t3_4": "एक और दस कदम की छलाँग! अब टप्पू तीस पर है।",
+   "vo_t3_5": "अब आप टप्पू पर टैप कीजिए। वह दस कदम आगे कूदेगा!",
+   "vo_t3_6": "देखिए! टप्पू चालीस पर पहुँच गया!",
+   "vo_t3_8": "दस कदम की एक और छलाँग लगाकर टप्पू पचास पर पहुँच गया!",
+   "vo_t3_9b": "हमने दस-दस करके गिना—",
+   "vo_c_40": "चालीस,",
+   "vo_c_50": "पचास,",
+   "vo_q1_a": "मेंढक को आगे जाना है।",
+   "vo_q1_b": "वह पचास पर है।",
+   "vo_q1_c": "पाँच कदम की छलाँग लगाकर वह किस संख्या पर पहुँचेगा? सही संख्या पर टैप कीजिए।",
+   "vo_q1_wa1": "मेंढक पचास पर है। पाँच कदम आगे कहाँ पहुँचेगा? सही संख्या पर टैप कीजिए।",
+   "vo_q1_wa2": "पचास से पाँच कदम आगे देखिए।",
+   "vo_q1_wa3": "मेंढक पाँच कदम की छलाँग लगाकर पचपन पर पहुँचेगा।",
+   "vo_q1_ok": "शाबाश! पाँच कदम आगे - पचपन!",
+   "vo_q2_a": "मेंढक चौदह पर है।",
+   "vo_q2_b": "दो कदम आगे कहाँ पहुँचेगा? सही संख्या पर टैप कीजिए।",
+   "vo_q2_wa2": "चौदह से दो कदम आगे देखिए।",
+   "vo_q2_wa3": "मेंढक दो कदम की छलाँग लगाकर सोलह पर पहुँचेगा।",
+   "vo_q2_ok": "शाबाश! दो कदम आगे—सोलह!",
+   "vo_q3_a": "मेंढक तीस पर है।",
+   "vo_q3_b": "दस कदम आगे कहाँ पहुँचेगा? सही संख्या पर टैप कीजिए।",
+   "vo_q3_wa2": "तीस से दस कदम आगे देखिए।",
+   "vo_q3_wa3": "मेंढक दस कदम की छलाँग लगाकर चालीस पर पहुँचेगा।",
+   "vo_q3_ok": "शाबाश! दस कदम आगे—चालीस!",
+   "vo_q4_1": "टिड्डा तीस पर है। आइए, उसके साथ दो-दो करके गिनते हैं।",
+   "vo_q4_2": "बत्तीस…",
+   "vo_q4_3": "चौंतीस…",
+   "vo_q4_4": "छत्तीस!",
+   "vo_q4_5": "अगली छलाँग में टिड्डा कहाँ पहुँचेगा? सही संख्या पर टैप कीजिए।",
+   "vo_q4_ok": "शाबाश! छत्तीस से दो आगे—अड़तीस!",
+   "vo_q4_wa1": "दो-दो करके गिनिए। अगली सही संख्या पर टैप कीजिए।",
+   "vo_q4_hint": "छत्तीस से दो कदम आगे देखिए।",
+   "vo_q4_wa3": "टिड्डा दो कदम की छलाँग लगाकर अड़तीस पर पहुँचेगा।",
+   "vo_q4_after": "अगली संख्या क्या होगी? सही संख्या पर टैप कीजिए।",
+   "vo_q5_q": "खरगोश दो-दो करके गिन रहा है। उसकी गिनती में दो संख्याएँ छूट गई हैं। सही संख्याओं पर टैप करके गिनती पूरी कीजिए।",
+   "vo_q5_ok1": "सही! सोलह से दो आगे—अठारह!",
+   "vo_q5_wa1": "दो-दो करके गिनिए। खाली जगह के लिए सही संख्या पर टैप कीजिए।",
+   "vo_q5_hint1": "सोलह से दो कदम आगे देखिए।",
+   "vo_q5_wa3a": "खरगोश दो कदम की छलाँग लगाकर अठारह पर पहुँचेगा।",
+   "vo_after_tap": "सही संख्या पर टैप कीजिए।",
+   "vo_q5_ok2": "शाबाश! अठारह से दो आगे—बीस!",
+   "vo_q5_hint2": "अठारह से दो कदम आगे देखिए।",
+   "vo_q5_wa3b": "खरगोश दो कदम की छलाँग लगाकर बीस पर पहुँचेगा।",
+   "vo_q6_q": "गिलहरी पाँच-पाँच करके आगे गिन रही है। उसकी गिनती पूरी करने में मदद कीजिए। खाली जगहों के लिए सही संख्याओं पर टैप कीजिए।",
+   "vo_q6_ok1": "सही! पैंसठ के बाद पाँच आगे गिनने पर सत्तर आता है।",
+   "vo_q6_wa1": "पाँच-पाँच करके गिनिए। सही संख्या पर टैप कीजिए।",
+   "vo_q6_hint1": "पैंसठ से पाँच कदम आगे देखिए।",
+   "vo_q6_wa3a": "पाँच कदम की छलाँग लगाकर सत्तर पर पहुँचेगा।",
+   "vo_q6_ok2": "शाबाश! सत्तर से पाँच आगे गिनने पर पचहत्तर आता है। गिलहरी की गिनती पूरी हो गई!",
+   "vo_q6_hint2": "सत्तर से पाँच कदम आगे देखिए।",
+   "vo_q6_wa3b": "गिलहरी पाँच कदम की छलाँग लगाकर पचहत्तर पर पहुँचेगी।",
+   "vo_q7_q": "दस-दस करके गिनिए। खाली जगह के लिए सही संख्या पर टैप कीजिए।",
+   "vo_q7_ok1": "सही! साठ से दस आगे—सत्तर!",
+   "vo_q7_wa1": "दस-दस करके गिनिए। सही संख्या पर टैप कीजिए।",
+   "vo_q7_hint1": "साठ से दस कदम आगे देखिए।",
+   "vo_q7_wa3a": "टिड्डा दस कदम की छलाँग लगाकर सत्तर पर पहुँचेगा।",
+   "vo_q7_pre1": "साठ से दस आगे गिनिए।",
+   "vo_q7_ok2": "शाबाश! अस्सी से दस आगे—नब्बे!",
+   "vo_q7_hint2": "अस्सी से दस कदम आगे देखिए।",
+   "vo_q7_wa3b": "टिड्डा दस कदम की छलाँग लगाकर नब्बे पर पहुँचेगा।",
+   "vo_q7_pre2": "अस्सी से दस आगे गिनिए।",
+   "vo_landing": "नमस्ते! आज हम टप्पू मेंढक के साथ कूद-कूद कर गिनती करेंगे — दो-दो, पाँच-पाँच और दस-दस की कूद!",
+   "vo_pt_tutorial": "ध्यान से देखिए और मेरे साथ जानिए। चलिए, शुरू करें!",
+   "vo_pt_guided": "बहुत बढ़िया! अब हम साथ मिलकर शुरू करते हैं। चलिए, साथ में करें!",
+   "vo_pt_practice": "वाह! अब आपकी बारी।",
+   "vo_well_done": "शाबाश! तुमने कूद-कूद कर गिनती सीख ली!",
+   "vo_g_n_23": "तेईस!",
+   "vo_g_n_25": "पच्चीस!",
+   "vo_g_n_27": "सत्ताईस!",
+   "vo_g_n_29": "उनतीस!",
+   "vo_g_n_31": "इकतीस!",
+   "vo_g_r_2_1": "कुछ साथी यानों में बैठ गए हैं। तेईस से दो-दो करके गिनिए और खाली यानों में सही साथियों को बिठाइए!",
+   "vo_g_n_42": "बयालीस!",
+   "vo_g_n_44": "चवालीस!",
+   "vo_g_n_46": "छियालीस!",
+   "vo_g_n_48": "अड़तालीस!",
+   "vo_g_n_50": "पचास!",
+   "vo_g_r_2_2": "कुछ साथी यानों में बैठ गए हैं। बयालीस से दो-दो करके गिनिए और खाली यानों में सही साथियों को बिठाइए!",
+   "vo_g_n_61": "इकसठ!",
+   "vo_g_n_63": "तिरसठ!",
+   "vo_g_n_65": "पैंसठ!",
+   "vo_g_n_67": "सड़सठ!",
+   "vo_g_n_69": "उनहत्तर!",
+   "vo_g_r_2_3": "कुछ साथी यानों में बैठ गए हैं। इकसठ से दो-दो करके गिनिए और खाली यानों में सही साथियों को बिठाइए!",
+   "vo_g_wrong_2": "अरे! दो-दो करके गिनिए। फिर कोशिश कीजिए!",
+   "vo_g_done_2": "वाह! दो-दो की गिनती से सभी यान उड़ गए! अब दूसरी गिनती चुनिए।",
+   "vo_g_n_30": "तीस!",
+   "vo_g_n_35": "पैंतीस!",
+   "vo_g_n_40": "चालीस!",
+   "vo_g_n_45": "पैंतालीस!",
+   "vo_g_r_5_1": "कुछ साथी यानों में बैठ गए हैं। पच्चीस से पाँच-पाँच करके गिनिए और खाली यानों में सही साथियों को बिठाइए!",
+   "vo_g_n_55": "पचपन!",
+   "vo_g_n_60": "साठ!",
+   "vo_g_r_5_2": "कुछ साथी यानों में बैठ गए हैं। चालीस से पाँच-पाँच करके गिनिए और खाली यानों में सही साथियों को बिठाइए!",
+   "vo_g_n_70": "सत्तर!",
+   "vo_g_n_75": "पचहत्तर!",
+   "vo_g_n_80": "अस्सी!",
+   "vo_g_n_85": "पचासी!",
+   "vo_g_r_5_3": "कुछ साथी यानों में बैठ गए हैं। पैंसठ से पाँच-पाँच करके गिनिए और खाली यानों में सही साथियों को बिठाइए!",
+   "vo_g_wrong_5": "अरे! पाँच-पाँच करके गिनिए। फिर कोशिश कीजिए!",
+   "vo_g_done_5": "वाह! पाँच-पाँच की गिनती से सभी यान उड़ गए! अब दूसरी गिनती चुनिए।",
+   "vo_g_r_10_1": "कुछ साथी यानों में बैठ गए हैं। तीस से दस-दस करके गिनिए और खाली यानों में सही साथियों को बिठाइए!",
+   "vo_g_n_90": "नब्बे!",
+   "vo_g_r_10_2": "कुछ साथी यानों में बैठ गए हैं। पचास से दस-दस करके गिनिए और खाली यानों में सही साथियों को बिठाइए!",
+   "vo_g_n_100": "सौ!",
+   "vo_g_r_10_3": "कुछ साथी यानों में बैठ गए हैं। साठ से दस-दस करके गिनिए और खाली यानों में सही साथियों को बिठाइए!",
+   "vo_g_wrong_10": "अरे! दस-दस करके गिनिए। फिर कोशिश कीजिए!",
+   "vo_g_done_10": "वाह! दस-दस की गिनती से सभी यान उड़ गए! अब दूसरी गिनती चुनिए।",
+   "vo_g_menu": "अंतरिक्ष की सैर के लिए यात्री तैयार हैं! सही संख्या वाले यात्रियों को खाली यानों में बिठाइए। पहले चुनिए—दो-दो, पाँच-पाँच या दस-दस की गिनती।",
+   "vo_g_guide": "सही साथी को खींचकर खाली यान में बिठाइए।",
+   "vo_g_round_done": "शाबाश! गिनती पूरी हुई। साथियो, उड़ान भरिए!",
+   "vo_g_all_done": "कमाल! आपने दो-दो, पाँच-पाँच और दस-दस करके गिनती पूरी कर ली!"
+  }
+ },
+ "end_anim": {
+  "base": "assets/UI/celebration/",
+  "vo": "vo_well_done",
+  "meta": {
+   "cols": 6,
+   "frames": 36,
+   "fw": 329,
+   "fh": 440,
+   "shabaash": {
+    "src": "cel_shabaash.webp",
+    "pre": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "word": [
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20,
+     21,
+     22,
+     23,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29
+    ],
+    "post": [
+     30,
+     31,
+     32,
+     33,
+     34,
+     35
+    ]
+   },
+   "talk": {
+    "src": "cel_talk.webp",
+    "open": [
+     0,
+     1,
+     2,
+     4,
+     5,
+     6,
+     8,
+     9,
+     10,
+     11,
+     15,
+     16,
+     20,
+     21,
+     22,
+     23,
+     24,
+     25,
+     26,
+     28,
+     29,
+     30,
+     31,
+     32
+    ]
+   },
+   "idle": {
+    "src": "cel_idle.webp",
+    "loop": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     34,
+     35
+    ]
+   }
+  },
+  "track": {
+   "bits": "000000000000111110000000111100011100000111100000000000001111111111000000011111100000011110000001100000001111000001110000011000000111000000000000",
+   "step_ms": 25,
+   "ms": 3611
+  }
+ }
+}

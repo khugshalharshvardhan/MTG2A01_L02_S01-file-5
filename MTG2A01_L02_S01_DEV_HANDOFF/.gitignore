@@ -1,0 +1,10 @@
+# secrets - the Gemini key
+.env
+**/.env
+!**/.env.example
+
+# local backups - not needed to run or deploy the game (kept on this computer only)
+_v1_factory_build/
+4_ENGINE/_old_engine_2026.07.16i/
+# editor lock files
+~$*

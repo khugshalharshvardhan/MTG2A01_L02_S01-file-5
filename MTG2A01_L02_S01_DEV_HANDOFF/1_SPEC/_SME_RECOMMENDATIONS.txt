@@ -1,0 +1,445 @@
+SLIDES: 22
+
+==================================================================
+SLIDE 1
+==================================================================
+  [body] MTG2A01_L02_S01 — टप्पू मेंढक की कूद
+  [body] Page-by-page review · 21 pages
+
+==================================================================
+SLIDE 2
+==================================================================
+  [body] Overall recommendations & open questions
+  [body] • {'overview': 'Skip counting 2s/5s/10s to 100, built from NCERT G2 Hindi Ch.3 pp.25-31 (recap pp skipped). Arc: watch (frog number lines + chants + 100-chart) → do with help (frog hops, complete patterns, tap the landing spot) → alone (next number, chart, हाँ/नहीं reasoning). Gesture ledger: PRODUCE pattern-build ×5 · tap-in-picture ×2 · pick ×5. Inferred code MTG2A01_L02_S01 (no G2 rows in master map). Voice-over NOT generated (no GEMINI_KEY).'}
+
+==================================================================
+SLIDE 3
+==================================================================
+  [body] Page 1 · 01_landing.png
+  [body] Recommendations
+  [body] • Type: Landing · Shows: title '· Vo: vo_landing (needs recording) · Status: ✅
+
+==================================================================
+SLIDE 4
+==================================================================
+  [body] Teaching Screens
+  [body] Steps
+  [body] Visuals/Animations
+  [body] VO
+  [body] 1.
+  [body] tappu looks towards his friend. The friend gives one small wave. Both frogs then remain still.Screen / Animation:
+  [body] Show टप्पू at 0 and his friend at the other side as shown in the picture. Briefly highlight each character when mentioned. Keep the number line from 0 to 10, with equal spaces and every number clearly visible.
+  [body] “यह है टप्पू मेंढक। उसका दोस्त पुल के उस पार है। टप्पू दो-दो कदम की छलाँग लगाकर अपने दोस्त से मिलने जाएगा। आइए, उसके साथ गिनते हैं!”
+  [body] 2.
+  [body] Screen / Animation:
+  [body] Glow 0 when dialogue:  “टप्पू शून्य पर है। ” is spoken. Highlight 1 and then 2 with the counting. Make टप्पू take one jump directly from 0 to 2 as “टप्पू दो पर पहुँच गया” plays. Keep a curved jump trail behind him.
+  [body] टप्पू शून्य पर है। आइए, यहाँ से दो कदम आगे गिनते हैं—एक, दो। टप्पू दो कदम की छलाँग लगाकर दो ki sankhya पर पहुँच गया!”
+  [body] 3.
+  [body] Briefly pause after the question: “वह दो कदम की छलाँग लगाकर कहाँ पहुँचेगा?” . Highlight 3 and then 4 with the counting. Make टप्पू take one jump from 2 to 4 during the final sentence. Briefly glow 4 on landing.
+  [body] अब टप्पू दो पर है। वह दो कदम की छलाँग लगाकर कहाँ पहुँचेगा? आइए, दो से आगे दो कदम गिनते हैं—तीन, चार। टप्पू चार पर पहुँच गया!”
+  [body] 4.
+  [body] Make टप्पू take one jump from 6 to 8 during the final sentence. Briefly glow 8 on landing.
+  [body] 6 से 8 — VO:
+  [body] “टप्पू ने फिर दो कदम की छलाँग लगाई और आठ पर पहुँच गया!”
+  [body] 5.
+  [body] Make टप्पू take one jump from 8 to 10 during the final sentence. His friend waves as he lands.
+  [body] 8 से 10 — VO:
+  [body] “दो कदम की एक और छलाँग—दस! टप्पू अपने दोस्त से मिल गया!”
+  [body] 6.
+  [body] Show both frogs smiling. Highlight 2, 4, 6, 8 and 10 one at a time with the VO. Keep all five jump trails visible to show the equal jumps.
+  [body] टप्पू अपने दोस्त से मिल गया! हमने दो-दो की गिनती करके उसे पुल पार कराया—दो, चार, छह, आठ, दस!”
+  [body] To note:
+  [body] Initial screen setup —
+  [body] Keep the same slide layout, pond, Swifty, instruction bar, and Next button.
+  [body] Show equally spaced stones numbered 0 to 10.
+  [body] Place Jumpy directly on the stone marked 0. His friend waits near 10.
+  [body] Start with all stones in a neutral colour. Reveal the yellow highlights and red jump arrows during the animation.
+  [body] This is a watch-and-learn screen. No child input is needed.
+
+==================================================================
+SLIDE 5
+==================================================================
+  [body] Teaching screens
+  [body] Step
+  [body] Visuals/Animations
+  [body] VO
+  [body] 1.
+  [body] Show Tappu at 0 and his friend at 30. The friend gives a small wave. Briefly glow 0 when the introduction finishes.
+  [body] टप्पू का एक और दोस्त पुल के उस पार इंतज़ार कर रहा है। इस बार टप्पू पाँच-पाँच कदम की छलाँग लगाकर उससे मिलने जाएगा। आइए, टप्पू के साथ गिनते हैं!”
+  [body] 2.
+  [body] Keep Tappu at 0 while counting. Move a small light dot through 1, 2, 3, 4 and 5, matching the VO. During the final sentence, make one continuous jump from 0 to 5. Reveal the jump arc and briefly glow 5 on landing.
+  [body] “टप्पू शून्य पर है। यहाँ से पाँच कदम आगे गिनते हैं—एक, दो, तीन, चार, पाँच। टप्पू पाँच पर पहुँच गया!
+  [body] 3.
+  [body] Make Tappu jump from 5 to 10, landing as “दस” is spoken. Add an equal-width jump arc and briefly glow 10. Keep the previous arc visible.
+  [body] “टप्पू पाँच से पाँच कदम आगे कूदकर दस पर पहुँच गया!”
+  [body] 4.
+  [body] Make Tappu jump from 10 to 15, matching the VO. Add the next equal-width arc and briefly glow 15 on landing.
+  [body] फिर पाँच कदम की छलाँग लगाई और पंद्रह पर पहुँच गया!”
+  [body] 5.
+  [body] Make Tappu jump from 15 to 20. Add the arc and glow 20 as “बीस” is spoken. Pause at 20.
+  [body] एक और पाँच कदम की छलाँग! अब टप्पू बीस पर है।”
+  [body] 6.
+  [body] Keep Tappu at 20. Show one brief hand-tap cue on him. Enable tapping after the VO finishes.
+  [body] “अब आप टप्पू पर टैप कीजिए। वह पाँच कदम आगे कूदेगा!”
+  [body] 7.
+  [body] On one tap, make Tappu jump from 20 to 25. Add the arc and glow 25 as “पच्चीस” is spoken. Disable tapping during the jump
+  [body] देखिए! टप्पू पच्चीस पर पहुँच गया!”
+  [body] 8.
+  [body] Keep Tappu at 25. His friend waves from 30. Enable Tappu for the next tap after the VO finishes.
+  [body] “टप्पू पर फिर टैप कीजिए।”
+  [body] 9.
+  [body] On one tap, make Tappu jump from 25 to 30, landing as “तीस” is spoken. Reveal the final arc and briefly glow 30.
+  [body] “पाँच कदम की एक और छलाँग लगाकर टप्पू तीस पर पहुँच गया!”
+  [body] 10.
+  [body] Show both frogs smiling and making one small happy bounce.
+  [body] “वाह! टप्पू अपने दोस्त से मिल गया!”
+  [body] 11.
+  [body] Highlight 5, 10, 15, 20, 25 and 30 one at a time with the VO. Keep all six equal jump arcs visible. Enable Next when the VO finishes.
+  [body] पाँच, दस, पंद्रह, बीस, पच्चीस, तीस! ऐसे हम पाँच-पाँच करके गिनते हैं।”
+
+==================================================================
+SLIDE 6
+==================================================================
+  [body] Step
+  [body] Visuals/Animation
+  [body] VO
+  [body] 1.
+  [body] Show Tappu at 0 and his friend near 50. The friend gives a small wave. Keep equal spacing between all consecutive numbers.
+  [body] “टप्पू का एक और दोस्त पुल के उस पार है। इस बार टप्पू दस-दस कदम की छलाँग लगाकर उससे मिलने जाएगा। आइए, उसके साथ गिनते हैं!”
+  [body] 2.
+  [body] Briefly glow 0 when mentioned. Highlight the distance of ten unit spaces, then make Tappu take one continuous jump from 0 to 10. Draw the jump arc and glow 10 on l
+  [body] “टप्पू शून्य पर है। वह दस कदम की छलाँग लगाकर दस पर पहुँच गया!”
+  [body] 3.
+  [body] Make Tappu jump from 10 to 20, landing as “बीस” is spoken. Add an equal-width arc and briefly glow 20.
+  [body] “फिर दस कदम की छलाँग लगाई और बीस पर पहुँच गया!”
+  [body] 4.
+  [body] Make Tappu jump from 20 to 30. Add the arc and glow 30 as “तीस” is spoken. Pause here.
+  [body] एक और दस कदम की छलाँग! अब टप्पू तीस पर है।
+  [body] 5.
+  [body] Keep Tappu at 30. Stop camera movement and keep 30–50 clearly visible, including all intermediate numbers. Show one brief hand-tap cue on Tappu. Enable tapping after the VO finishes.
+  [body] अब आप टप्पू पर टैप कीजिए। वह दस कदम आगे कूदेगा!” OST: “टप्पू पर टैप कीजिए।”
+  [body] 6.
+  [body] Make one jump from 30 to 40. Draw the dotted arc and glow 40 as “चालीस” is spoken. Disable tapping during the jump.
+  [body] “देखिए! टप्पू चालीस पर पहुँच गया!”
+  [body] 7.
+  [body] Keep Tappu at 40. His friend waves from the far bank. Enable Tappu for the next tap.
+  [body] “टप्पू पर फिर टैप कीजिए।”
+  [body] OST:“टप्पू पर फिर टैप कीजिए।”
+  [body] 8.
+  [body] Make Tappu jump from 40 to 50, landing as “पचास” is spoken. Draw the final arc and glow 50.
+  [body] On tap — VO:
+  [body] “दस कदम की एक और छलाँग लगाकर टप्पू पचास पर पहुँच गया!”
+  [body] 9
+  [body] Show both frogs making one small happy bounce. Then highlight 10, 20, 30, 40 and 50 with the counting. Enable Next after the VO finishes.
+  [body] वाह! टप्पू अपने दोस्त से मिल गया! हमने दस-दस करके गिना—दस, बीस, तीस, चालीस, पचास!”
+  [body] NOTE: Camera Movement
+  [body] If the full number line looks too crowded, use a closer view. As Tappu moves right, smoothly move the pond and number line left, like scenery passing a moving train. Keep the outer frame, heading, instruction bar and navigation fixed.
+  [body] Before the child’s interaction, settle the view on 30–50 and keep it still during both taps. Keep every unit space equally wide and every number readable. For the final counting recap, briefly zoom out to show 0–50.
+  [body] Interaction Note:The child taps Tappu to trigger each jump. Number labels and stones are not answer options, so no incorrect-answer feedback is needed.
+
+==================================================================
+SLIDE 7
+==================================================================
+  [body] Guided Practice Screens
+  [body] Recommendations
+  [body] •VO1: “ मेंढक को आगे जाना है। वह पचास पर है। पाँच कदम की छलाँग लगाकर वह किस संख्या पर पहुँचेगा? सही संख्या पर टैप कीजिए।”
+  [body] OST:सही संख्या पर टैप कीजिए।
+  [body] Animation : When the VO says “पचास पर है”, briefly glow 50 on the number line, then return it to normal. Keep the frog still.
+  [body] Correct Feedback:
+  [body] VO: शाबाश! पाँच कदम आगे - पचपन!
+  [body] animation: Highlight 55. The frog jumps from 50 to 55 WA1[WRONG ATTEMPT]:
+  [body] VO: “मेंढक पचास पर है। पाँच कदम आगे कहाँ पहुँचेगा? सही संख्या पर टैप कीजिए।  OST: सही संख्या पर टैप कीजिए। Animation: Wiggle the selected option, then return it to its resting position. Repeat the question VO.  WA2:VO / OST: “पचास से पाँच कदम आगे देखिए।” Animation: Briefly glow the five spaces from 50 to 55. Keep the frog still.
+  [body] WA3:
+  [body] VO / OST: “मेंढक पाँच कदम की छलाँग लगाकर पचपन पर पहुँचेगा। Fade and disable the incorrect options. Gently pulse and glow 55, with a hand-tap cue. Wait for the child’s tap.
+  [body] ** the other two flows of 2s and 10s are given below. please refer**
+  [note] 2 more questions with the same flow: for 2s:VO:मेंढक चौदह पर है। दो कदम आगे कहाँ पहुँचेगा? सही संख्या पर टैप कीजिए। OST: सही संख्या पर टैप कीजिए। Options: 15 · 16 · 18
+  [note] for 10s:
+  [note] VO: मेंढक तीस पर है। दस कदम आगे कहाँ पहुँचेगा? सही संख्या पर टैप कीजिए।” OST: सही संख्या पर टैप कीजिए। options: 35 · 50 · 40 Feedback
+  [note] 2s
+  [note] 10s
+  [note] Animation — English
+  [note] Correct
+  [note] VO: “शाबाश! दो कदम आगे—सोलह!” OST: “सही! 16”
+  [note] VO: “शाबाश! दस कदम आगे—चालीस!” OST: “सही! 40”
+  [note] Highlight the correct option. The frog makes one jump to the correct number.
+  [note] Incorrect 1
+  [note] Repeat the question VO and OST.
+  [note] Repeat the question VO and OST.
+  [note] Wiggle the selected option, then let it settle in its original position.
+  [note] Incorrect 2
+  [note] VO / OST: “चौदह से दो कदम आगे देखिए।”
+  [note] VO / OST: “तीस से दस कदम आगे देखिए।”
+  [note] Briefly glow the two spaces from 14 to 16 or the ten spaces from 30 to 40. Keep the frog still.
+  [note] Incorrect 3
+  [note] VO / OST: “मेंढक दो कदम की छलाँग लगाकर सोलह पर पहुँचेगा।
+  [note] VO / OST: “मेंढक दस कदम की छलाँग लगाकर चालीस पर पहुँचेगा। ”
+  [note] Fade and disable the incorrect options. Gently pulse and glow the correct option, with a hand-tap cue. Wait for the child’s tap.
+
+==================================================================
+SLIDE 8
+==================================================================
+  [body] Question: Sequence: 30, 32, 34, 36, __Options: 40, 37, 38Correct answer: 38
+  [body] For the Question part: VO1: टिड्डा तीस पर है। आइए, उसके साथ दो-दो करके गिनते हैं।” visuals : Show 30 with the grasshopper above it. VO2: “बत्तीस…Visual: ”Reveal 32. Make the grasshopper jump from 30 to 32VO3:“चौंतीस…” Visual:Reveal 34. Make the grasshopper jump from 32 to 34.VO4: “छत्तीस!”Visual: Reveal 36. Make the grasshopper jump from 34 to 36. VO5: “अगली छलाँग में टिड्डा कहाँ पहुँचेगा? सही संख्या पर टैप कीजिए।Visual: ”Reveal the blue-outlined blank after 36. Keep the grasshopper at 36. Show and activate the answer options after the VO finishes. Animation / Developer Note:Reveal 30 → 32 → 34 → 36 in quick succession, with the grasshopper making a quick jump to each number in sync with the VO: “तीस, बत्तीस, चौंतीस, छत्तीस।” Keep the movement continuous, with no pauses between jumps. Stop at 36, then play the question VO and reveal the blank. Correct Feedback VO:“शाबाश! छत्तीस से दो आगे—अड़तीस!”Animation:Glow the selected 38 card. Place 38 in the empty box and briefly highlight the completed sequence. Enable Next after the feedback finishes.
+  [body] WA1:VO / OST: “दो-दो करके गिनिए। अगली सही संख्या पर टैप कीजिए।”
+  [body] Animation:Wiggle the selected option, then let it settle in its original position. Keep the blank empty and replay the original instruction.
+  [body] WA2:Hint Popup(shown in image 2)
+  [body] Hint VO:“छत्तीस से दो कदम आगे देखिए।”
+  [body] Animation:
+  [body] Wiggle the incorrect option, then open the hint popup.
+  [body] Dim the question screen and disable its options.
+  [body] Show a number line from 34 to 40, with equal unit spaces.
+  [body] Keep the frog stationary at 36 throughout the hint.
+  [body] Reveal one curved arrow from 36 to 38, passing over 37. Show +2 above the arrow.
+  [body] Gently glow 38 and hold briefly.
+  [body] Close the popup automatically and reactivate all options.
+  [body] hint option pop up for 5seconds for now.
+  [body] VO after the hint closes:“अगली संख्या क्या होगी? सही संख्या पर टैप कीजिए।”
+  [body] OST:“अगली सही संख्या पर टैप कीजिए।”
+  [body] WA3:
+  [body] VO / OST:“मेंढक दो कदम की छलाँग लगाकर अड़तीस पर पहुँचेगा।”
+  [body] Animation:Fade and disable 40 and 37. Gently glow 38 and show hand nudge. Do not show a check mark before the child selects it. Wait for the child to tap 38, then play the normal correct feedback.
+
+==================================================================
+SLIDE 9
+==================================================================
+  [body] Recommendations
+  [body] • Number sequence: 10, 12, 14, 16, __, __Options: 17, 18, 19, 20Correct answers: 18, 20
+  [body] VO: ““खरगोश दो-दो करके गिन रहा है। उसकी गिनती में दो संख्याएँ छूट गई हैं। सही संख्याओं पर टैप करके गिनती पूरी कीजिए।” OST: “दो-दो करके गिनिए। सही संख्या पर टैप कीजिए।”Interaction: Highlight the first empty box. When the child taps 18, place it there automatically. Then highlight the second box for 20.Correct FeedbackFirst blankVO: “सही! सोलह से दो आगे—अठारह!”
+  [body] Animation: Place 18 in the first box and briefly glow it. Lock it in place, then highlight the second empty box.18 from options box will also fadeout/will disappeared once locked in the right place.
+  [body] Second blankVO: “शाबाश! अठारह से दो आगे—बीस!” Animation: Place 20 in the second box and briefly glow it. Lock it in place. same as above.
+  [body] Wrong AttemptWA1VO: “दो-दो करके गिनिए। खाली जगह के लिए सही संख्या पर टैप कीजिए।” OST: “सही संख्या पर टैप कीजिए।”Animation: Wiggle the selected option in place. Keep the active box empty and repeat the question.WA2:First blankVO: “सोलह से दो आगे गिनिए।”Animation: Glow 16 and the first empty box. Briefly show a connecting arrow labelled +2. Keep the answer hidden.-[ instead of this show number line hint same as previous question]
+  [body] Second blank:VO: “अठारह से दो आगे गिनिए।”Animation: Glow 18 and the second empty box. Briefly show a connecting arrow labelled +2. Keep the answer hidden.[number line as hint]
+  [body] Hint Pop UP for above attempts:पहला blank: “सोलह से दो कदम आगे देखिए।”
+  [body] दूसरा blank: “अठारह से दो कदम आगे देखिए।”
+  [body] Hint बंद होने के बाद: “सही संख्या पर टैप कीजिए।WA3
+  [body] “VO / OST: “मेंढक दो कदम की छलाँग लगाकर अठारह पर पहुँचेगा।” Animation: Fade and disable the other available options. Pulse and glow 18, with a hand-tap cue. Wait for the child’s tap.
+  [body] Second blank
+  [body] VO / OST: “मेंढक दो कदम की छलाँग लगाकर बीस पर पहुँचेगा।””
+  [body] Animation: Fade and disable the incorrect options. Pulse and glow 20, with a hand-tap cue. Wait for the child’s tap.
+  [note] involve mendhak or other cute animals on top of the number box. on correct answers- the animal will take a jump.
+
+==================================================================
+SLIDE 10
+==================================================================
+  [body] Recommendations
+  [body] QuestionVO: “गिलहरी पाँच-पाँच करके आगे गिन रही है। उसकी गिनती पूरी करने में मदद कीजिए। खाली जगहों के लिए सही संख्याओं पर टैप कीजिए।” OST: “पाँच-पाँच करके गिनती पूरी कीजिए।” Interaction: Highlight the first empty box. When the child taps 70, place it there automatically. Then activate the second box for 75. Remove each correctly used option from the tray.
+  [body] Correct FeedbackFirst blank — 70VO: ““सही! पैंसठ के बाद पाँच आगे गिनने पर सत्तर आता है।” Animation : Place 70 in the first box and briefly glow it. Lock it in place, then highlight the second empty box.
+  [body] Second blank — 75VO: “शाबाश! सत्तर से पाँच आगे गिनने पर पचहत्तर आता है। गिलहरी की गिनती पूरी हो गई!” Animation : Place 75 in the second box and briefly glow it. Lock it in place.WA1VO / OST: “पाँच-पाँच करके गिनिए। सही संख्या पर टैप कीजिए।”Animation: Wiggle the selected option in place. Keep the active box empty and repeat the instruction.
+  [body] WA2: Hint PopupFirst blank — 70Hint VO / OST:“पैंसठ से पाँच कदम आगे देखिए।”Animation:
+  [body] Wiggle the incorrect option, then open the hint popup.
+  [body] Dim the question screen and disable its options.
+  [body] Show a number line from 64 to 70, with equal unit spaces.
+  [body] Keep the rabbit stationary at 65.
+  [body] Reveal one curved arrow from 65 to 70, with +5 above it.
+  [body] Gently glow 70, hold briefly, then close the popup.
+  [body] Second blank — 75Hint VO / OST:“सत्तर से पाँच कदम आगे देखिए।”
+  [body] Animation
+  [body] Wiggle the incorrect option, then open the hint popup.
+  [body] Dim the question screen and disable its options.
+  [body] Show a number line from 69 to 75, with equal unit spaces.
+  [body] Keep the rabbit stationary at 70.
+  [body] Reveal one curved arrow from 70 to 75, with +5 above it.
+  [body] Gently glow 75, hold briefly, then close the popup.
+  [body] After the Hint Closes– VO / OST: “सही संख्या पर टैप कीजिए।”Animation: Reactivate the available options. Keep the active blank empty until the child taps the correct answer.
+  [body] WA3 First blankVO : ““पाँच कदम की छलाँग लगाकर सत्तर पर पहुँचेगा।”
+  [body] Animation : Fade and disable all available options except 70. Gently pulse and glow 70 with a hand-tap cue. Wait for the child’s tap.
+  [body] Second blank
+  [body] VO / OST: “ गिलहरी पाँच कदम की छलाँग लगाकर सत्तर पर पहुँचेगी।”
+  [body] Animation : Fade and disable the incorrect options. Gently pulse and glow 75 with a hand-tap cue. Wait for the child’s tap.
+
+==================================================================
+SLIDE 11
+==================================================================
+  [body] Recommendations
+  [body] Sequence: 50, 60, __, 80, __, 100Options: 61, 70, 75, 90Correct answers: पहले 70, फिर 90।
+  [body] 1. Question
+  [body] VO: “दस-दस करके गिनिए। खाली जगह के लिए सही संख्या पर टैप कीजिए।”OST: “ सही संख्या पर टैप कीजिए।”creen and interaction:
+  [body] Keep the first empty box highlighted; the second box remains inactive.
+  [body] The child taps an option to fill the highlighted box.
+  [body] On tapping 70, place it in the first box automatically.
+  [body] Then highlight the second empty box for 90.
+  [body] Remove each correctly used option from the option tray.
+  [body] Correct Feedback
+  [body] First blank — 70
+  [body] VO: “सही! साठ से दस आगे—सत्तर!”Animation: Place 70 in the first box and briefly glow it. Lock it in place, then activate the second empty box.
+  [body] Second blank — 90
+  [body] VO: “शाबाश! अस्सी से दस आगे—नब्बे!”Animation : Place 90 in the second box and briefly glow it. Lock it in placeIncorrect Feedback — Attempt 1
+  [body] VO: “दस-दस करके गिनिए। सही संख्या पर टैप कीजिए।”
+  [body] OST: “दस-दस करके गिनिए। सही संख्या पर टैप कीजिए।”
+  [body] . Attempt 2
+  [body] First blank
+  [body] VO: “साठ से दस आगे गिनिए।”Hint Pop up: Hint VO / OST:
+  [body] “साठ से दस कदम आगे देखिए।” Open the hint popup and dim the question screen. Keep the grasshopper stationary at 60. Reveal an arrow from 60 to 70, with +10 above it. Glow 70 briefly, then close the popup
+  [body] Second blank
+  [body] VO: “अस्सी से दस आगे गिनिए।”
+  [body] Hint VO / OST:
+  [body] “अस्सी से दस कदम आगे देखिए।” Open the hint popup and dim the question screen. Keep the grasshopper stationary at 80. Reveal an arrow from 80 to 90, with +10 above it. Glow 90 briefly, then close the popup. Hint बंद होने के बाद
+  [body] VO / OST:“सही संख्या पर टैप कीजिए।”
+  [body] Attempt 3
+  [body] First blank
+  [body] VO / OST: “टिड्डा दस कदम की छलाँग लगाकर सत्तर पर पहुँचेगा।”
+  [body] Animation: Fade and disable all available options except 70. Gently glow 70. Wait for the child’s tap, then fill the blank and make the grasshopper jump to the newly filled box.
+  [body] Second blank
+  [body] VO / OST: “टिड्डा दस कदम की छलाँग लगाकर नब्बे पर पहुँचेगा।”
+  [body] Animation: Fade and disable the incorrect options. Gently glow 90. Wait for the child’s tap, then fill the blank and make the grasshopper jump to the newly filled box.
+  [note] number that has been filled in the blank shall be disabled.
+
+==================================================================
+SLIDE 12
+==================================================================
+  [body] Independent Practice/Game
+  [note] https://www.roomrecess.com/games/SpacePetsSkipCounting/play.htmltutorial context: VO and guidance dena hai …sahi sathiyon ko sahi jagah par bithaye.
+
+==================================================================
+SLIDE 13
+==================================================================
+  [body] GAME STRUCTURE AND RECOMMENDATIONS:Main Menu VO:“अंतरिक्ष की सैर के लिए यात्री तैयार हैं! सही संख्या वाले यात्रियों को खाली यानों में बिठाइए। पहले चुनिए—दो-दो, पाँच-पाँच या दस-दस की गिनती।” Animation: Show three cards: दो-दो की गिनती, पाँच-पाँच की गिनती, and दस-दस की गिनती. The child taps one card to enter that level. Each level has three rounds.
+  [body] 2. Round Setup — कुछ साथी पहले से बैठे हैं
+  [body] Example sequence: 23, __, 27, __, __VO:“कुछ साथी यानों में बैठ गए हैं। तेईस से दो-दो करके गिनिए और खाली यानों में सही साथियों को बिठाइए!”Animation: Show five pods in a row. Seat and lock the animals numbered 23 and 27 in their correct pods. Display the remaining correct animals—25, 29 and 31—below, mixed with a distractor numbered 26.**Briefly glow the first number, 23, when it is mentioned. Keep all empty pods available for dropping.
+  [body] 3. पहली Drag की Guidance
+  [body] Guidance VO: सही साथी को खींचकर खाली यान में बिठाइए।”Animation:On the first round only, gently glow the leftmost empty pod. Show a hand dragging a ghost copy of the correct animal towards it. Keep the real animal below for the child to drag.Inactivity: After approximately 7 seconds without action, repeat the hand cue and guidance VO once. Keep inactivity separate from incorrect attempts.
+  [body] 4. सही Drop
+  [body] Example: बच्चा 25 वाले साथी को 23 और 27 के बीच खाली यान में रखता है।
+  [body] VO: “पच्चीस!”Animation: Snap the animal into the correct pod. Briefly glow its number and lock it in place. Preserve all other placements.**The child may fill the empty pods in any order. Check each animal against the number required by the chosen pod.
+  [note] skip c
+
+==================================================================
+SLIDE 14
+==================================================================
+  [body] 5. गलत Drop
+  [body] VO — First wrong attempt of each round only:
+  [body] 2s: “अरे! दो-दो करके गिनिए। फिर कोशिश कीजिए!”
+  [body] 5s: “अरे! पाँच-पाँच करके गिनिए। फिर कोशिश कीजिए!”
+  [body] 10s: “अरे! दस-दस करके गिनिए। फिर कोशिश कीजिए!”
+  [body] Animation / Developer Notes :
+  [body] On every incorrect drop, make the target pod wiggle briefly, with a small cartoon puff of smoke around it.
+  [body] Let the smoke quickly fade out. Keep the pod and its number area clearly visible.
+  [body] Return the animal to its original position. Keep the target pod empty and preserve all correct placements.
+  [body] Play the VO only on the first incorrect drop in each round. For subsequent incorrect drops, use the same visual feedback without repeating the VO.
+  [body] Apply this feedback to both distractor selections and correct animals dropped into the wrong pod.
+  [body] 6. Round Complete — उड़ान भरें!
+  [body] VO:“शाबाश! गिनती पूरी हुई। साथियो, उड़ान भरिए!”
+  [body] Animation:Briefly highlight all five numbers from left to right. Make the five occupied pods fly away together.**The unused distractor animals leave through the ground exit. Automatically load the next round without showing navigation buttons or returning to the menu.
+  [body] 7. तीनों Rounds पूरे होने पर
+  [body] Example VO — 2s:“वाह! दो-दो की गिनती से सभी यान उड़ गए! अब दूसरी गिनती चुनिए।”Animation —After the third round, automatically return to the main menu. Fade the completed counting card and add a completion badge. Keep the unfinished counting cards active.
+  [body] After all three counting levels are complete:
+  [body] VO:“कमाल! आपने दो-दो, पाँच-पाँच और दस-दस करके गिनती पूरी कर ली!”
+
+==================================================================
+SLIDE 15
+==================================================================
+  [body] Level
+  [body] Round
+  [body] Pods from left to right
+  [body] Extra distractors
+  [body] 2s
+  [body] 1
+  [body] 23, __, 27, __, __
+  [body] 26
+  [body] 2s
+  [body] 2
+  [body] 42, __, __, __, 50
+  [body] 45
+  [body] 2s
+  [body] 3
+  [body] 61, 63, __, __, __
+  [body] 66, 68
+  [body] 5s
+  [body] 1
+  [body] 25, __, __, __, 45
+  [body] 36
+  [body] 5s
+  [body] 2
+  [body] 40, __, 50, __, __
+  [body] 52
+  [body] 5s
+  [body] 3
+  [body] 65, 70, __, __, __
+  [body] 76, 84
+  [body] 10s
+  [body] 1
+  [body] 30, 40, __, __, __
+  [body] 55
+  [body] 10s
+  [body] 2
+  [body] 50, __, 70, __, __
+  [body] 75
+  [body] 10s
+  [body] 3
+  [body] 60, __, __, __, 100
+  [body] 85, 95
+  [body] Suggested Number Sets below:
+  [body] Bold numbers are already seated. The other correct numbers appear as draggable animals, mixed with the distractors.
+
+==================================================================
+SLIDE 16
+==================================================================
+  [body] Developer Notes:
+  [body] Structure: Three counting levels—2s, 5s and 10s—with three rounds in each.
+  [body] Starting point: Always prefill the first pod. Prefill one additional pod, varying its position between rounds. Prefilled animals cannot be moved.
+  [body] Number logic: Generate each sequence using start + position × step. For 2s, include both odd-start and even-start sequences. Keep numbers within 100.
+  [body] Animal consistency: Keep the same animal cast throughout the three rounds of one counting level. Introduce a different cast when the child chooses another counting level. Correct and distractor animals should use the same visual treatment.
+  [body] Distractors: Begin with one extra animal; use two in the final round. Distractor numbers must not belong to the five-number sequence. Shuffle the ground positions each round.
+  [body] Movement: Ground animals may gently bob or look around. Keep their positions stable during dragging so targets remain easy to select.
+  [body] Progression: Move automatically between rounds. Return to the menu only after all three rounds of the selected counting level are complete.
+  [body] VO: Update the starting number and counting step for each round. Say only the selected number after each correct drop.
+  [body] UI: Keep the game full screen without a permanent instruction bar.
+
+==================================================================
+SLIDE 17
+==================================================================
+  [body] Page 21 · 21_CELEBRATION.png
+  [body] Recommendations
+  [body] • Type: CELEBRATION · Status: ✅
+
+==================================================================
+SLIDE 18
+==================================================================
+  [body] Alternate suggestion:
+  [body] 1. Instruction
+  [body] VO:“टप्पू बीस पर है। पाँच कदम की छलाँग लगाकर वह किस संख्या पर पहुँचेगा? स्लाइडर खिसकाकर चुनिए।”
+  [body] OST:“पाँच आगे की संख्या चुनिए।”
+  [body] Animation:Keep टप्पू at 20 and the slider handle at 20. Briefly glow 20 when it is mentioned. Then pulse the slider handle with a small hand cue.
+  [body] 2. Child Interaction
+  [body] Animation — English:As the child slides, display the selected number above the handle and highlight its position on the number line. Keep टप्पू at 20 while dragging. Register the answer when the child releases the handle.
+  [body] Allow selection of every whole number, including numbers between multiples of five.
+  [body] 3. Correct Selection — 25
+  [body] VO:“शाबाश! बीस से पाँच आगे—पच्चीस!”
+  [body] OST:“शाबाश!”
+  [body] Animation :Make टप्पू jump once from 20 to 25. Draw an arc labelled +5 and briefly glow 25. Keep the slider handle at 25.
+  [body] 4. Incorrect Selection — System Demonstration
+  [body] VO:“देखिए! बीस से पाँच आगे पच्चीस आता है। टप्पू पच्चीस पर पहुँचेगा।”
+  [body] OST:“बीस से पाँच आगे—पच्चीस।”
+  [body] Animation:Keep टप्पू at 20. Briefly wiggle the slider handle at the incorrect selection. Highlight the five unit spaces from 20 to 25, one after another. Automatically move the slider handle to 25, then make टप्पू jump from 20 to 25. Show an arc labelled +5 and glow 25.
+  [body] Complete the step automatically without asking the child to try again.
+  [body] 5. Transition
+  [body] Animation:Disable the slider during feedback. After either feedback finishes, keep टप्पू and the slider at 25, ready for the next teaching step.
+  [note] simple tap on the patthar.
+
+==================================================================
+SLIDE 19
+==================================================================
+  [body] Page 3 · 03_INTRO.png
+  [body] Recommendations
+  [body] • Type: INTRO auto · Shows: 2,4…20 light up and are spoken one by one · Status: ✅
+
+==================================================================
+SLIDE 20
+==================================================================
+  [body] Page 5 · 05_INTRO.png
+  [body] Recommendations
+  [body] • Type: INTRO auto · Shows: 5…50 chant · Status: ✅
+
+==================================================================
+SLIDE 21
+==================================================================
+  [body] Page 6 · 06_STORY_SCENE.png
+  [body] Recommendations
+  [body] • Type: STORY_SCENE · Shows: 100-chart, 10s column highlighted (NCERT p.28-29) · Status: ✅ ❓ SME: chart is small on the tutorial frame
+
+==================================================================
+SLIDE 22
+==================================================================
+  [body] Page 17 · 17_PATTERN_BUILD.png
+  [body] Recommendations
+  [body] • Type: PATTERN_BUILD · Shows: 30,40,50 extend 3 · Status: ✅

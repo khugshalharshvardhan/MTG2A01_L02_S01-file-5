@@ -1,0 +1,24 @@
+C:\Users\harsh\.claude\skills\swiftpal-game-revise\scripts\build\gen_objects.py:94: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  data = list(im.getdata())
+  ok chr_squirrel.png  640x640  382KB  kept 404496/409600 px opaque (98.8%), centre 36864/36864 (100%)
+  ok chr_grasshopper.png  640x640  377KB  kept 404496/409600 px opaque (98.8%), centre 36864/36864 (100%)
+  ok chr_tappu.png  640x640  385KB  kept 404496/409600 px opaque (98.8%), centre 36864/36864 (100%)
+  ok chr_friend.png  640x640  366KB  kept 404496/409600 px opaque (98.8%), centre 36864/36864 (100%)
+  ok prop_reeds.png  640x640  346KB  kept 404496/409600 px opaque (98.8%), centre 36864/36864 (100%)
+  ok sp_frog.png  640x640  408KB  kept 404496/409600 px opaque (98.8%), centre 36864/36864 (100%)
+  ok sp_pod.png  640x640  367KB  kept 404496/409600 px opaque (98.8%), centre 36864/36864 (100%)
+  ok sp_grasshopper.png  640x640  404KB  kept 404496/409600 px opaque (98.8%), centre 36864/36864 (100%)
+done generated=8/8 -> 3_BUILD/assets/Images  (workers=5)
+C:\Users\harsh\.claude\skills\swiftpal-game-revise\scripts\build\gen_objects.py:94: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  data = list(im.getdata())
+  ok chr_rabbit.png  640x640  392KB  kept 409600/409600 px opaque (100.0%), centre 36864/36864 (100%)
+  ok sp_rabbit.png  640x640  395KB  kept 409600/409600 px opaque (100.0%), centre 36864/36864 (100%)
+done generated=2/2 -> 3_BUILD/assets/Images  (workers=2)
+C:\Users\harsh\.claude\skills\swiftpal-game-revise\scripts\build\gen_scenes.py:94: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  ink = darkest.point(lambda v: 1 if v < thresh else 0, "1").convert("L").getdata()
+       trimmed margin (1344, 768) -> (1326, 750)
+  ok   sc_space  (1280, 724)  25KB
+       trimmed margin (1344, 768) -> (1326, 750)
+  ok   sc_landing  (1280, 724)  33KB
+
+made 2 · skipped 0 · failed 0

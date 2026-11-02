@@ -1,0 +1,173 @@
+[vo_t1_2a] gemini-2.5-flash-preview-tts (Leda) -> vo_t1_2a.mp3  «टप्पू शून्य पर है।»
+[vo_t1_1a] gemini-2.5-flash-preview-tts (Leda) -> vo_t1_1a.mp3  «यह है टप्पू मेंढक।»
+[vo_t1_2b] gemini-2.5-flash-preview-tts (Leda) -> vo_t1_2b.mp3  «आइए, यहाँ से दो कदम आगे गिनते हैं—»
+[vo_t1_1b] gemini-2.5-flash-preview-tts (Leda) -> vo_t1_1b.mp3  «उसका दोस्त पुल के उस पार है।»
+[vo_c_1] gemini-2.5-flash-preview-tts (Leda) -> vo_c_1.mp3  «एक,»
+[vo_c_2] gemini-2.5-flash-preview-tts (Leda) -> vo_c_2.mp3  «दो,»
+[vo_t1_1c] gemini-2.5-flash-preview-tts (Leda) -> vo_t1_1c.mp3  «टप्पू दो-दो कदम की छलाँग लगाकर अपने दोस्त से मिलने जाएगा। आइए, उसके साथ गिनते हैं!»
+[vo_t1_2c] gemini-2.5-flash-preview-tts (Leda) -> vo_t1_2c.mp3  «टप्पू दो कदम की छलाँग लगाकर दो की संख्या पर पहुँच गया!»
+[vo_c_4] gemini-2.5-flash-preview-tts (Leda) -> vo_c_4.mp3  «चार,»
+[vo_t1_3b] gemini-2.5-flash-preview-tts (Leda) -> vo_t1_3b.mp3  «आइए, दो से आगे दो कदम गिनते हैं—»
+[vo_t1_3a] gemini-2.5-flash-preview-tts (Leda) -> vo_t1_3a.mp3  «अब टप्पू दो पर है। वह दो कदम की छलाँग लगाकर कहाँ पहुँचेगा?»
+[vo_t1_3c] gemini-2.5-flash-preview-tts (Leda) -> vo_t1_3c.mp3  «टप्पू चार पर पहुँच गया!»
+[vo_t1_4x] gemini-2.5-flash-preview-tts (Leda) -> vo_t1_4x.mp3  «टप्पू ने फिर दो कदम की छलाँग लगाई और छह पर पहुँच गया!»
+[vo_t1_4] gemini-2.5-flash-preview-tts (Leda) -> vo_t1_4.mp3  «टप्पू ने फिर दो कदम की छलाँग लगाई और आठ पर पहुँच गया!»
+[vo_t1_6a] gemini-2.5-flash-preview-tts (Leda) -> vo_t1_6a.mp3  «टप्पू अपने दोस्त से मिल गया!»
+[vo_t1_5] gemini-2.5-flash-preview-tts (Leda) -> vo_t1_5.mp3  «दो कदम की एक और छलाँग—दस! टप्पू अपने दोस्त से मिल गया!»
+[vo_t1_6b] gemini-2.5-flash-preview-tts (Leda) -> vo_t1_6b.mp3  «हमने दो-दो की गिनती करके उसे पुल पार कराया—»
+[vo_c_10] gemini-2.5-flash-preview-tts (Leda) -> vo_c_10.mp3  «दस,»
+[vo_c_6] gemini-2.5-flash-preview-tts (Leda) -> vo_c_6.mp3  «छह,»
+[vo_t2_2a] gemini-2.5-flash-preview-tts (Leda) -> vo_t2_2a.mp3  «टप्पू शून्य पर है। यहाँ से पाँच कदम आगे गिनते हैं—»
+[vo_c_8] gemini-2.5-flash-preview-tts (Leda) -> vo_c_8.mp3  «आठ,»
+[vo_t2_1] gemini-2.5-flash-preview-tts (Leda) -> vo_t2_1.mp3  «टप्पू का एक और दोस्त पुल के उस पार इंतज़ार कर रहा है। इस बार टप्पू पाँच-पाँच कदम की छलाँग लगाकर उससे मिलने जाएगा। आइए, टप्पू के साथ गिनते हैं!»
+[vo_t2_2b] gemini-2.5-flash-preview-tts (Leda) -> vo_t2_2b.mp3  «टप्पू पाँच पर पहुँच गया!»
+[vo_t2_3] gemini-2.5-flash-preview-tts (Leda) -> vo_t2_3.mp3  «टप्पू पाँच से पाँच कदम आगे कूदकर दस पर पहुँच गया!»
+[vo_t2_4] gemini-2.5-flash-preview-tts (Leda) -> vo_t2_4.mp3  «फिर पाँच कदम की छलाँग लगाई और पंद्रह पर पहुँच गया!»
+[vo_t2_5] gemini-2.5-flash-preview-tts (Leda) -> vo_t2_5.mp3  «एक और पाँच कदम की छलाँग! अब टप्पू बीस पर है।»
+[vo_t2_7] gemini-2.5-flash-preview-tts (Leda) -> vo_t2_7.mp3  «देखिए! टप्पू पच्चीस पर पहुँच गया!»
+[vo_t2_8] gemini-2.5-flash-preview-tts (Leda) -> vo_t2_8.mp3  «टप्पू पर फिर टैप कीजिए।»
+[vo_t2_6] gemini-2.5-flash-preview-tts (Leda) -> vo_t2_6.mp3  «अब आप टप्पू पर टैप कीजिए। वह पाँच कदम आगे कूदेगा!»
+[vo_t2_9] gemini-2.5-flash-preview-tts (Leda) -> vo_t2_9.mp3  «पाँच कदम की एक और छलाँग लगाकर टप्पू तीस पर पहुँच गया!»
+[vo_met] gemini-2.5-flash-preview-tts (Leda) -> vo_met.mp3  «वाह! टप्पू अपने दोस्त से मिल गया!»
+[vo_c_20] gemini-2.5-flash-preview-tts (Leda) -> vo_c_20.mp3  «बीस,»
+[vo_c_25] gemini-2.5-flash-preview-tts (Leda) -> vo_c_25.mp3  «पच्चीस,»
+[vo_t2_11] gemini-2.5-flash-preview-tts (Leda) -> vo_t2_11.mp3  «ऐसे हम पाँच-पाँच करके गिनते हैं।»
+[vo_c_15] gemini-2.5-flash-preview-tts (Leda) -> vo_c_15.mp3  «पंद्रह,»
+[vo_c_3] REFUSED on pass 1 (TTS failed: gemini-2.5-flash-preview-tts: no audio in response) — will ladder
+[vo_t3_1] gemini-2.5-flash-preview-tts (Leda) -> vo_t3_1.mp3  «टप्पू का एक और दोस्त पुल के उस पार है। इस बार टप्पू दस-दस कदम की छलाँग लगाकर उससे मिलने जाएगा। आइए, उसके साथ गिनते हैं!»
+[vo_t3_2b] gemini-2.5-flash-preview-tts (Leda) -> vo_t3_2b.mp3  «वह दस कदम की छलाँग लगाकर दस पर पहुँच गया!»
+[vo_t3_3] gemini-2.5-flash-preview-tts (Leda) -> vo_t3_3.mp3  «फिर दस कदम की छलाँग लगाई और बीस पर पहुँच गया!»
+[vo_t3_4] gemini-2.5-flash-preview-tts (Leda) -> vo_t3_4.mp3  «एक और दस कदम की छलाँग! अब टप्पू तीस पर है।»
+[vo_t3_5] gemini-2.5-flash-preview-tts (Leda) -> vo_t3_5.mp3  «अब आप टप्पू पर टैप कीजिए। वह दस कदम आगे कूदेगा!»
+[vo_t3_6] gemini-2.5-flash-preview-tts (Leda) -> vo_t3_6.mp3  «देखिए! टप्पू चालीस पर पहुँच गया!»
+[vo_t3_8] gemini-2.5-flash-preview-tts (Leda) -> vo_t3_8.mp3  «दस कदम की एक और छलाँग लगाकर टप्पू पचास पर पहुँच गया!»
+[vo_t3_2a] gemini-2.5-flash-preview-tts (Leda) -> vo_t3_2a.mp3  «टप्पू शून्य पर है।»
+[vo_c_40] gemini-2.5-flash-preview-tts (Leda) -> vo_c_40.mp3  «चालीस,»
+[vo_c_5] REFUSED on pass 1 (TTS failed: gemini-2.5-flash-preview-tts: no audio in response) — will ladder
+[vo_q1_b] gemini-2.5-flash-preview-tts (Leda) -> vo_q1_b.mp3  «वह पचास पर है।»
+[vo_t3_9b] gemini-2.5-flash-preview-tts (Leda) -> vo_t3_9b.mp3  «हमने दस-दस करके गिना—»
+[vo_q1_a] gemini-2.5-flash-preview-tts (Leda) -> vo_q1_a.mp3  «मेंढक को आगे जाना है।»
+[vo_q1_wa1] gemini-2.5-flash-preview-tts (Leda) -> vo_q1_wa1.mp3  «मेंढक पचास पर है। पाँच कदम आगे कहाँ पहुँचेगा? सही संख्या पर टैप कीजिए।»
+[vo_q1_wa2] gemini-2.5-flash-preview-tts (Leda) -> vo_q1_wa2.mp3  «पचास से पाँच कदम आगे देखिए।»
+[vo_q1_c] gemini-2.5-flash-preview-tts (Leda) -> vo_q1_c.mp3  «पाँच कदम की छलाँग लगाकर वह किस संख्या पर पहुँचेगा? सही संख्या पर टैप कीजिए।»
+[vo_c_50] gemini-2.5-flash-preview-tts (Leda) -> vo_c_50.mp3  «पचास,»
+[vo_q1_wa3] gemini-2.5-flash-preview-tts (Leda) -> vo_q1_wa3.mp3  «मेंढक पाँच कदम की छलाँग लगाकर पचपन पर पहुँचेगा।»
+[vo_q2_a] gemini-2.5-flash-preview-tts (Leda) -> vo_q2_a.mp3  «मेंढक चौदह पर है।»
+[vo_q1_ok] gemini-2.5-flash-preview-tts (Leda) -> vo_q1_ok.mp3  «शाबाश! पाँच कदम आगे - पचपन!»
+[vo_q2_wa2] gemini-2.5-flash-preview-tts (Leda) -> vo_q2_wa2.mp3  «चौदह से दो कदम आगे देखिए।»
+[vo_q2_b] gemini-2.5-flash-preview-tts (Leda) -> vo_q2_b.mp3  «दो कदम आगे कहाँ पहुँचेगा? सही संख्या पर टैप कीजिए।»
+[vo_q2_ok] gemini-2.5-flash-preview-tts (Leda) -> vo_q2_ok.mp3  «शाबाश! दो कदम आगे—सोलह!»
+[vo_q3_a] gemini-2.5-flash-preview-tts (Leda) -> vo_q3_a.mp3  «मेंढक तीस पर है।»
+[vo_q2_wa3] gemini-2.5-flash-preview-tts (Leda) -> vo_q2_wa3.mp3  «मेंढक दो कदम की छलाँग लगाकर सोलह पर पहुँचेगा।»
+[vo_q3_b] gemini-2.5-flash-preview-tts (Leda) -> vo_q3_b.mp3  «दस कदम आगे कहाँ पहुँचेगा? सही संख्या पर टैप कीजिए।»
+[vo_q3_wa2] gemini-2.5-flash-preview-tts (Leda) -> vo_q3_wa2.mp3  «तीस से दस कदम आगे देखिए।»
+[vo_q3_ok] gemini-2.5-flash-preview-tts (Leda) -> vo_q3_ok.mp3  «शाबाश! दस कदम आगे—चालीस!»
+[vo_q3_wa3] gemini-2.5-flash-preview-tts (Leda) -> vo_q3_wa3.mp3  «मेंढक दस कदम की छलाँग लगाकर चालीस पर पहुँचेगा।»
+[vo_q4_4] gemini-2.5-flash-preview-tts (Leda) -> vo_q4_4.mp3  «छत्तीस!»
+[vo_q4_1] gemini-2.5-flash-preview-tts (Leda) -> vo_q4_1.mp3  «टिड्डा तीस पर है। आइए, उसके साथ दो-दो करके गिनते हैं।»
+[vo_c_30] REFUSED on pass 1 (TTS failed: gemini-2.5-flash-preview-tts: no audio in response) — will ladder
+[vo_q4_2] gemini-2.5-flash-preview-tts (Leda) -> vo_q4_2.mp3  «बत्तीस…»
+[vo_q4_5] gemini-2.5-flash-preview-tts (Leda) -> vo_q4_5.mp3  «अगली छलाँग में टिड्डा कहाँ पहुँचेगा? सही संख्या पर टैप कीजिए।»
+[vo_q4_wa1] gemini-2.5-flash-preview-tts (Leda) -> vo_q4_wa1.mp3  «दो-दो करके गिनिए। अगली सही संख्या पर टैप कीजिए।»
+[vo_q4_hint] gemini-2.5-flash-preview-tts (Leda) -> vo_q4_hint.mp3  «छत्तीस से दो कदम आगे देखिए।»
+[vo_q4_wa3] gemini-2.5-flash-preview-tts (Leda) -> vo_q4_wa3.mp3  «टिड्डा दो कदम की छलाँग लगाकर अड़तीस पर पहुँचेगा।»
+[vo_q4_after] gemini-2.5-flash-preview-tts (Leda) -> vo_q4_after.mp3  «अगली संख्या क्या होगी? सही संख्या पर टैप कीजिए।»
+[vo_q5_ok1] gemini-2.5-flash-preview-tts (Leda) -> vo_q5_ok1.mp3  «सही! सोलह से दो आगे—अठारह!»
+[vo_q5_q] gemini-2.5-flash-preview-tts (Leda) -> vo_q5_q.mp3  «खरगोश दो-दो करके गिन रहा है। उसकी गिनती में दो संख्याएँ छूट गई हैं। सही संख्याओं पर टैप करके गिनती पूरी कीजिए।»
+[vo_q5_hint1] gemini-2.5-flash-preview-tts (Leda) -> vo_q5_hint1.mp3  «सोलह से दो कदम आगे देखिए।»
+[vo_q5_wa1] gemini-2.5-flash-preview-tts (Leda) -> vo_q5_wa1.mp3  «दो-दो करके गिनिए। खाली जगह के लिए सही संख्या पर टैप कीजिए।»
+[vo_q5_wa3a] gemini-2.5-flash-preview-tts (Leda) -> vo_q5_wa3a.mp3  «खरगोश दो कदम की छलाँग लगाकर अठारह पर पहुँचेगा।»
+[vo_after_tap] gemini-2.5-flash-preview-tts (Leda) -> vo_after_tap.mp3  «सही संख्या पर टैप कीजिए।»
+[vo_q5_ok2] gemini-2.5-flash-preview-tts (Leda) -> vo_q5_ok2.mp3  «शाबाश! अठारह से दो आगे—बीस!»
+[vo_q5_hint2] gemini-2.5-flash-preview-tts (Leda) -> vo_q5_hint2.mp3  «अठारह से दो कदम आगे देखिए।»
+[vo_q5_wa3b] gemini-2.5-flash-preview-tts (Leda) -> vo_q5_wa3b.mp3  «खरगोश दो कदम की छलाँग लगाकर बीस पर पहुँचेगा।»
+[vo_q4_3] gemini-2.5-flash-preview-tts (Leda) -> vo_q4_3.mp3  «चौंतीस…»
+[vo_q6_ok1] gemini-2.5-flash-preview-tts (Leda) -> vo_q6_ok1.mp3  «सही! पैंसठ के बाद पाँच आगे गिनने पर सत्तर आता है।»
+[vo_q6_q] gemini-2.5-flash-preview-tts (Leda) -> vo_q6_q.mp3  «गिलहरी पाँच-पाँच करके आगे गिन रही है। उसकी गिनती पूरी करने में मदद कीजिए। खाली जगहों के लिए सही संख्याओं पर टैप कीजिए।»
+[vo_q6_wa1] gemini-2.5-flash-preview-tts (Leda) -> vo_q6_wa1.mp3  «पाँच-पाँच करके गिनिए। सही संख्या पर टैप कीजिए।»
+[vo_q6_hint1] gemini-2.5-flash-preview-tts (Leda) -> vo_q6_hint1.mp3  «पैंसठ से पाँच कदम आगे देखिए।»
+[vo_q6_wa3a] gemini-2.5-flash-preview-tts (Leda) -> vo_q6_wa3a.mp3  «पाँच कदम की छलाँग लगाकर सत्तर पर पहुँचेगा।»
+[vo_q6_hint2] gemini-2.5-flash-preview-tts (Leda) -> vo_q6_hint2.mp3  «सत्तर से पाँच कदम आगे देखिए।»
+[vo_q6_ok2] gemini-2.5-flash-preview-tts (Leda) -> vo_q6_ok2.mp3  «शाबाश! सत्तर से पाँच आगे गिनने पर पचहत्तर आता है। गिलहरी की गिनती पूरी हो गई!»
+[vo_q6_wa3b] gemini-2.5-flash-preview-tts (Leda) -> vo_q6_wa3b.mp3  «गिलहरी पाँच कदम की छलाँग लगाकर पचहत्तर पर पहुँचेगी।»
+[vo_q7_q] gemini-2.5-flash-preview-tts (Leda) -> vo_q7_q.mp3  «दस-दस करके गिनिए। खाली जगह के लिए सही संख्या पर टैप कीजिए।»
+[vo_q7_hint1] gemini-2.5-flash-preview-tts (Leda) -> vo_q7_hint1.mp3  «साठ से दस कदम आगे देखिए।»
+[vo_q7_wa3a] gemini-2.5-flash-preview-tts (Leda) -> vo_q7_wa3a.mp3  «टिड्डा दस कदम की छलाँग लगाकर सत्तर पर पहुँचेगा।»
+[vo_q7_ok2] gemini-2.5-flash-preview-tts (Leda) -> vo_q7_ok2.mp3  «शाबाश! अस्सी से दस आगे—नब्बे!»
+[vo_q7_hint2] gemini-2.5-flash-preview-tts (Leda) -> vo_q7_hint2.mp3  «अस्सी से दस कदम आगे देखिए।»
+[vo_q7_wa1] gemini-2.5-flash-preview-tts (Leda) -> vo_q7_wa1.mp3  «दस-दस करके गिनिए। सही संख्या पर टैप कीजिए।»
+[vo_q7_wa3b] gemini-2.5-flash-preview-tts (Leda) -> vo_q7_wa3b.mp3  «टिड्डा दस कदम की छलाँग लगाकर नब्बे पर पहुँचेगा।»
+[vo_q7_pre2] gemini-2.5-flash-preview-tts (Leda) -> vo_q7_pre2.mp3  «अस्सी से दस आगे गिनिए।»
+[vo_pt_tutorial] gemini-2.5-flash-preview-tts (Leda) -> vo_pt_tutorial.mp3  «ध्यान से देखिए और मेरे साथ जानिए। चलिए, शुरू करें!»
+[vo_pt_guided] gemini-2.5-flash-preview-tts (Leda) -> vo_pt_guided.mp3  «बहुत बढ़िया! अब हम साथ मिलकर शुरू करते हैं। चलिए, साथ में करें!»
+[vo_landing] gemini-2.5-flash-preview-tts (Leda) -> vo_landing.mp3  «नमस्ते! आज हम टप्पू मेंढक के साथ कूद-कूद कर गिनती करेंगे — दो-दो, पाँच-पाँच और दस-दस की कूद!»
+[vo_pt_practice] gemini-2.5-flash-preview-tts (Leda) -> vo_pt_practice.mp3  «वाह! अब आपकी बारी।»
+[vo_well_done] gemini-2.5-flash-preview-tts (Leda) -> vo_well_done.mp3  «शाबाश! तुमने कूद-कूद कर गिनती सीख ली!»
+[vo_q4_ok] REFUSED on pass 1 (TTS failed: gemini-2.5-flash-preview-tts: no audio in response) — will ladder
+[vo_g_n_23] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_23.mp3  «तेईस!»
+[vo_g_n_25] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_25.mp3  «पच्चीस!»
+[vo_g_n_29] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_29.mp3  «उनतीस!»
+[vo_g_r_2_1] gemini-2.5-flash-preview-tts (Leda) -> vo_g_r_2_1.mp3  «कुछ साथी यानों में बैठ गए हैं। तेईस से दो-दो करके गिनिए और खाली यानों में सही साथियों को बिठाइए!»
+[vo_q7_pre1] REFUSED on pass 1 (TTS failed: gemini-2.5-flash-preview-tts: HTTP 400 {
+  "error": {
+    "code": 40) — will ladder
+[vo_g_n_31] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_31.mp3  «इकतीस!»
+[vo_g_n_42] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_42.mp3  «बयालीस!»
+[vo_g_n_44] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_44.mp3  «चवालीस!»
+[vo_g_n_46] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_46.mp3  «छियालीस!»
+[vo_g_n_50] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_50.mp3  «पचास!»
+[vo_q7_ok1] REFUSED on pass 1 (TTS failed: gemini-2.5-flash-preview-tts: no audio in response) — will ladder
+[vo_g_n_48] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_48.mp3  «अड़तालीस!»
+[vo_g_r_2_2] gemini-2.5-flash-preview-tts (Leda) -> vo_g_r_2_2.mp3  «कुछ साथी यानों में बैठ गए हैं। बयालीस से दो-दो करके गिनिए और खाली यानों में सही साथियों को बिठाइए!»
+[vo_g_n_63] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_63.mp3  «तिरसठ!»
+[vo_g_n_27] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_27.mp3  «सत्ताईस!»
+[vo_g_r_2_3] gemini-2.5-flash-preview-tts (Leda) -> vo_g_r_2_3.mp3  «कुछ साथी यानों में बैठ गए हैं। इकसठ से दो-दो करके गिनिए और खाली यानों में सही साथियों को बिठाइए!»
+[vo_g_wrong_2] gemini-2.5-flash-preview-tts (Leda) -> vo_g_wrong_2.mp3  «अरे! दो-दो करके गिनिए। फिर कोशिश कीजिए!»
+[vo_g_done_2] gemini-2.5-flash-preview-tts (Leda) -> vo_g_done_2.mp3  «वाह! दो-दो की गिनती से सभी यान उड़ गए! अब दूसरी गिनती चुनिए।»
+[vo_g_n_30] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_30.mp3  «तीस!»
+[vo_g_n_35] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_35.mp3  «पैंतीस!»
+[vo_g_n_61] REFUSED on pass 1 (TTS failed: gemini-2.5-flash-preview-tts: no audio in response) — will ladder
+[vo_g_n_40] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_40.mp3  «चालीस!»
+[vo_g_n_65] REFUSED on pass 1 (TTS failed: gemini-2.5-flash-preview-tts: no audio in response) — will ladder
+[vo_g_n_67] REFUSED on pass 1 (TTS failed: gemini-2.5-flash-preview-tts: no audio in response) — will ladder
+[vo_g_r_5_1] gemini-2.5-flash-preview-tts (Leda) -> vo_g_r_5_1.mp3  «कुछ साथी यानों में बैठ गए हैं। पच्चीस से पाँच-पाँच करके गिनिए और खाली यानों में सही साथियों को बिठाइए!»
+[vo_g_n_45] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_45.mp3  «पैंतालीस!»
+[vo_g_n_69] REFUSED on pass 1 (TTS failed: gemini-2.5-flash-preview-tts: no audio in response) — will ladder
+[vo_g_r_5_2] gemini-2.5-flash-preview-tts (Leda) -> vo_g_r_5_2.mp3  «कुछ साथी यानों में बैठ गए हैं। चालीस से पाँच-पाँच करके गिनिए और खाली यानों में सही साथियों को बिठाइए!»
+[vo_g_n_55] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_55.mp3  «पचपन!»
+[vo_g_n_60] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_60.mp3  «साठ!»
+[vo_g_n_85] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_85.mp3  «पचासी!»
+[vo_g_wrong_5] gemini-2.5-flash-preview-tts (Leda) -> vo_g_wrong_5.mp3  «अरे! पाँच-पाँच करके गिनिए। फिर कोशिश कीजिए!»
+[vo_g_r_5_3] gemini-2.5-flash-preview-tts (Leda) -> vo_g_r_5_3.mp3  «कुछ साथी यानों में बैठ गए हैं। पैंसठ से पाँच-पाँच करके गिनिए और खाली यानों में सही साथियों को बिठाइए!»
+[vo_g_done_5] gemini-2.5-flash-preview-tts (Leda) -> vo_g_done_5.mp3  «वाह! पाँच-पाँच की गिनती से सभी यान उड़ गए! अब दूसरी गिनती चुनिए।»
+[vo_g_r_10_1] gemini-2.5-flash-preview-tts (Leda) -> vo_g_r_10_1.mp3  «कुछ साथी यानों में बैठ गए हैं। तीस से दस-दस करके गिनिए और खाली यानों में सही साथियों को बिठाइए!»
+[vo_g_n_90] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_90.mp3  «नब्बे!»
+[vo_g_n_80] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_80.mp3  «अस्सी!»
+[vo_g_r_10_3] gemini-2.5-flash-preview-tts (Leda) -> vo_g_r_10_3.mp3  «कुछ साथी यानों में बैठ गए हैं। साठ से दस-दस करके गिनिए और खाली यानों में सही साथियों को बिठाइए!»
+[vo_g_r_10_2] gemini-2.5-flash-preview-tts (Leda) -> vo_g_r_10_2.mp3  «कुछ साथी यानों में बैठ गए हैं। पचास से दस-दस करके गिनिए और खाली यानों में सही साथियों को बिठाइए!»
+[vo_g_wrong_10] gemini-2.5-flash-preview-tts (Leda) -> vo_g_wrong_10.mp3  «अरे! दस-दस करके गिनिए। फिर कोशिश कीजिए!»
+[vo_g_done_10] gemini-2.5-flash-preview-tts (Leda) -> vo_g_done_10.mp3  «वाह! दस-दस की गिनती से सभी यान उड़ गए! अब दूसरी गिनती चुनिए।»
+[vo_g_guide] gemini-2.5-flash-preview-tts (Leda) -> vo_g_guide.mp3  «सही साथी को खींचकर खाली यान में बिठाइए।»
+[vo_g_menu] gemini-2.5-flash-preview-tts (Leda) -> vo_g_menu.mp3  «अंतरिक्ष की सैर के लिए यात्री तैयार हैं! सही संख्या वाले यात्रियों को खाली यानों में बिठाइए। पहले चुनिए—दो-दो, पाँच-पाँच या दस-दस की गिनती।»
+[vo_g_round_done] gemini-2.5-flash-preview-tts (Leda) -> vo_g_round_done.mp3  «शाबाश! गिनती पूरी हुई। साथियो, उड़ान भरिए!»
+[vo_g_all_done] gemini-2.5-flash-preview-tts (Leda) -> vo_g_all_done.mp3  «कमाल! आपने दो-दो, पाँच-पाँच और दस-दस करके गिनती पूरी कर ली!»
+[vo_g_n_70] REFUSED on pass 1 (TTS failed: gemini-2.5-flash-preview-tts: no audio in response) — will ladder
+[vo_g_n_75] REFUSED on pass 1 (TTS failed: gemini-2.5-flash-preview-tts: no audio in response) — will ladder
+[vo_g_n_100] gemini-2.5-flash-preview-tts (Leda) -> vo_g_n_100.mp3  «सौ!»
+[vo_c_3] recovered via wrapped(Leda) -> vo_c_3.mp3  «तीन,»
+[vo_c_30] recovered via wrapped-lesson(Leda) -> vo_c_30.mp3  «तीस,»
+[vo_q4_ok] recovered via wrapped(Leda) -> vo_q4_ok.mp3  «शाबाश! छत्तीस से दो आगे—अड़तीस!»
+[vo_q7_pre1] recovered via wrapped(Leda) -> vo_q7_pre1.mp3  «साठ से दस आगे गिनिए।»
+[vo_c_5] recovered via wrapped-lesson(Leda) -> vo_c_5.mp3  «पाँच,»
+[vo_g_n_65] recovered via danda -> vo_g_n_65.mp3  «पैंसठ!»
+[vo_g_n_61] recovered via wrapped-lesson(Leda) -> vo_g_n_61.mp3  «इकसठ!»
+[vo_g_n_67] recovered via wrapped-lesson(Leda) -> vo_g_n_67.mp3  «सड़सठ!»
+[vo_g_n_70] recovered via wrapped-lesson(Leda) -> vo_g_n_70.mp3  «सत्तर!»
+[vo_q7_ok1] STILL FAILING after ladder: ladder exhausted — wrapped(Despina): TTS failed: gemini-2.5-flash-preview-tts: no audio in response
+[vo_g_n_75] recovered via wrapped-lesson(Leda) -> vo_g_n_75.mp3  «पचहत्तर!»
+[vo_g_n_69] STILL FAILING after ladder: ladder exhausted — wrapped(Despina): TTS failed: gemini-2.5-flash-preview-tts: no audio in response
+
+DONE — 152/154 generated.
+  EAR-CHECK these (fallback voice/wrapper, timbre may differ): vo_c_3 (wrapped(Leda)), vo_c_30 (wrapped-lesson(Leda)), vo_q4_ok (wrapped(Leda)), vo_q7_pre1 (wrapped(Leda)), vo_c_5 (wrapped-lesson(Leda)), vo_g_n_65 (danda), vo_g_n_61 (wrapped-lesson(Leda)), vo_g_n_67 (wrapped-lesson(Leda)), vo_g_n_70 (wrapped-lesson(Leda)), vo_g_n_75 (wrapped-lesson(Leda))
+  UNRECOVERED (report these to the user; try alternate phrasing or a human recording): vo_q7_ok1, vo_g_n_69
+  PLAY at least one file to confirm it is intelligible Hindi before trusting this.

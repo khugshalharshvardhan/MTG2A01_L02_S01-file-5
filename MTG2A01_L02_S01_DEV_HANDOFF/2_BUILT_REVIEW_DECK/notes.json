@@ -1,0 +1,15 @@
+{
+ "01": "Landing (deck s.3): title «टप्पू मेंढक की कूद», pond scene with the frog jumping over stones, «शुरू करें».",
+ "02": "Teach 2s (deck s.4): bridge 0–10, friend near 10; glow 0, light 1-2 / 3-4, jumps with red arcs, yellow marks; recap 2,4,6,8,10. ⚑ 4→6 jump added (deck skipped it).",
+ "03": "Teach 5s (deck s.5): 0–30; light dot 1–5, jumps to 20, then the child taps टप्पू twice (20→25, 25→30); recap 5…30 with all six arcs.",
+ "04": "Teach 10s (deck s.6): 0–50 with camera — zoomed out at the start, follows टप्पू, settles on 30–50 for the two taps, zooms out for the 10…50 recap.",
+ "05": "Guided Q1 (deck s.7): frog at 50, options 51 · 55 · 60. WA1 repeat, WA2 glow the 5 spaces, WA3 fade + pulse 55 + hand. Correct: frog jumps to 55.",
+ "06": "Guided Q2 (deck s.7 notes): frog at 14, options 15 · 16 · 18 → 16.",
+ "07": "Guided Q3 (deck s.7 notes): frog at 30, options 35 · 50 · 40 → 40.",
+ "08": "Q4 (deck s.8): grasshopper hops 30→32→34→36 with the VO, then «?»; options 40 · 37 · 38. WA2 = «संकेत» popup 34–40, +2, auto-closes after ~5 s.",
+ "09": "Q5 (deck s.9): rabbit, 10,12,14,16,?,? options 17–20; one blank at a time, used options fade; number-line hint popup per blank.",
+ "10": "Q6 (deck s.10): squirrel (VO says गिलहरी), 55,60,65,?,? options 66 · 70 · 75 · 80; hint popups 64–70 / 69–75.",
+ "11": "Q7 (deck s.11): grasshopper, 50,60,?,80,?,100 options 61 · 70 · 75 · 90; WA2 says «साठ से दस आगे गिनिए।» then the +10 popup.",
+ "12": "Game «अंतरिक्ष की सैर» (deck s.12–16): menu 2s/5s/10s; 3 rounds each with the deck's number sets; drag astronauts into pods; wrong = wiggle + smoke; pods fly off; badge on the menu.",
+ "13": "Celebration (deck s.17): unchanged."
+}

@@ -1,0 +1,167 @@
+/* [MTG2A01] lesson styles — scoped; nothing here touches existing selectors */
+@keyframes mtgGlow{0%,100%{box-shadow:0 0 0 0 rgba(255,200,40,0);}40%{box-shadow:0 0 0 10px rgba(255,200,40,.55),0 0 26px 10px rgba(255,214,70,.75);}}
+@keyframes mtgPop{0%{transform:translateX(-50%) scale(1);}45%{transform:translateX(-50%) scale(1.35);}100%{transform:translateX(-50%) scale(1);}}
+@keyframes mtgWiggle{0%,100%{transform:rotate(0);}20%{transform:rotate(-7deg);}40%{transform:rotate(6deg);}60%{transform:rotate(-4deg);}80%{transform:rotate(3deg);}}
+@keyframes mtgBounce{0%,100%{transform:translate(-50%,0);}35%{transform:translate(-50%,-34px);}60%{transform:translate(-50%,0);}78%{transform:translate(-50%,-10px);}}
+@keyframes mtgPulseBig{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+@keyframes mtgHandTap{0%,100%{transform:translate(0,0);}50%{transform:translate(-6px,-12px);}}
+@keyframes mtgFadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+/* ---------- shared: jump arc ---------- */
+.mtg-arc{opacity:0;transition:opacity .45s ease;}
+.mtg-arc.show{opacity:1;}
+.mtg-arc-path{fill:none;stroke:#E8322E;stroke-width:4;stroke-dasharray:2 8;stroke-linecap:round;}
+.mtg-arc-head{fill:#E8322E;}
+.mtg-arc-lbl{fill:#E8322E;font:800 30px var(--font-hi);text-anchor:middle;}
+/* file4's hand nudge: nudge_hand_new.svg, 96px, the engine's nudgeMove bob */
+.mtg-hand{position:absolute;width:96px;height:96px;object-fit:contain;z-index:20;pointer-events:none;filter:drop-shadow(0 6px 10px rgba(0,0,0,.22));animation:nudgeMove 1s ease-in-out infinite;}
+
+/* =====================  BRIDGE_TEACH  ===================== */
+.tut-card.br-card .tut-prompt{font-size:44px;}
+.br-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;margin:0 -30px;}
+.br-view{position:relative;width:1113px;overflow:hidden;}
+.br-world{position:absolute;left:0;top:0;transform-origin:0 50%;transition:transform 1s cubic-bezier(.45,.05,.3,1);}
+.br-water{position:absolute;height:118px;border-radius:60px;background:linear-gradient(#7FE4FF,#2DC6F2 55%,#22B3E6);box-shadow:inset 0 6px 0 rgba(255,255,255,.45);}
+.br-bank{position:absolute;top:98px;height:150px;background:linear-gradient(#8DD86B,#5DBB46);border-radius:40px;}
+.br-bank.l{left:0;border-radius:0 60px 40px 0;}
+.br-bank.r{right:0;border-radius:60px 0 0 40px;}
+.br-reeds{position:absolute;top:60px;width:84px;z-index:1;}
+.br-stone{position:absolute;height:20px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(ellipse at 40% 35%,#D9DDE2,#9EA6AF 70%,#7B848E);box-shadow:0 3px 0 rgba(0,0,0,.18);z-index:2;transition:box-shadow .2s;}
+.br-stone.lit{box-shadow:0 0 0 4px #FFE066,0 3px 0 rgba(0,0,0,.18);}
+.br-stone.mark{box-shadow:0 0 0 5px #FFC21A,0 0 14px 4px rgba(255,194,26,.7);}
+.br-stone.glow{animation:mtgGlow 1.3s ease;}
+.br-num{position:absolute;transform:translateX(-50%);font:700 16px var(--font-hi);color:var(--navy);z-index:2;line-height:1;}
+.br-num.big{font-size:27px;font-weight:800;}
+.br-num.mark{color:#B85E00;text-shadow:0 0 8px #FFE27A;}
+.br-num.glow{background:#FFE066;border-radius:12px;padding:0 6px;}
+.br-num.pop{animation:mtgPop .5s ease;}
+.br-svg{position:absolute;left:0;top:0;pointer-events:none;z-index:3;overflow:visible;}
+.br-dot{position:absolute;top:150px;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:#FFF6A8;box-shadow:0 0 12px 6px #FFE24A;opacity:0;transition:left .25s ease,opacity .2s;z-index:4;}
+.br-dot.show{opacity:1;}
+.br-frog{position:absolute;bottom:calc(262px - 152px);width:84px;transform:translate(-50%,0);z-index:6;filter:drop-shadow(0 4px 4px rgba(0,0,0,.18));}
+.br-frog.focus,.br-friend.focus{filter:drop-shadow(0 0 10px #FFD84A) drop-shadow(0 0 4px #FFD84A);}
+.br-frog.bounce,.br-friend.bounce{animation:mtgBounce .9s ease;}
+.br-frog.tappable{cursor:pointer;animation:mtgPulseBig 1.1s ease-in-out infinite;transform-origin:50% 100%;}
+.br-friend{position:absolute;bottom:calc(262px - 150px);width:74px;transform:translate(-50%,0);z-index:5;transform-origin:50% 100%;}
+.br-friend.wave{animation:mtgWiggle 1.2s ease;}
+.br-cap{max-width:900px;min-height:58px;font:800 29px/1.25 var(--font-hi);color:var(--navy);text-align:center;background:#FFF3C7;border:3px solid #FCD86B;border-radius:20px;padding:10px 26px;box-shadow:0 4px 14px rgba(11,42,90,.10);}
+.br-cap:empty{visibility:hidden;}
+.br-cap.in{animation:mtgFadeUp .35s ease;}
+
+/* =====================  JUMP_PICK / SEQ_FILL shared  ===================== */
+.nl{position:relative;}
+.nl-svg{position:absolute;left:0;top:0;overflow:visible;}
+.nl-axis{stroke:#13306B;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.nl-tick{stroke:#13306B;stroke-width:3;}
+.nl-tick.big{stroke-width:4;}
+.nl-seg{stroke:transparent;stroke-width:12;stroke-linecap:round;transition:stroke .2s;}
+.nl-seg.lit{stroke:#FFD43B;}
+.nl-dotpt{fill:#13306B;}
+.nl-lbl{position:absolute;transform:translateX(-50%);font:700 20px var(--font-hi);color:var(--navy);line-height:1;}
+.nl-lbl.big{font-size:30px;font-weight:800;}
+.nl-lbl.glow,.nl-lbl.glow-hold{background:#FFF07A;border-radius:50%;box-shadow:0 0 18px 10px rgba(255,236,110,.85);}
+.nl-lbl.glow{animation:mtgPulseBig .8s ease 2;}
+.mtg-opts{display:flex;justify-content:center;gap:34px;}
+.mtg-opts.hidden{visibility:hidden;}
+.mtg-opt{min-width:148px;height:104px;border-radius:22px;border:5px solid #2F7FF0;background:#fff;font:800 58px var(--font-hi);color:var(--navy);cursor:pointer;box-shadow:0 6px 0 #C9DCF8;transition:transform .15s,opacity .3s;}
+.mtg-opt:disabled{cursor:default;}
+.mtg-opt:not(:disabled):hover{transform:translateY(-3px);}
+.mtg-opt.wiggle{animation:mtgWiggle .55s ease;}
+.mtg-opt.faded{opacity:.28;}
+.mtg-opt.guide{animation:mtgPulseBig 1s ease-in-out infinite;box-shadow:0 0 0 6px #FFE066,0 0 24px 10px rgba(255,214,70,.7);}
+.mtg-opt.right{border-color:#2FB45A;background:#E9FBEF;box-shadow:0 0 0 6px #9BE7B1;}
+.mtg-opt.used{opacity:.22;pointer-events:none;}
+
+/* =====================  JUMP_PICK  ===================== */
+.jp-board{align-self:center;background:#fff;border-radius:28px;padding:26px 30px 6px;box-shadow:0 10px 30px rgba(11,42,90,.10);}
+.jp-frog{position:absolute;top:56px;width:74px;transform:translate(-50%,0);z-index:4;filter:drop-shadow(0 3px 3px rgba(0,0,0,.15));}
+
+/* =====================  SEQ_FILL  ===================== */
+.sf-stage{position:relative;align-self:center;padding-top:118px;}
+.sf-strip{display:flex;gap:16px;background:#fff;border-radius:26px;padding:16px 22px;box-shadow:0 10px 30px rgba(11,42,90,.10);}
+.sf-box{width:104px;height:96px;display:flex;align-items:center;justify-content:center;border-radius:18px;background:#FFF8E8;font:800 50px var(--font-hi);color:var(--navy);transition:opacity .3s;}
+.sf-box.hidden{opacity:0;}
+.sf-box.blank{background:#F2F7FF;border:4px dashed #9DBDF0;color:#9DBDF0;opacity:.6;}
+.sf-box.blank.active{border-color:#2F6BE0;color:#2F6BE0;opacity:1;animation:mtgPulseBig 1.4s ease-in-out infinite;}
+.sf-box.blank.hidden{opacity:0;}
+.sf-box.filled{background:#E9FBEF;color:#137A3A;}
+.sf-box.glow{animation:mtgGlow 1.2s ease;}
+.sf-animal{position:absolute;top:0;width:112px;transform:translate(-50%,0);z-index:3;filter:drop-shadow(0 4px 4px rgba(0,0,0,.15));left:-200px;}
+.sf-hint-ov{position:absolute;inset:0;z-index:70;background:rgba(15,25,60,.45);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;}
+.sf-hint-ov.show{opacity:1;}
+.sf-hint{background:#fff;border:6px solid #8EC5FF;border-radius:30px;padding:18px 40px 22px;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 20px 50px rgba(0,0,0,.25);}
+.sf-hint-title{font:800 40px var(--font-hi);color:var(--navy);background:#D7EBFF;border-radius:30px;padding:2px 60px;}
+.sf-hint-nl{margin-top:24px;}
+.sf-hint-animal{position:absolute;top:2px;width:96px;transform:translate(-50%,0);z-index:3;}
+.sf-hint-cap{font:800 32px var(--font-hi);color:var(--navy);background:#EAF4FF;border-radius:18px;padding:6px 40px;}
+
+/* =====================  SPACE_PODS (full screen)  ===================== */
+.stage.mtg-game .header-row,.stage.mtg-game #swBuddy,.stage.mtg-game #navBtn,.stage.mtg-game .slide-stage{visibility:hidden;}
+.sp-root{position:absolute;inset:0;z-index:30;background:#2B1F63 url(assets/Images/sc_space.webp) center/cover no-repeat;overflow:hidden;font-family:var(--font-hi);}
+.sp-scene{position:absolute;inset:0;}
+.sp-audio{position:absolute;right:26px;top:22px;width:64px;height:64px;border:none;background:none;padding:0;cursor:pointer;z-index:5;}
+.sp-audio img,.sp-audio svg{width:100%;filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));}
+.sp-swiftie{position:absolute;left:18px;bottom:16px;width:118px;height:118px;border-radius:50%;background:#7CC8F2;border:5px solid #fff;overflow:hidden;z-index:5;pointer-events:none;box-shadow:0 6px 14px rgba(0,0,0,.25);}
+.sp-swiftie img{width:100%;height:100%;object-fit:cover;}
+.sp-audio svg{width:100%;height:100%;}
+.sp-title{position:absolute;left:50%;top:20px;transform:translateX(-50%);background:#FFF6DE;color:#2A2370;font-weight:800;font-size:40px;padding:4px 44px;border-radius:40px;box-shadow:0 6px 0 rgba(0,0,0,.18);white-space:nowrap;}
+.sp-title.big{font-size:60px;top:40px;padding:6px 60px;}
+.sp-menu{position:absolute;left:0;right:0;top:190px;display:flex;justify-content:center;gap:42px;}
+.sp-card{position:relative;width:300px;height:430px;border:none;border-radius:34px;cursor:pointer;display:flex;flex-direction:column;align-items:center;padding:20px 12px;box-shadow:0 10px 0 rgba(0,0,0,.2);transition:transform .2s,opacity .3s;font-family:var(--font-hi);}
+.sp-card.c0{background:#E6E3FF;} .sp-card.c1{background:#FFE1E4;} .sp-card.c2{background:#DDF6EA;}
+.sp-card:hover{transform:translateY(-6px);}
+.sp-card.done{opacity:.55;cursor:default;transform:none;}
+.sp-card-art{position:relative;width:260px;height:220px;}
+.sp-card-pod{position:absolute;left:0;bottom:0;width:260px;z-index:2;}
+.sp-card-animal{position:absolute;left:62px;top:0;width:118px;z-index:1;}
+.sp-card-lbl{margin-top:14px;font-weight:800;font-size:31px;color:#2A2370;background:#fff;border-radius:22px;padding:2px 18px;}
+.sp-card-play{margin-top:16px;width:84px;height:84px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:40px;color:#4DB27A;box-shadow:0 4px 0 rgba(0,0,0,.15);}
+.sp-card.c1 .sp-card-play{color:#E86A7C;} .sp-card.c2 .sp-card-play{color:#5B6FD8;}
+.sp-card-badge{position:absolute;right:-14px;top:-14px;width:76px;height:76px;border-radius:50%;background:#FFC425;color:#fff;font-size:46px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px #fff,0 6px 12px rgba(0,0,0,.3);}
+.sp-pods{position:absolute;left:0;right:0;top:112px;display:flex;justify-content:center;gap:22px;}
+.sp-pod{position:relative;width:218px;height:180px;transition:transform .9s cubic-bezier(.5,0,.75,0),opacity .9s;}
+.sp-pod-img{position:absolute;left:0;bottom:0;width:218px;z-index:2;pointer-events:none;}
+.sp-seated{position:absolute;left:58px;top:-6px;width:84px;z-index:1;pointer-events:none;}
+.sp-podnum{position:absolute;left:57px;top:104px;width:56px;height:56px;border-radius:50%;background:#1F2A6B;color:#fff;font-weight:800;font-size:30px;display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 0 0 4px #fff;}
+.sp-podnum.glow{animation:mtgGlow 1s ease;}
+.sp-pod.hover .sp-pod-img,.sp-pod.cue .sp-pod-img{filter:drop-shadow(0 0 10px #8FF7FF) drop-shadow(0 0 18px #6CE7FF);}
+.sp-pod.wiggle{animation:mtgWiggle .6s ease;}
+.sp-pod.snap{animation:mtgPulseBig .5s ease;}
+.sp-pod.fly{transform:translate(700px,-520px) rotate(-18deg);opacity:0;}
+.sp-puff{position:absolute;left:50%;top:55%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff,#D8D4E8 70%);z-index:4;pointer-events:none;animation:spPuff .8s ease-out forwards;}
+@keyframes spPuff{0%{transform:translate(0,0) scale(.3);opacity:.95;}60%{opacity:.85;}100%{transform:translate(var(--dx),var(--dy)) scale(1.25);opacity:0;}}
+.sp-ground{position:absolute;left:0;right:0;bottom:0;height:300px;}
+.sp-astro{position:absolute;bottom:22px;width:150px;cursor:grab;z-index:6;touch-action:none;transition:opacity .6s,bottom .9s ease-in;}
+.sp-astro.dragging{z-index:50;cursor:grabbing;}
+.sp-astro.dragging .sp-astro-in{animation:none;}
+.sp-astro-in{position:relative;animation:spBob 2.6s ease-in-out infinite;}
+.sp-astro img{width:100%;display:block;pointer-events:none;filter:drop-shadow(0 6px 8px rgba(0,0,0,.3));}
+@keyframes spBob{0%,100%{transform:translateY(0) rotate(0);}50%{transform:translateY(-8px) rotate(1.5deg);}}
+.sp-badge{position:absolute;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:#1F2A6B;color:#fff;font-weight:800;font-size:28px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px #fff;}
+.sp-astro.snapped{visibility:hidden;}
+.sp-astro.leave{bottom:-320px;opacity:0;}
+.sp-astro.ghost{position:absolute;bottom:auto;opacity:.75;pointer-events:none;z-index:40;width:130px;}
+.sp-astro.ghost .sp-astro-in{animation:none;}
+.sp-ghost-hand{position:absolute;right:-34px;bottom:-26px;width:96px !important;height:96px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.22)) !important;}
+
+/* ---------- landing (deck slide 3 mock): big title on top, pond scene below ---------- */
+.sg-content.has-hero{margin-bottom:96px;max-width:980px;gap:8px;}
+.sg-content.has-hero .sg-title.compact{font-size:64px;}
+#sgHero:not(.fc-hero) img{width:880px;height:250px;object-fit:cover;object-position:50% 38%;border-radius:26px;display:block;box-shadow:0 8px 22px rgba(11,42,90,.16);}
+
+/* pods are drop targets (.dd-zone for makeDraggable) but must not inherit the engine's dashed drop-box look */
+.sp-pod.dd-zone,.sp-pod.dd-zone.hover,.sp-pod.dd-zone.filled{background:none !important;border:none !important;box-shadow:none !important;outline:none !important;padding:0 !important;min-height:0 !important;min-width:0 !important;border-radius:0 !important;}
+/* hint popup: numbers as large as the deck mock */
+.sf-hint-nl .nl-lbl{font-size:30px;font-weight:800;}
+.sf-hint-nl .nl-lbl.glow-hold{padding:4px 6px;}
+.sf-hint .mtg-arc-lbl{font-size:38px;}
+/* T3 recap zoom-out: keep the multiples-of-ten readable while the whole 0–50 line is in view */
+.br-world.zoomed .br-num{visibility:hidden;}
+.br-world.zoomed .br-num.big{visibility:visible;font-size:58px;}
+.br-world.zoomed .br-stone{height:34px;}
+
+/* stage background = the current DS token (#F2F7FA, light blue-grey), as in the HI02H11 S05 reference build */
+:root{--bg:#F2F7FA;}
+/* animals differ in aspect (the rabbit is tall): size by height so none covers a number box */
+.sf-animal{width:auto;height:106px;}
+.sf-hint-animal{width:auto;height:96px;}
