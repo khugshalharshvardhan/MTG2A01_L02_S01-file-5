@@ -4497,8 +4497,9 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
 /* ---------- shared: jump arc ---------- */
 .mtg-arc{opacity:0;transition:opacity .45s ease;}
 .mtg-arc.show{opacity:1;}
-.mtg-arc-path{fill:none;stroke:#E8322E;stroke-width:4;stroke-dasharray:2 8;stroke-linecap:round;}
-.mtg-arc-head{fill:#E8322E;}
+.mtg-arc-halo{fill:none;stroke:#fff;stroke-width:11;stroke-dasharray:2 9;stroke-linecap:round;opacity:.95;}
+.mtg-arc-path{fill:none;stroke:#E8322E;stroke-width:6;stroke-dasharray:2 9;stroke-linecap:round;}
+.mtg-arc-head{fill:#E8322E;stroke:#fff;stroke-width:3;stroke-linejoin:round;paint-order:stroke;}
 .mtg-arc-lbl{fill:#E8322E;font:800 30px var(--font-hi);text-anchor:middle;}
 /* file4's hand nudge: nudge_hand_new.svg, 96px, the engine's nudgeMove bob */
 .mtg-hand{position:absolute;width:96px;height:96px;object-fit:contain;z-index:20;pointer-events:none;filter:drop-shadow(0 6px 10px rgba(0,0,0,.22));animation:nudgeMove 1s ease-in-out infinite;}
@@ -4525,13 +4526,19 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
 .br-svg{position:absolute;left:0;top:0;pointer-events:none;z-index:3;overflow:visible;}
 .br-dot{position:absolute;top:150px;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:#FFF6A8;box-shadow:0 0 12px 6px #FFE24A;opacity:0;transition:left .25s ease,opacity .2s;z-index:4;}
 .br-dot.show{opacity:1;}
-.br-frog{position:absolute;bottom:calc(262px - 152px);width:84px;transform:translate(-50%,0);z-index:6;filter:drop-shadow(0 4px 4px rgba(0,0,0,.18));}
+.br-frog{position:absolute;width:84px;transform:translate(-50%,0);z-index:6;filter:drop-shadow(0 4px 4px rgba(0,0,0,.18));}
 .br-frog.focus,.br-friend.focus{filter:drop-shadow(0 0 10px #FFD84A) drop-shadow(0 0 4px #FFD84A);}
-.br-frog.bounce,.br-friend.bounce{animation:mtgBounce .9s ease;}
-.br-frog.tappable{cursor:pointer;animation:mtgPulseBig 1.1s ease-in-out infinite;transform-origin:50% 100%;}
-.br-friend{position:absolute;bottom:calc(262px - 150px);width:74px;transform:translate(-50%,0);z-index:5;transform-origin:50% 100%;}
+.br-frog.bounce{animation:mtgBounce .9s ease;}
+.br-friend.bounce{animation:brFriendBounce .9s ease;}
+@keyframes brFriendBounce{0%,60%,100%{transform:translateY(0);}35%{transform:translateY(-34px);}78%{transform:translateY(-10px);}}
+/* centred pulses: keep the translate(-50%) centring inside the keyframes, or the element jumps half its width right */
+@keyframes brFrogPulse{0%,100%{transform:translate(-50%,0) scale(1);}50%{transform:translate(-50%,0) scale(1.06);}}
+@keyframes mtgPulseCx{0%,100%{transform:translateX(-50%) scale(1);}50%{transform:translateX(-50%) scale(1.1);}}
+.br-frog.tappable{cursor:pointer;animation:brFrogPulse 1.1s ease-in-out infinite;transform-origin:50% 100%;}
+/* centred with `translate` (applied before the flip, so it is not mirrored), then mirrored to face टप्पू */
+.br-friend{position:absolute;width:74px;translate:-50% 0;scale:-1 1;z-index:5;transform-origin:50% 100%;filter:drop-shadow(0 4px 4px rgba(0,0,0,.18));}
 .br-friend.wave{animation:mtgWiggle 1.2s ease;}
-.br-cap{max-width:900px;min-height:58px;font:800 29px/1.25 var(--font-hi);color:var(--navy);text-align:center;background:#FFF3C7;border:3px solid #FCD86B;border-radius:20px;padding:10px 26px;box-shadow:0 4px 14px rgba(11,42,90,.10);}
+.br-cap{max-width:900px;min-height:58px;font:800 29px/1.25 var(--font-hi);color:var(--navy);text-align:center;padding:0 26px;}
 .br-cap:empty{visibility:hidden;}
 .br-cap.in{animation:mtgFadeUp .35s ease;}
 
@@ -4547,7 +4554,7 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
 .nl-lbl{position:absolute;transform:translateX(-50%);font:700 20px var(--font-hi);color:var(--navy);line-height:1;}
 .nl-lbl.big{font-size:30px;font-weight:800;}
 .nl-lbl.glow,.nl-lbl.glow-hold{background:#FFF07A;border-radius:50%;box-shadow:0 0 18px 10px rgba(255,236,110,.85);}
-.nl-lbl.glow{animation:mtgPulseBig .8s ease 2;}
+.nl-lbl.glow{animation:mtgPulseCx .8s ease 2;}
 .mtg-opts{display:flex;justify-content:center;gap:34px;}
 .mtg-opts.hidden{visibility:hidden;}
 .mtg-opt{min-width:148px;height:104px;border-radius:22px;border:5px solid #2F7FF0;background:#fff;font:800 58px var(--font-hi);color:var(--navy);cursor:pointer;box-shadow:0 6px 0 #C9DCF8;transition:transform .15s,opacity .3s;}
@@ -4600,7 +4607,6 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
 .sp-card.done{opacity:.55;cursor:default;transform:none;}
 .sp-card-art{position:relative;width:260px;height:220px;}
 .sp-card-pod{position:absolute;left:0;bottom:0;width:260px;z-index:2;}
-.sp-card-animal{position:absolute;left:62px;top:0;width:118px;z-index:1;}
 .sp-card-lbl{margin-top:14px;font-weight:800;font-size:31px;color:#2A2370;background:#fff;border-radius:22px;padding:2px 18px;}
 .sp-card-play{margin-top:16px;width:84px;height:84px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:40px;color:#4DB27A;box-shadow:0 4px 0 rgba(0,0,0,.15);}
 .sp-card.c1 .sp-card-play{color:#E86A7C;} .sp-card.c2 .sp-card-play{color:#5B6FD8;}
@@ -4608,7 +4614,11 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
 .sp-pods{position:absolute;left:0;right:0;top:112px;display:flex;justify-content:center;gap:22px;}
 .sp-pod{position:relative;width:218px;height:180px;transition:transform .9s cubic-bezier(.5,0,.75,0),opacity .9s;}
 .sp-pod-img{position:absolute;left:0;bottom:0;width:218px;z-index:2;pointer-events:none;}
-.sp-seated{position:absolute;left:58px;top:-6px;width:84px;z-index:1;pointer-events:none;}
+/* the dome window (sp_pod is 413x323; glass x 84..307, from the top down to the hull at y 136), per pod size */
+.sp-dome{position:absolute;overflow:hidden;border-radius:50% 50% 0 0 / 100% 100% 0 0;z-index:1;pointer-events:none;}
+.sp-pod .sp-dome{left:48px;top:13px;width:110px;height:72px;}
+.sp-card-art .sp-dome{left:57px;top:20px;width:132px;height:86px;}
+.sp-dome img{position:absolute;left:56%;top:3px;width:96%;}   /* helmet ~60% of the glass, face clear of the hull and right of the seat back */
 .sp-podnum{position:absolute;left:57px;top:104px;width:56px;height:56px;border-radius:50%;background:#1F2A6B;color:#fff;font-weight:800;font-size:30px;display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 0 0 4px #fff;}
 .sp-podnum.glow{animation:mtgGlow 1s ease;}
 .sp-pod.hover .sp-pod-img,.sp-pod.cue .sp-pod-img{filter:drop-shadow(0 0 10px #8FF7FF) drop-shadow(0 0 18px #6CE7FF);}
@@ -4621,9 +4631,10 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
 .sp-astro{position:absolute;bottom:22px;width:150px;cursor:grab;z-index:6;touch-action:none;transition:opacity .6s,bottom .9s ease-in;}
 .sp-astro.dragging{z-index:50;cursor:grabbing;}
 .sp-astro.dragging .sp-astro-in{animation:none;}
-.sp-astro-in{position:relative;animation:spBob 2.6s ease-in-out infinite;}
+.sp-astro-in{position:relative;animation:spBob 6s ease-in-out infinite;}
 .sp-astro img{width:100%;display:block;pointer-events:none;filter:drop-shadow(0 6px 8px rgba(0,0,0,.3));}
-@keyframes spBob{0%,100%{transform:translateY(0) rotate(0);}50%{transform:translateY(-8px) rotate(1.5deg);}}
+/* waiting animals float right and left across the ground (±60 px), all in step so the gaps between them never close; light lift and lean */
+@keyframes spBob{0%,100%{transform:translate(0,0) rotate(0);}25%{transform:translate(-60px,-8px) rotate(-4deg);}50%{transform:translate(0,0) rotate(0);}75%{transform:translate(60px,-8px) rotate(4deg);}}
 .sp-badge{position:absolute;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:#1F2A6B;color:#fff;font-weight:800;font-size:28px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px #fff;}
 .sp-astro.snapped{visibility:hidden;}
 .sp-astro.leave{bottom:-320px;opacity:0;}
@@ -4653,6 +4664,22 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
 .sf-animal{width:auto;height:106px;}
 .sf-hint-animal{width:auto;height:96px;}
 
+/* ---------- the user's pond (sc_pond, 9-slice) and rocks (prop_rock) ---------- */
+.br-pond{position:absolute;left:0;top:0;box-sizing:border-box;border-style:solid;border-color:transparent;border-image-repeat:stretch;z-index:0;}
+.br-rock{position:absolute;transform:translateX(-50%);z-index:2;transition:filter .2s;}
+.br-rock img{width:100%;height:100%;display:block;object-fit:contain;}
+.br-rock.lit{filter:drop-shadow(0 0 3px #FFE066) drop-shadow(0 0 3px #FFE066);}
+.br-rock.mark{filter:drop-shadow(0 0 3px #FFC21A) drop-shadow(0 0 4px #FFC21A) drop-shadow(0 0 6px rgba(255,194,26,.8));}
+.br-rock.glow{animation:brRockGlow 1.3s ease;}
+@keyframes brRockGlow{0%,100%{transform:translateX(-50%) scale(1);}40%{transform:translateX(-50%) scale(1.14);filter:drop-shadow(0 0 6px #FFE066) drop-shadow(0 0 10px #FFD43B);}}
+/* numbers sit on the water: navy with a white halo so they read on blue */
+.br-num{text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 4px #fff;}
+.br-num.mark{color:#B85E00;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 8px #FFE27A;}
+/* camera zoom (--z from applyCam): numbers grow back toward a readable size; rocks and frogs keep scale */
+.br-num{font-size:calc(16px * min(1.8, 1 / var(--z, 1)));}
+.br-num.big{font-size:calc(27px * min(1.8, 1 / var(--z, 1)));}
+.br-world.zoomed .br-num.big{font-size:calc(24px / var(--z, 1));}
+
 /* =====================  FROG COVER (file4's cover card + title cloud)  ===================== */
 /* file4's .lt-cloud-card: a translucent white card with an inset white border, taller, title near the top */
 #startGate .sg-card.fc-card{height:536px;padding-top:34px;justify-content:flex-start;background:rgba(255,255,255,.651);border-radius:44px;box-shadow:inset 0 0 0 9px #fff;}
@@ -4670,15 +4697,12 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
 .fc-word{position:relative;z-index:1;font-weight:800;color:#1E4FB4;white-space:nowrap;margin-top:22px;
   text-shadow:0 3px 0 #163C8E,0 6px 0 #0F2E70,0 10px 14px rgba(11,42,90,.28);clip-path:inset(-40% 100% -40% 0);}
 .fc-word.fc-static{clip-path:none;}
-#sgHero.fc-hero{display:block;margin-top:-26px;transform:scale(1.2);transform-origin:50% 0;}   /* fills the card as file4's train does */
-.fc-pond{position:relative;width:760px;height:150px;overflow:hidden;}
-.fc-pond::before{content:"";position:absolute;left:40px;right:40px;top:92px;height:46px;border-radius:40px;
-  background:linear-gradient(#7FE4FF,#2DC6F2 60%,#22B3E6);box-shadow:inset 0 5px 0 rgba(255,255,255,.45);}
-.fc-stone{position:absolute;top:104px;width:58px;height:20px;margin-left:-29px;border-radius:50%;
-  background:radial-gradient(ellipse at 40% 35%,#D9DDE2,#9EA6AF 70%,#7B848E);box-shadow:0 3px 0 rgba(0,0,0,.18);}
+#sgHero.fc-hero{display:block;margin-top:-6px;}   /* fills the card as file4's train does */
+.fc-pond{position:relative;width:600px;height:200px;overflow:hidden;background:center/100% 100% no-repeat;}
+#sgHero .fc-rock{position:absolute;top:108px;width:56px;height:auto;margin-left:-28px;border-radius:0;box-shadow:none;z-index:1;}
 #sgHero .fc-reeds{position:absolute;top:62px;width:70px;height:auto;border-radius:0;box-shadow:none;}
 .fc-reeds.l{left:0;} .fc-reeds.r{right:0;transform:scaleX(-1);}
-#sgHero .fc-frog{position:absolute;top:36px;width:84px;height:auto;border-radius:0;box-shadow:none;transform:translate(-50%,0);z-index:2;filter:drop-shadow(0 4px 4px rgba(0,0,0,.18));}
+#sgHero .fc-frog{position:absolute;top:30px;width:70px;height:auto;border-radius:0;box-shadow:none;transform:translate(-50%,0);z-index:2;filter:drop-shadow(0 4px 4px rgba(0,0,0,.18));}
 .fc-frog.fc-squash{animation:fcSquash .26s ease;}
 .fc-frog.fc-cheer{animation:mtgBounce .9s ease;}
 @keyframes fcSquash{0%,100%{transform:translate(-50%,0) scale(1,1);}50%{transform:translate(-50%,4px) scale(1.12,.86);}}
@@ -5058,6 +5082,7 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
     "step": 5,
     "friend_at": 30,
     "heading": "पाँच-पाँच की गिनती",
+    "camera": true,
     "steps": [
      {
       "cap": "टप्पू का एक और दोस्त पुल के उस पार इंतज़ार कर रहा है। इस बार टप्पू पाँच-पाँच कदम की छलाँग लगाकर उससे मिलने जाएगा। आइए, टप्पू के साथ गिनते हैं!",
@@ -5065,7 +5090,8 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
        {
         "vo": "vo_t2_1",
         "wave": true,
-        "glow_end": 0
+        "glow_end": 0,
+        "cam": "all"
        }
       ]
      },
@@ -5073,7 +5099,8 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
       "cap": "टप्पू शून्य पर है। यहाँ से पाँच कदम आगे गिनते हैं—एक, दो, तीन, चार, पाँच। टप्पू पाँच पर पहुँच गया!",
       "clips": [
        {
-        "vo": "vo_t2_2a"
+        "vo": "vo_t2_2a",
+        "cam": "follow"
        },
        {
         "vo": "vo_c_1",
@@ -5146,6 +5173,10 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
       "clips": [
        {
         "vo": "vo_t2_6",
+        "cam": [
+         19,
+         31
+        ],
         "tapcue": true
        }
       ]
@@ -5190,7 +5221,8 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
       "clips": [
        {
         "vo": "vo_met",
-        "happy": true
+        "happy": true,
+        "cam": "all"
        }
       ]
      },
@@ -5309,7 +5341,7 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
         "vo": "vo_t3_5",
         "cam": [
          29,
-         53
+         51
         ],
         "tapcue": true
        }
@@ -5612,7 +5644,7 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
       "step": 2,
       "correct": "vo_q4_ok",
       "wa1": "vo_q4_wa1",
-      "wa1_ost": null,
+      "wa1_ost": "दो-दो करके गिनिए। अगली सही संख्या पर टैप कीजिए।",
       "pre_hint": null,
       "hint": "vo_q4_hint",
       "hint_range": [
@@ -5972,7 +6004,7 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
      {
       "step": 10,
       "label": "दस-दस की गिनती",
-      "cast": "sp_grasshopper",
+      "cast": "sp_squirrel",
       "rounds": [
        {
         "seq": [
@@ -6038,16 +6070,30 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
     "inactivity_ms": 7000,
     "badge": {
      "sp_frog": [
-      0.6,
-      0.67
+      0.51,
+      0.62
      ],
      "sp_rabbit": [
-      0.66,
-      0.8
+      0.52,
+      0.68
      ],
-     "sp_grasshopper": [
-      0.63,
-      0.67
+     "sp_squirrel": [
+      0.7,
+      0.62
+     ]
+    },
+    "rider": {
+     "sp_frog": [
+      0.48,
+      0.02
+     ],
+     "sp_rabbit": [
+      0.48,
+      0.15
+     ],
+     "sp_squirrel": [
+      0.57,
+      0.08
      ]
     }
    }
@@ -6921,7 +6967,7 @@ var __AUDIO_V = "b7e4cf6126c3";
 /* [S05] THE LESSON'S PICTURES ARE VERSIONED TOO. They are replaced under the SAME names (obj_bandar.webp
    …), and a browser that had the old file kept drawing it. The builder stamps this from the content of
    assets/Images, so a changed picture gets a new address; unchanged, the cache still works. */
-var __IMG_V = "77a913da91df";
+var __IMG_V = "994a5e9c8729";
 const _iv = (u)=> (/^__IMG/.test(__IMG_V) ? u : u + "?v=" + __IMG_V);
 function _av(src){
   if(typeof src !== "string" || src.indexOf("assets/Audio/") < 0) return src;
@@ -21219,15 +21265,17 @@ const MTG_SVG = "http://www.w3.org/2000/svg";
 /* dotted red jump arc with an arrowhead, from x1 to x2 at baseline y, into an <svg> */
 function mtgArc(svg, x1, x2, y, lift, label){
   const g = document.createElementNS(MTG_SVG, "g"); g.setAttribute("class", "mtg-arc");
-  const mx = (x1 + x2) / 2, top = y - lift;
-  const p = document.createElementNS(MTG_SVG, "path");
-  p.setAttribute("d", `M${x1},${y} Q${mx},${top - lift * 0.35} ${x2 - 4},${y - 4}`);
-  p.setAttribute("class", "mtg-arc-path");
-  g.appendChild(p);
-  const ah = document.createElementNS(MTG_SVG, "path");
-  ah.setAttribute("d", `M${x2 - 13},${y - 15} L${x2 + 1},${y - 1} L${x2 - 17},${y - 1} Z`);
-  ah.setAttribute("class", "mtg-arc-head");
-  g.appendChild(ah);
+  const mx = (x1 + x2) / 2, top = y - lift, cy = top - lift * 0.35;
+  // the head points along the curve's end tangent; the shaft stops at its base so the dots meet the head
+  const tx = x2 - mx, ty = y - cy, tl = Math.hypot(tx, ty) || 1, ux = tx / tl, uy = ty / tl;
+  const HL = 20, HW = 11, bx = x2 - ux * HL, by = y - uy * HL;
+  const d = `M${x1},${y} Q${mx},${cy} ${bx},${by}`;
+  const head = `M${x2},${y} L${bx - uy * HW},${by + ux * HW} L${bx + uy * HW},${by - ux * HW} Z`;
+  // a white halo under the red dots and head keeps them readable over grass, water and stones
+  [["mtg-arc-halo", d], ["mtg-arc-path", d], ["mtg-arc-head", head]].forEach(([cls, dd])=>{
+    const p = document.createElementNS(MTG_SVG, "path");
+    p.setAttribute("d", dd); p.setAttribute("class", cls); g.appendChild(p);
+  });
   if(label){
     const t = document.createElementNS(MTG_SVG, "text");
     t.setAttribute("x", mx); t.setAttribute("y", top - lift * 0.2 - 6); t.setAttribute("class", "mtg-arc-lbl");
@@ -21263,54 +21311,81 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   state.ownsAudio = true;
   const card = host.closest(".tut-card");
   if(card){ card.classList.add("br-card"); const tp = card.querySelector(".tut-prompt"); if(tp) tp.textContent = d.heading || ""; }
-  const VIEW_W = 1113, VIEW_H = 262, PAD = d.camera ? 96 : 124, WATER_Y = 120, STONE_Y = 150;
+  /* THE POND (user art, 1_SPEC/art_user_src): sc_pond is drawn as a 9-slice — its two banks keep their
+     shape and only the water stretches, so the same pond serves 0–10, 0–30 and the wide 0–50 camera
+     world. Measured on the 1600x533 art: water x 203..1396, y 255..503. */
+  /* the scene bleeds to the frame's inner edges: measure the frame rather than assume its width */
+  const _bleedL = card ? Math.max(0, host.offsetLeft - card.clientLeft) : 30;
+  const VIEW_W = (card && card.clientWidth) ? card.clientWidth : 1113;
+  const VIEW_H = 300, POND_W = 1600, POND_H = 533, BANK_L = 203, BANK_R = 204, WATER_TOP = 255, WATER_BOT = 503;
+  const k = VIEW_H / POND_H, BL = Math.round(BANK_L * k), BR = Math.round(BANK_R * k);
   const span = d.hi - d.lo;
-  const U = d.camera ? 46 : (VIEW_W - 2 * PAD) / span;
-  const WORLD_W = span * U + 2 * PAD;
+  const PAD0 = BL + 26;
+  // the camera screens keep the 0–10 screen's spacing (~80 px a step) and pan, so every rock stays big
+  const U = d.camera ? 80 : (VIEW_W - PAD0 - BR - 26) / span;
+  const RW = Math.min(U * 0.92, 92), RH = RW * 425 / 699;          // prop_rock is 699x425
+  const PAD = PAD0 + RW / 2;
+  const WORLD_W = d.camera ? span * U + PAD + BR + 26 + RW / 2 : VIEW_W;
   const X = n => PAD + (n - d.lo) * U;
+  const WATERLINE = Math.round(WATER_TOP * k + (WATER_BOT - WATER_TOP) * k * 0.42);   // where a rock meets the water
+  const ROCK_TOP = WATERLINE - RH * 0.80, STONE_Y = ROCK_TOP + 4;                     // arcs start on the rock tops
+  const NUM_Y = Math.round(WATERLINE + 10);
 
   const wrap = mtgEl("div", "br-wrap");
-  const view = mtgEl("div", "br-view"); view.style.height = VIEW_H + "px";
+  const view = mtgEl("div", "br-view"); view.style.height = VIEW_H + "px"; view.style.width = VIEW_W + "px";
   const world = mtgEl("div", "br-world"); world.style.width = WORLD_W + "px"; world.style.height = VIEW_H + "px";
-  world.appendChild(Object.assign(mtgEl("div", "br-water"), { style: `left:${PAD - 40}px;width:${span * U + 80}px;top:${WATER_Y}px` }));
-  const bankL = mtgEl("div", "br-bank l"); bankL.style.width = (PAD - 10) + "px"; world.appendChild(bankL);
-  const bankR = mtgEl("div", "br-bank r"); bankR.style.width = (PAD - 10) + "px"; world.appendChild(bankR);
-  [[8, "l"], [WORLD_W - 92, "r"]].forEach(([x, s])=>{ const r = mtgEl("img", "br-reeds " + s); r.src = mtgImg("prop_reeds"); r.style.left = x + "px"; world.appendChild(r); });
+  const pond = mtgEl("div", "br-pond");
+  pond.style.cssText = `width:${WORLD_W}px;height:${VIEW_H}px;border-width:0 ${BR}px 0 ${BL}px;` +
+    `border-image-source:url("${mtgImg("sc_pond")}");border-image-slice:0 ${BANK_R} 0 ${BANK_L} fill;border-image-width:0 ${BR}px 0 ${BL}px;`;
+  world.appendChild(pond);
   const stones = {}, nums = {};
-  const sw = Math.min(40, U * 0.82);
   for(let n = d.lo; n <= d.hi; n++){
-    const s = mtgEl("div", "br-stone" + (n % d.step === 0 ? " key" : ""));
-    s.style.left = X(n) + "px"; s.style.top = STONE_Y + "px"; s.style.width = sw + "px";
-    world.appendChild(s); stones[n] = s;
     const big = (n % d.step === 0);
+    const s = mtgEl("div", "br-rock" + (big ? " key" : ""));
+    s.style.cssText = `left:${X(n)}px;top:${ROCK_TOP}px;width:${RW}px;height:${RH}px`;
+    const im = mtgEl("img"); im.src = mtgImg("prop_rock"); im.alt = ""; s.appendChild(im);
+    world.appendChild(s); stones[n] = s;
     const lb = mtgEl("div", "br-num" + (big ? " big" : ""), String(n));
-    lb.style.left = X(n) + "px"; lb.style.top = (STONE_Y + 26) + "px";
+    lb.style.left = X(n) + "px"; lb.style.top = NUM_Y + "px";
     if(!big && U < 30) lb.style.fontSize = Math.max(12, U * 0.52) + "px";
     world.appendChild(lb); nums[n] = lb;
   }
   const svg = document.createElementNS(MTG_SVG, "svg"); svg.setAttribute("class", "br-svg");
   svg.setAttribute("width", WORLD_W); svg.setAttribute("height", VIEW_H); world.appendChild(svg);
-  const dot = mtgEl("div", "br-dot"); world.appendChild(dot);
+  const dot = mtgEl("div", "br-dot"); dot.style.top = (ROCK_TOP + RH * 0.3) + "px"; world.appendChild(dot);
+  // the friend stands on the far bank, टप्पू sits on rock 0 (deck: "directly on the stone marked 0")
+  const FW = Math.min(96, RW * 1.1, U * 0.9), FH = FW * 579 / 477;   // never wider than one step: टप्पू sits on one rock
   const friend = mtgEl("img", "br-friend"); friend.src = mtgImg("chr_friend");
-  friend.style.left = (X(d.friend_at) + 82) + "px"; world.appendChild(friend);
+  const FRW = FW * 1.02, FRH = FRW * 574 / 551;                    // chr_friend is 551x574
+  friend.style.cssText = `left:${WORLD_W - BR / 2 - 4}px;top:${Math.round(0.47 * VIEW_H - FRH)}px;width:${FRW}px`;
+  world.appendChild(friend);
   const frog = mtgEl("img", "br-frog"); frog.src = mtgImg("chr_tappu");
+  frog.style.width = FW + "px"; frog.style.top = (ROCK_TOP - FH + RH * 0.16) + "px";
   let at = d.lo; frog.style.left = X(at) + "px"; world.appendChild(frog);
   view.appendChild(world); wrap.appendChild(view);
   const cap = mtgEl("div", "br-cap"); wrap.appendChild(cap);
+  wrap.style.margin = `0 0 0 ${-_bleedL}px`; wrap.style.width = VIEW_W + "px";
   host.appendChild(wrap);
 
-  // ---- camera (T3): "all" = zoomed out to the whole line, "follow" = keep टप्पू in view, [a,b] = settle
+  // ---- camera (T2, T3): "all" = zoomed out to the whole line, "follow" = keep टप्पू in view,
+  // [a,b] = settle on a..b, zooming out only as far as that range needs (the whole scene scales together,
+  // so टप्पू still sits on one rock); --z lets the numbers grow back to a readable size
   let cam = d.camera ? "all" : null;
   function applyCam(mode){
     if(!d.camera) return;
     cam = mode;
     world.classList.toggle("zoomed", mode === "all");
-    if(mode === "all"){ const z = VIEW_W / WORLD_W; world.style.transform = `translate(0px, ${(VIEW_H * (1 - z)) / 2}px) scale(${z})`; return; }
-    let x0;
-    if(Array.isArray(mode)) x0 = (X(mode[0]) + X(mode[1])) / 2 - VIEW_W / 2;
+    let z = 1, x0;
+    if(mode === "all"){ z = VIEW_W / WORLD_W; x0 = 0; }
+    else if(Array.isArray(mode)){
+      const a = X(mode[0]) - RW / 2, b = X(mode[1]) + RW / 2;
+      z = Math.min(1, VIEW_W / (b - a));
+      x0 = (a + b) / 2 * z - VIEW_W / 2;
+    }
     else x0 = X(at) - VIEW_W * 0.34;
-    x0 = Math.max(0, Math.min(WORLD_W - VIEW_W, x0));
-    world.style.transform = `translate(${-x0}px, 0px) scale(1)`;
+    x0 = Math.max(0, Math.min(WORLD_W * z - VIEW_W, x0));
+    world.style.setProperty("--z", z);
+    world.style.transform = `translate(${-x0}px, 0px) scale(${z})`;   // origin 0 50%: stays vertically centred
   }
   applyCam(cam);
 
@@ -21345,8 +21420,8 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   function waitTap(){
     return new Promise((res, rej)=>{
       frog.classList.add("tappable");
-      let hand = mtgHand(world, X(at) + 10, STONE_Y - 60);
-      const again = setInterval(()=>{ if(tok !== _mtgTok){ clearInterval(again); return; } if(!hand){ hand = mtgHand(world, X(at) + 10, STONE_Y - 60); setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800); } }, 6000);
+      let hand = mtgHand(world, X(at) + 6, ROCK_TOP - FH * 0.45);
+      const again = setInterval(()=>{ if(tok !== _mtgTok){ clearInterval(again); return; } if(!hand){ hand = mtgHand(world, X(at) + 6, ROCK_TOP - FH * 0.45); setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800); } }, 6000);
       setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800);
       frog.onclick = ()=>{
         if(tok !== _mtgTok) return rej(MTG_STOP);
@@ -21630,10 +21705,18 @@ SlideModules.SPACE_PODS = { mount(host, slide){
     inner.appendChild(im); inner.appendChild(bd); a.appendChild(inner); a.dataset.n = n;
     return a;
   }
+  /* an animal riding in a pod: shown through a window cut to the glass dome, so nothing pokes out of it;
+     the helmet is centred in the dome (CARD rider = [helmet centre x, helmet top y] as sprite fractions) */
+  function rider(cast, cls){
+    const w = mtgEl("div", "sp-dome");
+    const im = mtgEl("img", cls); im.src = mtgImg(cast); im.draggable = false; im.alt = "";
+    const [cx, top] = (g.rider && g.rider[cast]) || [0.5, 0.05];
+    im.style.transform = `translate(${-cx * 100}%, ${-top * 100}%)`;
+    w.appendChild(im); return w;
+  }
   function seat(pod, cast, n){
     pod.classList.add("filled");
-    const s = mtgEl("img", "sp-seated"); s.src = mtgImg(cast); s.draggable = false;
-    pod.insertBefore(s, pod.firstChild);
+    pod.insertBefore(rider(cast, "sp-seated"), pod.firstChild);
     const nb = mtgEl("div", "sp-podnum", String(n)); pod.appendChild(nb);
     return nb;
   }
@@ -21656,9 +21739,8 @@ SlideModules.SPACE_PODS = { mount(host, slide){
     g.levels.forEach((L, i)=>{
       const c = mtgEl("button", "sp-card c" + i + (done.has(i) ? " done" : "")); c.type = "button";
       const art = mtgEl("div", "sp-card-art");
-      const an = mtgEl("img", "sp-card-animal"); an.src = mtgImg(L.cast);
       const pod = mtgEl("img", "sp-card-pod"); pod.src = mtgImg("sp_pod");
-      art.appendChild(an); art.appendChild(pod);
+      art.appendChild(rider(L.cast, "sp-card-animal")); art.appendChild(pod);
       c.appendChild(art);
       c.appendChild(mtgEl("div", "sp-card-lbl", L.label));
       c.appendChild(mtgEl("div", "sp-card-play", done.has(i) ? "✔" : "▶"));
@@ -21689,7 +21771,6 @@ SlideModules.SPACE_PODS = { mount(host, slide){
       const W = 1333 - 300, x0 = 230, gap = W / pool.length;
       const walkers = pool.map((n, k)=>{
         const a = astronaut(L.cast, n, "walker"); a.style.left = (x0 + gap * k + gap / 2 - 75) + "px";
-        a.querySelector(".sp-astro-in").style.animationDelay = (k * 0.37) + "s";
         ground.appendChild(a); return a;
       });
       scene.appendChild(ground);
@@ -21837,9 +21918,10 @@ SlideModules.SPACE_PODS = { mount(host, slide){
     ttl.appendChild(cloud); ttl.appendChild(word);
     heroEl.innerHTML = "";
     heroEl.classList.add("fc-hero");
+    // the user's pond (sc_pond, 600x200 here: water x 76..524) with prop_rock stones on its waterline
     const pond = mtgEl("div", "fc-pond");
-    [120, 250, 380, 510, 640].forEach(x => { const s = mtgEl("i", "fc-stone"); s.style.left = x + "px"; pond.appendChild(s); });
-    ["l", "r"].forEach(side => { const r = mtgEl("img", "fc-reeds " + side); r.src = mtgImg("prop_reeds"); pond.appendChild(r); });
+    pond.style.backgroundImage = `url("${mtgImg("sc_pond")}")`;
+    [140, 220, 300, 380, 460].forEach(x => { const s = mtgEl("img", "fc-rock"); s.src = mtgImg("prop_rock"); s.alt = ""; s.style.left = x + "px"; pond.appendChild(s); });
     const frog = mtgEl("img", "fc-frog"); frog.src = mtgImg("chr_tappu");
     pond.appendChild(frog); heroEl.appendChild(pond);
     return { cloud, word, frog };
@@ -21847,12 +21929,12 @@ SlideModules.SPACE_PODS = { mount(host, slide){
   function run(){
     const B = build(); if(!B){ ready(); return; }
     const { cloud, word, frog } = B;
-    const LAND = 380;                                         // the middle stone
+    const LAND = 300;                                         // the middle rock
     const settle = ()=>{ cloud.classList.add("fc-settled"); word.classList.add("fc-static"); frog.style.left = LAND + "px"; };
     const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if(reduce || typeof frog.animate !== "function"){ settle(); ready(); return; }
     const puffs = [...cloud.querySelectorAll(".fc-puff")], fills = [...cloud.querySelectorAll(".fc-body,.fc-core")];
-    const path = [880, 640, 510, LAND];
+    const path = [660, 460, 380, LAND];
     frog.style.left = path[0] + "px";
     let k = 0;
     const launch = (x)=>{                                     // puffs leave the splash and swell into place

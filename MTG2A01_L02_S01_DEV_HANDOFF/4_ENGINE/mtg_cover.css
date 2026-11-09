@@ -15,15 +15,12 @@
 .fc-word{position:relative;z-index:1;font-weight:800;color:#1E4FB4;white-space:nowrap;margin-top:22px;
   text-shadow:0 3px 0 #163C8E,0 6px 0 #0F2E70,0 10px 14px rgba(11,42,90,.28);clip-path:inset(-40% 100% -40% 0);}
 .fc-word.fc-static{clip-path:none;}
-#sgHero.fc-hero{display:block;margin-top:-26px;transform:scale(1.2);transform-origin:50% 0;}   /* fills the card as file4's train does */
-.fc-pond{position:relative;width:760px;height:150px;overflow:hidden;}
-.fc-pond::before{content:"";position:absolute;left:40px;right:40px;top:92px;height:46px;border-radius:40px;
-  background:linear-gradient(#7FE4FF,#2DC6F2 60%,#22B3E6);box-shadow:inset 0 5px 0 rgba(255,255,255,.45);}
-.fc-stone{position:absolute;top:104px;width:58px;height:20px;margin-left:-29px;border-radius:50%;
-  background:radial-gradient(ellipse at 40% 35%,#D9DDE2,#9EA6AF 70%,#7B848E);box-shadow:0 3px 0 rgba(0,0,0,.18);}
+#sgHero.fc-hero{display:block;margin-top:-6px;}   /* fills the card as file4's train does */
+.fc-pond{position:relative;width:600px;height:200px;overflow:hidden;background:center/100% 100% no-repeat;}
+#sgHero .fc-rock{position:absolute;top:108px;width:56px;height:auto;margin-left:-28px;border-radius:0;box-shadow:none;z-index:1;}
 #sgHero .fc-reeds{position:absolute;top:62px;width:70px;height:auto;border-radius:0;box-shadow:none;}
 .fc-reeds.l{left:0;} .fc-reeds.r{right:0;transform:scaleX(-1);}
-#sgHero .fc-frog{position:absolute;top:36px;width:84px;height:auto;border-radius:0;box-shadow:none;transform:translate(-50%,0);z-index:2;filter:drop-shadow(0 4px 4px rgba(0,0,0,.18));}
+#sgHero .fc-frog{position:absolute;top:30px;width:70px;height:auto;border-radius:0;box-shadow:none;transform:translate(-50%,0);z-index:2;filter:drop-shadow(0 4px 4px rgba(0,0,0,.18));}
 .fc-frog.fc-squash{animation:fcSquash .26s ease;}
 .fc-frog.fc-cheer{animation:mtgBounce .9s ease;}
 @keyframes fcSquash{0%,100%{transform:translate(-50%,0) scale(1,1);}50%{transform:translate(-50%,4px) scale(1.12,.86);}}

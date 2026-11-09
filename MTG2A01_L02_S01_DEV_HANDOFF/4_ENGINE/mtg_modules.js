@@ -34,15 +34,17 @@ const MTG_SVG = "http://www.w3.org/2000/svg";
 /* dotted red jump arc with an arrowhead, from x1 to x2 at baseline y, into an <svg> */
 function mtgArc(svg, x1, x2, y, lift, label){
   const g = document.createElementNS(MTG_SVG, "g"); g.setAttribute("class", "mtg-arc");
-  const mx = (x1 + x2) / 2, top = y - lift;
-  const p = document.createElementNS(MTG_SVG, "path");
-  p.setAttribute("d", `M${x1},${y} Q${mx},${top - lift * 0.35} ${x2 - 4},${y - 4}`);
-  p.setAttribute("class", "mtg-arc-path");
-  g.appendChild(p);
-  const ah = document.createElementNS(MTG_SVG, "path");
-  ah.setAttribute("d", `M${x2 - 13},${y - 15} L${x2 + 1},${y - 1} L${x2 - 17},${y - 1} Z`);
-  ah.setAttribute("class", "mtg-arc-head");
-  g.appendChild(ah);
+  const mx = (x1 + x2) / 2, top = y - lift, cy = top - lift * 0.35;
+  // the head points along the curve's end tangent; the shaft stops at its base so the dots meet the head
+  const tx = x2 - mx, ty = y - cy, tl = Math.hypot(tx, ty) || 1, ux = tx / tl, uy = ty / tl;
+  const HL = 20, HW = 11, bx = x2 - ux * HL, by = y - uy * HL;
+  const d = `M${x1},${y} Q${mx},${cy} ${bx},${by}`;
+  const head = `M${x2},${y} L${bx - uy * HW},${by + ux * HW} L${bx + uy * HW},${by - ux * HW} Z`;
+  // a white halo under the red dots and head keeps them readable over grass, water and stones
+  [["mtg-arc-halo", d], ["mtg-arc-path", d], ["mtg-arc-head", head]].forEach(([cls, dd])=>{
+    const p = document.createElementNS(MTG_SVG, "path");
+    p.setAttribute("d", dd); p.setAttribute("class", cls); g.appendChild(p);
+  });
   if(label){
     const t = document.createElementNS(MTG_SVG, "text");
     t.setAttribute("x", mx); t.setAttribute("y", top - lift * 0.2 - 6); t.setAttribute("class", "mtg-arc-lbl");
@@ -78,54 +80,81 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   state.ownsAudio = true;
   const card = host.closest(".tut-card");
   if(card){ card.classList.add("br-card"); const tp = card.querySelector(".tut-prompt"); if(tp) tp.textContent = d.heading || ""; }
-  const VIEW_W = 1113, VIEW_H = 262, PAD = d.camera ? 96 : 124, WATER_Y = 120, STONE_Y = 150;
+  /* THE POND (user art, 1_SPEC/art_user_src): sc_pond is drawn as a 9-slice — its two banks keep their
+     shape and only the water stretches, so the same pond serves 0–10, 0–30 and the wide 0–50 camera
+     world. Measured on the 1600x533 art: water x 203..1396, y 255..503. */
+  /* the scene bleeds to the frame's inner edges: measure the frame rather than assume its width */
+  const _bleedL = card ? Math.max(0, host.offsetLeft - card.clientLeft) : 30;
+  const VIEW_W = (card && card.clientWidth) ? card.clientWidth : 1113;
+  const VIEW_H = 300, POND_W = 1600, POND_H = 533, BANK_L = 203, BANK_R = 204, WATER_TOP = 255, WATER_BOT = 503;
+  const k = VIEW_H / POND_H, BL = Math.round(BANK_L * k), BR = Math.round(BANK_R * k);
   const span = d.hi - d.lo;
-  const U = d.camera ? 46 : (VIEW_W - 2 * PAD) / span;
-  const WORLD_W = span * U + 2 * PAD;
+  const PAD0 = BL + 26;
+  // the camera screens keep the 0–10 screen's spacing (~80 px a step) and pan, so every rock stays big
+  const U = d.camera ? 80 : (VIEW_W - PAD0 - BR - 26) / span;
+  const RW = Math.min(U * 0.92, 92), RH = RW * 425 / 699;          // prop_rock is 699x425
+  const PAD = PAD0 + RW / 2;
+  const WORLD_W = d.camera ? span * U + PAD + BR + 26 + RW / 2 : VIEW_W;
   const X = n => PAD + (n - d.lo) * U;
+  const WATERLINE = Math.round(WATER_TOP * k + (WATER_BOT - WATER_TOP) * k * 0.42);   // where a rock meets the water
+  const ROCK_TOP = WATERLINE - RH * 0.80, STONE_Y = ROCK_TOP + 4;                     // arcs start on the rock tops
+  const NUM_Y = Math.round(WATERLINE + 10);
 
   const wrap = mtgEl("div", "br-wrap");
-  const view = mtgEl("div", "br-view"); view.style.height = VIEW_H + "px";
+  const view = mtgEl("div", "br-view"); view.style.height = VIEW_H + "px"; view.style.width = VIEW_W + "px";
   const world = mtgEl("div", "br-world"); world.style.width = WORLD_W + "px"; world.style.height = VIEW_H + "px";
-  world.appendChild(Object.assign(mtgEl("div", "br-water"), { style: `left:${PAD - 40}px;width:${span * U + 80}px;top:${WATER_Y}px` }));
-  const bankL = mtgEl("div", "br-bank l"); bankL.style.width = (PAD - 10) + "px"; world.appendChild(bankL);
-  const bankR = mtgEl("div", "br-bank r"); bankR.style.width = (PAD - 10) + "px"; world.appendChild(bankR);
-  [[8, "l"], [WORLD_W - 92, "r"]].forEach(([x, s])=>{ const r = mtgEl("img", "br-reeds " + s); r.src = mtgImg("prop_reeds"); r.style.left = x + "px"; world.appendChild(r); });
+  const pond = mtgEl("div", "br-pond");
+  pond.style.cssText = `width:${WORLD_W}px;height:${VIEW_H}px;border-width:0 ${BR}px 0 ${BL}px;` +
+    `border-image-source:url("${mtgImg("sc_pond")}");border-image-slice:0 ${BANK_R} 0 ${BANK_L} fill;border-image-width:0 ${BR}px 0 ${BL}px;`;
+  world.appendChild(pond);
   const stones = {}, nums = {};
-  const sw = Math.min(40, U * 0.82);
   for(let n = d.lo; n <= d.hi; n++){
-    const s = mtgEl("div", "br-stone" + (n % d.step === 0 ? " key" : ""));
-    s.style.left = X(n) + "px"; s.style.top = STONE_Y + "px"; s.style.width = sw + "px";
-    world.appendChild(s); stones[n] = s;
     const big = (n % d.step === 0);
+    const s = mtgEl("div", "br-rock" + (big ? " key" : ""));
+    s.style.cssText = `left:${X(n)}px;top:${ROCK_TOP}px;width:${RW}px;height:${RH}px`;
+    const im = mtgEl("img"); im.src = mtgImg("prop_rock"); im.alt = ""; s.appendChild(im);
+    world.appendChild(s); stones[n] = s;
     const lb = mtgEl("div", "br-num" + (big ? " big" : ""), String(n));
-    lb.style.left = X(n) + "px"; lb.style.top = (STONE_Y + 26) + "px";
+    lb.style.left = X(n) + "px"; lb.style.top = NUM_Y + "px";
     if(!big && U < 30) lb.style.fontSize = Math.max(12, U * 0.52) + "px";
     world.appendChild(lb); nums[n] = lb;
   }
   const svg = document.createElementNS(MTG_SVG, "svg"); svg.setAttribute("class", "br-svg");
   svg.setAttribute("width", WORLD_W); svg.setAttribute("height", VIEW_H); world.appendChild(svg);
-  const dot = mtgEl("div", "br-dot"); world.appendChild(dot);
+  const dot = mtgEl("div", "br-dot"); dot.style.top = (ROCK_TOP + RH * 0.3) + "px"; world.appendChild(dot);
+  // the friend stands on the far bank, टप्पू sits on rock 0 (deck: "directly on the stone marked 0")
+  const FW = Math.min(96, RW * 1.1, U * 0.9), FH = FW * 579 / 477;   // never wider than one step: टप्पू sits on one rock
   const friend = mtgEl("img", "br-friend"); friend.src = mtgImg("chr_friend");
-  friend.style.left = (X(d.friend_at) + 82) + "px"; world.appendChild(friend);
+  const FRW = FW * 1.02, FRH = FRW * 574 / 551;                    // chr_friend is 551x574
+  friend.style.cssText = `left:${WORLD_W - BR / 2 - 4}px;top:${Math.round(0.47 * VIEW_H - FRH)}px;width:${FRW}px`;
+  world.appendChild(friend);
   const frog = mtgEl("img", "br-frog"); frog.src = mtgImg("chr_tappu");
+  frog.style.width = FW + "px"; frog.style.top = (ROCK_TOP - FH + RH * 0.16) + "px";
   let at = d.lo; frog.style.left = X(at) + "px"; world.appendChild(frog);
   view.appendChild(world); wrap.appendChild(view);
   const cap = mtgEl("div", "br-cap"); wrap.appendChild(cap);
+  wrap.style.margin = `0 0 0 ${-_bleedL}px`; wrap.style.width = VIEW_W + "px";
   host.appendChild(wrap);
 
-  // ---- camera (T3): "all" = zoomed out to the whole line, "follow" = keep टप्पू in view, [a,b] = settle
+  // ---- camera (T2, T3): "all" = zoomed out to the whole line, "follow" = keep टप्पू in view,
+  // [a,b] = settle on a..b, zooming out only as far as that range needs (the whole scene scales together,
+  // so टप्पू still sits on one rock); --z lets the numbers grow back to a readable size
   let cam = d.camera ? "all" : null;
   function applyCam(mode){
     if(!d.camera) return;
     cam = mode;
     world.classList.toggle("zoomed", mode === "all");
-    if(mode === "all"){ const z = VIEW_W / WORLD_W; world.style.transform = `translate(0px, ${(VIEW_H * (1 - z)) / 2}px) scale(${z})`; return; }
-    let x0;
-    if(Array.isArray(mode)) x0 = (X(mode[0]) + X(mode[1])) / 2 - VIEW_W / 2;
+    let z = 1, x0;
+    if(mode === "all"){ z = VIEW_W / WORLD_W; x0 = 0; }
+    else if(Array.isArray(mode)){
+      const a = X(mode[0]) - RW / 2, b = X(mode[1]) + RW / 2;
+      z = Math.min(1, VIEW_W / (b - a));
+      x0 = (a + b) / 2 * z - VIEW_W / 2;
+    }
     else x0 = X(at) - VIEW_W * 0.34;
-    x0 = Math.max(0, Math.min(WORLD_W - VIEW_W, x0));
-    world.style.transform = `translate(${-x0}px, 0px) scale(1)`;
+    x0 = Math.max(0, Math.min(WORLD_W * z - VIEW_W, x0));
+    world.style.setProperty("--z", z);
+    world.style.transform = `translate(${-x0}px, 0px) scale(${z})`;   // origin 0 50%: stays vertically centred
   }
   applyCam(cam);
 
@@ -160,8 +189,8 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   function waitTap(){
     return new Promise((res, rej)=>{
       frog.classList.add("tappable");
-      let hand = mtgHand(world, X(at) + 10, STONE_Y - 60);
-      const again = setInterval(()=>{ if(tok !== _mtgTok){ clearInterval(again); return; } if(!hand){ hand = mtgHand(world, X(at) + 10, STONE_Y - 60); setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800); } }, 6000);
+      let hand = mtgHand(world, X(at) + 6, ROCK_TOP - FH * 0.45);
+      const again = setInterval(()=>{ if(tok !== _mtgTok){ clearInterval(again); return; } if(!hand){ hand = mtgHand(world, X(at) + 6, ROCK_TOP - FH * 0.45); setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800); } }, 6000);
       setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800);
       frog.onclick = ()=>{
         if(tok !== _mtgTok) return rej(MTG_STOP);
@@ -445,10 +474,18 @@ SlideModules.SPACE_PODS = { mount(host, slide){
     inner.appendChild(im); inner.appendChild(bd); a.appendChild(inner); a.dataset.n = n;
     return a;
   }
+  /* an animal riding in a pod: shown through a window cut to the glass dome, so nothing pokes out of it;
+     the helmet is centred in the dome (CARD rider = [helmet centre x, helmet top y] as sprite fractions) */
+  function rider(cast, cls){
+    const w = mtgEl("div", "sp-dome");
+    const im = mtgEl("img", cls); im.src = mtgImg(cast); im.draggable = false; im.alt = "";
+    const [cx, top] = (g.rider && g.rider[cast]) || [0.5, 0.05];
+    im.style.transform = `translate(${-cx * 100}%, ${-top * 100}%)`;
+    w.appendChild(im); return w;
+  }
   function seat(pod, cast, n){
     pod.classList.add("filled");
-    const s = mtgEl("img", "sp-seated"); s.src = mtgImg(cast); s.draggable = false;
-    pod.insertBefore(s, pod.firstChild);
+    pod.insertBefore(rider(cast, "sp-seated"), pod.firstChild);
     const nb = mtgEl("div", "sp-podnum", String(n)); pod.appendChild(nb);
     return nb;
   }
@@ -471,9 +508,8 @@ SlideModules.SPACE_PODS = { mount(host, slide){
     g.levels.forEach((L, i)=>{
       const c = mtgEl("button", "sp-card c" + i + (done.has(i) ? " done" : "")); c.type = "button";
       const art = mtgEl("div", "sp-card-art");
-      const an = mtgEl("img", "sp-card-animal"); an.src = mtgImg(L.cast);
       const pod = mtgEl("img", "sp-card-pod"); pod.src = mtgImg("sp_pod");
-      art.appendChild(an); art.appendChild(pod);
+      art.appendChild(rider(L.cast, "sp-card-animal")); art.appendChild(pod);
       c.appendChild(art);
       c.appendChild(mtgEl("div", "sp-card-lbl", L.label));
       c.appendChild(mtgEl("div", "sp-card-play", done.has(i) ? "✔" : "▶"));
@@ -504,7 +540,6 @@ SlideModules.SPACE_PODS = { mount(host, slide){
       const W = 1333 - 300, x0 = 230, gap = W / pool.length;
       const walkers = pool.map((n, k)=>{
         const a = astronaut(L.cast, n, "walker"); a.style.left = (x0 + gap * k + gap / 2 - 75) + "px";
-        a.querySelector(".sp-astro-in").style.animationDelay = (k * 0.37) + "s";
         ground.appendChild(a); return a;
       });
       scene.appendChild(ground);

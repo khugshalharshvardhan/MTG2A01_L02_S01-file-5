@@ -40,9 +40,10 @@
     ttl.appendChild(cloud); ttl.appendChild(word);
     heroEl.innerHTML = "";
     heroEl.classList.add("fc-hero");
+    // the user's pond (sc_pond, 600x200 here: water x 76..524) with prop_rock stones on its waterline
     const pond = mtgEl("div", "fc-pond");
-    [120, 250, 380, 510, 640].forEach(x => { const s = mtgEl("i", "fc-stone"); s.style.left = x + "px"; pond.appendChild(s); });
-    ["l", "r"].forEach(side => { const r = mtgEl("img", "fc-reeds " + side); r.src = mtgImg("prop_reeds"); pond.appendChild(r); });
+    pond.style.backgroundImage = `url("${mtgImg("sc_pond")}")`;
+    [140, 220, 300, 380, 460].forEach(x => { const s = mtgEl("img", "fc-rock"); s.src = mtgImg("prop_rock"); s.alt = ""; s.style.left = x + "px"; pond.appendChild(s); });
     const frog = mtgEl("img", "fc-frog"); frog.src = mtgImg("chr_tappu");
     pond.appendChild(frog); heroEl.appendChild(pond);
     return { cloud, word, frog };
@@ -50,12 +51,12 @@
   function run(){
     const B = build(); if(!B){ ready(); return; }
     const { cloud, word, frog } = B;
-    const LAND = 380;                                         // the middle stone
+    const LAND = 300;                                         // the middle rock
     const settle = ()=>{ cloud.classList.add("fc-settled"); word.classList.add("fc-static"); frog.style.left = LAND + "px"; };
     const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if(reduce || typeof frog.animate !== "function"){ settle(); ready(); return; }
     const puffs = [...cloud.querySelectorAll(".fc-puff")], fills = [...cloud.querySelectorAll(".fc-body,.fc-core")];
-    const path = [880, 640, 510, LAND];
+    const path = [660, 460, 380, LAND];
     frog.style.left = path[0] + "px";
     let k = 0;
     const launch = (x)=>{                                     // puffs leave the splash and swell into place

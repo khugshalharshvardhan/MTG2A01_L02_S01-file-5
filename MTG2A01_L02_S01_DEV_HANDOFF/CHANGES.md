@@ -174,3 +174,39 @@ Proof: `5_SCREENSHOTS/01_landing.png` (the settled cover; measured pond bottom 3
 
 **Not ported, and why:** file4's train itself, its whistle and its chug are train art and train sounds. The frog
 gets a soft synthesised "hop" tone instead (no frog SFX recording exists in the kit).
+
+---
+
+# ROUND 4: the user's pond, frog and rock art (2026-11-02)
+
+> "i've added image of pond and frog and rock in my assets-image folder i want the same layout of pond and frog apply this"
+> (with a mock: pond across the screen, a row of rocks in the water, टप्पू on the left, the friend waving on the right)
+
+| # | change | where | status |
+|---|---|---|---|
+| R4-1 | `pond.png` → `sc_pond` (1600×533 WebP). On the teaching screens it is drawn as a **9-slice**: the two banks keep their shape and only the water stretches, so one pond serves 0–10, 0–30 and the wide scrolling 0–50 world | `BRIDGE_TEACH` | ✅ |
+| R4-2 | `frog and rock.png` split into `chr_tappu` (the darker frog), `chr_friend` (the yellow frog) and `prop_rock` | `1_SPEC/art_keyed/` | ✅ |
+| R4-3 | every number is one of the user's rocks in the water, its number below on the water (navy with a white halo); the lit / marked / glow states are drawn on the rock itself | `BRIDGE_TEACH` | ✅ |
+| R4-4 | टप्पू sits on rock 0 (deck: "directly on the stone marked 0") and hops rock to rock; the friend stands on the far bank | `BRIDGE_TEACH` | ✅ |
+| R4-5 | the scene is sized from the frame's real width (it was a fixed 1113 px, which clipped the far bank and the friend in this engine) | `BRIDGE_TEACH` | ✅ |
+| R4-6 | the user's टप्पू also on G1–G3 (it replaces the generated frog everywhere) and on the cover, whose pond is now the user's pond with five of the user's rocks | `JUMP_PICK`, `mtg_cover.js` | ✅ |
+
+Sources: the user's two files moved from `3_BUILD/assets/Images/` to `1_SPEC/art_user_src/` (the build regenerates
+`3_BUILD`, so assets live in `1_SPEC` and are copied in). The generated frogs they replace are kept in
+`1_SPEC/art_keyed_r2_generated/`. Walk: **84 pass · 0 FAIL**, 0 console errors. Screens: `5_SCREENSHOTS/02–04`, `01_landing.png`.
+
+## ROUND 5 — re-audit against the shared deck (Drive copy of MTG2A01_L02_S01_FINALreview.pptx, byte-identical to 1_SPEC's)
+Every VO line, OST, option set, hint range and game number set was compared with the deck, slide by slide. One mismatch was found and fixed:
+- **G4 WA1:** the deck says «दो-दो करके गिनिए। अगली सही संख्या पर टैप कीजिए।» is both VO **and** OST. The screen kept the shorter question OST. It now shows the full line (`wa1_ost`).
+
+The known, deliberate deviations still stand: #7 (the 4→6 jump), #24 and #26 (टिड्डा/खरगोश in place of «मेंढक»), and #28 (the G6 squirrel; पचहत्तर). Deck slide 18's slider was skipped by the user, and slides 19–22 are old-draft pages that the deck flow removed. Walk: 84 pass · 0 FAIL.
+
+- **R5-2:** the yellow caption box was removed from the three teaching screens (`.br-cap` loses its background, border and shadow), so the text stands on its own and no longer pushes into the → button. The question pages never used it.
+- **R5-3:** the jump arrows are bolder and readable over grass and water: thicker red dots, a white halo under them, and a larger arrowhead that points along the curve with a white edge, as in the deck. This changes every arc, on the teaching screens, G1–G3 and the hint popups.
+- **R5-4:** टप्पू's friend is mirrored to face टप्पू across the pond on all three teaching screens (`.br-friend` uses `scale:-1 1`; it is centred with `translate` so the flip does not move it). The friend appears nowhere else.
+- **R5-5:** the 5s screen (0–30) now has the 10s screen's camera: it opens zoomed out, follows टप्पू as he jumps, settles on 19–31 for the two taps, and zooms out for the recap. Both camera screens use the 2s screen's spacing (80 px a step, up from 46), so the rocks are large. टप्पू is never wider than one step, so he sits on a single rock. For the 30–50 taps the view zooms out just far enough to fit the range; the whole scene scales together and the numbers grow back to stay readable. The zoomed views are centred vertically.
+- **R5-6:** the "tap me" pulse on टप्पू used `mtgPulseBig` (`transform:scale`), which replaced his `translate(-50%)` centring, so while pulsing he slid half his width right onto the next rock. His pulse now keeps the centring (`brFrogPulse`, scale 1.06). Measured: 0 px off the rock centre during the pulse on both tap screens. The same bug moved glowing number-line labels on G1–G7 and the hint popups (`.nl-lbl.glow`), which now use `mtgPulseCx`.
+- **R5-7:** in the space game, the animals waiting on the ground now float side to side (±14 px) with a light lift and lean, on a 3.6 s cycle, staggered so they do not move in step. They still hold still while being dragged (deck: "keep their positions stable during dragging"). Measured in the live game: about 22 px of side-to-side travel at the test window size.
+- **R5-8 (replaces R5-7):** the waiting animals now travel right and left across the ground (±60 px, a 6 s cycle, with a light lift and lean). They all move in step, so the gaps between them never close. Checked at both extremes: they stay inside the scene and clear of Swifty. They still hold still while dragged. Walk: 84 pass · 0 FAIL.
+- **R5-9:** the space game (page 11) now uses the user's art: «game frog» for 2s, «game rabbit» for 5s, and «game Squirrel» in place of the grasshopper for 10s. The art shows on the ground, in the pods and on the menu cards. Each number badge sits on the suit's chest star, at measured positions frog [0.51,0.62], rabbit [0.52,0.68] and squirrel [0.70,0.62]. Sources moved to `1_SPEC/art_user_src/`; cropped copies are in `1_SPEC/art_keyed/sp_*.png`; the old generated astronauts are kept in `1_SPEC/art_keyed_r2_generated/`. The grasshopper on G4/G7 is unchanged (game only).
+- **R5-10:** animals riding in a rocket (the menu cards, seated pods and the take-off flight) are shown through a window cut to the glass dome (`.sp-dome`, measured on sp_pod: glass x 84..307, hull at y 136), so no head or ear pokes out of the rocket. Each helmet is centred in the dome from measured sprite points (`rider`: frog [0.48,0.02], rabbit [0.48,0.15], squirrel [0.57,0.08]) and sized to about 60% of the glass, so the face stays clear of the hull and the seat back.
