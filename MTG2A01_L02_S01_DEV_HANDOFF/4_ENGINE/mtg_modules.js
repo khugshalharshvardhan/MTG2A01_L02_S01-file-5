@@ -80,39 +80,28 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   state.ownsAudio = true;
   const card = host.closest(".tut-card");
   if(card){ card.classList.add("br-card"); const tp = card.querySelector(".tut-prompt"); if(tp) tp.textContent = d.heading || ""; }
-  /* THE POND (user art, 1_SPEC/art_user_src): sc_pond is drawn as a 9-slice — its two banks keep their
-     shape and only the water stretches, so the same pond serves 0–10, 0–30 and the wide 0–50 camera
-     world. Measured on the 1600x533 art: water x 203..1396, y 255..503. */
+  // The scenery belongs to the viewport; only stones, labels and characters follow the camera.
   /* the scene bleeds to the frame's inner edges: measure the frame rather than assume its width */
   const _bleedL = card ? Math.max(0, host.offsetLeft - card.clientLeft) : 30;
   const VIEW_W = (card && card.clientWidth) ? card.clientWidth : 1113;
-  const VIEW_H = 300, POND_W = 1600, POND_H = 533, BANK_L = 203, BANK_R = 204, WATER_TOP = 255, WATER_BOT = 503;
-  const k = VIEW_H / POND_H, BL = Math.round(BANK_L * k), BR = Math.round(BANK_R * k);
-  const span = d.hi - d.lo;
-  const PAD0 = BL + 26;
-  // the camera screens keep the 0–10 screen's spacing (~80 px a step) and pan, so every rock stays big
-  const U = d.camera ? 80 : (VIEW_W - PAD0 - BR - 26) / span;
-  const RW = Math.min(U * 0.92, 92), RH = RW * 425 / 699;          // prop_rock is 699x425
-  const PAD = PAD0 + RW / 2;
-  const WORLD_W = d.camera ? span * U + PAD + BR + 26 + RW / 2 : VIEW_W;
-  const X = n => PAD + (n - d.lo) * U;
-  const WATERLINE = Math.round(WATER_TOP * k + (WATER_BOT - WATER_TOP) * k * 0.42);   // where a rock meets the water
-  const ROCK_TOP = WATERLINE - RH * 0.80, STONE_Y = ROCK_TOP + 4;                     // arcs start on the rock tops
-  const NUM_Y = Math.round(WATERLINE + 10);
+  const VIEW_H = 282, FEET_Y = 194;
+  const span = d.hi - d.lo, START_SPACE = 110, END_SPACE = 190;
+  const U = d.camera ? 80 : (VIEW_W - START_SPACE - END_SPACE) / span;
+  const RW = Math.min(U * .88, 76), RH = RW * 52 / 160;
+  const WORLD_W = d.camera ? START_SPACE + span * U + END_SPACE : VIEW_W;
+  const X = n => START_SPACE + (n - d.lo) * U;
+  const ROCK_TOP = FEET_Y - 3, STONE_Y = FEET_Y - 2, NUM_Y = FEET_Y + 32;
+  const LOTUS = "assets/Images/prop_lotus.svg";
 
   const wrap = mtgEl("div", "br-wrap");
   const view = mtgEl("div", "br-view"); view.style.height = VIEW_H + "px"; view.style.width = VIEW_W + "px";
   const world = mtgEl("div", "br-world"); world.style.width = WORLD_W + "px"; world.style.height = VIEW_H + "px";
-  const pond = mtgEl("div", "br-pond");
-  pond.style.cssText = `width:${WORLD_W}px;height:${VIEW_H}px;border-width:0 ${BR}px 0 ${BL}px;` +
-    `border-image-source:url("${mtgImg("sc_pond")}");border-image-slice:0 ${BANK_R} 0 ${BANK_L} fill;border-image-width:0 ${BR}px 0 ${BL}px;`;
-  world.appendChild(pond);
   const stones = {}, nums = {};
   for(let n = d.lo; n <= d.hi; n++){
     const big = (n % d.step === 0);
     const s = mtgEl("div", "br-rock" + (big ? " key" : ""));
     s.style.cssText = `left:${X(n)}px;top:${ROCK_TOP}px;width:${RW}px;height:${RH}px`;
-    const im = mtgEl("img"); im.src = mtgImg("prop_rock"); im.alt = ""; s.appendChild(im);
+    const im = mtgEl("img"); im.src = LOTUS; im.alt = ""; s.appendChild(im);
     world.appendChild(s); stones[n] = s;
     const lb = mtgEl("div", "br-num" + (big ? " big" : ""), String(n));
     lb.style.left = X(n) + "px"; lb.style.top = NUM_Y + "px";
@@ -122,57 +111,83 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   const svg = document.createElementNS(MTG_SVG, "svg"); svg.setAttribute("class", "br-svg");
   svg.setAttribute("width", WORLD_W); svg.setAttribute("height", VIEW_H); world.appendChild(svg);
   const dot = mtgEl("div", "br-dot"); dot.style.top = (ROCK_TOP + RH * 0.3) + "px"; world.appendChild(dot);
-  // the friend stands on the far bank, टप्पू sits on rock 0 (deck: "directly on the stone marked 0")
-  const FW = Math.min(96, RW * 1.1, U * 0.9), FH = FW * 579 / 477;   // never wider than one step: टप्पू sits on one rock
+  // Distinct landing and resting leaves leave room for both frogs at the far end.
+  const FW = Math.min(70, U * .86), FH = FW * 579 / 477;
+  const FRW = FW, FRH = FRW * 574 / 551, friendX = X(d.hi) + 110;
+  const rest = mtgEl("img", "br-rest-leaf"); rest.src = LOTUS; rest.alt = "";
+  rest.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-3)+"px;width:110px;height:36px";
+  world.appendChild(rest);
   const friend = mtgEl("img", "br-friend"); friend.src = mtgImg("chr_friend");
-  const FRW = FW * 1.02, FRH = FRW * 574 / 551;                    // chr_friend is 551x574
-  friend.style.cssText = `left:${WORLD_W - BR / 2 - 4}px;top:${Math.round(0.47 * VIEW_H - FRH)}px;width:${FRW}px`;
+  friend.alt = "टप्पू का दोस्त";
+  friend.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-FRH)+"px;width:"+FRW+"px";
   world.appendChild(friend);
-  const frog = mtgEl("img", "br-frog"); frog.src = mtgImg("chr_tappu");
-  frog.style.width = FW + "px"; frog.style.top = (ROCK_TOP - FH + RH * 0.16) + "px";
+  const frog = mtgEl("img", "br-frog"); frog.src = mtgImg("chr_tappu"); frog.alt = "टप्पू";
+  frog.style.width = FW + "px"; frog.style.top = (FEET_Y-FH) + "px";
   let at = d.lo; frog.style.left = X(at) + "px"; world.appendChild(frog);
   view.appendChild(world); wrap.appendChild(view);
   const cap = mtgEl("div", "br-cap"); wrap.appendChild(cap);
   wrap.style.margin = `0 0 0 ${-_bleedL}px`; wrap.style.width = VIEW_W + "px";
   host.appendChild(wrap);
 
-  // ---- camera (T2, T3): "all" = zoomed out to the whole line, "follow" = keep टप्पू in view,
-  // [a,b] = settle on a..b, zooming out only as far as that range needs (the whole scene scales together,
-  // so टप्पू still sits on one rock); --z lets the numbers grow back to a readable size
-  let cam = d.camera ? "all" : null;
-  function applyCam(mode){
-    if(!d.camera) return;
-    cam = mode;
-    world.classList.toggle("zoomed", mode === "all");
-    let z = 1, x0;
-    if(mode === "all"){ z = VIEW_W / WORLD_W; x0 = 0; }
-    else if(Array.isArray(mode)){
-      const a = X(mode[0]) - RW / 2, b = X(mode[1]) + RW / 2;
-      z = Math.min(1, VIEW_W / (b - a));
-      x0 = (a + b) / 2 * z - VIEW_W / 2;
-    }
-    else x0 = X(at) - VIEW_W * 0.34;
-    x0 = Math.max(0, Math.min(WORLD_W * z - VIEW_W, x0));
-    world.style.setProperty("--z", z);
-    world.style.transform = `translate(${-x0}px, 0px) scale(${z})`;   // origin 0 50%: stays vertically centred
+  // Scale, translation and labels share one animation clock anchored at the feet.
+  let cam = d.camera ? "all" : null, cameraFrame = 0, cameraFinish = null;
+  let camera = {x:0,z:1};
+  const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function paintCamera(x,z){
+    camera={x,z}; world.style.setProperty("--z",z);
+    world.classList.toggle("zoomed",z<.48);
+    world.style.transform="translate("+(-x)+"px,"+(FEET_Y*(1-z))+"px) scale("+z+")";
   }
-  applyCam(cam);
+  function cameraTo(x,z,ms=700){
+    if(cameraFrame) cancelAnimationFrame(cameraFrame);
+    if(cameraFinish) cameraFinish();
+    const from={...camera}, start=performance.now();
+    world.dataset.cameraMoving="true";
+    return new Promise(resolve=>{
+      cameraFinish=resolve;
+      function tick(now){
+        if(tok!==_mtgTok){cameraFrame=0;cameraFinish=null;resolve();return;}
+        const t=ms&&!reduceMotion()?Math.min(1,(now-start)/ms):1, ease=t*t*(3-2*t);
+        paintCamera(from.x+(x-from.x)*ease,from.z+(z-from.z)*ease);
+        if(t<1) cameraFrame=requestAnimationFrame(tick);
+        else{cameraFrame=0;cameraFinish=null;world.dataset.cameraMoving="false";resolve();}
+      }
+      tick(start);
+    });
+  }
+  function rangeCamera(a,b,ms=700){
+    const left=Math.max(0,X(Math.max(d.lo,a))-80);
+    const right=b>=d.hi?WORLD_W:Math.min(WORLD_W,X(b)+80);
+    const z=Math.min(1,VIEW_W/(right-left));
+    const x=Math.max(0,Math.min(WORLD_W*z-VIEW_W,(left+right)*z/2-VIEW_W/2));
+    return cameraTo(x,z,ms);
+  }
+  function applyCam(mode,ms=700){
+    if(!d.camera)return Promise.resolve();
+    cam=mode;
+    if(mode==="all")return cameraTo(0,VIEW_W/WORLD_W,ms);
+    if(Array.isArray(mode))return rangeCamera(mode[0],mode[1],ms);
+    return rangeCamera(at,Math.min(d.hi,at+d.step),ms);
+  }
+  paintCamera(0,d.camera?VIEW_W/WORLD_W:1);
 
   const glow = n => { mtgPulse(stones[n], "glow", 1400); mtgPulse(nums[n], "glow", 1400); };
   const mark = n => { stones[n].classList.add("mark"); nums[n].classList.add("mark"); mtgPulse(nums[n], "pop", 600); };
   const clearLit = () => Object.values(stones).forEach(s => s.classList.remove("lit"));
   async function jump(a, b){
     clearLit(); dot.classList.remove("show");
-    const lift = Math.min(118, 42 + (b - a) * U * 0.22);
-    mtgArc(svg, X(a), X(b), STONE_Y - 2, lift);
-    await mtgHop(frog, X(a), X(b), lift + 18, 950);
-    at = b; mark(b); glow(b);
-    if(cam === "follow") applyCam("follow");
+    if(cam==="follow") await rangeCamera(a,b,420);
+    const lift=Math.max(12,Math.min(62,FEET_Y-FH-22));
+    view.dataset.jumpActive="true";
+    mtgArc(svg,X(a),X(b),STONE_Y-2,lift);
+    await mtgHop(frog,X(a),X(b),lift,950);
+    view.dataset.jumpActive="false";
+    at=b;view.dataset.landedAt=String(at);mark(b);glow(b);
   }
   async function spanLight(a, b){ for(let n = a + 1; n <= b; n++){ stones[n].classList.add("lit"); await mtgWait(85, tok); } }
   async function runClip(c){
     mtgAlive(tok);
-    if(c.cam) applyCam(c.cam);
+    if(c.cam) await applyCam(c.cam);
     if(c.focus) mtgPulse(c.focus === "friend" ? friend : frog, "focus", 1600);
     if(c.wave) mtgPulse(friend, "wave", 1400);
     if(c.glow != null) glow(c.glow);
@@ -189,8 +204,8 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   function waitTap(){
     return new Promise((res, rej)=>{
       frog.classList.add("tappable");
-      let hand = mtgHand(world, X(at) + 6, ROCK_TOP - FH * 0.45);
-      const again = setInterval(()=>{ if(tok !== _mtgTok){ clearInterval(again); return; } if(!hand){ hand = mtgHand(world, X(at) + 6, ROCK_TOP - FH * 0.45); setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800); } }, 6000);
+      let hand = mtgHand(world, X(at) + 6, FEET_Y - FH * .55);
+      const again = setInterval(()=>{ if(tok !== _mtgTok){ clearInterval(again); return; } if(!hand){ hand = mtgHand(world, X(at) + 6, FEET_Y - FH * .55); setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800); } }, 6000);
       setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800);
       frog.onclick = ()=>{
         if(tok !== _mtgTok) return rej(MTG_STOP);
@@ -458,7 +473,7 @@ SlideModules.SPACE_PODS = { mount(host, slide){
   const done = new Set();
   let curVo = g.menu_vo;
   /* file4's own header audio chip graphic, cloned so the game's replay button matches it */
-  const audioBtn = mtgEl("button", "sp-audio", ($("audioChip") && $("audioChip").innerHTML) || "🔊"); audioBtn.type = "button";
+  const audioBtn = mtgEl("button", "sp-audio", ($("audioChip") && $("audioChip").innerHTML) || "🔊"); audioBtn.type = "button"; audioBtn.setAttribute("aria-label", "फिर सुनिए");
   audioBtn.onclick = ()=>{ state.audioReplays++; play(mtgSrc(curVo), ()=>{}); };
   const buddy = mtgEl("div", "sp-swiftie", `<img src="assets/UI/sw_head_talking.webp" alt="">`);
   const scene = mtgEl("div", "sp-scene");
@@ -544,6 +559,17 @@ SlideModules.SPACE_PODS = { mount(host, slide){
       });
       scene.appendChild(ground);
       let wrongSaid = false, finished = false, idleT = null, guidedOnce = false, busyVo = false;
+      let selected = null, tapLocked = false;
+      const status = mtgEl("div", "sp-status", "जानवर चुनिए, फिर खाली यान चुनिए।");
+      status.setAttribute("role", "status"); status.setAttribute("aria-live", "polite");
+      scene.appendChild(status);
+      const roundLabel = mtgEl("div", "sp-round", "दौर " + (r + 1) + " / " + L.rounds.length);
+      scene.appendChild(roundLabel);
+      function clearSelection(){
+        if(selected){ selected.classList.remove("selected"); selected.setAttribute("aria-pressed", "false"); }
+        selected = null;
+        podEls.forEach(p => p.classList.remove("select-target"));
+      }
       const needed = () => podEls.filter(p => !p.classList.contains("filled"));
       function ghost(){
         const target = needed()[0]; if(!target || finished) return;
@@ -571,13 +597,18 @@ SlideModules.SPACE_PODS = { mount(host, slide){
           ghost(); if(!busyVo) say(g.guide_vo).catch(()=>{});
         }, g.inactivity_ms);
       }
-      walkers.forEach(w=>{
-        makeDraggable(w, (zone, tile)=>{
+      function gradeDrop(zone, tile){
+          if(zone.classList.contains("filled") || tile.classList.contains("snapped")) return;
+          clearSelection();
           if(tok !== _mtgTok || finished) return;
           clearTimeout(idleT);
           const i = +zone.dataset.i, n = +tile.dataset.n;
           if(R.seq[i] === n){
             tile.classList.add("snapped");
+            tile.tabIndex = -1; tile.setAttribute("aria-disabled", "true");
+            zone.tabIndex = -1; zone.setAttribute("aria-disabled", "true");
+            zone.setAttribute("aria-label", String(n) + ", भरा हुआ यान");
+            status.textContent = "सही! " + n;
             mtgRight();
             nums[i] = seat(zone, L.cast, n);
             mtgPulse(nums[i], "glow", 1200); mtgPulse(zone, "snap", 600);
@@ -585,13 +616,45 @@ SlideModules.SPACE_PODS = { mount(host, slide){
             SwiftPAL.emit("space_drop_correct", { slide_id: slide.id, step: L.step, round: r + 1, n });
             if(!needed().length) complete(); else armIdle();
           } else {
+            status.textContent = "फिर कोशिश कीजिए।";
             mtgWrong();
             mtgPulse(zone, "wiggle", 650); puff(zone);
             SwiftPAL.emit("space_drop_wrong", { slide_id: slide.id, step: L.step, round: r + 1, n, pod: i });
             if(!wrongSaid){ wrongSaid = true; busyVo = true; say(L.wrong).then(()=>{ busyVo = false; }).catch(()=>{}); }
             armIdle();
           }
-        });
+      }
+      const keyActivate = fn => e => {
+        if(e.key === "Enter" || e.key === " "){ e.preventDefault(); fn(); }
+      };
+      podEls.forEach((p, i) => {
+        const filled = p.classList.contains("filled");
+        p.setAttribute("role", "button"); p.tabIndex = filled ? -1 : 0;
+        p.setAttribute("aria-disabled", String(filled));
+        p.setAttribute("aria-label", filled ? String(R.seq[i]) + ", भरा हुआ यान" : "खाली यान " + (i + 1));
+        const activate = () => {
+          if(!selected || finished || tapLocked || busyVo || p.classList.contains("filled")) return;
+          tapLocked = true; gradeDrop(p, selected);
+          setTimeout(() => { tapLocked = false; }, 650);
+        };
+        p.onclick = activate; p.onkeydown = keyActivate(activate);
+      });
+      walkers.forEach(w=>{
+        w.setAttribute("role", "button"); w.setAttribute("aria-pressed", "false"); w.tabIndex = 0;
+        w.setAttribute("aria-label", String(w.dataset.n) + ", जानवर चुनिए");
+        const select = () => {
+          if(finished || busyVo || w.classList.contains("snapped")) return;
+          const wasSelected = selected === w; clearSelection();
+          if(!wasSelected){
+            selected = w; w.classList.add("selected"); w.setAttribute("aria-pressed", "true");
+            needed().forEach(p => p.classList.add("select-target"));
+            status.textContent = w.dataset.n + " चुना। अब खाली यान चुनिए।";
+            armIdle();
+          }
+        };
+        // The engine distinguishes taps from drags for mouse and touch, including preventDefault.
+        makeDraggable(w, gradeDrop, {onTap:select, onPick:clearSelection});
+        w.onkeydown = keyActivate(select);
         w.addEventListener("mousedown", ()=> clearTimeout(idleT)); w.addEventListener("touchstart", ()=> clearTimeout(idleT), { passive: true });
       });
       async function complete(){

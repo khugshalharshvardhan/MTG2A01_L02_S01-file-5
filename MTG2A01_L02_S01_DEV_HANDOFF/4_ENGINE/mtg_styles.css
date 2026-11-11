@@ -189,6 +189,53 @@
 .br-num{text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 4px #fff;}
 .br-num.mark{color:#B85E00;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 8px #FFE27A;}
 /* camera zoom (--z from applyCam): numbers grow back toward a readable size; rocks and frogs keep scale */
-.br-num{font-size:calc(16px * min(1.8, 1 / var(--z, 1)));}
-.br-num.big{font-size:calc(27px * min(1.8, 1 / var(--z, 1)));}
+.br-num{font-size:calc(25px * min(1.8, 1 / var(--z, 1)));}   /* every stone's number readable */
+.br-num.big{font-size:calc(34px * min(1.8, 1 / var(--z, 1)));}   /* the jump numbers stay a step bigger */
 .br-world.zoomed .br-num.big{font-size:calc(24px / var(--z, 1));}
+
+/* Visual refresh: fixed scenery, quiet backgrounds, clear interaction states. */
+.br-view{background:#b9eff1 url(assets/Images/sc_pond_v2.webp) center/cover no-repeat;border-radius:22px;box-shadow:inset 0 0 0 1px rgba(29,111,129,.12);}
+.br-num{background:rgba(255,255,255,.92);padding:4px 6px;border-radius:9px;text-shadow:none;line-height:1.1;box-shadow:0 2px 4px rgba(10,71,97,.10);}
+.br-num.mark{background:#fff1ae;color:#7b4700;text-shadow:none;}
+.br-world.zoomed .br-num.big{font-size:calc(24px / var(--z,1));padding:calc(4px / var(--z,1)) calc(7px / var(--z,1));}
+.br-card .br-cap{font-size:27px;line-height:1.35;max-width:940px;}
+.tut-card.br-card{background-color:#f6fbfd;background-image:none;}
+.sp-root{background:#17244f url(assets/Images/sc_space_v2.svg) center/cover no-repeat;}
+.sp-title{background:#fff8e7;color:#253564;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+.sp-title.big{font-size:54px;}
+.sp-card{box-shadow:0 8px 0 rgba(8,19,49,.16),0 16px 30px rgba(8,19,49,.18);border:2px solid rgba(255,255,255,.65);}
+.sp-card.done{opacity:.82;}
+.sp-card-lbl{font-size:30px;}
+.sp-astro-in{animation-name:spBobQuiet;}
+@keyframes spBobQuiet{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+.sp-astro.selected .sp-astro-in{animation:none;filter:drop-shadow(0 0 9px #fff4b0);}
+.sp-astro.selected .sp-badge{background:#fff1a3;color:#253564;}
+.sp-pod.select-target .sp-pod-img{filter:drop-shadow(0 0 7px rgba(164,239,255,.65));}
+.sp-status{position:absolute;left:50%;top:352px;transform:translateX(-50%);padding:10px 24px;border-radius:24px;color:#edf5ff;background:rgba(13,25,61,.55);font-size:23px;font-weight:700;white-space:nowrap;pointer-events:none;}
+.sp-round{position:absolute;left:30px;top:28px;color:#e4edff;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);padding:8px 18px;border-radius:24px;font-size:22px;font-weight:700;}
+.sp-astro:focus-visible,.sp-pod:focus-visible,.sp-card:focus-visible,.mtg-opt:focus-visible{outline:4px solid #ffc94a;outline-offset:6px;}
+.jp-board{border:1px solid #dfebf4;box-shadow:0 9px 26px rgba(11,42,90,.07);}
+.sf-strip{border:1px solid #dfebf4;box-shadow:0 9px 26px rgba(11,42,90,.07);}
+@media(prefers-reduced-motion:reduce){
+ .br-world{transition:none;}
+ .sp-astro-in,.br-frog.tappable,.sf-box.blank.active,.mtg-opt.guide,.mtg-hand{animation:none!important;}
+ .sp-pod,.mtg-opt,.sp-card{transition:none;}
+}
+
+/* Reserve space under the heading now that the pond has an opaque sky. */
+.br-wrap{padding-top:18px;}
+.sp-round{left:auto;right:110px;top:30px;}
+
+.tut-card.br-card .tut-prompt{min-height:72px;padding-top:4px;}
+
+/* The bridge owns its caption; reserve only the space needed by its navigation. */
+.tut-card.br-card::after{height:100px;}
+
+/* Lotus resting places and feet-anchored camera. */
+.br-world{transform-origin:0 0;transition:none;}
+.br-rest-leaf{position:absolute;transform:translateX(-50%);z-index:2;pointer-events:none;}
+.br-rock img{object-fit:fill;}
+.br-num{font-size:calc(22px / var(--z,1));font-weight:650;padding:calc(3px / var(--z,1)) calc(4px / var(--z,1));}
+.br-num.big{font-size:calc(30px / var(--z,1));font-weight:800;}
+.br-world.zoomed .br-num.big{font-size:calc(26px / var(--z,1));}
+.br-frog,.br-friend{transform-origin:50% 100%;}

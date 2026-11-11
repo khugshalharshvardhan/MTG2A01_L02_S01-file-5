@@ -1,0 +1,126 @@
+[
+  [
+    "cover uses new pond",
+    true
+  ],
+  [
+    "cover has two distinct resting frogs",
+    true
+  ],
+  [
+    "cover has a labelled Start button",
+    true
+  ],
+  [
+    "Start label is visible at a readable size",
+    true
+  ],
+  [
+    "pond background belongs to viewport, not camera world",
+    true
+  ],
+  [
+    "pond does not overlap teaching heading",
+    true
+  ],
+  [
+    "2s hops stay inside pond on every sampled frame",
+    true
+  ],
+  [
+    "both frogs have separate space at final landing",
+    true
+  ],
+  [
+    "friend rests on its own lotus leaf",
+    true
+  ],
+  [
+    "all numbered resting places are lotus leaves",
+    true
+  ],
+  [
+    "landing numbers are larger than skipped numbers",
+    true
+  ],
+  [
+    "5s hops stay inside pond on every sampled frame",
+    true
+  ],
+  [
+    "5s zoom keeps the resting baseline steady",
+    true
+  ],
+  [
+    "pond retains height through full-line recap",
+    true
+  ],
+  [
+    "10s hops stay inside pond on every sampled frame",
+    true
+  ],
+  [
+    "10s zoom keeps the resting baseline steady",
+    true
+  ],
+  [
+    "10s frogs remain separated after recap",
+    true
+  ],
+  [
+    "space uses scalable SVG",
+    true
+  ],
+  [
+    "Hindi instructions intact",
+    true
+  ],
+  [
+    "wrong tap leaves pod empty and animal available",
+    true
+  ],
+  [
+    "mouse tap selects animal",
+    true
+  ],
+  [
+    "mouse tap fills matching pod",
+    true
+  ],
+  [
+    "keyboard selects animal",
+    true
+  ],
+  [
+    "keyboard fills matching pod",
+    true
+  ],
+  [
+    "touch tap selects animal",
+    true
+  ],
+  [
+    "touch-selected animal can fill matching pod",
+    true
+  ],
+  [
+    "full-HD stage fits viewport",
+    true
+  ],
+  [
+    "visible images loaded",
+    true
+  ],
+  [
+    "small landscape stage fits viewport",
+    true
+  ],
+  [
+    "reduced motion stops floating animals",
+    true
+  ],
+  [
+    "no browser errors",
+    true
+  ]
+]

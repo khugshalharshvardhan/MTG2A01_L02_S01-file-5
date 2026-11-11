@@ -61,3 +61,7 @@ PYTHONUTF8=1 python 1_SPEC/_drive_mechanics.py 5_SCREENSHOTS/_drive   # 84 check
 PYTHONUTF8=1 python 1_SPEC/_capture_settled.py 5_SCREENSHOTS          # play-order screenshots
 ```
 Both expect the build served on port 8931.
+
+## Visual refresh
+
+See [VISUAL_REFRESH.md](VISUAL_REFRESH.md) for the new pond and vector space artwork, mouse/touch/keyboard controls, source asset prompts, and the 115 passing verification checks.

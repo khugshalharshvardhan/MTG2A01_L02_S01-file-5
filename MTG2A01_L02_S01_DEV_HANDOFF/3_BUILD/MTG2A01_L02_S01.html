@@ -4484,7 +4484,7 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
 
 /* == TRAIN STYLES :: END == */
 </style>
-<link rel="preload" as="image" fetchpriority="high" href="assets/Images/chr_tappu.webp"><style id="mtgStyles">
+<link rel="preload" as="image" fetchpriority="high" href="assets/Images/chr_tappu.webp"><link rel="preload" as="image" href="assets/Images/sc_pond_v2.webp"><style id="mtgStyles">
 /* [MTG2A01] lesson styles — scoped; nothing here touches existing selectors */
 @keyframes mtgGlow{0%,100%{box-shadow:0 0 0 0 rgba(255,200,40,0);}40%{box-shadow:0 0 0 10px rgba(255,200,40,.55),0 0 26px 10px rgba(255,214,70,.75);}}
 @keyframes mtgPop{0%{transform:translateX(-50%) scale(1);}45%{transform:translateX(-50%) scale(1.35);}100%{transform:translateX(-50%) scale(1);}}
@@ -4676,39 +4676,74 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
 .br-num{text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 4px #fff;}
 .br-num.mark{color:#B85E00;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 8px #FFE27A;}
 /* camera zoom (--z from applyCam): numbers grow back toward a readable size; rocks and frogs keep scale */
-.br-num{font-size:calc(16px * min(1.8, 1 / var(--z, 1)));}
-.br-num.big{font-size:calc(27px * min(1.8, 1 / var(--z, 1)));}
+.br-num{font-size:calc(25px * min(1.8, 1 / var(--z, 1)));}   /* every stone's number readable */
+.br-num.big{font-size:calc(34px * min(1.8, 1 / var(--z, 1)));}   /* the jump numbers stay a step bigger */
 .br-world.zoomed .br-num.big{font-size:calc(24px / var(--z, 1));}
 
-/* =====================  FROG COVER (file4's cover card + title cloud)  ===================== */
-/* file4's .lt-cloud-card: a translucent white card with an inset white border, taller, title near the top */
-#startGate .sg-card.fc-card{height:536px;padding-top:34px;justify-content:flex-start;background:rgba(255,255,255,.651);border-radius:44px;box-shadow:inset 0 0 0 9px #fff;}
-#startGate .fc-card .sg-content{margin-bottom:0;max-width:none;gap:0;}
-#sgTitle.fc-title{position:relative;width:640px;height:160px;display:flex;align-items:center;justify-content:center;font-size:84px;line-height:1;margin-top:10px;}
-.fc-cloud{position:absolute;inset:0;z-index:0;pointer-events:none;}
-.fc-cloud i{position:absolute;display:block;border-radius:50%;opacity:0;
-  background:radial-gradient(circle at 36% 32%,#FDFEFF 0%,#F1F6FA 36%,#DCE7F1 64%,rgba(196,211,226,.9) 84%,rgba(186,203,221,0) 100%);
-  will-change:transform,opacity;}
-.fc-cloud i.fc-body{left:40px;top:60px;width:560px;height:96px;border-radius:48px;
-  background:radial-gradient(ellipse 62% 70% at 46% 38%,#FDFEFF 0%,#F2F7FB 46%,#DCE7F1 80%,#CFDCE8 100%);}
-.fc-cloud i.fc-core{left:90px;top:40px;width:460px;height:110px;
-  background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(253,254,255,.97) 0%,rgba(248,251,253,.94) 52%,rgba(244,248,252,.6) 72%,rgba(244,248,252,0) 100%);}
-.fc-cloud.fc-settled i{opacity:1;}
-.fc-word{position:relative;z-index:1;font-weight:800;color:#1E4FB4;white-space:nowrap;margin-top:22px;
-  text-shadow:0 3px 0 #163C8E,0 6px 0 #0F2E70,0 10px 14px rgba(11,42,90,.28);clip-path:inset(-40% 100% -40% 0);}
-.fc-word.fc-static{clip-path:none;}
-#sgHero.fc-hero{display:block;margin-top:-6px;}   /* fills the card as file4's train does */
-.fc-pond{position:relative;width:600px;height:200px;overflow:hidden;background:center/100% 100% no-repeat;}
-#sgHero .fc-rock{position:absolute;top:108px;width:56px;height:auto;margin-left:-28px;border-radius:0;box-shadow:none;z-index:1;}
-#sgHero .fc-reeds{position:absolute;top:62px;width:70px;height:auto;border-radius:0;box-shadow:none;}
-.fc-reeds.l{left:0;} .fc-reeds.r{right:0;transform:scaleX(-1);}
-#sgHero .fc-frog{position:absolute;top:30px;width:70px;height:auto;border-radius:0;box-shadow:none;transform:translate(-50%,0);z-index:2;filter:drop-shadow(0 4px 4px rgba(0,0,0,.18));}
-.fc-frog.fc-squash{animation:fcSquash .26s ease;}
-.fc-frog.fc-cheer{animation:mtgBounce .9s ease;}
-@keyframes fcSquash{0%,100%{transform:translate(-50%,0) scale(1,1);}50%{transform:translate(-50%,4px) scale(1.12,.86);}}
-@media (prefers-reduced-motion:reduce){ .fc-cloud i{opacity:1;} .fc-word{clip-path:none;} }
+/* Visual refresh: fixed scenery, quiet backgrounds, clear interaction states. */
+.br-view{background:#b9eff1 url(assets/Images/sc_pond_v2.webp) center/cover no-repeat;border-radius:22px;box-shadow:inset 0 0 0 1px rgba(29,111,129,.12);}
+.br-num{background:rgba(255,255,255,.92);padding:4px 6px;border-radius:9px;text-shadow:none;line-height:1.1;box-shadow:0 2px 4px rgba(10,71,97,.10);}
+.br-num.mark{background:#fff1ae;color:#7b4700;text-shadow:none;}
+.br-world.zoomed .br-num.big{font-size:calc(24px / var(--z,1));padding:calc(4px / var(--z,1)) calc(7px / var(--z,1));}
+.br-card .br-cap{font-size:27px;line-height:1.35;max-width:940px;}
+.tut-card.br-card{background-color:#f6fbfd;background-image:none;}
+.sp-root{background:#17244f url(assets/Images/sc_space_v2.svg) center/cover no-repeat;}
+.sp-title{background:#fff8e7;color:#253564;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+.sp-title.big{font-size:54px;}
+.sp-card{box-shadow:0 8px 0 rgba(8,19,49,.16),0 16px 30px rgba(8,19,49,.18);border:2px solid rgba(255,255,255,.65);}
+.sp-card.done{opacity:.82;}
+.sp-card-lbl{font-size:30px;}
+.sp-astro-in{animation-name:spBobQuiet;}
+@keyframes spBobQuiet{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+.sp-astro.selected .sp-astro-in{animation:none;filter:drop-shadow(0 0 9px #fff4b0);}
+.sp-astro.selected .sp-badge{background:#fff1a3;color:#253564;}
+.sp-pod.select-target .sp-pod-img{filter:drop-shadow(0 0 7px rgba(164,239,255,.65));}
+.sp-status{position:absolute;left:50%;top:352px;transform:translateX(-50%);padding:10px 24px;border-radius:24px;color:#edf5ff;background:rgba(13,25,61,.55);font-size:23px;font-weight:700;white-space:nowrap;pointer-events:none;}
+.sp-round{position:absolute;left:30px;top:28px;color:#e4edff;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);padding:8px 18px;border-radius:24px;font-size:22px;font-weight:700;}
+.sp-astro:focus-visible,.sp-pod:focus-visible,.sp-card:focus-visible,.mtg-opt:focus-visible{outline:4px solid #ffc94a;outline-offset:6px;}
+.jp-board{border:1px solid #dfebf4;box-shadow:0 9px 26px rgba(11,42,90,.07);}
+.sf-strip{border:1px solid #dfebf4;box-shadow:0 9px 26px rgba(11,42,90,.07);}
+@media(prefers-reduced-motion:reduce){
+ .br-world{transition:none;}
+ .sp-astro-in,.br-frog.tappable,.sf-box.blank.active,.mtg-opt.guide,.mtg-hand{animation:none!important;}
+ .sp-pod,.mtg-opt,.sp-card{transition:none;}
+}
 
-#startGate .fc-card .sg-sub{display:none;}   /* file4's cover carries no subtitle line */
+/* Reserve space under the heading now that the pond has an opaque sky. */
+.br-wrap{padding-top:18px;}
+.sp-round{left:auto;right:110px;top:30px;}
+
+.tut-card.br-card .tut-prompt{min-height:72px;padding-top:4px;}
+
+/* The bridge owns its caption; reserve only the space needed by its navigation. */
+.tut-card.br-card::after{height:100px;}
+
+/* Lotus resting places and feet-anchored camera. */
+.br-world{transform-origin:0 0;transition:none;}
+.br-rest-leaf{position:absolute;transform:translateX(-50%);z-index:2;pointer-events:none;}
+.br-rock img{object-fit:fill;}
+.br-num{font-size:calc(22px / var(--z,1));font-weight:650;padding:calc(3px / var(--z,1)) calc(4px / var(--z,1));}
+.br-num.big{font-size:calc(30px / var(--z,1));font-weight:800;}
+.br-world.zoomed .br-num.big{font-size:calc(26px / var(--z,1));}
+.br-frog,.br-friend{transform-origin:50% 100%;}
+
+/* Pond adventure cover */
+#startGate .sg-card.fc-card{height:580px;padding-top:24px;justify-content:flex-start;background:rgba(246,253,255,.92);border-radius:40px;box-shadow:inset 0 0 0 8px #fff,0 18px 50px rgba(23,76,115,.12);}
+#startGate .fc-card .sg-content{margin-bottom:0;max-width:1000px;gap:12px;}
+#sgTitle.fc-title{font-size:72px;line-height:1.2;margin:0;color:#174a89;text-shadow:none;}
+#startGate .fc-card .sg-sub{display:block!important;font-size:27px;color:#326779;order:2;}
+#sgHero.fc-hero{display:block;margin:0;order:3;}
+.fc-pond{position:relative;width:880px;height:260px;overflow:hidden;background:center/cover no-repeat;border-radius:28px;box-shadow:0 6px 18px rgba(23,104,127,.12);}
+#sgHero .fc-leaf{position:absolute;top:175px;height:auto;transform:translateX(-50%);border-radius:0;box-shadow:none;z-index:1;}
+#sgHero .fc-frog{position:absolute;left:125px;top:72px;width:88px;height:auto;transform:translateX(-50%);border-radius:0;box-shadow:none;z-index:3;}
+#sgHero .fc-friend{position:absolute;left:755px;top:88px;width:88px;height:auto;transform:translateX(-50%) scaleX(-1);border-radius:0;box-shadow:none;z-index:3;}
+.fc-trail{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;}
+.fc-trail .mtg-arc-path{stroke-width:4;opacity:.7;}
+.fc-trail .mtg-arc-halo{stroke-width:7;}
+#startGate #sgBtn{width:224px!important;height:68px!important;bottom:26px!important;border-radius:34px!important;font:800 28px var(--font-hi);gap:12px;}
+#startGate #sgBtn::after{display:none;}
+
+#startGate #sgBtn{min-width:224px!important;padding:0 24px!important;color:#174a89!important;background:linear-gradient(#ffd958,#ffbc24)!important;border:4px solid white!important;font-size:28px!important;line-height:1.2;}
 
 </style>
 <style id="swcKitCss">
@@ -6967,7 +7002,7 @@ var __AUDIO_V = "b7e4cf6126c3";
 /* [S05] THE LESSON'S PICTURES ARE VERSIONED TOO. They are replaced under the SAME names (obj_bandar.webp
    …), and a browser that had the old file kept drawing it. The builder stamps this from the content of
    assets/Images, so a changed picture gets a new address; unchanged, the cache still works. */
-var __IMG_V = "994a5e9c8729";
+var __IMG_V = "fd9d9a6f8c07";
 const _iv = (u)=> (/^__IMG/.test(__IMG_V) ? u : u + "?v=" + __IMG_V);
 function _av(src){
   if(typeof src !== "string" || src.indexOf("assets/Audio/") < 0) return src;
@@ -21311,39 +21346,28 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   state.ownsAudio = true;
   const card = host.closest(".tut-card");
   if(card){ card.classList.add("br-card"); const tp = card.querySelector(".tut-prompt"); if(tp) tp.textContent = d.heading || ""; }
-  /* THE POND (user art, 1_SPEC/art_user_src): sc_pond is drawn as a 9-slice — its two banks keep their
-     shape and only the water stretches, so the same pond serves 0–10, 0–30 and the wide 0–50 camera
-     world. Measured on the 1600x533 art: water x 203..1396, y 255..503. */
+  // The scenery belongs to the viewport; only stones, labels and characters follow the camera.
   /* the scene bleeds to the frame's inner edges: measure the frame rather than assume its width */
   const _bleedL = card ? Math.max(0, host.offsetLeft - card.clientLeft) : 30;
   const VIEW_W = (card && card.clientWidth) ? card.clientWidth : 1113;
-  const VIEW_H = 300, POND_W = 1600, POND_H = 533, BANK_L = 203, BANK_R = 204, WATER_TOP = 255, WATER_BOT = 503;
-  const k = VIEW_H / POND_H, BL = Math.round(BANK_L * k), BR = Math.round(BANK_R * k);
-  const span = d.hi - d.lo;
-  const PAD0 = BL + 26;
-  // the camera screens keep the 0–10 screen's spacing (~80 px a step) and pan, so every rock stays big
-  const U = d.camera ? 80 : (VIEW_W - PAD0 - BR - 26) / span;
-  const RW = Math.min(U * 0.92, 92), RH = RW * 425 / 699;          // prop_rock is 699x425
-  const PAD = PAD0 + RW / 2;
-  const WORLD_W = d.camera ? span * U + PAD + BR + 26 + RW / 2 : VIEW_W;
-  const X = n => PAD + (n - d.lo) * U;
-  const WATERLINE = Math.round(WATER_TOP * k + (WATER_BOT - WATER_TOP) * k * 0.42);   // where a rock meets the water
-  const ROCK_TOP = WATERLINE - RH * 0.80, STONE_Y = ROCK_TOP + 4;                     // arcs start on the rock tops
-  const NUM_Y = Math.round(WATERLINE + 10);
+  const VIEW_H = 282, FEET_Y = 194;
+  const span = d.hi - d.lo, START_SPACE = 110, END_SPACE = 190;
+  const U = d.camera ? 80 : (VIEW_W - START_SPACE - END_SPACE) / span;
+  const RW = Math.min(U * .88, 76), RH = RW * 52 / 160;
+  const WORLD_W = d.camera ? START_SPACE + span * U + END_SPACE : VIEW_W;
+  const X = n => START_SPACE + (n - d.lo) * U;
+  const ROCK_TOP = FEET_Y - 3, STONE_Y = FEET_Y - 2, NUM_Y = FEET_Y + 32;
+  const LOTUS = "assets/Images/prop_lotus.svg";
 
   const wrap = mtgEl("div", "br-wrap");
   const view = mtgEl("div", "br-view"); view.style.height = VIEW_H + "px"; view.style.width = VIEW_W + "px";
   const world = mtgEl("div", "br-world"); world.style.width = WORLD_W + "px"; world.style.height = VIEW_H + "px";
-  const pond = mtgEl("div", "br-pond");
-  pond.style.cssText = `width:${WORLD_W}px;height:${VIEW_H}px;border-width:0 ${BR}px 0 ${BL}px;` +
-    `border-image-source:url("${mtgImg("sc_pond")}");border-image-slice:0 ${BANK_R} 0 ${BANK_L} fill;border-image-width:0 ${BR}px 0 ${BL}px;`;
-  world.appendChild(pond);
   const stones = {}, nums = {};
   for(let n = d.lo; n <= d.hi; n++){
     const big = (n % d.step === 0);
     const s = mtgEl("div", "br-rock" + (big ? " key" : ""));
     s.style.cssText = `left:${X(n)}px;top:${ROCK_TOP}px;width:${RW}px;height:${RH}px`;
-    const im = mtgEl("img"); im.src = mtgImg("prop_rock"); im.alt = ""; s.appendChild(im);
+    const im = mtgEl("img"); im.src = LOTUS; im.alt = ""; s.appendChild(im);
     world.appendChild(s); stones[n] = s;
     const lb = mtgEl("div", "br-num" + (big ? " big" : ""), String(n));
     lb.style.left = X(n) + "px"; lb.style.top = NUM_Y + "px";
@@ -21353,57 +21377,83 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   const svg = document.createElementNS(MTG_SVG, "svg"); svg.setAttribute("class", "br-svg");
   svg.setAttribute("width", WORLD_W); svg.setAttribute("height", VIEW_H); world.appendChild(svg);
   const dot = mtgEl("div", "br-dot"); dot.style.top = (ROCK_TOP + RH * 0.3) + "px"; world.appendChild(dot);
-  // the friend stands on the far bank, टप्पू sits on rock 0 (deck: "directly on the stone marked 0")
-  const FW = Math.min(96, RW * 1.1, U * 0.9), FH = FW * 579 / 477;   // never wider than one step: टप्पू sits on one rock
+  // Distinct landing and resting leaves leave room for both frogs at the far end.
+  const FW = Math.min(70, U * .86), FH = FW * 579 / 477;
+  const FRW = FW, FRH = FRW * 574 / 551, friendX = X(d.hi) + 110;
+  const rest = mtgEl("img", "br-rest-leaf"); rest.src = LOTUS; rest.alt = "";
+  rest.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-3)+"px;width:110px;height:36px";
+  world.appendChild(rest);
   const friend = mtgEl("img", "br-friend"); friend.src = mtgImg("chr_friend");
-  const FRW = FW * 1.02, FRH = FRW * 574 / 551;                    // chr_friend is 551x574
-  friend.style.cssText = `left:${WORLD_W - BR / 2 - 4}px;top:${Math.round(0.47 * VIEW_H - FRH)}px;width:${FRW}px`;
+  friend.alt = "टप्पू का दोस्त";
+  friend.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-FRH)+"px;width:"+FRW+"px";
   world.appendChild(friend);
-  const frog = mtgEl("img", "br-frog"); frog.src = mtgImg("chr_tappu");
-  frog.style.width = FW + "px"; frog.style.top = (ROCK_TOP - FH + RH * 0.16) + "px";
+  const frog = mtgEl("img", "br-frog"); frog.src = mtgImg("chr_tappu"); frog.alt = "टप्पू";
+  frog.style.width = FW + "px"; frog.style.top = (FEET_Y-FH) + "px";
   let at = d.lo; frog.style.left = X(at) + "px"; world.appendChild(frog);
   view.appendChild(world); wrap.appendChild(view);
   const cap = mtgEl("div", "br-cap"); wrap.appendChild(cap);
   wrap.style.margin = `0 0 0 ${-_bleedL}px`; wrap.style.width = VIEW_W + "px";
   host.appendChild(wrap);
 
-  // ---- camera (T2, T3): "all" = zoomed out to the whole line, "follow" = keep टप्पू in view,
-  // [a,b] = settle on a..b, zooming out only as far as that range needs (the whole scene scales together,
-  // so टप्पू still sits on one rock); --z lets the numbers grow back to a readable size
-  let cam = d.camera ? "all" : null;
-  function applyCam(mode){
-    if(!d.camera) return;
-    cam = mode;
-    world.classList.toggle("zoomed", mode === "all");
-    let z = 1, x0;
-    if(mode === "all"){ z = VIEW_W / WORLD_W; x0 = 0; }
-    else if(Array.isArray(mode)){
-      const a = X(mode[0]) - RW / 2, b = X(mode[1]) + RW / 2;
-      z = Math.min(1, VIEW_W / (b - a));
-      x0 = (a + b) / 2 * z - VIEW_W / 2;
-    }
-    else x0 = X(at) - VIEW_W * 0.34;
-    x0 = Math.max(0, Math.min(WORLD_W * z - VIEW_W, x0));
-    world.style.setProperty("--z", z);
-    world.style.transform = `translate(${-x0}px, 0px) scale(${z})`;   // origin 0 50%: stays vertically centred
+  // Scale, translation and labels share one animation clock anchored at the feet.
+  let cam = d.camera ? "all" : null, cameraFrame = 0, cameraFinish = null;
+  let camera = {x:0,z:1};
+  const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function paintCamera(x,z){
+    camera={x,z}; world.style.setProperty("--z",z);
+    world.classList.toggle("zoomed",z<.48);
+    world.style.transform="translate("+(-x)+"px,"+(FEET_Y*(1-z))+"px) scale("+z+")";
   }
-  applyCam(cam);
+  function cameraTo(x,z,ms=700){
+    if(cameraFrame) cancelAnimationFrame(cameraFrame);
+    if(cameraFinish) cameraFinish();
+    const from={...camera}, start=performance.now();
+    world.dataset.cameraMoving="true";
+    return new Promise(resolve=>{
+      cameraFinish=resolve;
+      function tick(now){
+        if(tok!==_mtgTok){cameraFrame=0;cameraFinish=null;resolve();return;}
+        const t=ms&&!reduceMotion()?Math.min(1,(now-start)/ms):1, ease=t*t*(3-2*t);
+        paintCamera(from.x+(x-from.x)*ease,from.z+(z-from.z)*ease);
+        if(t<1) cameraFrame=requestAnimationFrame(tick);
+        else{cameraFrame=0;cameraFinish=null;world.dataset.cameraMoving="false";resolve();}
+      }
+      tick(start);
+    });
+  }
+  function rangeCamera(a,b,ms=700){
+    const left=Math.max(0,X(Math.max(d.lo,a))-80);
+    const right=b>=d.hi?WORLD_W:Math.min(WORLD_W,X(b)+80);
+    const z=Math.min(1,VIEW_W/(right-left));
+    const x=Math.max(0,Math.min(WORLD_W*z-VIEW_W,(left+right)*z/2-VIEW_W/2));
+    return cameraTo(x,z,ms);
+  }
+  function applyCam(mode,ms=700){
+    if(!d.camera)return Promise.resolve();
+    cam=mode;
+    if(mode==="all")return cameraTo(0,VIEW_W/WORLD_W,ms);
+    if(Array.isArray(mode))return rangeCamera(mode[0],mode[1],ms);
+    return rangeCamera(at,Math.min(d.hi,at+d.step),ms);
+  }
+  paintCamera(0,d.camera?VIEW_W/WORLD_W:1);
 
   const glow = n => { mtgPulse(stones[n], "glow", 1400); mtgPulse(nums[n], "glow", 1400); };
   const mark = n => { stones[n].classList.add("mark"); nums[n].classList.add("mark"); mtgPulse(nums[n], "pop", 600); };
   const clearLit = () => Object.values(stones).forEach(s => s.classList.remove("lit"));
   async function jump(a, b){
     clearLit(); dot.classList.remove("show");
-    const lift = Math.min(118, 42 + (b - a) * U * 0.22);
-    mtgArc(svg, X(a), X(b), STONE_Y - 2, lift);
-    await mtgHop(frog, X(a), X(b), lift + 18, 950);
-    at = b; mark(b); glow(b);
-    if(cam === "follow") applyCam("follow");
+    if(cam==="follow") await rangeCamera(a,b,420);
+    const lift=Math.max(12,Math.min(62,FEET_Y-FH-22));
+    view.dataset.jumpActive="true";
+    mtgArc(svg,X(a),X(b),STONE_Y-2,lift);
+    await mtgHop(frog,X(a),X(b),lift,950);
+    view.dataset.jumpActive="false";
+    at=b;view.dataset.landedAt=String(at);mark(b);glow(b);
   }
   async function spanLight(a, b){ for(let n = a + 1; n <= b; n++){ stones[n].classList.add("lit"); await mtgWait(85, tok); } }
   async function runClip(c){
     mtgAlive(tok);
-    if(c.cam) applyCam(c.cam);
+    if(c.cam) await applyCam(c.cam);
     if(c.focus) mtgPulse(c.focus === "friend" ? friend : frog, "focus", 1600);
     if(c.wave) mtgPulse(friend, "wave", 1400);
     if(c.glow != null) glow(c.glow);
@@ -21420,8 +21470,8 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   function waitTap(){
     return new Promise((res, rej)=>{
       frog.classList.add("tappable");
-      let hand = mtgHand(world, X(at) + 6, ROCK_TOP - FH * 0.45);
-      const again = setInterval(()=>{ if(tok !== _mtgTok){ clearInterval(again); return; } if(!hand){ hand = mtgHand(world, X(at) + 6, ROCK_TOP - FH * 0.45); setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800); } }, 6000);
+      let hand = mtgHand(world, X(at) + 6, FEET_Y - FH * .55);
+      const again = setInterval(()=>{ if(tok !== _mtgTok){ clearInterval(again); return; } if(!hand){ hand = mtgHand(world, X(at) + 6, FEET_Y - FH * .55); setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800); } }, 6000);
       setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800);
       frog.onclick = ()=>{
         if(tok !== _mtgTok) return rej(MTG_STOP);
@@ -21689,7 +21739,7 @@ SlideModules.SPACE_PODS = { mount(host, slide){
   const done = new Set();
   let curVo = g.menu_vo;
   /* file4's own header audio chip graphic, cloned so the game's replay button matches it */
-  const audioBtn = mtgEl("button", "sp-audio", ($("audioChip") && $("audioChip").innerHTML) || "🔊"); audioBtn.type = "button";
+  const audioBtn = mtgEl("button", "sp-audio", ($("audioChip") && $("audioChip").innerHTML) || "🔊"); audioBtn.type = "button"; audioBtn.setAttribute("aria-label", "फिर सुनिए");
   audioBtn.onclick = ()=>{ state.audioReplays++; play(mtgSrc(curVo), ()=>{}); };
   const buddy = mtgEl("div", "sp-swiftie", `<img src="assets/UI/sw_head_talking.webp" alt="">`);
   const scene = mtgEl("div", "sp-scene");
@@ -21775,6 +21825,17 @@ SlideModules.SPACE_PODS = { mount(host, slide){
       });
       scene.appendChild(ground);
       let wrongSaid = false, finished = false, idleT = null, guidedOnce = false, busyVo = false;
+      let selected = null, tapLocked = false;
+      const status = mtgEl("div", "sp-status", "जानवर चुनिए, फिर खाली यान चुनिए।");
+      status.setAttribute("role", "status"); status.setAttribute("aria-live", "polite");
+      scene.appendChild(status);
+      const roundLabel = mtgEl("div", "sp-round", "दौर " + (r + 1) + " / " + L.rounds.length);
+      scene.appendChild(roundLabel);
+      function clearSelection(){
+        if(selected){ selected.classList.remove("selected"); selected.setAttribute("aria-pressed", "false"); }
+        selected = null;
+        podEls.forEach(p => p.classList.remove("select-target"));
+      }
       const needed = () => podEls.filter(p => !p.classList.contains("filled"));
       function ghost(){
         const target = needed()[0]; if(!target || finished) return;
@@ -21802,13 +21863,18 @@ SlideModules.SPACE_PODS = { mount(host, slide){
           ghost(); if(!busyVo) say(g.guide_vo).catch(()=>{});
         }, g.inactivity_ms);
       }
-      walkers.forEach(w=>{
-        makeDraggable(w, (zone, tile)=>{
+      function gradeDrop(zone, tile){
+          if(zone.classList.contains("filled") || tile.classList.contains("snapped")) return;
+          clearSelection();
           if(tok !== _mtgTok || finished) return;
           clearTimeout(idleT);
           const i = +zone.dataset.i, n = +tile.dataset.n;
           if(R.seq[i] === n){
             tile.classList.add("snapped");
+            tile.tabIndex = -1; tile.setAttribute("aria-disabled", "true");
+            zone.tabIndex = -1; zone.setAttribute("aria-disabled", "true");
+            zone.setAttribute("aria-label", String(n) + ", भरा हुआ यान");
+            status.textContent = "सही! " + n;
             mtgRight();
             nums[i] = seat(zone, L.cast, n);
             mtgPulse(nums[i], "glow", 1200); mtgPulse(zone, "snap", 600);
@@ -21816,13 +21882,45 @@ SlideModules.SPACE_PODS = { mount(host, slide){
             SwiftPAL.emit("space_drop_correct", { slide_id: slide.id, step: L.step, round: r + 1, n });
             if(!needed().length) complete(); else armIdle();
           } else {
+            status.textContent = "फिर कोशिश कीजिए।";
             mtgWrong();
             mtgPulse(zone, "wiggle", 650); puff(zone);
             SwiftPAL.emit("space_drop_wrong", { slide_id: slide.id, step: L.step, round: r + 1, n, pod: i });
             if(!wrongSaid){ wrongSaid = true; busyVo = true; say(L.wrong).then(()=>{ busyVo = false; }).catch(()=>{}); }
             armIdle();
           }
-        });
+      }
+      const keyActivate = fn => e => {
+        if(e.key === "Enter" || e.key === " "){ e.preventDefault(); fn(); }
+      };
+      podEls.forEach((p, i) => {
+        const filled = p.classList.contains("filled");
+        p.setAttribute("role", "button"); p.tabIndex = filled ? -1 : 0;
+        p.setAttribute("aria-disabled", String(filled));
+        p.setAttribute("aria-label", filled ? String(R.seq[i]) + ", भरा हुआ यान" : "खाली यान " + (i + 1));
+        const activate = () => {
+          if(!selected || finished || tapLocked || busyVo || p.classList.contains("filled")) return;
+          tapLocked = true; gradeDrop(p, selected);
+          setTimeout(() => { tapLocked = false; }, 650);
+        };
+        p.onclick = activate; p.onkeydown = keyActivate(activate);
+      });
+      walkers.forEach(w=>{
+        w.setAttribute("role", "button"); w.setAttribute("aria-pressed", "false"); w.tabIndex = 0;
+        w.setAttribute("aria-label", String(w.dataset.n) + ", जानवर चुनिए");
+        const select = () => {
+          if(finished || busyVo || w.classList.contains("snapped")) return;
+          const wasSelected = selected === w; clearSelection();
+          if(!wasSelected){
+            selected = w; w.classList.add("selected"); w.setAttribute("aria-pressed", "true");
+            needed().forEach(p => p.classList.add("select-target"));
+            status.textContent = w.dataset.n + " चुना। अब खाली यान चुनिए।";
+            armIdle();
+          }
+        };
+        // The engine distinguishes taps from drags for mouse and touch, including preventDefault.
+        makeDraggable(w, gradeDrop, {onTap:select, onPick:clearSelection});
+        w.onkeydown = keyActivate(select);
         w.addEventListener("mousedown", ()=> clearTimeout(idleT)); w.addEventListener("touchstart", ()=> clearTimeout(idleT), { passive: true });
       });
       async function complete(){
@@ -21876,109 +21974,44 @@ SlideModules.SPACE_PODS = { mount(host, slide){
   return _m(i);
 }; })();
 
-/* =====================================================================================
-   FROG COVER — file4's cover choreography (the train arrives, its smoke gathers into a cloud, the
-   title is written on the cloud with sfx_pop and lands with pop + bell, and only then the greeting,
-   with the play button grey until it ends), told with टप्पू: he hops in over the pond stones and
-   each hop's splash puff rises into the cloud, then the title is written on it.
-   Uses file4's engine hook: defining window.landingTrainReady makes the engine hold the greeting
-   (and keep the play button in .sg-waiting) until we call it ready; __ltReady also releases the
-   lesson warm-up. Card: CARD.landing_hero = { kind:"frog_cover" } (the engine draws nothing for it).
-   ===================================================================================== */
+/* Pond adventure: resting leaves, counting trail, existing start and audio gates. */
 (function frogCover(){
-  const hero = CARD.landing_hero;
-  if(!hero || hero.kind !== "frog_cover") return;
-  window.__ltReady = false;
-  window.__ltWaiters = [];
-  const ready = ()=>{ if(window.__ltReady) return; window.__ltReady = true;
-    const w = window.__ltWaiters.splice(0); w.forEach(f => { try{ f(); }catch(e){} }); };
-  window.landingTrainReady = (fn)=>{ if(window.__ltReady) fn(); else window.__ltWaiters.push(fn); };
-  const onCover = ()=>{ const g = document.getElementById("startGate"); return !g || !g.classList.contains("hidden"); };
-  const tone = (f, ty, d, v)=>{ try{ if(typeof _tone === "function") _tone(f, ty, d, v); }catch(e){} };
-  const sfxHop = ()=>{ if(onCover()) tone([380, 560], "sine", 0.14, 0.05); };
-  const sfxTitle = ()=>{ if(onCover()) mtgFx("sfx_pop", ()=> tone([620, 980], "sine", 0.16, 0.12), 1.0); };
-  const sfxTitleLand = ()=>{ if(!onCover()) return; mtgFx("sfx_pop", null, 1.0); tone([1047, 1319, 1568, 2093], "triangle", 0.62, 0.10); };
-  // the cloud: a soft body, a white core behind the words, puffs round the top and the ends
-  const PUFFS = [[70,96,92],[150,52,112],[250,26,128],[360,20,132],[468,30,124],[560,62,104],[620,104,76],
-                 [24,118,64],[118,124,70],[230,128,74],[350,130,76],[470,128,72],[574,122,66]];
+  if(!CARD.landing_hero||CARD.landing_hero.kind!=="frog_cover")return;
+  window.__ltReady=false;window.__ltWaiters=[];
+  const ready=()=>{
+    if(window.__ltReady)return;window.__ltReady=true;
+    window.__ltWaiters.splice(0).forEach(fn=>{try{fn();}catch(e){}});
+  };
+  window.landingTrainReady=fn=>window.__ltReady?fn():window.__ltWaiters.push(fn);
   function build(){
-    const card = document.querySelector("#startGate .sg-card"), ttl = $("sgTitle"), heroEl = $("sgHero");
-    if(!card || !ttl || !heroEl) return null;
-    card.classList.add("fc-card");
-    const text = ttl.textContent;
-    ttl.textContent = "";
-    ttl.classList.add("fc-title");
-    const cloud = mtgEl("div", "fc-cloud");
-    cloud.appendChild(mtgEl("i", "fc-body"));
-    PUFFS.forEach(([x, y, d])=>{ const p = mtgEl("i", "fc-puff");
-      p.style.cssText = `left:${x - d/2}px;top:${y - d/2}px;width:${d}px;height:${d}px`;
-      p.dataset.cx = x; p.dataset.cy = y; cloud.appendChild(p); });
-    cloud.appendChild(mtgEl("i", "fc-core"));
-    const word = mtgEl("span", "fc-word", text);
-    ttl.appendChild(cloud); ttl.appendChild(word);
-    heroEl.innerHTML = "";
-    heroEl.classList.add("fc-hero");
-    // the user's pond (sc_pond, 600x200 here: water x 76..524) with prop_rock stones on its waterline
-    const pond = mtgEl("div", "fc-pond");
-    pond.style.backgroundImage = `url("${mtgImg("sc_pond")}")`;
-    [140, 220, 300, 380, 460].forEach(x => { const s = mtgEl("img", "fc-rock"); s.src = mtgImg("prop_rock"); s.alt = ""; s.style.left = x + "px"; pond.appendChild(s); });
-    const frog = mtgEl("img", "fc-frog"); frog.src = mtgImg("chr_tappu");
-    pond.appendChild(frog); heroEl.appendChild(pond);
-    return { cloud, word, frog };
+    const card=document.querySelector("#startGate .sg-card"),title=$("sgTitle"),hero=$("sgHero");
+    if(!card||!title||!hero){ready();return;}
+    card.classList.add("fc-card");title.classList.add("fc-title");
+    const sub=card.querySelector(".sg-sub");
+    if(sub)sub.textContent="दो-दो, पाँच-पाँच और दस-दस की कूद";
+    hero.classList.add("fc-hero");hero.innerHTML="";
+    const pond=mtgEl("div","fc-pond");
+    pond.style.backgroundImage='url("'+mtgImg("sc_pond_v2")+'")';
+    const leaf=(x,w=100)=>{
+      const im=mtgEl("img","fc-leaf");im.src="assets/Images/prop_lotus.svg";im.alt="";
+      im.style.cssText="left:"+x+"px;width:"+w+"px";pond.appendChild(im);
+    };
+    leaf(125,120);leaf(755,130);[300,440,580].forEach(x=>leaf(x,78));
+    const svg=document.createElementNS(MTG_SVG,"svg");
+    svg.setAttribute("class","fc-trail");svg.setAttribute("viewBox","0 0 880 260");
+    [125,300,440,580].forEach((x,i)=>mtgArc(svg,x,[300,440,580,755][i],177,60));
+    pond.appendChild(svg);
+    const frog=mtgEl("img","fc-frog");frog.src=mtgImg("chr_tappu");frog.alt="टप्पू";frog.style.left="125px";
+    const friend=mtgEl("img","fc-friend");friend.src=mtgImg("chr_friend");friend.alt="टप्पू का दोस्त";
+    pond.appendChild(frog);pond.appendChild(friend);hero.appendChild(pond);
+    const btn=$("sgBtn");if(btn){btn.setAttribute("aria-label","शुरू करें");btn.textContent="शुरू करें  ▶";}
+    if(matchMedia("(prefers-reduced-motion: reduce)").matches){ready();return;}
+    frog.animate([{transform:"translate(-50%,0)"},{transform:"translate(-50%,-16px)"},{transform:"translate(-50%,0)"}],{duration:650,easing:"ease-in-out"}).onfinish=ready;
+    setTimeout(ready,1200);
   }
-  function run(){
-    const B = build(); if(!B){ ready(); return; }
-    const { cloud, word, frog } = B;
-    const LAND = 300;                                         // the middle rock
-    const settle = ()=>{ cloud.classList.add("fc-settled"); word.classList.add("fc-static"); frog.style.left = LAND + "px"; };
-    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if(reduce || typeof frog.animate !== "function"){ settle(); ready(); return; }
-    const puffs = [...cloud.querySelectorAll(".fc-puff")], fills = [...cloud.querySelectorAll(".fc-body,.fc-core")];
-    const path = [660, 460, 380, LAND];
-    frog.style.left = path[0] + "px";
-    let k = 0;
-    const launch = (x)=>{                                     // puffs leave the splash and swell into place
-      const sc = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--scale")) || 1;
-      const cr = cloud.getBoundingClientRect(), pr = frog.parentNode.getBoundingClientRect();
-      const fx = (pr.left - cr.left) / sc + x, fy = (pr.top - cr.top) / sc + 70;
-      const take = puffs.splice(0, k >= path.length - 2 ? puffs.length : 4);
-      take.forEach((p, i)=>{
-        const dx = fx - +p.dataset.cx, dy = fy - +p.dataset.cy;
-        p.animate([{ opacity:0, transform:`translate3d(${dx}px,${dy}px,0) scale(.15)` },
-                   { opacity:1, offset:.25, transform:`translate3d(${dx * .6}px,${dy * .55 - 30}px,0) scale(.4)` },
-                   { opacity:1, transform:"translate3d(0,0,0) scale(1)" }],
-                  { duration:1100, delay:i * 90, easing:"cubic-bezier(.3,.1,.25,1)", fill:"both" });
-      });
-    };
-    const writeTitle = ()=>{
-      fills.forEach(f => f.animate([{ opacity:0 }, { opacity:1 }], { duration:700, easing:"ease-in-out", fill:"both" }));
-      setTimeout(()=>{
-        sfxTitle();
-        const wa = word.animate([{ clipPath:"inset(-40% 100% -40% 0)" }, { clipPath:"inset(-40% 0% -40% 0)" }],
-                                { duration:1300, easing:"cubic-bezier(.42,0,.32,1)", fill:"forwards" });
-        let fin = false;
-        const done = ()=>{ if(fin) return; fin = true; sfxTitleLand(); mtgPulse(frog, "fc-cheer", 900); setTimeout(ready, 300); };
-        wa.onfinish = done; setTimeout(done, 1900);
-      }, 650);
-    };
-    const hopNext = ()=>{
-      if(k >= path.length - 1){ writeTitle(); return; }
-      const a = path[k], b = path[k + 1];
-      sfxHop();
-      mtgHop(frog, a, b, 70, 560).then(()=>{ launch(b); mtgPulse(frog, "fc-squash", 260); k++; setTimeout(hopNext, 160); });
-    };
-    setTimeout(hopNext, 450);
-    setTimeout(()=>{ if(!window.__ltReady){ settle(); ready(); } }, 9000);   // never strand the cover
-  }
-  // build now (boot() writes the title right after this script), but start the hops only once the
-  // engine's loading screen has gone (body.loaded) — as file4's train sets off when the cover is seen
-  setTimeout(()=>{
-    const t0 = Date.now();
-    (function wait(){
-      if(document.body.classList.contains("loaded") || Date.now() - t0 > 8000){ setTimeout(run, 350); return; }
-      setTimeout(wait, 100);
-    })();
-  }, 0);
+  const start=Date.now();
+  function wait(){if(document.body.classList.contains("loaded")||Date.now()-start>8000)build();else setTimeout(wait,100);}
+  setTimeout(wait,0);
 })();
 
 

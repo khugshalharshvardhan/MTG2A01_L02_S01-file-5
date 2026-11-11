@@ -490,14 +490,15 @@ def assets(html, card):
     keyed = os.path.join(HERE, "art_keyed")
     for f in os.listdir(keyed):
         src = os.path.join(keyed, f)
-        dst = os.path.join(img, os.path.splitext(f)[0] + ".webp")
-        if f.endswith(".webp"):
+        dst = os.path.join(img, f if f.endswith(".svg") else os.path.splitext(f)[0] + ".webp")
+        if f.endswith((".webp", ".svg")):
             if _stale(src, dst):
                 shutil.copy2(src, dst)
-        elif f.endswith(".png") and _stale(src, dst):
+        elif f.endswith(".png"):
             im = Image.open(src).convert("RGBA")
-            im.thumbnail((440, 440), Image.LANCZOS)
-            im.save(dst, "WEBP", quality=90, method=6)
+            im.thumbnail((1024, 1024), Image.LANCZOS)
+            if _stale(src, dst) or Image.open(dst).size != im.size:
+                im.save(dst, "WEBP", quality=94, method=6)
     # file4's drawn play button (and its grey "waiting" twin) live in assets/Images in that engine
     kimg = os.path.join(ENGINE, "kit_images")
     for f in os.listdir(kimg):
@@ -573,7 +574,7 @@ def compile_html(tmpl, card):
     html = re.sub(r"<title>.*?</title>", f"<title>SwiftPAL · {CODE} · {card['title']['hi']}</title>", html, count=1, flags=re.S)
     # the template's head preloads are its sample card's pictures — preload OUR cover instead
     html, n = re.subn(r'(?:<link rel="preload" as="image"[^>]*>)+',
-                      '<link rel="preload" as="image" fetchpriority="high" href="assets/Images/chr_tappu.webp">', html, count=1)
+                      '<link rel="preload" as="image" fetchpriority="high" href="assets/Images/chr_tappu.webp"><link rel="preload" as="image" href="assets/Images/sc_pond_v2.webp">', html, count=1)
     # this lesson's styles, after every engine style; its modules, before boot()
     i = html.index("</head>")
     html = html[:i] + '<style id="mtgStyles">\n' + css + "\n</style>\n" + html[i:]

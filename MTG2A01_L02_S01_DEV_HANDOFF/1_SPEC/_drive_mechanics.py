@@ -7,7 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 
 OUT = sys.argv[1]; os.makedirs(OUT, exist_ok=True)
-URL = "http://127.0.0.1:8931/MTG2A01_L02_S01.html"
+URL = os.environ.get("MTG_TEST_URL", "http://127.0.0.1:8931/MTG2A01_L02_S01.html")
 STUB = """
 HTMLMediaElement.prototype.play = function(){ const a = this; setTimeout(()=>{ try{ a.dispatchEvent(new Event('ended')); }catch(e){} }, 60); return Promise.resolve(); };
 /* the engine plays VO through Web Audio: every decoded clip becomes 60 ms of silence */

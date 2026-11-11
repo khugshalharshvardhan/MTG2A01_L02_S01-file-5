@@ -1,0 +1,12 @@
+{
+  "tool": "Built-in image_gen",
+  "prompt": "Use case: illustration-story. Asset type: production background for a Grade 2 Hindi frog skip-counting browser game. Create a very wide 3:1 landscape illustration at highest available resolution. A tranquil cheerful pond viewed from slightly above, soft mint grassy banks and a few rounded reeds at far left and right edges, pale blue sky top 35%, distant small rounded bushes on a low horizon, calm turquoise water from 48% to 94% height. Large clear central water area for an overlaid horizontal line of stepping stones and jumping frogs. Clean polished children's educational illustration, restrained teal/mint/sky palette, smooth crisp contours, subtle soft shading, minimal texture, no hard black outlines. Entire scene fully opaque with pale sky background. No frogs, no characters, no stones in central water, no numbers, no text, no interface, no frame, no watermark. Keep all decorative vegetation confined to outer edges and far shoreline, central gameplay space exceptionally uncluttered. Landscape scene must work as a static backdrop with independently animated stones.",
+  "generated_source": "pond_backdrop_v2.png",
+  "export": "../art_keyed/sc_pond_v2.webp",
+  "dimensions": [
+    2172,
+    724
+  ],
+  "space_asset": "../art_keyed/sc_space_v2.svg",
+  "space_method": "Original SVG paths and gradients; no embedded raster images"
+}
