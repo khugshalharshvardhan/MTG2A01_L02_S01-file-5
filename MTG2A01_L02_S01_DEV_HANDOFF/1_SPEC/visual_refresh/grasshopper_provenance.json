@@ -1,0 +1,12 @@
+{
+  "tool": "Built-in image_gen",
+  "prompt": "Use case: illustration-story. Asset type: transparent character sprite for a children's Hindi counting lesson. Generate ONE new grasshopper astronaut matching the two reference astronauts in illustration style: reference 1 is the game's rabbit astronaut and reference 2 the squirrel astronaut. Reference 3 shows the old grasshopper only for species identification; do NOT copy its rough low-resolution edges. A cute clearly recognizable bright green grasshopper with two long antennae, large expressive brown eyes, a friendly open smile, small grasshopper wings and bent insect hind legs, wearing a white astronaut suit with emerald-green cuffs, boots and collar, a small yellow star on its chest, and a transparent blue bubble helmet. Full body standing upright, one friendly wave, slightly turned toward the right. Clean polished 2D cartoon, bold smooth dark navy outlines, soft rounded shading, bright highlights, exact same children's sticker aesthetic as rabbit and squirrel. Keep antennae, hands and feet fully in frame, comfortable transparent margin. Large head and clear silhouette for display at 110 pixels tall. No numbers, no text, no props, no background, no floor shadow, no border, no watermark. Actual transparent alpha background. Deliver at high native resolution, portrait composition.",
+  "references": [
+    "3_BUILD/assets/Images/sp_rabbit.webp",
+    "3_BUILD/assets/Images/sp_squirrel.webp",
+    "3_BUILD/assets/Images/chr_grasshopper.webp"
+  ],
+  "master": "grasshopper_astronaut_v2.png",
+  "export": "../art_keyed/sp_grasshopper_v2.png",
+  "usage": "Sequence activities G4 and G7, including hints. G5 and G6 reuse the existing game rabbit and squirrel."
+}

@@ -230,7 +230,7 @@ def blank(ans, frm, step, correct, wa1, hint, wa3, pre_hint=None, after_hint=Non
 
 
 Q4 = {   # deck slide 8 — grasshopper hops 30→36, then «?»
-    "seq": [30, 32, 34, 36, None], "options": [40, 37, 38], "animal": "chr_grasshopper",
+    "seq": [30, 32, 34, 36, None], "options": [40, 37, 38], "animal": "sp_grasshopper_v2",
     "intro": [clip("vo_q4_1", "टिड्डा तीस पर है। आइए, उसके साथ दो-दो करके गिनते हैं।", reveal=0),
               clip("vo_q4_2", "बत्तीस…", reveal=1, hop=1),
               clip("vo_q4_3", "चौंतीस…", reveal=2, hop=2),
@@ -249,7 +249,7 @@ Q4["blanks"][0]["hint_range"] = [34, 40]
 Q4["blanks"][0]["after_hint_ost"] = "अगली सही संख्या पर टैप कीजिए।"
 
 Q5 = {   # deck slide 9 — rabbit, 10…16, __, __
-    "seq": [10, 12, 14, 16, None, None], "options": [17, 18, 19, 20], "animal": "chr_rabbit",
+    "seq": [10, 12, 14, 16, None, None], "options": [17, 18, 19, 20], "animal": "sp_rabbit",
     "q": [clip("vo_q5_q", "खरगोश दो-दो करके गिन रहा है। उसकी गिनती में दो संख्याएँ छूट गई हैं। सही संख्याओं पर टैप करके गिनती पूरी कीजिए।")],
     "ost": "दो-दो करके गिनिए। सही संख्या पर टैप कीजिए।",
     "blanks": [
@@ -268,7 +268,7 @@ Q5["blanks"][0]["hint_range"] = [14, 20]
 Q5["blanks"][1]["hint_range"] = [16, 22]
 
 Q6 = {   # deck slide 10 — squirrel (the VO's गिलहरी), 55,60,65,__,__
-    "seq": [55, 60, 65, None, None], "options": [66, 70, 75, 80], "animal": "chr_squirrel",
+    "seq": [55, 60, 65, None, None], "options": [66, 70, 75, 80], "animal": "sp_squirrel",
     "q": [clip("vo_q6_q", "गिलहरी पाँच-पाँच करके आगे गिन रही है। उसकी गिनती पूरी करने में मदद कीजिए। खाली जगहों के लिए सही संख्याओं पर टैप कीजिए।")],
     "ost": "पाँच-पाँच करके गिनती पूरी कीजिए।",
     "blanks": [
@@ -288,7 +288,7 @@ Q6["blanks"][0]["hint_range"] = [64, 70]
 Q6["blanks"][1]["hint_range"] = [69, 75]
 
 Q7 = {   # deck slide 11 — grasshopper, 50,60,__,80,__,100
-    "seq": [50, 60, None, 80, None, 100], "options": [61, 70, 75, 90], "animal": "chr_grasshopper",
+    "seq": [50, 60, None, 80, None, 100], "options": [61, 70, 75, 90], "animal": "sp_grasshopper_v2",
     "q": [clip("vo_q7_q", "दस-दस करके गिनिए। खाली जगह के लिए सही संख्या पर टैप कीजिए।")],
     "ost": "सही संख्या पर टैप कीजिए।",
     "blanks": [

@@ -1,0 +1,98 @@
+[
+  [
+    "G4 uses requested character",
+    true
+  ],
+  [
+    "G4 character loads",
+    true
+  ],
+  [
+    "G4 character clears number boxes",
+    true
+  ],
+  [
+    "G4 blank 1 hint uses matching character",
+    true
+  ],
+  [
+    "G4 sequence completes",
+    true
+  ],
+  [
+    "G5 uses requested character",
+    true
+  ],
+  [
+    "G5 character loads",
+    true
+  ],
+  [
+    "G5 character clears number boxes",
+    true
+  ],
+  [
+    "G5 blank 1 hint uses matching character",
+    true
+  ],
+  [
+    "G5 blank 2 hint uses matching character",
+    true
+  ],
+  [
+    "G5 sequence completes",
+    true
+  ],
+  [
+    "G6 uses requested character",
+    true
+  ],
+  [
+    "G6 character loads",
+    true
+  ],
+  [
+    "G6 character clears number boxes",
+    true
+  ],
+  [
+    "G6 blank 1 hint uses matching character",
+    true
+  ],
+  [
+    "G6 blank 2 hint uses matching character",
+    true
+  ],
+  [
+    "G6 sequence completes",
+    true
+  ],
+  [
+    "G7 uses requested character",
+    true
+  ],
+  [
+    "G7 character loads",
+    true
+  ],
+  [
+    "G7 character clears number boxes",
+    true
+  ],
+  [
+    "G7 blank 1 hint uses matching character",
+    true
+  ],
+  [
+    "G7 blank 2 hint uses matching character",
+    true
+  ],
+  [
+    "G7 sequence completes",
+    true
+  ],
+  [
+    "no browser errors",
+    true
+  ]
+]

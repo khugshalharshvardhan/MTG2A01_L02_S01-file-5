@@ -43,3 +43,11 @@ Implemented the selected Pond adventure cover with two frogs on separate lotus l
 Jump height is bounded by the available headroom. The camera frames the complete next jump before take-off and interpolates position, scale and label sizing on one animation clock around the feet baseline. Landing numbers use 30px type and skipped numbers 22px at the displayed scale.
 
 Final results: 84 lesson regression checks and 31 visual/input checks passed. The added checks sample every animation frame for clipping and baseline drift across the 2s, 5s and 10s scenes, check frog separation and lotus support, and verify a readable Start label. Audio remains simulated for these automated checks.
+
+## Sequence character update (pages 7-10)
+
+G4 and G7 use the new transparent astronaut grasshopper (assets/Images/sp_grasshopper_v2.webp). G5 reuses the game rabbit (sp_rabbit.webp), and G6 reuses the game squirrel (sp_squirrel.webp). Main activity and hint art share the same character mapping.
+
+Only the grasshopper was generated, using the built-in image_gen tool and the existing game cast as style references. Master: 1_SPEC/visual_refresh/grasshopper_astronaut_v2.png. Exact prompt: 1_SPEC/visual_refresh/grasshopper_provenance.json. The trimmed alpha source is 1_SPEC/art_keyed/sp_grasshopper_v2.png and is exported by the normal builder.
+
+All 24 targeted checks passed, covering character loading, clearance above number boxes, all seven hints, completion of all four sequences, and no browser console errors. Evidence: 5_SCREENSHOTS/sequence_cast_refresh/results.json. Audio was simulated.

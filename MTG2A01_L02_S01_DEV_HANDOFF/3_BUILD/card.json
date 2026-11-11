@@ -763,7 +763,7 @@
      37,
      38
     ],
-    "animal": "chr_grasshopper",
+    "animal": "sp_grasshopper_v2",
     "intro": [
      {
       "vo": "vo_q4_1",
@@ -840,7 +840,7 @@
      19,
      20
     ],
-    "animal": "chr_rabbit",
+    "animal": "sp_rabbit",
     "q": [
      {
       "vo": "vo_q5_q"
@@ -909,7 +909,7 @@
      75,
      80
     ],
-    "animal": "chr_squirrel",
+    "animal": "sp_squirrel",
     "q": [
      {
       "vo": "vo_q6_q"
@@ -979,7 +979,7 @@
      75,
      90
     ],
-    "animal": "chr_grasshopper",
+    "animal": "sp_grasshopper_v2",
     "q": [
      {
       "vo": "vo_q7_q"
