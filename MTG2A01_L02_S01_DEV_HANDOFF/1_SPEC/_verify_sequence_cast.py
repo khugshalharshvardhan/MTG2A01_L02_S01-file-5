@@ -23,7 +23,7 @@ def check(name,value):
     checks.append([name,bool(value)]);print(('PASS ' if value else 'FAIL ')+name,flush=True)
 def shot(name):d.save_screenshot(str(OUT/(name+'.png')))
 try:
-    for idx,expected in [(6,'sp_grasshopper_v2'),(7,'sp_rabbit'),(8,'sp_squirrel'),(9,'sp_grasshopper_v2')]:
+    for idx,expected in [(6,'sp_grasshopper_v3'),(7,'sp_rabbit'),(8,'sp_squirrel'),(9,'sp_grasshopper_v3')]:
         d.get(URL+'?slide='+str(idx))
         wait("[...document.querySelectorAll('.mtg-opt')].some(b=>!b.disabled)")
         wait("document.querySelector('.sf-animal').complete")

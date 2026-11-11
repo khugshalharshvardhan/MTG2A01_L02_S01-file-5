@@ -1,0 +1,8 @@
+{
+  "tool": "Built-in image_gen (edit)",
+  "prompt": "Use case: precise-object-edit. Edit target: the attached grasshopper astronaut sprite. Fix ONLY the placement of the two long green insect hind legs: currently both green legs are bunched on the viewer's LEFT side of the body. Keep ONE of those green bent hind legs on the viewer's LEFT, and reposition the other as a matching bent green hind leg on the viewer's RIGHT side. The two green insect legs must visibly flank the astronaut's body, one left and one right, balanced and clearly separated. Each has a bent upper joint, a long lower segment and a green insect foot resting at the same baseline. Do not add extra insect legs: exactly two green insect hind legs total. Preserve the two existing astronaut boots in the middle, the white suit, yellow chest star, emerald cuffs, bubble helmet, antennae, smiling face, waving arm, wing, outline style, colors and shading. Keep the character's identity and pose the same. Full character entirely in frame with enough margin on both sides for the repositioned legs. Preserve genuine transparent alpha background. No text, numbers, ground shadow or added objects.",
+  "reference": "grasshopper_astronaut_v2.png",
+  "master": "grasshopper_astronaut_v3.png",
+  "export": "../art_keyed/sp_grasshopper_v3.png",
+  "change": "Exactly one green hind leg on the left and one on the right."
+}

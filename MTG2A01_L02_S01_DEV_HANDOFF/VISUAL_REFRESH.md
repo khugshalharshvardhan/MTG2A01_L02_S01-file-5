@@ -51,3 +51,7 @@ G4 and G7 use the new transparent astronaut grasshopper (assets/Images/sp_grassh
 Only the grasshopper was generated, using the built-in image_gen tool and the existing game cast as style references. Master: 1_SPEC/visual_refresh/grasshopper_astronaut_v2.png. Exact prompt: 1_SPEC/visual_refresh/grasshopper_provenance.json. The trimmed alpha source is 1_SPEC/art_keyed/sp_grasshopper_v2.png and is exported by the normal builder.
 
 All 24 targeted checks passed, covering character loading, clearance above number boxes, all seven hints, completion of all four sequences, and no browser console errors. Evidence: 5_SCREENSHOTS/sequence_cast_refresh/results.json. Audio was simulated.
+
+### Grasshopper leg correction
+
+The current grasshopper is sp_grasshopper_v3.webp: one green hind leg on the left and one on the right. The suit, face, helmet and central boots are preserved. Both grasshopper activities and all their hints use this revision. Master: 1_SPEC/visual_refresh/grasshopper_astronaut_v3.png; exact image-edit prompt: 1_SPEC/visual_refresh/grasshopper_legs_provenance.json. All 24 character and hint checks passed again, with no browser errors.

@@ -763,7 +763,7 @@
      37,
      38
     ],
-    "animal": "sp_grasshopper_v2",
+    "animal": "sp_grasshopper_v3",
     "intro": [
      {
       "vo": "vo_q4_1",
@@ -979,7 +979,7 @@
      75,
      90
     ],
-    "animal": "sp_grasshopper_v2",
+    "animal": "sp_grasshopper_v3",
     "q": [
      {
       "vo": "vo_q7_q"

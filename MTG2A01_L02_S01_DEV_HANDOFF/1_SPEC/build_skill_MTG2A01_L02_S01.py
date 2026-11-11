@@ -230,7 +230,7 @@ def blank(ans, frm, step, correct, wa1, hint, wa3, pre_hint=None, after_hint=Non
 
 
 Q4 = {   # deck slide 8 — grasshopper hops 30→36, then «?»
-    "seq": [30, 32, 34, 36, None], "options": [40, 37, 38], "animal": "sp_grasshopper_v2",
+    "seq": [30, 32, 34, 36, None], "options": [40, 37, 38], "animal": "sp_grasshopper_v3",
     "intro": [clip("vo_q4_1", "टिड्डा तीस पर है। आइए, उसके साथ दो-दो करके गिनते हैं।", reveal=0),
               clip("vo_q4_2", "बत्तीस…", reveal=1, hop=1),
               clip("vo_q4_3", "चौंतीस…", reveal=2, hop=2),
@@ -288,7 +288,7 @@ Q6["blanks"][0]["hint_range"] = [64, 70]
 Q6["blanks"][1]["hint_range"] = [69, 75]
 
 Q7 = {   # deck slide 11 — grasshopper, 50,60,__,80,__,100
-    "seq": [50, 60, None, 80, None, 100], "options": [61, 70, 75, 90], "animal": "sp_grasshopper_v2",
+    "seq": [50, 60, None, 80, None, 100], "options": [61, 70, 75, 90], "animal": "sp_grasshopper_v3",
     "q": [clip("vo_q7_q", "दस-दस करके गिनिए। खाली जगह के लिए सही संख्या पर टैप कीजिए।")],
     "ost": "सही संख्या पर टैप कीजिए।",
     "blanks": [
