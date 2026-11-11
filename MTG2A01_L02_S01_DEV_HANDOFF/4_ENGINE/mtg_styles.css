@@ -239,3 +239,7 @@
 .br-num.big{font-size:calc(30px / var(--z,1));font-weight:800;}
 .br-world.zoomed .br-num.big{font-size:calc(26px / var(--z,1));}
 .br-frog,.br-friend{transform-origin:50% 100%;}
+
+/* Keep the full sequence character and its jump arc within the activity frame. */
+.sf-stage{padding-top:182px;}
+.sf-animal{top:64px;}

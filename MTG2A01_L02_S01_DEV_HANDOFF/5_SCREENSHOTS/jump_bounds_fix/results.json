@@ -1,0 +1,118 @@
+[
+  [
+    "G1 1333px jumps stay in frame",
+    true
+  ],
+  [
+    "G1 1333px jumps clear header",
+    true
+  ],
+  [
+    "G2 1333px jumps stay in frame",
+    true
+  ],
+  [
+    "G2 1333px jumps clear header",
+    true
+  ],
+  [
+    "G3 1333px jumps stay in frame",
+    true
+  ],
+  [
+    "G3 1333px jumps clear header",
+    true
+  ],
+  [
+    "G4 1333px jumps stay in frame",
+    true
+  ],
+  [
+    "G4 1333px jumps clear header",
+    true
+  ],
+  [
+    "G5 1333px jumps stay in frame",
+    true
+  ],
+  [
+    "G5 1333px jumps clear header",
+    true
+  ],
+  [
+    "G6 1333px jumps stay in frame",
+    true
+  ],
+  [
+    "G6 1333px jumps clear header",
+    true
+  ],
+  [
+    "G7 1333px jumps stay in frame",
+    true
+  ],
+  [
+    "G7 1333px jumps clear header",
+    true
+  ],
+  [
+    "G1 960px jumps stay in frame",
+    true
+  ],
+  [
+    "G1 960px jumps clear header",
+    true
+  ],
+  [
+    "G2 960px jumps stay in frame",
+    true
+  ],
+  [
+    "G2 960px jumps clear header",
+    true
+  ],
+  [
+    "G3 960px jumps stay in frame",
+    true
+  ],
+  [
+    "G3 960px jumps clear header",
+    true
+  ],
+  [
+    "G4 960px jumps stay in frame",
+    true
+  ],
+  [
+    "G4 960px jumps clear header",
+    true
+  ],
+  [
+    "G5 960px jumps stay in frame",
+    true
+  ],
+  [
+    "G5 960px jumps clear header",
+    true
+  ],
+  [
+    "G6 960px jumps stay in frame",
+    true
+  ],
+  [
+    "G6 960px jumps clear header",
+    true
+  ],
+  [
+    "G7 960px jumps stay in frame",
+    true
+  ],
+  [
+    "G7 960px jumps clear header",
+    true
+  ],
+  [
+    "no browser errors",
+    true
+  ]
+]

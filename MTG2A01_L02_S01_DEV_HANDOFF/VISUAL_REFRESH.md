@@ -55,3 +55,9 @@ All 24 targeted checks passed, covering character loading, clearance above numbe
 ### Grasshopper leg correction
 
 The current grasshopper is sp_grasshopper_v3.webp: one green hind leg on the left and one on the right. The suit, face, helmet and central boots are preserved. Both grasshopper activities and all their hints use this revision. Master: 1_SPEC/visual_refresh/grasshopper_astronaut_v3.png; exact image-edit prompt: 1_SPEC/visual_refresh/grasshopper_legs_provenance.json. All 24 character and hint checks passed again, with no browser errors.
+
+## Sequence and number-line jump bounds fix
+
+The sequence sprites previously started at the top edge of their frame and jumped upward by 70px. The sequence layout now reserves 64px of headroom, keeps 12px above the number strip, and uses a 44px hop. The shared hop helper also limits height to the actual available headroom. Frog number-line jumps use the same safe height for both the sprite and its drawn arc. Characters remain fully visible instead of being hidden by clipping.
+
+All 29 frame-by-frame bounds/header checks passed across G1-G7 at 1333x750 and 960x540. All 24 sequence character, answer and hint checks also passed; no browser errors. Sources: 4_ENGINE/mtg_modules.js and mtg_styles.css. Test: 1_SPEC/_verify_jump_bounds.py; evidence: 5_SCREENSHOTS/jump_bounds_fix/results.json. Audio playback was simulated.

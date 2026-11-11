@@ -56,6 +56,8 @@ function mtgArc(svg, x1, x2, y, lift, label){
 }
 /* hop an absolutely-positioned element from (x1) to (x2) along a parabola (its `left` is the centre) */
 function mtgHop(el, x1, x2, lift, ms){
+  // Keep the whole sprite within its positioning frame, including its shadow clearance.
+  lift = Math.max(0, Math.min(lift, el.offsetTop - 12));
   return new Promise(res=>{
     const t0 = performance.now();
     el.classList.add("hopping");
@@ -317,9 +319,9 @@ SlideModules.JUMP_PICK = { mount(host, slide){
       mtgRun(async()=>{
         mtgRight(); confettiCannon(); setSwMood("celebrate");
         const voDone = mtgSay(d.correct, tok);
-        const lift = Math.min(80, 30 + (d.answer - d.at) * nl.U * 0.25);
+        const lift = Math.max(0, Math.min(44, frog.offsetTop - 12, 30 + (d.answer - d.at) * nl.U * 0.25));
         mtgArc(nl.svg, nl.X(d.at), nl.X(d.answer), 136, lift);
-        await mtgHop(frog, nl.X(d.at), nl.X(d.answer), lift + 16, 900);
+        await mtgHop(frog, nl.X(d.at), nl.X(d.answer), lift, 900);
         nl.hold(d.answer);
         await voDone;
         setNavActive(true);
@@ -368,7 +370,7 @@ SlideModules.SEQ_FILL = { mount(host, slide){
   function seatAnimal(i){ animalAt = i; animal.style.left = boxX(i) + "px"; }
   const lastFilledBefore = i => { for(let k = i - 1; k >= 0; k--) if(d.seq[k] != null || boxes[k].classList.contains("filled")) return k; return 0; };
   function activate(){ boxes.forEach(b => b.classList.remove("active")); if(bi < blanks.length) boxes[blanks[bi]].classList.add("active"); }
-  async function hopTo(i){ const x1 = boxX(animalAt), x2 = boxX(i); await mtgHop(animal, x1, x2, 70, 650); animalAt = i; }
+  async function hopTo(i){ const x1 = boxX(animalAt), x2 = boxX(i); await mtgHop(animal, x1, x2, 44, 650); animalAt = i; }
   const playQ = async()=>{ for(const c of d.q){ mtgAlive(tok); if(c.reveal_blank) boxes.forEach(b => b.classList.remove("hidden")); await mtgSay(c.vo, tok); } };
   state.replayAudio = ()=>{ if(busy || bi >= blanks.length) return; busy = true; opts.enable(false); mtgRun(async()=>{ await playQ(); busy = false; opts.enable(true); }); };
 
