@@ -388,6 +388,15 @@ def build_card():
          "prompt_hi": "शाबाश! तुमने कूद-कूद कर गिनती सीख ली!",
          "audio": {"prompt": "vo_well_done", "sfx": "sfx_celebrate"}, "data": {}},
     ]
+    # Natural animals belong to the lesson; the independent game's astronaut cast is unchanged.
+    natural = {"G4": "lesson_grasshopper_cute", "G5": "lesson_rabbit_cute", "G6": "lesson_squirrel_cute", "G7": "lesson_grasshopper_cute"}
+    friends={"T1":"lesson_friend_gold","T2":"lesson_friend_teal","T3":"lesson_friend_peach"}
+    question_frogs={"G2":"lesson_friend_gold","G3":"lesson_friend_teal"}
+    for s in slides:
+        if s["id"] in friends:s["data"]["friend"]=friends[s["id"]]
+        if s["id"] in question_frogs:s["data"]["frog"]=question_frogs[s["id"]]
+        if s["id"] in natural:
+            s["data"]["animal"] = natural[s["id"]]
     # voice roles as metadata (the modules own their audio; the engine's auto-chain is skipped, so
     # these only document which clip is the prompt / hint / reveal for QA and the receipt)
     for s in slides:
@@ -484,6 +493,14 @@ def assets(html, card):
         want.add(k + ".ogg")
         if _stale(src, dst):
             shutil.copy2(src, dst)
+    # Local lesson foley and File9 feedback are versioned by the usual audio content hash.
+    interaction = os.path.join(HERE, "interaction_audio")
+    for f in os.listdir(interaction):
+        if f.endswith(".ogg"):
+            want.add(f)
+            src, dst = os.path.join(interaction, f), os.path.join(aud, f)
+            if _stale(src, dst):
+                shutil.copy2(src, dst)
     for f in os.listdir(aud):
         if f not in want:
             os.remove(os.path.join(aud, f))
@@ -499,6 +516,13 @@ def assets(html, card):
             im.thumbnail((1024, 1024), Image.LANCZOS)
             if _stale(src, dst) or Image.open(dst).size != im.size:
                 im.save(dst, "WEBP", quality=94, method=6)
+    # The display font and its license travel with the offline game.
+    fonts = os.path.join(OUT, "assets", "Fonts")
+    os.makedirs(fonts, exist_ok=True)
+    for f in os.listdir(os.path.join(HERE, "fonts")):
+        src, dst = os.path.join(HERE, "fonts", f), os.path.join(fonts, f)
+        if _stale(src, dst):
+            shutil.copy2(src, dst)
     # file4's drawn play button (and its grey "waiting" twin) live in assets/Images in that engine
     kimg = os.path.join(ENGINE, "kit_images")
     for f in os.listdir(kimg):
@@ -574,10 +598,11 @@ def compile_html(tmpl, card):
     html = re.sub(r"<title>.*?</title>", f"<title>SwiftPAL · {CODE} · {card['title']['hi']}</title>", html, count=1, flags=re.S)
     # the template's head preloads are its sample card's pictures — preload OUR cover instead
     html, n = re.subn(r'(?:<link rel="preload" as="image"[^>]*>)+',
-                      '<link rel="preload" as="image" fetchpriority="high" href="assets/Images/chr_tappu.webp"><link rel="preload" as="image" href="assets/Images/sc_pond_v2.webp">', html, count=1)
+                      '<link rel="preload" as="image" fetchpriority="high" href="assets/Images/lesson_frog.webp"><link rel="preload" as="image" href="assets/Images/sc_pond_v4.webp">', html, count=1)
     # this lesson's styles, after every engine style; its modules, before boot()
     i = html.index("</head>")
     html = html[:i] + '<style id="mtgStyles">\n' + css + "\n</style>\n" + html[i:]
+    html = html.replace('</head>', '<link rel="icon" type="image/webp" href="assets/Images/lesson_frog.webp">\n</head>', 1)
     j = html.rindex("\nboot();")
     html = html[:j] + "\n/* ===== [MTG2A01] lesson modules (4_ENGINE/mtg_modules.js) ===== */\n" + mods + "\n" + html[j:]
     # file4 hard-codes where pages start moving on by themselves; read it from the card
@@ -625,8 +650,8 @@ def main():
         html = compile_html(tmpl, card)
         html = inject_celebration(html)
     html = stamp(html)
-    open(os.path.join(OUT, f"{CODE}.html"), "w", encoding="utf-8").write(html)
-    with open(os.path.join(OUT, "card.json"), "w", encoding="utf-8") as f:
+    open(os.path.join(OUT, f"{CODE}.html"), "w", encoding="utf-8", newline="\n").write(html)
+    with open(os.path.join(OUT, "card.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(card, f, ensure_ascii=False, indent=1)
     for stale in ("app.js", "style.css"):    # the r2 split engine, superseded by the single-file template
         p = os.path.join(OUT, stale)
@@ -634,7 +659,7 @@ def main():
             os.remove(p)
 
     # VO recording list (for a human re-record; Gemini TTS fills assets/Audio meanwhile)
-    with open(os.path.join(HERE, "VO_RECORDING_LIST.md"), "w", encoding="utf-8") as f:
+    with open(os.path.join(HERE, "VO_RECORDING_LIST.md"), "w", encoding="utf-8", newline="\n") as f:
         f.write(f"# VO recording list — {CODE}\n\n{len(VO)} clips. File = `3_BUILD/assets/Audio/<id>.{AUDIO_EXT}`. "
                 "The three `vo_pt_*` transition lines are file4's recordings and are not re-recorded here.\n\n| id | line |\n|---|---|\n")
         for k, v in VO.items():

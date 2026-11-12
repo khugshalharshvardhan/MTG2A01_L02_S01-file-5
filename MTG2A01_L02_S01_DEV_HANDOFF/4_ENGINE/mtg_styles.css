@@ -254,3 +254,43 @@
 @keyframes brRipple{from{transform:translate(-50%,-50%) scale(.4);opacity:.85;}to{transform:translate(-50%,-50%) scale(1.5);opacity:0;}}
 @keyframes brDroplet{0%{transform:translate(0,0) scale(.8);opacity:0;}20%{opacity:.9;}65%{transform:translate(var(--dx),var(--dy)) scale(.7);opacity:.8;}100%{transform:translate(var(--dx),2px) scale(.2);opacity:0;}}
 @media(prefers-reduced-motion:reduce){.br-splash,.mtg-hop-shadow{display:none;}}
+
+/* Lesson v4: the picture meets the frame, with a sky heading and concise footer. */
+.tut-card.br-card{isolation:isolate;background:#f6fbfd;}
+.tut-card.br-card .tut-prompt{position:absolute;left:0;right:0;top:20px;min-height:0;padding:0 100px;z-index:10;font-size:42px;color:#174a69;pointer-events:none;}
+.tut-card.br-card .tut-content{padding:0;justify-content:flex-start;}
+.tut-card.br-card::after{height:80px;}
+.br-wrap{padding-top:0;gap:0;}
+.br-view{flex-shrink:0;background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(255,255,255,.56) 25%,transparent 58%),#b9eff1 url(assets/Images/sc_pond_v4.webp) center/100% 100% no-repeat;border-radius:23px 23px 0 0;box-shadow:none;}
+.br-card .br-cap{min-height:112px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;max-width:none;width:100%;padding:12px 100px 0 150px;color:#173e64;}
+.br-caption-text{margin:0;font:700 25px/1.32 var(--font-hi);text-align:center;max-width:100%;text-wrap:pretty;}
+.br-count-strip{display:flex;justify-content:center;align-items:center;gap:12px;min-height:0;flex-wrap:wrap;}
+.br-count-word{font:800 24px/1.15 var(--font-hi);color:#315d74;padding:3px 10px;border-radius:12px;background:#edf5f8;}
+.br-count-word.current{background:#fff0ae;color:#775000;box-shadow:0 2px 0 #efd789;}
+.br-num,.br-num.big,.br-world.zoomed .br-num.big{box-sizing:border-box;width:46px;height:40px;display:flex;align-items:center;justify-content:center;padding:0;border-radius:12px;font-size:20px;font-weight:650;line-height:1;box-shadow:0 3px 0 rgba(14,80,86,.13);}
+.br-num.big,.br-world.zoomed .br-num.big{font-size:29px;font-weight:800;}
+.br-world .br-rock:not(.key),.br-world .br-num:not(.big){opacity:var(--minor-opacity,1);}
+.br-friend{scale:1;filter:drop-shadow(0 3px 2px rgba(0,65,52,.18));}
+
+/* File9 jl-opt recipe: grey ledge, spring entrance, lateral wrong buzz,
+   green confirmation/glow and disabled alternatives at the third attempt. */
+.mtg-opts{gap:30px;align-items:center;min-height:112px;flex-shrink:0;}
+.mtg-opts:not(.revealed){visibility:hidden;}
+.mtg-opt{position:relative;width:180px;min-width:180px;height:104px;padding:0 22px;border-radius:20px;background:#fff;border:2.69px solid #D5D8DF;box-shadow:0 4px 0 #D9D9D9;font-size:54px;font-weight:800;line-height:1;color:#012F76;display:flex;align-items:center;justify-content:center;transition:border-color .15s,background .15s,box-shadow .15s,opacity .3s;}
+.mtg-opt:not(:disabled):hover{transform:none;border-color:#bec8d5;box-shadow:0 6px 0 #D9D9D9;}
+.mtg-opt:not(:disabled):active{box-shadow:0 2px 0 #D9D9D9;translate:0 2px;}
+.mtg-opt.option-enter{animation:mtgOptionIn .45s cubic-bezier(.3,1.6,.5,1) var(--option-delay,0ms) both;}
+.mtg-opt.right{border:5px solid #00B132;background:#EFFBF2;opacity:1;box-shadow:0 4px 0 #A8E3B9,0 0 6px #00B132,0 0 14px rgba(0,177,50,.45);animation:mtgOptionRight .45s cubic-bezier(.3,1.6,.5,1) both;}
+.mtg-opt.guide{border-color:#00B132;box-shadow:0 4px 0 #D9D9D9,0 0 0 6px rgba(0,177,50,.28);animation:none;}
+.mtg-opt.faded{opacity:.45!important;pointer-events:none;cursor:not-allowed;}
+.mtg-opt.used{opacity:0;visibility:hidden;pointer-events:none;}
+.mtg-opt.option-gone{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .45s ease-out,visibility 0s .45s;}
+@keyframes mtgOptionIn{0%{opacity:0;scale:.3;}100%{opacity:1;scale:1;}}
+@keyframes mtgOptionRight{0%{scale:1;}45%{scale:1.08;}100%{scale:1;}}
+.mtg-question-center,.mtg-sequence-center{justify-content:center;align-items:center;gap:42px;padding-bottom:0;}
+.jp-board{padding:24px 30px 12px;flex-shrink:0;}
+.jp-frog{top:44px;width:112px;height:90px;object-fit:contain;object-position:bottom;}
+.sf-stage{padding:190px 24px 0;flex-shrink:0;}
+.sf-animal{top:64px;height:114px;width:auto;max-width:170px;object-fit:contain;object-position:bottom;}
+.sf-hint-animal{height:112px;top:10px;max-width:160px;object-fit:contain;object-position:bottom;}
+@media(prefers-reduced-motion:reduce){.mtg-opt.option-enter,.mtg-opt.right{animation:none;opacity:1;scale:1;}}

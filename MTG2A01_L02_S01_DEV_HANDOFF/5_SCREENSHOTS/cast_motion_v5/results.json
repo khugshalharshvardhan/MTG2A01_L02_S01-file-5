@@ -1,0 +1,178 @@
+[
+  [
+    "1333: Play hidden while landing VO runs",
+    true
+  ],
+  [
+    "1333: subtitle removed and title one line",
+    true
+  ],
+  [
+    "1333: Play appears after VO completion",
+    true
+  ],
+  [
+    "1333: distinct cover frogs and lively motion",
+    true
+  ],
+  [
+    "1333: T2 compact view expands through intermediate spacing",
+    true
+  ],
+  [
+    "1333: T2 recap contracts smoothly with existing arcs",
+    true
+  ],
+  [
+    "1333: T2 no frame clipping during morph or hop",
+    true
+  ],
+  [
+    "1333: T2 distinct friend loaded",
+    true
+  ],
+  [
+    "1333: T3 compact view expands through intermediate spacing",
+    true
+  ],
+  [
+    "1333: T3 recap contracts smoothly with existing arcs",
+    true
+  ],
+  [
+    "1333: T3 no frame clipping during morph or hop",
+    true
+  ],
+  [
+    "1333: T3 distinct friend loaded",
+    true
+  ],
+  [
+    "1333: G1 intended cute cast loaded",
+    true
+  ],
+  [
+    "1333: G2 intended cute cast loaded",
+    true
+  ],
+  [
+    "1333: G2 mirrored frog stays centred",
+    true
+  ],
+  [
+    "1333: G3 intended cute cast loaded",
+    true
+  ],
+  [
+    "1333: G3 mirrored frog stays centred",
+    true
+  ],
+  [
+    "1333: G4 intended cute cast loaded",
+    true
+  ],
+  [
+    "1333: G5 intended cute cast loaded",
+    true
+  ],
+  [
+    "1333: G6 intended cute cast loaded",
+    true
+  ],
+  [
+    "1333: G7 intended cute cast loaded",
+    true
+  ],
+  [
+    "960: Play hidden while landing VO runs",
+    true
+  ],
+  [
+    "960: subtitle removed and title one line",
+    true
+  ],
+  [
+    "960: Play appears after VO completion",
+    true
+  ],
+  [
+    "960: distinct cover frogs and lively motion",
+    true
+  ],
+  [
+    "960: T2 compact view expands through intermediate spacing",
+    true
+  ],
+  [
+    "960: T2 recap contracts smoothly with existing arcs",
+    true
+  ],
+  [
+    "960: T2 no frame clipping during morph or hop",
+    true
+  ],
+  [
+    "960: T2 distinct friend loaded",
+    true
+  ],
+  [
+    "960: T3 compact view expands through intermediate spacing",
+    true
+  ],
+  [
+    "960: T3 recap contracts smoothly with existing arcs",
+    true
+  ],
+  [
+    "960: T3 no frame clipping during morph or hop",
+    true
+  ],
+  [
+    "960: T3 distinct friend loaded",
+    true
+  ],
+  [
+    "960: G1 intended cute cast loaded",
+    true
+  ],
+  [
+    "960: G2 intended cute cast loaded",
+    true
+  ],
+  [
+    "960: G2 mirrored frog stays centred",
+    true
+  ],
+  [
+    "960: G3 intended cute cast loaded",
+    true
+  ],
+  [
+    "960: G3 mirrored frog stays centred",
+    true
+  ],
+  [
+    "960: G4 intended cute cast loaded",
+    true
+  ],
+  [
+    "960: G5 intended cute cast loaded",
+    true
+  ],
+  [
+    "960: G6 intended cute cast loaded",
+    true
+  ],
+  [
+    "960: G7 intended cute cast loaded",
+    true
+  ],
+  [
+    "reduced motion skips the layout and flight animation",
+    true
+  ],
+  [
+    "no browser errors",
+    true
+  ]
+]

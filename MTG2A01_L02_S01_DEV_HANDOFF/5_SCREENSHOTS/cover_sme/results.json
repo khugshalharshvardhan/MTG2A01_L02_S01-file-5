@@ -1,0 +1,258 @@
+[
+  [
+    "1333: exact File9 frame dimensions and border",
+    true
+  ],
+  [
+    "1333: artwork fills the complete frame",
+    true
+  ],
+  [
+    "1333: both animated frogs stay grounded on their own pads",
+    true
+  ],
+  [
+    "1333: exact 140px round play art",
+    true
+  ],
+  [
+    "1333: local Yatra title font loaded",
+    true
+  ],
+  [
+    "1333: original cover subtitle retained",
+    true
+  ],
+  [
+    "1333: cover has gentle animated scene",
+    true
+  ],
+  [
+    "1333: sound-effects toggle removed from cover",
+    true
+  ],
+  [
+    "1333: reference idle play pulse",
+    true
+  ],
+  [
+    "1333: T1 every SME narration clip has visible exact text",
+    true
+  ],
+  [
+    "1333: T1 all caption text clears navigation",
+    true
+  ],
+  [
+    "1333: T1 all hops remain in the picture",
+    true
+  ],
+  [
+    "1333: T1 counting strip keeps spoken numbers",
+    true
+  ],
+  [
+    "1333: T1 sound-effects toggle removed",
+    true
+  ],
+  [
+    "1333: T2 every SME narration clip has visible exact text",
+    true
+  ],
+  [
+    "1333: T2 all caption text clears navigation",
+    true
+  ],
+  [
+    "1333: T2 all hops remain in the picture",
+    true
+  ],
+  [
+    "1333: T2 counting strip keeps spoken numbers",
+    true
+  ],
+  [
+    "1333: T2 sound-effects toggle removed",
+    true
+  ],
+  [
+    "1333: T3 every SME narration clip has visible exact text",
+    true
+  ],
+  [
+    "1333: T3 all caption text clears navigation",
+    true
+  ],
+  [
+    "1333: T3 all hops remain in the picture",
+    true
+  ],
+  [
+    "1333: T3 counting strip keeps spoken numbers",
+    true
+  ],
+  [
+    "1333: T3 sound-effects toggle removed",
+    true
+  ],
+  [
+    "1333: G1 sound-effects toggle removed",
+    true
+  ],
+  [
+    "1333: G2 sound-effects toggle removed",
+    true
+  ],
+  [
+    "1333: G3 sound-effects toggle removed",
+    true
+  ],
+  [
+    "1333: G4 sound-effects toggle removed",
+    true
+  ],
+  [
+    "1333: G5 sound-effects toggle removed",
+    true
+  ],
+  [
+    "1333: G6 sound-effects toggle removed",
+    true
+  ],
+  [
+    "1333: G7 sound-effects toggle removed",
+    true
+  ],
+  [
+    "960: exact File9 frame dimensions and border",
+    true
+  ],
+  [
+    "960: artwork fills the complete frame",
+    true
+  ],
+  [
+    "960: both animated frogs stay grounded on their own pads",
+    true
+  ],
+  [
+    "960: exact 140px round play art",
+    true
+  ],
+  [
+    "960: local Yatra title font loaded",
+    true
+  ],
+  [
+    "960: original cover subtitle retained",
+    true
+  ],
+  [
+    "960: cover has gentle animated scene",
+    true
+  ],
+  [
+    "960: sound-effects toggle removed from cover",
+    true
+  ],
+  [
+    "960: reference idle play pulse",
+    true
+  ],
+  [
+    "960: T1 every SME narration clip has visible exact text",
+    true
+  ],
+  [
+    "960: T1 all caption text clears navigation",
+    true
+  ],
+  [
+    "960: T1 all hops remain in the picture",
+    true
+  ],
+  [
+    "960: T1 counting strip keeps spoken numbers",
+    true
+  ],
+  [
+    "960: T1 sound-effects toggle removed",
+    true
+  ],
+  [
+    "960: T2 every SME narration clip has visible exact text",
+    true
+  ],
+  [
+    "960: T2 all caption text clears navigation",
+    true
+  ],
+  [
+    "960: T2 all hops remain in the picture",
+    true
+  ],
+  [
+    "960: T2 counting strip keeps spoken numbers",
+    true
+  ],
+  [
+    "960: T2 sound-effects toggle removed",
+    true
+  ],
+  [
+    "960: T3 every SME narration clip has visible exact text",
+    true
+  ],
+  [
+    "960: T3 all caption text clears navigation",
+    true
+  ],
+  [
+    "960: T3 all hops remain in the picture",
+    true
+  ],
+  [
+    "960: T3 counting strip keeps spoken numbers",
+    true
+  ],
+  [
+    "960: T3 sound-effects toggle removed",
+    true
+  ],
+  [
+    "960: G1 sound-effects toggle removed",
+    true
+  ],
+  [
+    "960: G2 sound-effects toggle removed",
+    true
+  ],
+  [
+    "960: G3 sound-effects toggle removed",
+    true
+  ],
+  [
+    "960: G4 sound-effects toggle removed",
+    true
+  ],
+  [
+    "960: G5 sound-effects toggle removed",
+    true
+  ],
+  [
+    "960: G6 sound-effects toggle removed",
+    true
+  ],
+  [
+    "960: G7 sound-effects toggle removed",
+    true
+  ],
+  [
+    "reduced-motion cover is still and title remains visible",
+    true
+  ],
+  [
+    "no browser errors or missing assets",
+    true
+  ]
+]

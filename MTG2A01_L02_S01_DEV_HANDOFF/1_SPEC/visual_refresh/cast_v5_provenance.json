@@ -1,0 +1,42 @@
+{
+  "tool": "built-in image_gen",
+  "transparent_background": true,
+  "assets": [
+    {
+      "key": "frog_gold",
+      "prompt": "One isolated adorable baby golden-green frog, squat round pear-shaped body, buttery yellow belly, olive-green back with a few large caramel spots, short little front toes, wide rounded hind feet on one flat baseline, big round chocolate eyes and a tiny warm smile, facing slightly LEFT in three-quarter view. Clearly a distinct frog character from a bright lime-green slim frog: rounder cheeks, shorter muzzle, warm gold colouring. Premium friendly preschool storybook illustration, soft rounded shapes, clean gentle outline, smooth soft painted shading, full body, no clothing, no helmet, no props, no shadows extending outside character, no ground, no text. Genuine transparent background. Tight complete silhouette with all feet visible, no cutoffs.",
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a1cf3f-fbc0-73e1-b4bf-e43ca0905f80\\exec-19e10d9e-0c0a-4820-88ad-9372a14e0d3a.png",
+      "project_asset": "1_SPEC/art_keyed/lesson_friend_gold.webp"
+    },
+    {
+      "key": "frog_teal",
+      "prompt": "One isolated adorable baby turquoise tree frog, small oval body, pale ivory belly, mint cheek patches, distinct large almond-shaped amber eyes, happy closed-mouth smile, long slim toes with round toe pads, natural seated frog posture with feet on one flat baseline, facing slightly LEFT in three-quarter view. A distinct character with cool turquoise skin, slightly taller head, and delicate toe pads. Premium friendly preschool storybook illustration, soft rounded shapes, clean gentle outline, smooth soft painted shading, full body, no clothing, no helmet, no props, no shadows extending outside character, no ground, no text. Genuine transparent background. Tight complete silhouette with all toes visible, no cutoffs.",
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a1cf3f-fbc0-73e1-b4bf-e43ca0905f80\\exec-a414f8c4-7bc8-4e19-8212-1697af7cb791.png",
+      "project_asset": "1_SPEC/art_keyed/lesson_friend_teal.webp"
+    },
+    {
+      "key": "frog_peach",
+      "prompt": "One isolated adorable baby cinnamon-orange frog, very plump compact round body, warm peach skin, cream belly, tiny chocolate freckles on cheeks, large gentle dark brown eyes set low on a wide rounded head, sweet smiling mouth, stubby little front feet and broad seated back feet on one flat baseline, facing slightly LEFT in three-quarter view. A distinct frog character from golden and turquoise frogs: very chubby, broad face, warm cinnamon-peach hue. Premium friendly preschool storybook illustration, soft rounded shapes, clean gentle outline, smooth soft painted shading, full body, no clothing, no helmet, no props, no shadows extending outside character, no ground, no text. Genuine transparent background. Tight complete silhouette with all feet visible, no cutoffs.",
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a1cf3f-fbc0-73e1-b4bf-e43ca0905f80\\exec-15c71ce1-c2ce-4610-be24-b71f0fb3a174.png",
+      "project_asset": "1_SPEC/art_keyed/lesson_friend_peach.webp"
+    },
+    {
+      "key": "rabbit_cute",
+      "prompt": "One isolated adorable baby rabbit for a preschool counting game, chubby cream-white natural animal body, very large rounded head, short little paws resting on one flat baseline, fluffy round cheeks and tail, one long ear upright and the other gently bent, soft pink ear interiors, large friendly brown eyes, tiny pink nose and gentle smile. Facing slightly RIGHT in three-quarter view. Warm welcoming 2D storybook cartoon, soft round simple forms, clean gentle outline, smooth soft shading, deliberately cute and child friendly rather than realistic. Full body, no clothing, no suit, no helmet, no accessories, no ground, no cast shadow outside character, no text. Genuine transparent background. All paws and ears fully visible.",
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a1cf3f-fbc0-73e1-b4bf-e43ca0905f80\\exec-81237bb3-a5da-41fe-96f8-625a4d05ff6a.png",
+      "project_asset": "1_SPEC/art_keyed/lesson_rabbit_cute.webp"
+    },
+    {
+      "key": "squirrel_cute",
+      "prompt": "One isolated adorable baby squirrel for a preschool counting game, chubby round cinnamon-brown natural animal body, oversized round head and cheeks, very large friendly brown eyes, tiny smiling mouth, small ears, cream belly, subtle three pale back stripes, huge fluffy curled tail like a soft cushion, short little front and hind paws on a flat baseline. Facing slightly RIGHT in three-quarter view. Warm welcoming 2D storybook cartoon, soft round simple forms, clean gentle outline, smooth soft shading, deliberately cute and child friendly rather than realistic. Full body including entire tail, no clothing, no suit, no helmet, no accessories, no ground, no cast shadow outside character, no text. Genuine transparent background.",
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a1cf3f-fbc0-73e1-b4bf-e43ca0905f80\\exec-e61088e4-2450-4e66-9164-73fa93f9c0a5.png",
+      "project_asset": "1_SPEC/art_keyed/lesson_squirrel_cute.webp"
+    },
+    {
+      "key": "grasshopper_cute",
+      "prompt": "One isolated adorable baby grasshopper for a preschool counting game. A friendly small green insect with an oversized round head, two big gentle brown eyes and a sweet little smiling mouth, short soft antennae, short plump lime-green abdomen, simple folded leaf-like wings, six small rounded legs including two clearly recognisable folded long hind legs, all visible foot tips resting on a flat baseline. Facing RIGHT in side three-quarter view, compact silhouette. Premium 2D preschool storybook cartoon with soft round simple forms, clean gentle outline and smooth soft shading. Cute and reassuring, no sharp intimidating spines, no realism, no tiny fiddly anatomy. Full body, no clothing, no suit, no helmet, no accessories, no ground, no cast shadow outside character, no text. Genuine transparent background, all antennae and feet fully visible.",
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a1cf3f-fbc0-73e1-b4bf-e43ca0905f80\\exec-bcb22646-dfc6-4de8-a44e-cc43e677cabb.png",
+      "project_asset": "1_SPEC/art_keyed/lesson_grasshopper_cute.webp"
+    }
+  ]
+}

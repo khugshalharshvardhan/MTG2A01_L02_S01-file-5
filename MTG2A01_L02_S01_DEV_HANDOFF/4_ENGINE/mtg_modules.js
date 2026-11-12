@@ -7,7 +7,7 @@
    ===================================================================================== */
 let _mtgTok = 0;
 const MTG_STOP = "__mtg_stop__";
-function mtgToken(){ return ++_mtgTok; }
+function mtgToken(){ mtgStopFoley(); return ++_mtgTok; }
 function mtgAlive(tok){ if(tok !== _mtgTok) throw MTG_STOP; }
 function mtgWait(ms, tok){ return new Promise((res, rej)=> setTimeout(()=> (tok === _mtgTok ? res() : rej(MTG_STOP)), ms)); }
 function mtgSrc(id){ if(!id) return null; return (CARD.assets && CARD.assets.audio && CARD.assets.audio[id]) || ("assets/Audio/" + id + "." + AUDIO_EXT); }
@@ -25,21 +25,39 @@ function mtgFx(name, fallback, vol){
     a.play().catch(()=>{ if(fallback) fallback(); });
   }catch(e){ if(fallback) fallback(); }
 }
-const mtgRight = ()=> mtgFx("sfx_fb_correct", ()=>{ if(typeof sfxCorrect === "function") sfxCorrect(); });
-const mtgWrong = ()=> mtgFx("sfx_fb_incorrect", ()=>{ if(typeof sfxWrongSoft === "function") sfxWrongSoft(); });
+const mtgRight = (reference=false)=> mtgFx(reference ? "sfx_ref_correct" : "sfx_fb_correct", ()=>{ if(typeof sfxCorrect === "function") sfxCorrect(); });
+const mtgWrong = (reference=false)=> mtgFx(reference ? "sfx_ref_wrong" : "sfx_fb_incorrect", ()=>{ if(typeof sfxWrongSoft === "function") sfxWrongSoft(); });
+const mtgFoley = new Set();
+function mtgStopFoley(){ mtgFoley.forEach(a=>{a.pause();a.removeAttribute("src");});mtgFoley.clear(); }
+function mtgSound(id,volume=.2){
+  if(document.hidden)return;
+  const a=new Audio((typeof _av==="function"?_av: String)("assets/Audio/"+id+".ogg"));
+  a.volume=volume;mtgFoley.add(a);
+  const clear=()=>mtgFoley.delete(a);a.onended=clear;a.onerror=clear;
+  a.play().catch(clear);
+}
 function mtgImg(key){ return "assets/Images/" + key + ".webp"; }
 function mtgOst(t){ const p = $("promptText"); if(p && t != null) p.textContent = t; }
 function mtgPulse(el, cls, ms){ if(!el) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); if(ms) setTimeout(()=> el.classList.remove(cls), ms); }
 const MTG_SVG = "http://www.w3.org/2000/svg";
 /* dotted red jump arc with an arrowhead, from x1 to x2 at baseline y, into an <svg> */
-function mtgArc(svg, x1, x2, y, lift, label){
-  const g = document.createElementNS(MTG_SVG, "g"); g.setAttribute("class", "mtg-arc");
+function mtgArcGeometry(x1,x2,y,lift){
   const mx = (x1 + x2) / 2, top = y - lift, cy = top - lift * 0.35;
   // the head points along the curve's end tangent; the shaft stops at its base so the dots meet the head
   const tx = x2 - mx, ty = y - cy, tl = Math.hypot(tx, ty) || 1, ux = tx / tl, uy = ty / tl;
   const HL = 20, HW = 11, bx = x2 - ux * HL, by = y - uy * HL;
   const d = `M${x1},${y} Q${mx},${cy} ${bx},${by}`;
   const head = `M${x2},${y} L${bx - uy * HW},${by + ux * HW} L${bx + uy * HW},${by - ux * HW} Z`;
+  return {d,head,mx,top};
+}
+function mtgMoveArc(g,x1,x2,y,lift){
+  const a=mtgArcGeometry(x1,x2,y,lift);
+  g.querySelector('.mtg-arc-halo').setAttribute('d',a.d);g.querySelector('.mtg-arc-path').setAttribute('d',a.d);g.querySelector('.mtg-arc-head').setAttribute('d',a.head);
+  const t=g.querySelector('text');if(t){t.setAttribute('x',a.mx);t.setAttribute('y',a.top-lift*.2-6);}
+}
+function mtgArc(svg, x1, x2, y, lift, label){
+  const g = document.createElementNS(MTG_SVG, "g"); g.setAttribute("class", "mtg-arc");
+  const {d,head,mx,top}=mtgArcGeometry(x1,x2,y,lift);
   // a white halo under the red dots and head keeps them readable over grass, water and stones
   [["mtg-arc-halo", d], ["mtg-arc-path", d], ["mtg-arc-head", head]].forEach(([cls, dd])=>{
     const p = document.createElementNS(MTG_SVG, "path");
@@ -59,9 +77,15 @@ function mtgHop(el, x1, x2, lift, ms, cues={}){
   const frog=el.matches(".br-frog,.jp-frog");
   const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const tok=_mtgTok;
+  const facing=el.dataset.faceFlip==='true'?-1:1,restTransform='translate(-50%,0) scaleX('+facing+')';
+  const voice=()=>{
+    mtgSound(frog?"sfx_frog_hop":"sfx_animal_hop",.20);
+    if(frog)mtgSound("sfx_frog_croak",.16);
+  };
   lift=Math.max(0,Math.min(lift,el.offsetTop-(frog?22:12)));
   if(reduced){
-    el.style.left=x2+"px";el.style.transform="translate(-50%,0)";
+    voice();if(el.matches(".br-frog"))mtgSound("sfx_water_land",.2);
+    el.style.left=x2+"px";el.style.transform=restTransform;
     return Promise.resolve();
   }
   return new Promise(resolve=>{
@@ -75,7 +99,7 @@ function mtgHop(el, x1, x2, lift, ms, cues={}){
     el.classList.add("hopping");
     function finish(){
       if(shadow)shadow.remove();
-      el.style.transform="translate(-50%,0)";
+      el.style.transform=restTransform;
       el.classList.remove("hopping");delete el.dataset.hopPhase;
       resolve();
     }
@@ -92,18 +116,19 @@ function mtgHop(el, x1, x2, lift, ms, cues={}){
           x=x1+(x2-x1)*u;height=4*u*(1-u);y=-lift*height;
           sx=1+.08*push-.04*stretch;sy=1-.1*push+.07*stretch;
           tilt=direction*5*Math.sin(2*Math.PI*u);el.dataset.hopPhase="air";
-          if(!tookOff){tookOff=true;if(cues.onTakeoff)cues.onTakeoff();}
+          if(!tookOff){tookOff=true;voice();if(cues.onTakeoff)cues.onTakeoff();}
         }else{
           x=x2;const p=Math.sin(Math.PI*(t-.84)/.16);
           sx=1+.10*p;sy=1-.12*p;el.dataset.hopPhase="land";
-          if(!landed){landed=true;if(cues.onLand)cues.onLand();}
+          if(!landed){landed=true;if(el.matches(".br-frog"))mtgSound("sfx_water_land",.22);if(cues.onLand)cues.onLand();}
         }
       }else{
+        if(!tookOff){tookOff=true;voice();}
         const ease=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
         x=x1+(x2-x1)*ease;y=-Math.sin(Math.PI*t)*lift;
       }
       el.style.left=x+"px";
-      el.style.transform="translate(-50%,"+y+"px) rotate("+tilt+"deg) scale("+sx+","+sy+")";
+      el.style.transform="translate(-50%,"+y+"px) rotate("+tilt+"deg) scale("+(sx*facing)+","+sy+")";
       if(shadow){
         shadow.style.left=x+"px";shadow.style.opacity=String(.22-.13*height);
         shadow.style.transform="translateX(-50%) scale("+(1-.35*height)+")";
@@ -152,13 +177,13 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   /* the scene bleeds to the frame's inner edges: measure the frame rather than assume its width */
   const _bleedL = card ? Math.max(0, host.offsetLeft - card.clientLeft) : 30;
   const VIEW_W = (card && card.clientWidth) ? card.clientWidth : 1113;
-  const VIEW_H = 282, FEET_Y = 194;
-  const span = d.hi - d.lo, START_SPACE = 110, END_SPACE = 190;
-  const U = d.camera ? 80 : (VIEW_W - START_SPACE - END_SPACE) / span;
-  const RW = Math.min(U * .88, 76), RH = RW * 52 / 160;
-  const WORLD_W = d.camera ? START_SPACE + span * U + END_SPACE : VIEW_W;
+  const VIEW_H = 320, FEET_Y = 226;
+  const span = d.hi - d.lo, START_SPACE = 100, END_SPACE = 220;
+  let U = d.camera ? 80 : (VIEW_W - START_SPACE - END_SPACE) / span;
+  const RW = Math.min(U * .86, 76), RH = RW * 52 / 160;
+  let WORLD_W = d.camera ? START_SPACE + span * U + END_SPACE : VIEW_W;
   const X = n => START_SPACE + (n - d.lo) * U;
-  const ROCK_TOP = FEET_Y - 3, STONE_Y = FEET_Y - 2, NUM_Y = FEET_Y + 32;
+  const ROCK_TOP = FEET_Y - 10, STONE_Y = FEET_Y - 2, NUM_Y = FEET_Y + 38;
   const LOTUS = "assets/Images/prop_lotus.svg";
 
   const wrap = mtgEl("div", "br-wrap");
@@ -168,7 +193,8 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   for(let n = d.lo; n <= d.hi; n++){
     const big = (n % d.step === 0);
     const s = mtgEl("div", "br-rock" + (big ? " key" : ""));
-    s.style.cssText = `left:${X(n)}px;top:${ROCK_TOP}px;width:${RW}px;height:${RH}px`;
+    const restSize=(n===d.lo||n===d.hi)?124:(big?120:44);
+    s.style.cssText = `left:${X(n)}px;top:${ROCK_TOP}px;width:${restSize}px;height:${restSize*52/160}px`;
     const im = mtgEl("img"); im.src = LOTUS; im.alt = ""; s.appendChild(im);
     world.appendChild(s); stones[n] = s;
     const lb = mtgEl("div", "br-num" + (big ? " big" : ""), String(n));
@@ -178,24 +204,77 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   }
   const svg = document.createElementNS(MTG_SVG, "svg"); svg.setAttribute("class", "br-svg");
   svg.setAttribute("width", WORLD_W); svg.setAttribute("height", VIEW_H); world.appendChild(svg);
+  const bridgeArcs=[];
   const dot = mtgEl("div", "br-dot"); dot.style.top = (ROCK_TOP + RH * 0.3) + "px"; world.appendChild(dot);
   // Distinct landing and resting leaves leave room for both frogs at the far end.
-  const FW = Math.min(70, U * .86), FH = FW * 579 / 477;
-  const FRW = FW, FRH = FRW * 574 / 551, friendX = X(d.hi) + 110;
+  const FW = 104, FH = 84;
+  const FRW = 100, FRH = 81;let friendX = X(d.hi) + 140;
   const rest = mtgEl("img", "br-rest-leaf"); rest.src = LOTUS; rest.alt = "";
-  rest.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-3)+"px;width:110px;height:36px";
+  rest.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-10)+"px;width:136px;height:44px";
   world.appendChild(rest);
-  const friend = mtgEl("img", "br-friend"); friend.src = mtgImg("chr_friend");
+  const friend = mtgEl("img", "br-friend"); friend.src = mtgImg(d.friend || "lesson_friend_gold");
   friend.alt = "टप्पू का दोस्त";
-  friend.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-FRH)+"px;width:"+FRW+"px";
+  friend.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-FRH)+"px;width:"+FRW+"px;height:"+FRH+"px;object-fit:contain";
   world.appendChild(friend);
-  const frog = mtgEl("img", "br-frog"); frog.src = mtgImg("chr_tappu"); frog.alt = "टप्पू";
-  frog.style.width = FW + "px"; frog.style.top = (FEET_Y-FH) + "px";
+  const frog = mtgEl("img", "br-frog"); frog.src = mtgImg("lesson_frog"); frog.alt = "टप्पू";
+  frog.style.width = FW + "px";frog.style.height=FH+"px";frog.style.objectFit="contain";frog.style.top = (FEET_Y-FH) + "px";
   let at = d.lo; frog.style.left = X(at) + "px"; world.appendChild(frog);
   view.appendChild(world); wrap.appendChild(view);
-  const cap = mtgEl("div", "br-cap"); wrap.appendChild(cap);
+  const cap = mtgEl("section", "br-cap");cap.setAttribute("aria-label","साथ में पढ़िए");
+  const captionText=mtgEl("p","br-caption-text"),countStrip=mtgEl("div","br-count-strip");
+  cap.appendChild(captionText);cap.appendChild(countStrip);wrap.appendChild(cap);
   wrap.style.margin = `0 0 0 ${-_bleedL}px`; wrap.style.width = VIEW_W + "px";
   host.appendChild(wrap);
+
+  // A close view for each hop; a separate, equally spaced milestone recap.
+  // Never shrink the characters to squeeze fifty unit labels into one viewport.
+  let overview=false,layoutFrame=0;
+  function paintGeometry(unit){
+    U=unit;WORLD_W=START_SPACE+span*U+END_SPACE;
+    world.style.width=WORLD_W+"px";svg.setAttribute("width",WORLD_W);
+    Object.keys(stones).forEach(k=>{stones[k].style.left=X(+k)+"px";nums[k].style.left=X(+k)+"px";});
+    friendX=X(d.hi)+140;friend.style.left=rest.style.left=friendX+"px";frog.style.left=X(at)+"px";
+    bridgeArcs.forEach(r=>mtgMoveArc(r.node,X(r.from),X(r.to),STONE_Y-2,r.lift));
+    world.dataset.unitSpacing=U.toFixed(3);
+  }
+  function rangeTarget(a,b,unit){
+    const width=START_SPACE+span*unit+END_SPACE,x=n=>START_SPACE+(n-d.lo)*unit;
+    const left=Math.max(0,x(Math.max(d.lo,a))-80),right=b>=d.hi?width:Math.min(width,x(b)+80);
+    const z=Math.min(1,VIEW_W/(right-left));
+    return {x:Math.max(0,Math.min(width*z-VIEW_W,(left+right)*z/2-VIEW_W/2)),z};
+  }
+  function layoutOverview(on,a=at,b=Math.min(d.hi,at+d.step),ms=950){
+    if(!d.camera)return Promise.resolve();
+    const targetUnit=on?(VIEW_W-START_SPACE-END_SPACE)/span:80;
+    if(overview===on&&Math.abs(U-targetUnit)<.01)return Promise.resolve();
+    if(cameraFrame){cancelAnimationFrame(cameraFrame);cameraFrame=0;if(cameraFinish)cameraFinish();cameraFinish=null;}
+    const fromUnit=U,fromCamera={...camera},target=on?{x:0,z:1}:rangeTarget(a,b,targetUnit),start=performance.now();
+    const fromMinor=parseFloat(world.style.getPropertyValue('--minor-opacity')||'1'),toMinor=on?0:1;
+    world.dataset.layoutMoving='true';world.dataset.layoutTarget=on?'compact':'expanded';
+    return new Promise(resolve=>{
+      function tick(now){
+        if(tok!==_mtgTok){layoutFrame=0;resolve();return;}
+        const t=ms&&!reduceMotion()?Math.min(1,(now-start)/ms):1,e=t*t*(3-2*t);
+        paintGeometry(fromUnit+(targetUnit-fromUnit)*e);
+        paintCamera(fromCamera.x+(target.x-fromCamera.x)*e,fromCamera.z+(target.z-fromCamera.z)*e);
+        world.style.setProperty('--minor-opacity',fromMinor+(toMinor-fromMinor)*e);
+        if(t<1)layoutFrame=requestAnimationFrame(tick);
+        else{layoutFrame=0;overview=on;world.classList.toggle('overview',on);world.dataset.layoutMoving='false';resolve();}
+      }
+      tick(start);
+    });
+  }
+  function showCaption(c){
+    const text=mtgText(c.vo);if(!text)return;
+    if(/^vo_c_\d+$/.test(c.vo)){
+      countStrip.querySelectorAll(".current").forEach(e=>e.classList.remove("current"));
+      const chip=mtgEl("span","br-count-word current");chip.textContent=text;countStrip.appendChild(chip);
+    }else{
+      captionText.textContent=text;
+      if(at!==d.hi||countStrip.children.length<5)countStrip.replaceChildren();
+    }
+    cap.dataset.clip=c.vo;
+  }
 
   // Scale, translation and labels share one animation clock anchored at the feet.
   let cam = d.camera ? "all" : null, cameraFrame = 0, cameraFinish = null;
@@ -205,6 +284,7 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
     camera={x,z}; world.style.setProperty("--z",z);
     world.classList.toggle("zoomed",z<.48);
     world.style.transform="translate("+(-x)+"px,"+(FEET_Y*(1-z))+"px) scale("+z+")";
+    Object.keys(nums).forEach(k=>{const screenX=X(+k)*z-x;nums[k].style.visibility=screenX<24||screenX>VIEW_W-24?"hidden":"";});
   }
   function cameraTo(x,z,ms=700){
     if(cameraFrame) cancelAnimationFrame(cameraFrame);
@@ -233,21 +313,22 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   function applyCam(mode,ms=700){
     if(!d.camera)return Promise.resolve();
     cam=mode;
-    if(mode==="all")return cameraTo(0,VIEW_W/WORLD_W,ms);
-    if(Array.isArray(mode))return rangeCamera(mode[0],mode[1],ms);
+    if(mode==="all")return layoutOverview(true,at,d.hi,ms);
+    if(overview)return layoutOverview(false,at,Math.min(d.hi,at+d.step),950);
+    if(Array.isArray(mode))return rangeCamera(at,Math.min(d.hi,at+d.step),ms);
     return rangeCamera(at,Math.min(d.hi,at+d.step),ms);
   }
-  paintCamera(0,d.camera?VIEW_W/WORLD_W:1);
+  layoutOverview(!!d.camera,at,d.hi,0);paintCamera(0,1);
 
   const glow = n => { mtgPulse(stones[n], "glow", 1400); mtgPulse(nums[n], "glow", 1400); };
   const mark = n => { stones[n].classList.add("mark"); nums[n].classList.add("mark"); mtgPulse(nums[n], "pop", 600); };
   const clearLit = () => Object.values(stones).forEach(s => s.classList.remove("lit"));
   async function jump(a, b){
     clearLit(); dot.classList.remove("show");
-    if(cam==="follow") await rangeCamera(a,b,420);
+    if(d.camera){await layoutOverview(false,a,b,950);await rangeCamera(a,b,420);}
     const lift=Math.max(12,Math.min(62,FEET_Y-FH-22));
     view.dataset.jumpActive="true";
-    mtgArc(svg,X(a),X(b),STONE_Y-2,lift);
+    bridgeArcs.push({node:mtgArc(svg,X(a),X(b),STONE_Y-2,lift),from:a,to:b,lift});
     await mtgHop(frog,X(a),X(b),lift,950,{
       onTakeoff:()=>{mtgLeafBob(stones[a]);mtgPondRipple(world,X(a),FEET_Y+5);},
       onLand:()=>{mtgLeafBob(stones[b]);mtgPondRipple(world,X(b),FEET_Y+5);}
@@ -265,6 +346,7 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
     if(c.dot != null){ dot.style.left = X(c.dot) + "px"; dot.classList.add("show"); stones[c.dot].classList.add("lit"); mtgPulse(nums[c.dot], "pop", 500); }
     if(c.mark != null) mark(c.mark);
     if(c.happy){ mtgPulse(frog, "bounce", 900); mtgPulse(friend, "bounce", 900); }
+    showCaption(c);
     const voDone = mtgSay(c.vo, tok);
     if(c.jump){ await mtgWait(250, tok); if(c.span) await spanLight(c.jump[0], c.span[1]); await jump(c.jump[0], c.jump[1]); }
     await voDone;
@@ -275,16 +357,19 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   function waitTap(){
     return new Promise((res, rej)=>{
       frog.classList.add("tappable");
+      frog.setAttribute("role","button");frog.tabIndex=0;frog.setAttribute("aria-label","टप्पू को "+d.step+" कदम कुदाइए");
       let hand = mtgHand(world, X(at) + 6, FEET_Y - FH * .55);
       const again = setInterval(()=>{ if(tok !== _mtgTok){ clearInterval(again); return; } if(!hand){ hand = mtgHand(world, X(at) + 6, FEET_Y - FH * .55); setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800); } }, 6000);
       setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800);
       frog.onclick = ()=>{
         if(tok !== _mtgTok) return rej(MTG_STOP);
         frog.onclick = null; frog.classList.remove("tappable"); clearInterval(again);
+        frog.tabIndex=-1;frog.removeAttribute("role");frog.onkeydown=null;
         if(hand){ hand.remove(); hand = null; }
         sfxTap(); SwiftPAL.emit("teach_tap", { slide_id: slide.id, at });
         res();
       };
+      frog.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();frog.click();}};
     });
   }
   let done = false, lastStep = null;
@@ -293,7 +378,7 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
     await mtgWait(350, tok);
     for(const st of d.steps){
       if(st.wait_tap) await waitTap();
-      cap.textContent = st.cap; mtgPulse(cap, "in", 400);
+      countStrip.replaceChildren();cap.dataset.smeText=st.cap;
       lastStep = st;
       for(const c of st.clips) await runClip(c);
       await mtgWait(250, tok);
@@ -337,24 +422,44 @@ function mtgNumberLine(o){
 /* option tray shared by JUMP_PICK and SEQ_FILL */
 function mtgOptions(host, values, onPick){
   const row = mtgEl("div", "mtg-opts");
+  let lockedAnswer=null;
   const cells = values.map(v=>{
     const b = mtgEl("button", "mtg-opt", String(v)); b.type = "button"; b.dataset.v = v; b.disabled = true;
-    b.onclick = ()=> onPick(v, b);
+    b.setAttribute('aria-disabled','true');
+    b.onclick = ()=> {if(b.disabled||(lockedAnswer!==null&&v!==lockedAnswer))return;mtgFx("sfx_ref_tap",null,.4);onPick(v, b);};
     row.appendChild(b); return b;
   });
   host.appendChild(row);
   return { row, cells,
-    enable(on){ cells.forEach(c => { if(!c.classList.contains("used") && !c.classList.contains("faded")) c.disabled = !on; }); },
-    wiggle(b){ mtgPulse(b, "wiggle", 600); } };
+    enable(on){
+      if(on&&!row.classList.contains("revealed")){row.classList.add("revealed");cells.forEach((c,i)=>{c.style.setProperty("--option-delay",i*65+"ms");c.classList.add("option-enter");});}
+      cells.forEach(c => {
+        c.disabled=!on||c.classList.contains('used')||(lockedAnswer!==null&&+c.dataset.v!==lockedAnswer);
+        c.setAttribute('aria-disabled',String(c.disabled));
+      });
+    },
+    lockTo(answer){
+      lockedAnswer=answer;
+      cells.forEach(c=>{const wrong=+c.dataset.v!==answer&&!c.classList.contains('used');c.classList.toggle('faded',wrong);if(wrong||c.classList.contains('used')){c.disabled=true;c.setAttribute('aria-disabled','true');}});
+    },
+    clearLock(){lockedAnswer=null;cells.forEach(c=>c.classList.remove('faded','guide'));},
+    wiggle(b){
+      if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+      b.animate([{translate:"0 0"},{translate:"-9px 0"},{translate:"9px 0"},{translate:"-6px 0"},{translate:"6px 0"},{translate:"0 0"}],{duration:400,easing:"ease-in-out"});
+    } };
 }
 /* WA3: fade + disable everything except the answer, pulse it, hand cue — no tick before the tap */
 function mtgGuideTo(opts, answer){
+  opts.lockTo(answer);
   let target = null;
   opts.cells.forEach(c=>{
     if(+c.dataset.v === answer && !c.classList.contains("used")){ target = c; c.classList.add("guide"); }
     else if(!c.classList.contains("used")){ c.classList.add("faded"); c.disabled = true; }
   });
-  if(target) pointNudgeAt(target, true);
+  if(target){
+    target.animate([{boxShadow:"0 0 0 0 rgba(0,177,50,0)"},{boxShadow:"0 0 0 8px rgba(0,177,50,.32),0 10px 26px rgba(0,177,50,.34)"},{boxShadow:"0 0 0 0 rgba(0,177,50,0)"}],{duration:1100,iterations:matchMedia("(prefers-reduced-motion:reduce)").matches?1:3,easing:"ease-in-out"});
+    pointNudgeAt(target, true);
+  }
   return target;
 }
 
@@ -364,13 +469,15 @@ function mtgGuideTo(opts, answer){
 SlideModules.JUMP_PICK = { mount(host, slide){
   const d = slide.data, tok = mtgToken();
   state.ownsAudio = true;
+  host.classList.add("mtg-question-center");
   const board = mtgEl("div", "jp-board");
   const span = d.hi - d.lo;
   const nl = mtgNumberLine({ lo: d.lo, hi: d.hi, width: 1000, height: 200, baseY: 140,
     every: span > 30 ? 5 : 1, bigEvery: span > 30 ? 10 : (d.step >= 5 ? 5 : 2), cls: "jp-nl" });
   board.appendChild(nl.root);
   for(let i = 0; i + 1 < d.prior.length; i++) mtgArc(nl.svg, nl.X(d.prior[i]), nl.X(d.prior[i + 1]), 136, Math.min(70, 26 + (d.prior[i + 1] - d.prior[i]) * nl.U * 0.25));
-  const frog = mtgEl("img", "jp-frog"); frog.src = mtgImg("chr_tappu"); frog.style.left = nl.X(d.at) + "px";
+  const frog = mtgEl("img", "jp-frog"); frog.src = mtgImg(d.frog || "lesson_frog");frog.alt="मेंढक";frog.style.left = nl.X(d.at) + "px";
+  if(d.frog){frog.dataset.faceFlip='true';frog.style.transform='translate(-50%,0) scaleX(-1)';}
   nl.root.appendChild(frog);
   host.appendChild(board);
   let tries = 0, busy = true, solved = false;
@@ -379,14 +486,14 @@ SlideModules.JUMP_PICK = { mount(host, slide){
   state.replayAudio = ()=>{ if(busy || solved) return; busy = true; opts.enable(false); mtgRun(async()=>{ await playQ(); busy = false; opts.enable(true); }); };
   function pick(v, b){
     if(busy || solved) return;
-    sfxTap();
     if(v === d.answer){
       solved = true; busy = true; opts.enable(false); stopNudge();
       b.classList.remove("guide"); b.classList.add("right");
+      opts.cells.forEach(c=>{if(c!==b)c.classList.add("option-gone");});
       SwiftPAL.emit("jump_pick_correct", { slide_id: slide.id, attempts: tries + 1 });
       mtgOst(d.correct_ost);
       mtgRun(async()=>{
-        mtgRight(); confettiCannon(); setSwMood("celebrate");
+        mtgRight(true); confettiCannon(); setSwMood("celebrate");
         const voDone = mtgSay(d.correct, tok);
         const lift = Math.max(0, Math.min(44, frog.offsetTop - 12, 30 + (d.answer - d.at) * nl.U * 0.25));
         mtgArc(nl.svg, nl.X(d.at), nl.X(d.answer), 136, lift);
@@ -398,7 +505,8 @@ SlideModules.JUMP_PICK = { mount(host, slide){
       return;
     }
     tries++; state.attempts = tries; busy = true; opts.enable(false);
-    opts.wiggle(b); mtgWrong(); setSwMood("tryagain");
+    if(tries>=3)opts.lockTo(d.answer);
+    opts.wiggle(b); mtgWrong(true); setSwMood("tryagain");
     SwiftPAL.emit("jump_pick_wrong", { slide_id: slide.id, attempt: tries, picked: v });
     mtgRun(async()=>{
       await mtgWait(450, tok);
@@ -420,6 +528,7 @@ SlideModules.JUMP_PICK = { mount(host, slide){
 SlideModules.SEQ_FILL = { mount(host, slide){
   const d = slide.data, tok = mtgToken();
   state.ownsAudio = true;
+  host.classList.add("mtg-sequence-center");
   const stage = mtgEl("div", "sf-stage");
   const strip = mtgEl("div", "sf-strip");
   const boxes = d.seq.map((n, i)=>{
@@ -427,7 +536,7 @@ SlideModules.SEQ_FILL = { mount(host, slide){
     if(d.intro) b.classList.add("hidden");
     strip.appendChild(b); return b;
   });
-  const animal = mtgEl("img", "sf-animal"); animal.src = mtgImg(d.animal);
+  const animal = mtgEl("img", "sf-animal"); animal.src = mtgImg(d.animal);animal.alt=({lesson_grasshopper:"टिड्डा",lesson_rabbit:"खरगोश",lesson_squirrel:"गिलहरी"})[d.animal.replace(/_cute$/,'')]||"";
   stage.appendChild(animal); stage.appendChild(strip); host.appendChild(stage);
   const blanks = d.seq.map((n, i) => n == null ? i : -1).filter(i => i >= 0);
   let bi = 0, tries = 0, busy = true;
@@ -471,20 +580,19 @@ SlideModules.SEQ_FILL = { mount(host, slide){
   function pick(v, b){
     if(busy || bi >= blanks.length) return;
     const bl = d.blanks[bi], idx = blanks[bi];
-    sfxTap();
     if(v === bl.answer){
       busy = true; opts.enable(false); stopNudge();
       b.classList.remove("guide"); b.classList.add("used");
       SwiftPAL.emit("seq_fill_correct", { slide_id: slide.id, blank: bi, attempts: tries + 1 });
       mtgRun(async()=>{
-        mtgRight(); confettiCannon(); setSwMood("celebrate"); mtgOst(mtgText(bl.correct));
+        mtgRight(true); confettiCannon(); setSwMood("celebrate"); mtgOst(mtgText(bl.correct));
         const box = boxes[idx]; box.textContent = String(v); box.classList.remove("blank", "active"); box.classList.add("filled");
         mtgPulse(box, "glow", 1500);
         const voDone = mtgSay(bl.correct, tok);
         await hopTo(idx);
         await voDone;
         bi++; tries = 0; state.attempts = 0;
-        opts.cells.forEach(c => c.classList.remove("faded", "guide"));
+        opts.clearLock();
         if(bi >= blanks.length){
           boxes.forEach((bx, k)=> setTimeout(()=> mtgPulse(bx, "glow", 900), k * 140));
           setNavActive(true);
@@ -494,7 +602,8 @@ SlideModules.SEQ_FILL = { mount(host, slide){
       return;
     }
     tries++; state.attempts = tries; busy = true; opts.enable(false);
-    opts.wiggle(b); mtgWrong(); setSwMood("tryagain");
+    if(tries>=3)opts.lockTo(bl.answer);
+    opts.wiggle(b); mtgWrong(true); setSwMood("tryagain");
     SwiftPAL.emit("seq_fill_wrong", { slide_id: slide.id, blank: bi, attempt: tries, picked: v });
     mtgRun(async()=>{
       await mtgWait(450, tok);

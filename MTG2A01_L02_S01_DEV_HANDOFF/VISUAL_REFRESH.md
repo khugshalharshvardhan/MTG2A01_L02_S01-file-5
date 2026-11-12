@@ -1,5 +1,69 @@
 # Visual refresh
 
+## Explicit third-attempt option lock
+
+G1–G7 now store the terminal answer in the option tray, independently of visual classes. The third wrong tap immediately disables and fades all incorrect options. The correct option becomes selectable once the feedback VO ends. Replay cannot release the terminal lock; a correctly filled blank clears it for the next blank while keeping used options disabled. Disabled buttons also reject direct handler calls and expose `aria-disabled`. The faded style overrides the entrance animation's retained opacity.
+
+Verification: `1_SPEC/_verify_third_attempt.py` passed all 64 checks across every question and blank, including attempts one/two, immediate third-error disabling, visible fading, correct-only selection, replay, handler guards and next-blank reset. No browser errors. Receipt: `5_SCREENSHOTS/third_attempt/results.json`.
+
+## Cover, continuous expansion and cute cast — v5
+
+The cover title is now one line with no subtitle. The reference round Play button is hidden while the landing VO runs and becomes visible only when the existing audio gate releases it. Tappu performs a small anticipation/hop/landing cycle with a timed splash, while the gold companion gives a separate gentle reaction. Reduced motion shows a still scene.
+
+The long-number scenes now interpolate unit spacing, leaf and label positions, jump-arc geometry, minor-label opacity and camera position on one requestAnimationFrame timeline. Expansion takes 950ms; recap contraction follows the camera cue duration. Arc nodes are retained rather than destroyed and rebuilt. The frog's feet share the camera anchor, so its on-screen size and baseline remain stable. Leaving the slide cancels the pending transition through the normal mount token.
+
+Three distinct gold, teal and peach frog companions replace mirrored copies of Tappu. T1/T2/T3 have separate friends; G2/G3 use the gold and teal frogs, mirrored to face the jump direction. New round, friendly rabbit, squirrel and grasshopper sprites are shared by the sequence scenes and their hints. The space-game cast and mechanics remain unchanged.
+
+New artwork was made with the built-in image-generation tool. Exact prompts and original generated paths: `1_SPEC/visual_refresh/cast_v5_provenance.json`. Selected masters: `1_SPEC/visual_refresh/cast_v5/`. Exported project assets: `1_SPEC/art_keyed/lesson_friend_*.webp` and `lesson_*_cute.webp`, prepared with `1_SPEC/prepare_cast_v5.py` and copied by the standard builder.
+
+Current checks: `python -X utf8 1_SPEC/_verify_cast_motion_v5.py` and `python -X utf8 1_SPEC/_drive_mechanics.py 5_SCREENSHOTS/cast_motion_v5_regression`. The first check simulates a three-second landing VO and verifies that Play stays hidden until its actual end event; it also samples intermediate layout frames, stable arcs, clipping, sprite loading, mirroring and reduced motion at two viewport sizes. Evidence: `5_SCREENSHOTS/cast_motion_v5/`.
+
+Final verification: 44/44 focused checks and 84/84 full lesson regression checks passed. No browser console errors. Expansion was sampled over approximately 950ms and recap contraction over approximately 700ms at both viewport sizes. The space-game implementation and its nine-round configuration remain unchanged.
+
+## File9 cover and SME read-along follow-up
+
+The current cover uses File9's 1040 × 574 art-card frame, 8px white border, 40px radius and shadow. Its original round gold and grey play SVGs are copied without modification, rendered at 140 × 140 with the same 30px bottom inset. The lesson's existing disabled/start/audio gates are retained, with File9-style ready pop and idle pulse.
+
+Pond artwork fills the entire cover. A white sky veil supports the dark navy/green, two-line Devanagari display title. The locally bundled Yatra One font and SIL OFL license are in `1_SPEC/fonts/` and copied to `3_BUILD/assets/Fonts/`; source: https://github.com/google/fonts/tree/main/ofl/yatraone. Title entry, sequential jump trails, grounded frog breathing, water rings and small water glints animate the cover. Reduced-motion mode shows a still composition with the title visible.
+
+The added “ध्वनि चालू” effects controls are removed from every screen. Narration replay and the previously added quiet foley remain available as before.
+
+T1–T3 now display every original authored narration clip as it is spoken. Complete explanations are preserved; counting clips build a separate read-along word strip. The caption panel replaces the short equations introduced in v4. The pond is 320 design pixels high, preserving space for the longest explanation, counting strip and Next button without overlaps. No narration files or space-game mechanics were changed.
+
+Current QA: `python -X utf8 1_SPEC/_verify_cover_sme.py`, followed by `python -X utf8 1_SPEC/_drive_mechanics.py 5_SCREENSHOTS/cover_sme_regression` with `MTG_TEST_URL` set to the local preview. Evidence is saved in `5_SCREENSHOTS/cover_sme/` and `cover_sme_regression/`. The older v4 verifier's expected cover frame, caption and removed-control checks have been brought up to date.
+
+Final results: 64/64 cover/SME checks and 84/84 full-lesson regression checks passed, with no browser console or missing-resource errors. All authored audio-text metadata remains unchanged. File9's two play-button SVGs match their source hashes. The local preview server uses a larger request queue to handle simultaneous browser asset loads.
+
+## Lesson v4 — pond layout, lesson animals and File9 options (2026-11-12)
+
+The cover and T1–T3 use `sc_pond_v4.webp`, an open-water background without edge foliage or flowers. The picture meets the container's inner top and side edges; the heading sits over the sky. A separate footer holds one short prompt or counting equation and the navigation. Full spoken explanations are retained. Enlarged resting pads support the frogs at a shared feet baseline.
+
+All teaching number labels use a fixed 46 × 40 design-pixel box; only the font size changes between landing numbers and skipped numbers. T2/T3 use a close view for each jump and a milestone overview for the recap, keeping the frog at a readable size. Unit labels and pads are hidden only in the milestone overview; the close view preserves the unit spacing used to demonstrate each jump.
+
+G1–G3 centre the number line and option tray vertically. G1–G7 use new natural frog, rabbit, squirrel and grasshopper sprites; main scenes and hint popups use the same animals. The space game's astronaut sprites, level data and `SPACE_PODS` implementation are unchanged.
+
+Options follow File9's `jl-opt` design: white face, grey ledge, spring entrance, lateral wrong-answer shake, green correct feedback, and a three-pulse green hint. Third-attempt guidance disables and fades all incorrect choices, leaving the answer for the child to select. Used sequence options disappear and the remaining choices are restored for the next blank. The exact File9 correct, wrong and tap sound files are retained in `1_SPEC/interaction_audio/`.
+
+Original synthesised hop, croak and water-landing sounds play independently of narration. A sound-effects toggle is available on the cover and lesson screens. Leaving an activity stops its foley; reduced motion still provides the audio cue without playing the flight or splash animation.
+
+Artwork was made with the built-in image-generation tool. Prompts and original generated paths are in `1_SPEC/visual_refresh/lesson_v4_provenance.json`; copied masters are retained in `1_SPEC/visual_refresh/lesson_v4/`. Project assets are in `1_SPEC/art_keyed/lesson_*.webp` and `sc_pond_v4.webp`. `prepare_lesson_v4.py` performs alpha-bound trimming, export and deterministic sound preparation. Normal builds use the retained project assets and need no image API or File9 checkout.
+
+Rebuild and review from the handoff directory:
+
+```powershell
+python -X utf8 1_SPEC/build_skill_MTG2A01_L02_S01.py
+python -X utf8 1_SPEC/_serve_preview.py 8942
+# In another terminal:
+$env:MTG_TEST_URL='http://127.0.0.1:8942/MTG2A01_L02_S01.html'
+python -X utf8 1_SPEC/_verify_lesson_v4.py
+python -X utf8 1_SPEC/_verify_lesson_v4.py --real-audio
+python -X utf8 1_SPEC/_drive_mechanics.py 5_SCREENSHOTS/lesson_v4_regression
+```
+
+The lesson v4 checks cover both 1333 × 750 and 960 × 540 layouts, equal number boxes, grounded cover frogs, frame-by-frame hop bounds, readable long-sequence characters, keyboard frog taps, every guided blank's third-attempt lock, File9 feedback requests, sound muting and reduced motion. Interaction tests simulate narration; the separate audio check decodes all seven new effects in Chrome. Screenshots and receipts live in `5_SCREENSHOTS/lesson_v4/` and `lesson_v4_regression/`.
+
+Final verification: 115/115 lesson layout and interaction checks, 14/14 sound-control placement checks (`--controls`), 84/84 full-lesson regression checks, and all seven sound effects decoded successfully. No browser console errors. Source/generated JavaScript syntax and `git diff --check` passed.
+
 The lesson now uses a generated opaque pond backdrop, independent of the counting camera, and original vector space scenery. Original assets are retained.
 
 ## Source files
