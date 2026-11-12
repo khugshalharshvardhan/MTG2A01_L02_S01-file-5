@@ -44,6 +44,22 @@
     true
   ],
   [
+    "frog shows preparation, flight and landing",
+    true
+  ],
+  [
+    "frog has ground shadow and water feedback",
+    true
+  ],
+  [
+    "temporary jump effects are removed",
+    true
+  ],
+  [
+    "frog returns to a clean resting pose",
+    true
+  ],
+  [
     "5s hops stay inside pond on every sampled frame",
     true
   ],
@@ -117,6 +133,14 @@
   ],
   [
     "reduced motion stops floating animals",
+    true
+  ],
+  [
+    "reduced motion completes jumps without moving effects",
+    true
+  ],
+  [
+    "reduced motion leaves no temporary jump objects",
     true
   ],
   [

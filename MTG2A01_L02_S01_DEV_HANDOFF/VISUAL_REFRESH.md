@@ -61,3 +61,11 @@ The current grasshopper is sp_grasshopper_v3.webp: one green hind leg on the lef
 The sequence sprites previously started at the top edge of their frame and jumped upward by 70px. The sequence layout now reserves 64px of headroom, keeps 12px above the number strip, and uses a 44px hop. The shared hop helper also limits height to the actual available headroom. Frog number-line jumps use the same safe height for both the sprite and its drawn arc. Characters remain fully visible instead of being hidden by clipping.
 
 All 29 frame-by-frame bounds/header checks passed across G1-G7 at 1333x750 and 960x540. All 24 sequence character, answer and hint checks also passed; no browser errors. Sources: 4_ENGINE/mtg_modules.js and mtg_styles.css. Test: 1_SPEC/_verify_jump_bounds.py; evidence: 5_SCREENSHOTS/jump_bounds_fix/results.json. Audio playback was simulated.
+
+## Tappu jump animation
+
+Frog hops now use a short crouch, a feet-anchored stretch and gentle tilt during flight, and a soft landing squash. A ground shadow stays under the frog; pond take-off and landing trigger short-lived water ripples and tiny droplets, while the supporting lily pad dips and settles. Number-line frog hops share the body motion; other characters retain their existing hop.
+
+The hop keeps its original total duration and destination. Headroom accounts for sprite deformation. Transient effects are noninteractive and removed after playback; leaving a slide also cancels an unfinished hop. Reduced-motion mode moves directly to the destination and suppresses the added effects. No new sounds interrupt the narration.
+
+Verification: 37 visual/input checks and 29 jump-boundary checks passed, including every sampled frog frame, all three motion phases, cleanup, reduced motion, two viewport sizes and no browser errors. Audio was simulated. A mid-flight review screenshot is saved locally as 5_SCREENSHOTS/visual_refresh/tappu_in_flight.png.

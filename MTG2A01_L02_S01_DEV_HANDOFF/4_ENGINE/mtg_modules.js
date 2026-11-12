@@ -54,21 +54,87 @@ function mtgArc(svg, x1, x2, y, lift, label){
   requestAnimationFrame(()=> g.classList.add("show"));
   return g;
 }
-/* hop an absolutely-positioned element from (x1) to (x2) along a parabola (its `left` is the centre) */
-function mtgHop(el, x1, x2, lift, ms){
-  // Keep the whole sprite within its positioning frame, including its shadow clearance.
-  lift = Math.max(0, Math.min(lift, el.offsetTop - 12));
-  return new Promise(res=>{
-    const t0 = performance.now();
+/* Feet-anchored hop: frog anticipation, flight and soft landing share one clock. */
+function mtgHop(el, x1, x2, lift, ms, cues={}){
+  const frog=el.matches(".br-frog,.jp-frog");
+  const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const tok=_mtgTok;
+  lift=Math.max(0,Math.min(lift,el.offsetTop-(frog?22:12)));
+  if(reduced){
+    el.style.left=x2+"px";el.style.transform="translate(-50%,0)";
+    return Promise.resolve();
+  }
+  return new Promise(resolve=>{
+    const start=performance.now(),direction=Math.sign(x2-x1)||1;
+    let shadow=null,tookOff=false,landed=false;
+    if(frog){
+      shadow=mtgEl("span","mtg-hop-shadow");shadow.setAttribute("aria-hidden","true");
+      shadow.style.cssText="left:"+x1+"px;top:"+(el.offsetTop+el.offsetHeight-4)+"px;width:"+(el.offsetWidth*.66)+"px";
+      el.parentNode.appendChild(shadow);
+    }
     el.classList.add("hopping");
-    (function f(now){
-      const k = Math.min(1, (now - t0) / ms);
-      const e = k < .5 ? 2*k*k : 1 - Math.pow(-2*k + 2, 2) / 2;
-      el.style.left = (x1 + (x2 - x1) * e) + "px";
-      el.style.transform = `translate(-50%, ${-Math.sin(Math.PI * k) * lift}px)`;
-      if(k < 1) requestAnimationFrame(f); else { el.style.transform = "translate(-50%,0)"; el.classList.remove("hopping"); res(); }
-    })(t0);
+    function finish(){
+      if(shadow)shadow.remove();
+      el.style.transform="translate(-50%,0)";
+      el.classList.remove("hopping");delete el.dataset.hopPhase;
+      resolve();
+    }
+    function frame(now){
+      if(tok!==_mtgTok||!el.isConnected){finish();return;}
+      const t=Math.min(1,(now-start)/ms);
+      let x=x1,y=0,sx=1,sy=1,tilt=0,height=0;
+      if(frog){
+        if(t<.12){
+          const p=Math.sin((t/.12)*Math.PI/2);
+          sx=1+.08*p;sy=1-.1*p;el.dataset.hopPhase="prepare";
+        }else if(t<.84){
+          const u=(t-.12)/.72,stretch=Math.sin(Math.PI*u),push=Math.exp(-18*u);
+          x=x1+(x2-x1)*u;height=4*u*(1-u);y=-lift*height;
+          sx=1+.08*push-.04*stretch;sy=1-.1*push+.07*stretch;
+          tilt=direction*5*Math.sin(2*Math.PI*u);el.dataset.hopPhase="air";
+          if(!tookOff){tookOff=true;if(cues.onTakeoff)cues.onTakeoff();}
+        }else{
+          x=x2;const p=Math.sin(Math.PI*(t-.84)/.16);
+          sx=1+.10*p;sy=1-.12*p;el.dataset.hopPhase="land";
+          if(!landed){landed=true;if(cues.onLand)cues.onLand();}
+        }
+      }else{
+        const ease=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+        x=x1+(x2-x1)*ease;y=-Math.sin(Math.PI*t)*lift;
+      }
+      el.style.left=x+"px";
+      el.style.transform="translate(-50%,"+y+"px) rotate("+tilt+"deg) scale("+sx+","+sy+")";
+      if(shadow){
+        shadow.style.left=x+"px";shadow.style.opacity=String(.22-.13*height);
+        shadow.style.transform="translateX(-50%) scale("+(1-.35*height)+")";
+      }
+      if(t<1)requestAnimationFrame(frame);else{el.style.left=x2+"px";finish();}
+    }
+    frame(start);
   });
+}
+function mtgPondRipple(parent,x,y){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches||!parent.isConnected)return;
+  const ripple=mtgEl("div","br-splash");ripple.setAttribute("aria-hidden","true");
+  ripple.style.left=x+"px";ripple.style.top=y+"px";
+  ripple.appendChild(mtgEl("i","br-ripple"));
+  ripple.appendChild(mtgEl("i","br-ripple br-ripple-late"));
+  [-16,0,16].forEach((dx,i)=>{
+    const drop=mtgEl("i","br-droplet");
+    drop.style.setProperty("--dx",dx+"px");drop.style.setProperty("--dy",(-14-(i===1?7:0))+"px");
+    ripple.appendChild(drop);
+  });
+  parent.appendChild(ripple);setTimeout(()=>ripple.remove(),680);
+}
+function mtgLeafBob(leaf){
+  if(!leaf||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  const art=leaf.querySelector("img");
+  if(art&&art.animate)art.animate([
+    {transform:"translateY(0) rotate(0deg)"},
+    {transform:"translateY(3px) rotate(3deg)",offset:.3},
+    {transform:"translateY(0) rotate(-2deg)",offset:.7},
+    {transform:"translateY(0) rotate(0deg)"}
+  ],{duration:430,easing:"ease-out"});
 }
 /* our own hand cue (the engine's nudge hand lives in .slide-stage and is hidden by some layers) */
 function mtgHand(parent, x, y){ const h = mtgEl("img", "mtg-hand"); h.src = "assets/UI/nudge_hand_new.svg"; h.style.left = x + "px"; h.style.top = y + "px"; parent.appendChild(h); return h; }
@@ -182,7 +248,10 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
     const lift=Math.max(12,Math.min(62,FEET_Y-FH-22));
     view.dataset.jumpActive="true";
     mtgArc(svg,X(a),X(b),STONE_Y-2,lift);
-    await mtgHop(frog,X(a),X(b),lift,950);
+    await mtgHop(frog,X(a),X(b),lift,950,{
+      onTakeoff:()=>{mtgLeafBob(stones[a]);mtgPondRipple(world,X(a),FEET_Y+5);},
+      onLand:()=>{mtgLeafBob(stones[b]);mtgPondRipple(world,X(b),FEET_Y+5);}
+    });
     view.dataset.jumpActive="false";
     at=b;view.dataset.landedAt=String(at);mark(b);glow(b);
   }

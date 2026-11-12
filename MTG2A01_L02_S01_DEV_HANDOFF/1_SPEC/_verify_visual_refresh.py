@@ -36,7 +36,7 @@ def pair():
     return [w,p];""")
 STUB="""HTMLMediaElement.prototype.play=function(){const a=this;setTimeout(()=>a.dispatchEvent(new Event('ended')),60);return Promise.resolve();};
 (function(){const A=window.AudioContext||window.webkitAudioContext;if(A)A.prototype.decodeAudioData=function(){return Promise.resolve(this.createBuffer(1,1440,24000));};})();"""
-d.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument',{'source':STUB+"window.__pondAudit={samples:0,outside:0,anchorErrors:0,cameraFrames:0};\n(function frame(){\n const v=document.querySelector('.br-view'), f=document.querySelector('.br-frog'), w=document.querySelector('.br-world'),a=window.__pondAudit;\n if(v&&f&&w){\n  if(f.classList.contains('hopping')){\n   a.samples++;const r=f.getBoundingClientRect(),b=v.getBoundingClientRect();\n   if(r.left<b.left-2||r.right>b.right+2||r.top<b.top-2||r.bottom>b.bottom+2)a.outside++;\n  }\n  if(w.dataset.cameraMoving==='true'){\n   a.cameraFrames++;const m=new DOMMatrix(getComputedStyle(w).transform);\n   if(Math.abs(m.f+194*m.a-194)>.2)a.anchorErrors++;\n  }\n }\n requestAnimationFrame(frame);\n})();"})
+d.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument',{'source':STUB+"window.__pondAudit={samples:0,outside:0,anchorErrors:0,cameraFrames:0,prepare:0,air:0,land:0,shadowFrames:0,rippleFrames:0};\n(function frame(){\n const v=document.querySelector('.br-view'), f=document.querySelector('.br-frog'), w=document.querySelector('.br-world'),a=window.__pondAudit;\n if(v&&f&&w){\n  if(f.classList.contains('hopping')){\n   a.samples++;if(f.dataset.hopPhase)a[f.dataset.hopPhase]++;if(document.querySelector('.mtg-hop-shadow'))a.shadowFrames++;if(document.querySelector('.br-splash'))a.rippleFrames++;const r=f.getBoundingClientRect(),b=v.getBoundingClientRect();\n   if(r.left<b.left-2||r.right>b.right+2||r.top<b.top-2||r.bottom>b.bottom+2)a.outside++;\n  }\n  if(w.dataset.cameraMoving==='true'){\n   a.cameraFrames++;const m=new DOMMatrix(getComputedStyle(w).transform);\n   if(Math.abs(m.f+194*m.a-194)>.2)a.anchorErrors++;\n  }\n }\n requestAnimationFrame(frame);\n})();"})
 try:
     metrics(1333,750)
     go(None)
@@ -57,6 +57,11 @@ try:
     check('friend rests on its own lotus leaf',js("const a=document.querySelector('.br-friend').getBoundingClientRect(),b=document.querySelector('.br-rest-leaf').getBoundingClientRect();return Math.abs(a.bottom-b.top)<8 && a.left>=b.left && a.right<=b.right"))
     check('all numbered resting places are lotus leaves',js("return [...document.querySelectorAll('.br-rock img')].every(i=>i.src.includes('prop_lotus.svg'))"))
     check('landing numbers are larger than skipped numbers',js("return parseFloat(getComputedStyle(document.querySelector('.br-num.big')).fontSize)>parseFloat(getComputedStyle(document.querySelector('.br-num:not(.big)')).fontSize)*1.2"))
+    check('frog shows preparation, flight and landing',js("return __pondAudit.prepare>0&&__pondAudit.air>0&&__pondAudit.land>0"))
+    check('frog has ground shadow and water feedback',js("return __pondAudit.shadowFrames>0&&__pondAudit.rippleFrames>0"))
+    wait("!document.querySelector('.mtg-hop-shadow,.br-splash')")
+    check('temporary jump effects are removed',js("return !document.querySelector('.mtg-hop-shadow,.br-splash')"))
+    check('frog returns to a clean resting pose',js("const f=document.querySelector('.br-frog');return !f.classList.contains('hopping')&&!f.dataset.hopPhase&&f.style.transform.replaceAll(' ','').replaceAll('px','')==='translate(-50%,0)'"))
     shot('02_pond_2s')
     go(1)
     wait("!!document.querySelector('.br-frog.tappable')")
@@ -130,6 +135,10 @@ try:
     shot('10_space_small')
     d.execute_cdp_cmd('Emulation.setEmulatedMedia',{'features':[{'name':'prefers-reduced-motion','value':'reduce'}]})
     check('reduced motion stops floating animals',js("return [...document.querySelectorAll('.sp-astro-in')].every(e=>getComputedStyle(e).animationName==='none')"))
+    go(0)
+    wait("!document.getElementById('navBtn').disabled")
+    check('reduced motion completes jumps without moving effects',js("return document.querySelector('.br-view').dataset.landedAt==='10'&&__pondAudit.shadowFrames===0&&__pondAudit.rippleFrames===0"))
+    check('reduced motion leaves no temporary jump objects',js("return !document.querySelector('.mtg-hop-shadow,.br-splash,.br-frog.hopping')"))
     errors=[x['message'] for x in d.get_log('browser') if x['level']=='SEVERE' and 'favicon' not in x['message']]
     check('no browser errors',not errors)
     for error in errors:print(error,flush=True)

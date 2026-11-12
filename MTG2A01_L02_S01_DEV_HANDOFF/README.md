@@ -64,4 +64,4 @@ Both expect the build served on port 8931.
 
 ## Visual refresh
 
-See [VISUAL_REFRESH.md](VISUAL_REFRESH.md) for the new pond and vector space artwork, mouse/touch/keyboard controls, source asset prompts, and the 115 passing verification checks.
+See [VISUAL_REFRESH.md](VISUAL_REFRESH.md) for the new pond and vector space artwork, mouse/touch/keyboard controls, source asset prompts, and animation, interaction, and jump-boundary verification.

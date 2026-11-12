@@ -243,3 +243,14 @@
 /* Keep the full sequence character and its jump arc within the activity frame. */
 .sf-stage{padding-top:182px;}
 .sf-animal{top:64px;}
+
+/* Jump feedback stays behind the sprite and away from number labels. */
+.br-frog.hopping,.jp-frog.hopping{transform-origin:50% 100%;filter:drop-shadow(0 1px 2px rgba(0,45,64,.12));}
+.mtg-hop-shadow{position:absolute;height:7px;border-radius:50%;background:rgba(10,68,79,.7);filter:blur(1.5px);transform:translateX(-50%);pointer-events:none;z-index:3;}
+.br-splash{position:absolute;width:0;height:0;z-index:4;pointer-events:none;}
+.br-ripple{position:absolute;left:0;top:0;width:60px;height:12px;border:2px solid rgba(234,255,255,.9);border-radius:50%;animation:brRipple .62s ease-out both;}
+.br-ripple-late{animation-delay:.09s;width:42px;height:9px;}
+.br-droplet{position:absolute;width:4px;height:6px;border-radius:55%;background:#e2fcff;animation:brDroplet .4s ease-out both;}
+@keyframes brRipple{from{transform:translate(-50%,-50%) scale(.4);opacity:.85;}to{transform:translate(-50%,-50%) scale(1.5);opacity:0;}}
+@keyframes brDroplet{0%{transform:translate(0,0) scale(.8);opacity:0;}20%{opacity:.9;}65%{transform:translate(var(--dx),var(--dy)) scale(.7);opacity:.8;}100%{transform:translate(var(--dx),2px) scale(.2);opacity:0;}}
+@media(prefers-reduced-motion:reduce){.br-splash,.mtg-hop-shadow{display:none;}}
