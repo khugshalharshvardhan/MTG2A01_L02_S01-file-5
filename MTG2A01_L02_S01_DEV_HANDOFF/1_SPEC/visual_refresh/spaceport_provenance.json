@@ -1,0 +1,26 @@
+{
+  "tool": "built-in image_gen",
+  "assets": [
+    {
+      "key": "frog",
+      "reference": "1_SPEC/art_keyed/lesson_frog.webp",
+      "prompt": "Use case: illustration-story. Asset type: isolated transparent full-body astronaut sprite for a children's skip-counting game. Use the reference animal's face, colours and friendly personality as identity/style reference. Create one adorable lime green frog with cream belly and large friendly amber eyes wearing a cute rounded mint green and ivory suit with teal trim. Oversized head inside a clear bubble helmet, with NO glare covering the face, tiny arms by sides, two short boots grounded on the same flat baseline. Front-facing with slight three-quarter view, welcoming smile, whole helmet and all limbs visible. Helmet and head occupy the upper 55 percent of the silhouette so the same sprite can be cropped for a pod passenger. Compact proportions, soft storybook cartoon shading, gentle crisp outline. Plain empty chest panel for a number badge to be added by code. No numbers, no writing, no props, no planet, no floor, no shadow outside character, no outer glow. Genuine transparent background.",
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a1cf3f-fbc0-73e1-b4bf-e43ca0905f80\\exec-eb5ddc8e-2c97-4273-83de-935bee896fe3.png",
+      "project_asset": "1_SPEC/art_keyed/spaceport_frog.webp"
+    },
+    {
+      "key": "rabbit",
+      "reference": "1_SPEC/art_keyed/lesson_rabbit_cute.webp",
+      "prompt": "Use case: illustration-story. Asset type: isolated transparent full-body astronaut sprite for a children's skip-counting game. Use the reference animal's face, colours and friendly personality as identity/style reference. Create one adorable cream baby rabbit with soft pink ear interiors, one upright and one bent ear visible inside a generous oval transparent helmet wearing a cute rounded ivory suit with warm peach and coral trim. Oversized head inside a clear bubble helmet, with NO glare covering the face, tiny arms by sides, two short boots grounded on the same flat baseline. Front-facing with slight three-quarter view, welcoming smile, whole helmet and all limbs visible. Helmet and head occupy the upper 55 percent of the silhouette so the same sprite can be cropped for a pod passenger. Compact proportions, soft storybook cartoon shading, gentle crisp outline. Plain empty chest panel for a number badge to be added by code. No numbers, no writing, no props, no planet, no floor, no shadow outside character, no outer glow. Genuine transparent background.",
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a1cf3f-fbc0-73e1-b4bf-e43ca0905f80\\exec-d3c21ff3-27f5-4d26-8180-71c6f8eaba44.png",
+      "project_asset": "1_SPEC/art_keyed/spaceport_rabbit.webp"
+    },
+    {
+      "key": "squirrel",
+      "reference": "1_SPEC/art_keyed/lesson_squirrel_cute.webp",
+      "prompt": "Use case: illustration-story. Asset type: isolated transparent full-body astronaut sprite for a children's skip-counting game. Use the reference animal's face, colours and friendly personality as identity/style reference. Create one adorable chubby cinnamon squirrel with cream cheeks, big friendly brown eyes, tiny round ears, and a fluffy curved tail visible behind the suit wearing a cute rounded ivory suit with lavender and soft plum trim. Oversized head inside a clear bubble helmet, with NO glare covering the face, tiny arms by sides, two short boots grounded on the same flat baseline. Front-facing with slight three-quarter view, welcoming smile, whole helmet and all limbs visible. Helmet and head occupy the upper 55 percent of the silhouette so the same sprite can be cropped for a pod passenger. Compact proportions, soft storybook cartoon shading, gentle crisp outline. Plain empty chest panel for a number badge to be added by code. No numbers, no writing, no props, no planet, no floor, no shadow outside character, no outer glow. Genuine transparent background.",
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a1cf3f-fbc0-73e1-b4bf-e43ca0905f80\\exec-79f827f3-0f03-4a71-a1e4-fbb67a3c8434.png",
+      "project_asset": "1_SPEC/art_keyed/spaceport_squirrel.webp"
+    }
+  ]
+}

@@ -651,31 +651,34 @@ SlideModules.SPACE_PODS = { mount(host, slide){
   $("stage").classList.add("mtg-game"); document.body.classList.add("mtg-game");
   const root = mtgEl("div", "sp-root"); $("stage").appendChild(root);
   const done = new Set();
-  let curVo = g.menu_vo;
-  /* file4's own header audio chip graphic, cloned so the game's replay button matches it */
-  const audioBtn = mtgEl("button", "sp-audio", ($("audioChip") && $("audioChip").innerHTML) || "🔊"); audioBtn.type = "button"; audioBtn.setAttribute("aria-label", "फिर सुनिए");
-  audioBtn.onclick = ()=>{ state.audioReplays++; play(mtgSrc(curVo), ()=>{}); };
-  const buddy = mtgEl("div", "sp-swiftie", `<img src="assets/UI/sw_head_talking.webp" alt="">`);
-  const scene = mtgEl("div", "sp-scene");
-  root.appendChild(scene); root.appendChild(audioBtn); root.appendChild(buddy);
-  const say = (id)=>{ curVo = id; return mtgSay(id, tok); };
+  let narrationBusy=false,levelRunning=false,travel=0;
+  const universe=mtgEl('div','sp-universe','<div class="sp-cosmos"></div><div class="sp-rails"></div>');
+  universe.setAttribute('aria-hidden','true');document.body.prepend(universe);
+  let scene = mtgEl("div", "sp-scene");root.appendChild(scene);
+  const reduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let lastAnimal=-Infinity;
+  function animalSound(cast){if(performance.now()-lastAnimal<450)return;lastAnimal=performance.now();mtgSound(cast==='sp_frog'?'sfx_frog_croak':cast==='sp_rabbit'?'sfx_space_rabbit':'sfx_space_squirrel',.16);}
+  let narrationQueue=Promise.resolve();
+  const say = id=>{
+    const task=narrationQueue.then(async()=>{mtgAlive(tok);narrationBusy=true;root.dataset.narrating='true';try{await mtgSay(id,tok);}finally{narrationBusy=false;root.dataset.narrating='false';}});
+    narrationQueue=task.catch(()=>{});return task;
+  };
+  const CAST_ART={sp_frog:'spaceport_frog',sp_rabbit:'spaceport_rabbit',sp_squirrel:'spaceport_squirrel'};
+  const castImg=cast=>mtgImg(CAST_ART[cast]||cast);
   const badgeAt = (cast)=> g.badge[cast] || [0.5, 0.65];
   function astronaut(cast, n, cls){
     const a = mtgEl("div", "sp-astro " + (cls || ""));
     const inner = mtgEl("div", "sp-astro-in");
-    const im = mtgEl("img"); im.src = mtgImg(cast); im.draggable = false;
+    const im = mtgEl("img"); im.src = castImg(cast); im.draggable = false;im.alt='';
     const [bx, by] = badgeAt(cast);
     const bd = mtgEl("div", "sp-badge", String(n)); bd.style.left = (bx * 100) + "%"; bd.style.top = (by * 100) + "%";
     inner.appendChild(im); inner.appendChild(bd); a.appendChild(inner); a.dataset.n = n;
     return a;
   }
-  /* an animal riding in a pod: shown through a window cut to the glass dome, so nothing pokes out of it;
-     the helmet is centred in the dome (CARD rider = [helmet centre x, helmet top y] as sprite fractions) */
+  /* The new sprites share a helmet-first silhouette, cropped inside the pod's glass dome. */
   function rider(cast, cls){
     const w = mtgEl("div", "sp-dome");
-    const im = mtgEl("img", cls); im.src = mtgImg(cast); im.draggable = false; im.alt = "";
-    const [cx, top] = (g.rider && g.rider[cast]) || [0.5, 0.05];
-    im.style.transform = `translate(${-cx * 100}%, ${-top * 100}%)`;
+    const im = mtgEl("img", cls); im.src = castImg(cast); im.draggable = false; im.alt = "";
     w.appendChild(im); return w;
   }
   function seat(pod, cast, n){
@@ -687,8 +690,8 @@ SlideModules.SPACE_PODS = { mount(host, slide){
   function puff(pod){
     for(let i = 0; i < 7; i++){
       const p = mtgEl("span", "sp-puff");
-      const ang = (i / 7) * Math.PI * 2;
-      p.style.setProperty("--dx", Math.cos(ang) * 70 + "px"); p.style.setProperty("--dy", Math.sin(ang) * 46 + "px");
+      const ang = Math.PI/2+(i / 6-.5)*Math.PI;
+      p.style.setProperty("--dx", Math.cos(ang) * 58 + "px"); p.style.setProperty("--dy", Math.sin(ang) * 36 + "px");
       p.style.animationDelay = (i * 25) + "ms";
       pod.appendChild(p); setTimeout(()=> p.remove(), 900);
     }
@@ -697,34 +700,39 @@ SlideModules.SPACE_PODS = { mount(host, slide){
 
   // ---------------- MENU ----------------
   function menu(){
+    levelRunning=false;root.removeAttribute('data-step');root.dataset.playable='false';
     scene.innerHTML = "";
     scene.appendChild(mtgEl("div", "sp-title big", "★ " + g.title + " ★"));
     const row = mtgEl("div", "sp-menu");
     g.levels.forEach((L, i)=>{
       const c = mtgEl("button", "sp-card c" + i + (done.has(i) ? " done" : "")); c.type = "button";
+      c.disabled=done.has(i);c.setAttribute('aria-label',L.label+(done.has(i)?', पूर्ण':', शुरू करें'));
+      c.appendChild(mtgEl('div','sp-mission-step',String(L.step)));
       const art = mtgEl("div", "sp-card-art");
-      const pod = mtgEl("img", "sp-card-pod"); pod.src = mtgImg("sp_pod");
+      const pod = mtgEl("img", "sp-card-pod"); pod.src = 'assets/Images/spaceport_pod.svg';pod.alt='';
       art.appendChild(rider(L.cast, "sp-card-animal")); art.appendChild(pod);
       c.appendChild(art);
       c.appendChild(mtgEl("div", "sp-card-lbl", L.label));
       c.appendChild(mtgEl("div", "sp-card-play", done.has(i) ? "✔" : "▶"));
       if(done.has(i)) c.appendChild(mtgEl("div", "sp-card-badge", "★"));
-      c.onclick = ()=>{ if(done.has(i) || tok !== _mtgTok) return; sfxTap(); stopAudio(); runLevel(i); };
+      c.onclick = ()=>{ if(done.has(i)||levelRunning || tok !== _mtgTok) return;levelRunning=true;sfxTap();mtgSound('sfx_space_ready',.18);runLevel(i); };
       row.appendChild(c);
     });
     scene.appendChild(row);
   }
 
   // ---------------- ROUND ----------------
-  function round(L, r){
-    return new Promise((resolve, reject)=>{
+  function createDock(L, r, world){
+      let resolve,reject;
+      const completed=new Promise((yes,no)=>{resolve=yes;reject=no;});
       const R = L.rounds[r];
-      scene.innerHTML = "";
-      scene.appendChild(mtgEl("div", "sp-title", "★ " + L.label + " ★"));
+      const scene=mtgEl('div','sp-scene');scene.dataset.dock=String(r);scene.style.left=(r*1333)+'px';scene.inert=true;
+      scene.setAttribute('aria-hidden','true');world.appendChild(scene);
       const pods = mtgEl("div", "sp-pods");
       const podEls = R.seq.map((n, i)=>{
         const p = mtgEl("div", "sp-pod dd-zone"); p.dataset.i = i;
-        const im = mtgEl("img", "sp-pod-img"); im.src = mtgImg("sp_pod"); im.draggable = false;
+        const im = mtgEl("img", "sp-pod-img"); im.src = 'assets/Images/spaceport_pod.svg'; im.draggable = false;im.alt='';
+        const engine=mtgEl('span','sp-engine');engine.setAttribute('aria-hidden','true');p.appendChild(engine);
         p.appendChild(im); pods.appendChild(p); return p;
       });
       const nums = [];
@@ -732,19 +740,17 @@ SlideModules.SPACE_PODS = { mount(host, slide){
       scene.appendChild(pods);
       const ground = mtgEl("div", "sp-ground");
       const pool = shuffle(R.seq.filter((n, i) => !R.prefilled.includes(i)).concat(R.distractors));
-      const W = 1333 - 300, x0 = 230, gap = W / pool.length;
+      const W = 1333 - 190, x0 = 95, gap = W / pool.length;
       const walkers = pool.map((n, k)=>{
         const a = astronaut(L.cast, n, "walker"); a.style.left = (x0 + gap * k + gap / 2 - 75) + "px";
         ground.appendChild(a); return a;
       });
       scene.appendChild(ground);
-      let wrongSaid = false, finished = false, idleT = null, guidedOnce = false, busyVo = false;
+      let wrongSaid = false, finished = false, idleT = null, guidedOnce = false, busyVo = true;
       let selected = null, tapLocked = false;
       const status = mtgEl("div", "sp-status", "जानवर चुनिए, फिर खाली यान चुनिए।");
       status.setAttribute("role", "status"); status.setAttribute("aria-live", "polite");
       scene.appendChild(status);
-      const roundLabel = mtgEl("div", "sp-round", "दौर " + (r + 1) + " / " + L.rounds.length);
-      scene.appendChild(roundLabel);
       function clearSelection(){
         if(selected){ selected.classList.remove("selected"); selected.setAttribute("aria-pressed", "false"); }
         selected = null;
@@ -757,6 +763,11 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         const src = walkers.find(w => +w.dataset.n === n && !w.classList.contains("snapped"));
         if(!src) return;
         target.classList.add("cue");
+        if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+          src.classList.add('selected');
+          setTimeout(()=>{src.classList.remove('selected');target.classList.remove('cue');},2200);
+          return;
+        }
         const gh = astronaut(L.cast, n, "ghost");
         const sr = src.getBoundingClientRect(), tr = target.getBoundingClientRect(), rr = root.getBoundingClientRect();
         const sc = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--scale")) || 1;
@@ -778,6 +789,7 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         }, g.inactivity_ms);
       }
       function gradeDrop(zone, tile){
+          if(busyVo||narrationBusy||finished||scene.inert)return;
           if(zone.classList.contains("filled") || tile.classList.contains("snapped")) return;
           clearSelection();
           if(tok !== _mtgTok || finished) return;
@@ -790,17 +802,19 @@ SlideModules.SPACE_PODS = { mount(host, slide){
             zone.setAttribute("aria-label", String(n) + ", भरा हुआ यान");
             status.textContent = "सही! " + n;
             mtgRight();
+            mtgSound('sfx_space_dock',.2);
             nums[i] = seat(zone, L.cast, n);
             mtgPulse(nums[i], "glow", 1200); mtgPulse(zone, "snap", 600);
-            busyVo = true; say(`vo_g_n_${n}`).then(()=>{ busyVo = false; }).catch(()=>{});
+            busyVo = true;root.dataset.playable='false'; say(`vo_g_n_${n}`).then(()=>{ busyVo = false;root.dataset.playable=String(!finished); }).catch(()=>{});
             SwiftPAL.emit("space_drop_correct", { slide_id: slide.id, step: L.step, round: r + 1, n });
             if(!needed().length) complete(); else armIdle();
           } else {
             status.textContent = "फिर कोशिश कीजिए।";
             mtgWrong();
+            mtgSound('sfx_space_puff',.15);mtgPulse(tile,'returning',450);
             mtgPulse(zone, "wiggle", 650); puff(zone);
             SwiftPAL.emit("space_drop_wrong", { slide_id: slide.id, step: L.step, round: r + 1, n, pod: i });
-            if(!wrongSaid){ wrongSaid = true; busyVo = true; say(L.wrong).then(()=>{ busyVo = false; }).catch(()=>{}); }
+            if(!wrongSaid){ wrongSaid = true; busyVo = true;root.dataset.playable='false'; say(L.wrong).then(()=>{ busyVo = false;root.dataset.playable='true'; }).catch(()=>{}); }
             armIdle();
           }
       }
@@ -813,7 +827,7 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         p.setAttribute("aria-disabled", String(filled));
         p.setAttribute("aria-label", filled ? String(R.seq[i]) + ", भरा हुआ यान" : "खाली यान " + (i + 1));
         const activate = () => {
-          if(!selected || finished || tapLocked || busyVo || p.classList.contains("filled")) return;
+          if(!selected || finished || tapLocked || busyVo || scene.inert || p.classList.contains("filled")) return;
           tapLocked = true; gradeDrop(p, selected);
           setTimeout(() => { tapLocked = false; }, 650);
         };
@@ -823,9 +837,10 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         w.setAttribute("role", "button"); w.setAttribute("aria-pressed", "false"); w.tabIndex = 0;
         w.setAttribute("aria-label", String(w.dataset.n) + ", जानवर चुनिए");
         const select = () => {
-          if(finished || busyVo || w.classList.contains("snapped")) return;
+          if(finished || busyVo || scene.inert || w.classList.contains("snapped")) return;
           const wasSelected = selected === w; clearSelection();
           if(!wasSelected){
+            animalSound(L.cast);
             selected = w; w.classList.add("selected"); w.setAttribute("aria-pressed", "true");
             needed().forEach(p => p.classList.add("select-target"));
             status.textContent = w.dataset.n + " चुना। अब खाली यान चुनिए।";
@@ -833,39 +848,70 @@ SlideModules.SPACE_PODS = { mount(host, slide){
           }
         };
         // The engine distinguishes taps from drags for mouse and touch, including preventDefault.
-        makeDraggable(w, gradeDrop, {onTap:select, onPick:clearSelection});
+        makeDraggable(w, gradeDrop, {onTap:select, onPick:()=>{clearSelection();if(!busyVo&&!narrationBusy)animalSound(L.cast);}});
         w.onkeydown = keyActivate(select);
         w.addEventListener("mousedown", ()=> clearTimeout(idleT)); w.addEventListener("touchstart", ()=> clearTimeout(idleT), { passive: true });
       });
       async function complete(){
-        finished = true; clearTimeout(idleT);
+        finished = true;root.dataset.playable='false'; clearTimeout(idleT);
         try{
           await mtgWait(700, tok);
           SwiftPAL.emit("space_round_done", { slide_id: slide.id, step: L.step, round: r + 1 });
           const voDone = say(g.round_done_vo);
           for(let i = 0; i < 5; i++){ mtgPulse(nums[i], "glow", 700); await mtgWait(260, tok); }
-          confettiCannon();
-          podEls.forEach((p, i)=> setTimeout(()=> p.classList.add("fly"), 150 + i * 90));
+          await voDone;
+          scene.inert=true;
+          // The docks already exist along one world. Move its camera while each
+          // rocket lifts off, rather than replacing or sliding a whole screen.
+          const hasNext=r<L.rounds.length-1;
+          const cameraMs=reduced()?80:3800;
+          for(let i=0;i<podEls.length;i++){
+            const pod=podEls[i];pod.classList.add('engine-on');
+            mtgSound('sfx_space_ignite',.12);
+            await mtgWait(reduced()?40:160,tok);
+            pod.classList.add('fly');mtgSound('sfx_space_launch',.13);
+            if(i===0&&hasNext){
+              root.dataset.travelling='true';travel++;universe.style.setProperty('--travel',travel);
+              world.style.transform=`translateX(${-(r+1)*1333}px)`;
+              mtgSound('sfx_space_travel',.18);
+            }
+            await mtgWait(reduced()?40:280,tok);
+          }
           walkers.filter(w => !w.classList.contains("snapped")).forEach(w => w.classList.add("leave"));
-          await voDone; await mtgWait(900, tok);
+          mtgSound('sfx_space_flyby',.17);
+          // Camera started with the first launch; all later rockets stay in view
+          // long enough to leave the ground before the next dock takes focus.
+          await mtgWait(hasNext?Math.max(1100,cameraMs-2040):1100,tok);
+          root.dataset.travelling='false';scene.classList.remove('active');scene.setAttribute('aria-hidden','true');
           resolve();
         } catch(e){ reject(e); }
       }
-      mtgRun(async()=>{
+      return {run:()=>{
+        root.dataset.step=L.step;root.dataset.playable='false';root.dataset.set=String(r);
+        scene.inert=false;scene.classList.add('active');scene.removeAttribute('aria-hidden');
+        if(r>0)mtgSound('sfx_space_ready',.14);
+        mtgRun(async()=>{
         await mtgWait(300, tok);
         mtgPulse(nums[0], "glow", 1600);     // the first number glows as it is mentioned
         busyVo = true; await say(R.vo); busyVo = false;
         if(r === 0){ ghost(); busyVo = true; await say(g.guide_vo); busyVo = false; }
+        root.dataset.playable='true';
         armIdle();
-      });
-    });
+        });
+        return completed;
+      }};
   }
 
   async function runLevel(i){
     const L = g.levels[i];
+    scene.innerHTML='';
+    const heading=mtgEl('div','sp-title sp-fixed-title','★ '+L.label+' ★');root.appendChild(heading);
+    const world=mtgEl('div','sp-world');root.appendChild(world);
+    const docks=L.rounds.map((_,r)=>createDock(L,r,world));
     try{
-      for(let r = 0; r < L.rounds.length; r++) await round(L, r);
+      for(const dock of docks)await dock.run();
     } catch(e){ if(e !== MTG_STOP) console.error(e); return; }
+    world.remove();heading.remove();
     done.add(i);
     menu();
     mtgRun(async()=>{
@@ -873,17 +919,19 @@ SlideModules.SPACE_PODS = { mount(host, slide){
       await say(g.all_done_vo);
       await mtgWait(600, tok);
       root.remove();
+      universe.remove();mtgStopFoley();
       $("stage").classList.remove("mtg-game"); document.body.classList.remove("mtg-game");
       completeSlide(true);
     });
   }
 
   menu();
-  mtgRun(async()=>{ await mtgWait(400, tok); await say(g.menu_vo); });
+  mtgRun(async()=>{ await mtgWait(400, tok);if(!scene.querySelector('.sp-menu'))return;await say(g.menu_vo); });
 }};
 /* leaving the game by any other route (dev jump) must not strand the full-screen layer */
 (function(){ const _m = mountSlide; window.mountSlide = mountSlide = function(i){
   _mtgTok++;
+  document.querySelectorAll('.sp-universe').forEach(e=>e.remove());
   if(CARD.slides[i] && CARD.slides[i].type !== "SPACE_PODS"){ document.querySelectorAll(".sp-root, .sf-hint-ov").forEach(e => e.remove()); $("stage").classList.remove("mtg-game"); document.body.classList.remove("mtg-game"); }
   return _m(i);
 }; })();

@@ -1,0 +1,841 @@
+{
+  "launches": [
+    {
+      "count": 1,
+      "index": 0,
+      "t": 4251.79999999702
+    },
+    {
+      "count": 2,
+      "index": 1,
+      "t": 4339
+    },
+    {
+      "count": 3,
+      "index": 2,
+      "t": 4428.5
+    },
+    {
+      "count": 4,
+      "index": 3,
+      "t": 4522.100000008941
+    },
+    {
+      "count": 5,
+      "index": 4,
+      "t": 4607.5
+    }
+  ],
+  "pan": [
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 1,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 1,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 1,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 1,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 1,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 2,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 2,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 2,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 2,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 2,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 3,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 3,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 3,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 3,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 3,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 3,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 4,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 4,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 4,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 4,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 4,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    },
+    {
+      "far": 0,
+      "heading": 349.8863220214844,
+      "inert": true,
+      "launches": 5,
+      "near": 0,
+      "scenes": 3,
+      "x": -1333
+    }
+  ]
+}

@@ -294,3 +294,77 @@
 .sf-animal{top:64px;height:114px;width:auto;max-width:170px;object-fit:contain;object-position:bottom;}
 .sf-hint-animal{height:112px;top:10px;max-width:160px;object-fit:contain;object-position:bottom;}
 @media(prefers-reduced-motion:reduce){.mtg-opt.option-enter,.mtg-opt.right{animation:none;opacity:1;scale:1;}}
+
+/* Spaceport Adventure: five docks above a separate passenger platform. */
+.sp-root{--mission:#8de1d0;background:#142b46 url(assets/Images/spaceport_bg.svg) center/100% 100% no-repeat;}
+.sp-root[data-step="5"]{--mission:#ffc5b1;}.sp-root[data-step="10"]{--mission:#c4b6f7;}
+.sp-title,.sp-title.big{top:24px;background:none;box-shadow:none;color:#f1faff;font-size:42px;padding:0 30px;text-shadow:0 3px 0 rgba(0,0,0,.15);}
+.sp-title.big{top:32px;font-size:58px;}
+.sp-menu{top:175px;gap:42px;}
+.sp-card{width:300px;height:440px;border:3px solid #e9f8ff;border-radius:34px;padding:18px 12px;box-shadow:0 12px 0 rgba(4,21,39,.25),0 18px 36px rgba(0,0,0,.16);}
+.sp-card.c0{background:#e0f5ee;}.sp-card.c1{background:#fff0e7;}.sp-card.c2{background:#eeeaff;}
+.sp-card.done{opacity:.62;cursor:default;}
+.sp-mission-step{position:absolute;left:15px;top:13px;min-width:38px;height:38px;padding:0 9px;border-radius:50%;color:#335773;background:rgba(255,255,255,.8);font:800 24px/38px var(--font-hi);}
+.sp-card-art{width:260px;height:260px;flex-shrink:0;}
+.sp-card-pod{left:25px;bottom:0;width:210px;height:250px;}
+.sp-card-lbl{margin-top:16px;font-size:29px;background:none;padding:0 10px;}
+.sp-card-play{margin-top:12px;width:68px;height:68px;font-size:32px;}
+.sp-pods{top:124px;gap:22px;}
+.sp-pod{width:210px;height:250px;flex-shrink:0;transform-origin:50% 80%;}
+.sp-pod-img{left:0;bottom:0;width:210px;height:250px;filter:drop-shadow(0 8px 10px rgba(2,20,42,.12));}
+.sp-pod::after{content:"";position:absolute;left:50px;right:50px;bottom:-7px;height:7px;border-radius:8px;background:#497a91;box-shadow:0 3px 0 rgba(4,24,42,.4);opacity:.5;}
+.sp-pod.filled::after{background:var(--mission);opacity:1;box-shadow:0 0 12px var(--mission);}
+.sp-pod .sp-dome{left:52px;top:23px;width:106px;height:111px;border-radius:52px 52px 12px 12px;}
+.sp-card-art .sp-dome{left:77px;top:33px;width:106px;height:111px;border-radius:52px 52px 12px 12px;}
+.sp-dome img{left:0;top:0;width:100%;height:auto;transform:none;}
+.sp-podnum{left:71px;top:154px;width:68px;height:68px;background:#183e5c;border:4px solid #fff;color:#fff;font-size:34px;line-height:1;box-shadow:0 3px 0 #b0c8d7;}
+.sp-pod.hover .sp-pod-img,.sp-pod.cue .sp-pod-img{filter:drop-shadow(0 0 8px var(--mission)) drop-shadow(0 0 15px rgba(210,250,255,.5));}
+.sp-pod.snap{animation:spDock .48s cubic-bezier(.2,.8,.4,1);}
+.sp-pod.wiggle{animation:spReject .45s ease-in-out;}
+.sp-pod.fly{transform:translateY(-650px);opacity:0;transition:transform 1.05s cubic-bezier(.55,.05,.8,.35),opacity .95s .1s;}
+.sp-pod.fly::after{display:none;}
+.sp-engine{position:absolute;left:86px;top:225px;width:38px;height:65px;border-radius:45% 45% 65% 65%;background:linear-gradient(#fff6cc,#ffc965 50%,#f79c68 85%,transparent);transform-origin:50% 0;opacity:0;z-index:0;}
+.sp-pod.engine-on .sp-engine{opacity:1;animation:spEngine .17s ease-in-out infinite alternate;}
+.sp-puff{left:50%;top:83%;width:28px;height:28px;margin:-14px 0 0 -14px;animation-duration:.55s;z-index:1;background:radial-gradient(circle at 35% 30%,#f7fdff,#bed9e2);}
+.sp-ground{height:250px;bottom:22px;}
+.sp-ground::before{content:"";position:absolute;left:230px;right:55px;bottom:10px;height:65px;border-radius:50%;background:rgba(221,247,251,.24);border:2px solid rgba(222,250,255,.38);box-shadow:0 8px 0 rgba(31,78,102,.14);}
+.sp-astro{width:150px;height:198px;bottom:30px;}
+.sp-astro-in{width:150px;height:190px;animation:spBobQuiet 5s ease-in-out infinite;}
+.sp-astro img{width:150px;height:190px;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 5px 4px rgba(13,47,65,.2));}
+.sp-astro.dragging .sp-astro-in,.sp-astro.selected .sp-astro-in{animation:none;}
+.sp-badge{left:50%!important;top:auto!important;bottom:-8px;width:64px;height:64px;margin:0;transform:translateX(-50%);border:4px solid #fff;box-shadow:0 4px 0 rgba(17,60,81,.3);background:#173e5c;font-size:32px;line-height:1;}
+.sp-astro.selected .sp-badge{background:#fff1b0;box-shadow:0 0 0 5px rgba(255,241,176,.28),0 4px 0 rgba(17,60,81,.3);}
+.sp-astro.returning .sp-astro-in{animation:spReturn .4s ease-out;}
+.sp-astro.ghost{height:198px;width:130px;}
+.sp-astro.ghost .sp-astro-in,.sp-astro.ghost img{width:130px;}
+.sp-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);padding:0;white-space:nowrap;background:none;}
+.sp-round{left:30px;right:auto;top:32px;border:0;background:rgba(255,255,255,.07);padding:8px 14px;font-size:19px;display:flex;align-items:center;gap:12px;}
+.sp-progress-dots{display:flex;gap:7px;}.sp-progress-dots i{width:10px;height:10px;border:2px solid #91b6c8;border-radius:50%;}.sp-progress-dots i.active{background:#fff2b8;border-color:#fff2b8;box-shadow:0 0 9px rgba(255,242,184,.5);}.sp-progress-dots i.done{background:#8de1d0;border-color:#8de1d0;}
+.sp-swiftie{width:94px;height:94px;left:22px;bottom:22px;border-width:4px;}
+.sp-audio{right:25px;top:25px;width:60px;height:60px;}.sp-audio:disabled{opacity:.55;cursor:default;}
+body.vo-lock .sp-astro{pointer-events:none!important;}
+@keyframes spDock{0%{scale:1;}35%{scale:.97 1.03;}70%{scale:1.025 .98;}100%{scale:1;}}
+@keyframes spReject{0%,100%{translate:0;}20%{translate:-6px;}45%{translate:6px;}70%{translate:-3px;}}
+@keyframes spEngine{from{scale:.85 .8;}to{scale:1.05 1.1;}}
+@keyframes spReturn{0%{scale:.96;}60%{scale:1.035;}100%{scale:1;}}
+@media(prefers-reduced-motion:reduce){.sp-pod,.sp-pod.fly{transition:none;}.sp-pod.snap,.sp-pod.wiggle,.sp-astro.returning .sp-astro-in,.sp-pod.engine-on .sp-engine{animation:none;}.sp-astro-in{animation:none;}.sp-pod.fly{transform:none;opacity:0;}.sp-puff{display:none;}}
+
+/* One continuous spaceport fills the viewport, including the 16:9 letterbox margins.
+   Scenery moves at two depths; the next dock slides in from the right. */
+body.mtg-game{background:#142b46 url(assets/Images/spaceport_bg.svg) center/cover no-repeat;}
+body.mtg-game .stage-wrap{z-index:1;}
+.stage.mtg-game,.stage.mtg-game .sp-root{background:transparent!important;box-shadow:none;border:0;}
+.sp-universe{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;--travel:0;background:#142b46;}
+.sp-cosmos{position:absolute;inset:0 -400px 0 0;background:url(assets/Images/spaceport_bg.svg) center/100% 100% no-repeat;transform:translateX(calc(var(--travel)*-40px));transition:transform 1.5s cubic-bezier(.45,0,.2,1);}
+.sp-rails{position:absolute;left:0;bottom:0;width:300%;height:19%;background:repeating-linear-gradient(115deg,transparent 0 220px,rgba(212,245,251,.16) 221px 223px,transparent 224px 450px);transform:translateX(calc(var(--travel)*-160px));transition:transform 1.5s cubic-bezier(.45,0,.2,1);}
+.sp-root[data-travelling="true"]{pointer-events:none;}
+.sp-root[data-playable="false"] .sp-astro.walker{pointer-events:none!important;}
+.sp-ground::before{left:95px;right:95px;}
+@media(prefers-reduced-motion:reduce){.sp-cosmos,.sp-rails{transition:none;transform:none;}}
+
+/* Persistent docks in world coordinates; only the camera translates the world. */
+.sp-world{position:absolute;left:0;top:0;width:3999px;height:750px;transform:translateX(0);transition:transform 3.8s cubic-bezier(.4,0,.2,1);will-change:transform;}
+.sp-world>.sp-scene{inset:auto;top:0;bottom:0;width:1333px;}
+.sp-fixed-title{z-index:5;pointer-events:none;}
+.sp-cosmos,.sp-rails{transition-duration:3.8s;transition-timing-function:cubic-bezier(.4,0,.2,1);}
+@media(prefers-reduced-motion:reduce){.sp-world{transition:none;}}

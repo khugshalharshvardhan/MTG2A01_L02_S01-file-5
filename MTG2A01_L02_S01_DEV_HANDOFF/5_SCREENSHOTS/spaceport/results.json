@@ -1,0 +1,478 @@
+[
+  [
+    "menu: three distinct astronaut animals loaded",
+    true
+  ],
+  [
+    "speaker, Swifty and round counter removed",
+    true
+  ],
+  [
+    "L1 R1: five pods, exact prefills locked",
+    true
+  ],
+  [
+    "L1 R1: same persistent world and fixed heading",
+    true
+  ],
+  [
+    "L1 R1: pods inside stage, readable equal badges",
+    true
+  ],
+  [
+    "L1 R1: initial ghost demonstration",
+    true
+  ],
+  [
+    "idle: demonstration repeats once",
+    true
+  ],
+  [
+    "idle: no third demonstration",
+    true
+  ],
+  [
+    "wrong 1: no pod filled and passenger returns",
+    true
+  ],
+  [
+    "wrong 2: no pod filled and passenger returns",
+    true
+  ],
+  [
+    "wrong 3: no pod filled and passenger returns",
+    true
+  ],
+  [
+    "wrong VO only once per round",
+    true
+  ],
+  [
+    "PPT: third wrong drop keeps retries and all unsnapped passengers available",
+    true
+  ],
+  [
+    "L1 R1: any-order docking 31",
+    true
+  ],
+  [
+    "L1 R1: correct narration says only 31",
+    true
+  ],
+  [
+    "L1 R1: any-order docking 29",
+    true
+  ],
+  [
+    "L1 R1: correct narration says only 29",
+    true
+  ],
+  [
+    "L1 R1: any-order docking 25",
+    true
+  ],
+  [
+    "L1 R1: correct narration says only 25",
+    true
+  ],
+  [
+    "L1 R1: rockets launch individually left to right",
+    true
+  ],
+  [
+    "L1 R1: camera tracks while launching, with fixed heading and locked input",
+    true
+  ],
+  [
+    "L1 R2: five pods, exact prefills locked",
+    true
+  ],
+  [
+    "L1 R2: same persistent world and fixed heading",
+    true
+  ],
+  [
+    "L1 R2: pods inside stage, readable equal badges",
+    true
+  ],
+  [
+    "L1 R2: any-order docking 48",
+    true
+  ],
+  [
+    "L1 R2: correct narration says only 48",
+    true
+  ],
+  [
+    "L1 R2: any-order docking 46",
+    true
+  ],
+  [
+    "L1 R2: correct narration says only 46",
+    true
+  ],
+  [
+    "L1 R2: any-order docking 44",
+    true
+  ],
+  [
+    "L1 R2: correct narration says only 44",
+    true
+  ],
+  [
+    "L1 R2: rockets launch individually left to right",
+    true
+  ],
+  [
+    "L1 R2: camera tracks while launching, with fixed heading and locked input",
+    true
+  ],
+  [
+    "L1 R3: five pods, exact prefills locked",
+    true
+  ],
+  [
+    "L1 R3: same persistent world and fixed heading",
+    true
+  ],
+  [
+    "L1 R3: pods inside stage, readable equal badges",
+    true
+  ],
+  [
+    "L1 R3: any-order docking 69",
+    true
+  ],
+  [
+    "L1 R3: correct narration says only 69",
+    true
+  ],
+  [
+    "L1 R3: any-order docking 67",
+    true
+  ],
+  [
+    "L1 R3: correct narration says only 67",
+    true
+  ],
+  [
+    "L1 R3: any-order docking 65",
+    true
+  ],
+  [
+    "L1 R3: correct narration says only 65",
+    true
+  ],
+  [
+    "L1 R3: rockets launch individually left to right",
+    true
+  ],
+  [
+    "L1: completed menu card faded and disabled",
+    true
+  ],
+  [
+    "L2 R1: five pods, exact prefills locked",
+    true
+  ],
+  [
+    "L2 R1: same persistent world and fixed heading",
+    true
+  ],
+  [
+    "L2 R1: pods inside stage, readable equal badges",
+    true
+  ],
+  [
+    "L2 R1: initial ghost demonstration",
+    true
+  ],
+  [
+    "L2 R1: any-order docking 40",
+    true
+  ],
+  [
+    "L2 R1: correct narration says only 40",
+    true
+  ],
+  [
+    "L2 R1: any-order docking 35",
+    true
+  ],
+  [
+    "L2 R1: correct narration says only 35",
+    true
+  ],
+  [
+    "L2 R1: any-order docking 30",
+    true
+  ],
+  [
+    "L2 R1: correct narration says only 30",
+    true
+  ],
+  [
+    "L2 R1: rockets launch individually left to right",
+    true
+  ],
+  [
+    "L2 R1: camera tracks while launching, with fixed heading and locked input",
+    true
+  ],
+  [
+    "L2 R2: five pods, exact prefills locked",
+    true
+  ],
+  [
+    "L2 R2: same persistent world and fixed heading",
+    true
+  ],
+  [
+    "L2 R2: pods inside stage, readable equal badges",
+    true
+  ],
+  [
+    "L2 R2: any-order docking 60",
+    true
+  ],
+  [
+    "L2 R2: correct narration says only 60",
+    true
+  ],
+  [
+    "L2 R2: any-order docking 55",
+    true
+  ],
+  [
+    "L2 R2: correct narration says only 55",
+    true
+  ],
+  [
+    "L2 R2: any-order docking 45",
+    true
+  ],
+  [
+    "L2 R2: correct narration says only 45",
+    true
+  ],
+  [
+    "L2 R2: rockets launch individually left to right",
+    true
+  ],
+  [
+    "L2 R2: camera tracks while launching, with fixed heading and locked input",
+    true
+  ],
+  [
+    "L2 R3: five pods, exact prefills locked",
+    true
+  ],
+  [
+    "L2 R3: same persistent world and fixed heading",
+    true
+  ],
+  [
+    "L2 R3: pods inside stage, readable equal badges",
+    true
+  ],
+  [
+    "L2 R3: any-order docking 85",
+    true
+  ],
+  [
+    "L2 R3: correct narration says only 85",
+    true
+  ],
+  [
+    "L2 R3: any-order docking 80",
+    true
+  ],
+  [
+    "L2 R3: correct narration says only 80",
+    true
+  ],
+  [
+    "L2 R3: any-order docking 75",
+    true
+  ],
+  [
+    "L2 R3: correct narration says only 75",
+    true
+  ],
+  [
+    "L2 R3: rockets launch individually left to right",
+    true
+  ],
+  [
+    "L2: completed menu card faded and disabled",
+    true
+  ],
+  [
+    "L3 R1: five pods, exact prefills locked",
+    true
+  ],
+  [
+    "L3 R1: same persistent world and fixed heading",
+    true
+  ],
+  [
+    "L3 R1: pods inside stage, readable equal badges",
+    true
+  ],
+  [
+    "L3 R1: initial ghost demonstration",
+    true
+  ],
+  [
+    "L3 R1: any-order docking 70",
+    true
+  ],
+  [
+    "L3 R1: correct narration says only 70",
+    true
+  ],
+  [
+    "L3 R1: any-order docking 60",
+    true
+  ],
+  [
+    "L3 R1: correct narration says only 60",
+    true
+  ],
+  [
+    "L3 R1: any-order docking 50",
+    true
+  ],
+  [
+    "L3 R1: correct narration says only 50",
+    true
+  ],
+  [
+    "L3 R1: rockets launch individually left to right",
+    true
+  ],
+  [
+    "L3 R1: camera tracks while launching, with fixed heading and locked input",
+    true
+  ],
+  [
+    "L3 R2: five pods, exact prefills locked",
+    true
+  ],
+  [
+    "L3 R2: same persistent world and fixed heading",
+    true
+  ],
+  [
+    "L3 R2: pods inside stage, readable equal badges",
+    true
+  ],
+  [
+    "L3 R2: any-order docking 90",
+    true
+  ],
+  [
+    "L3 R2: correct narration says only 90",
+    true
+  ],
+  [
+    "L3 R2: any-order docking 80",
+    true
+  ],
+  [
+    "L3 R2: correct narration says only 80",
+    true
+  ],
+  [
+    "L3 R2: any-order docking 60",
+    true
+  ],
+  [
+    "L3 R2: correct narration says only 60",
+    true
+  ],
+  [
+    "L3 R2: rockets launch individually left to right",
+    true
+  ],
+  [
+    "L3 R2: camera tracks while launching, with fixed heading and locked input",
+    true
+  ],
+  [
+    "L3 R3: five pods, exact prefills locked",
+    true
+  ],
+  [
+    "L3 R3: same persistent world and fixed heading",
+    true
+  ],
+  [
+    "L3 R3: pods inside stage, readable equal badges",
+    true
+  ],
+  [
+    "L3 R3: any-order docking 90",
+    true
+  ],
+  [
+    "L3 R3: correct narration says only 90",
+    true
+  ],
+  [
+    "L3 R3: any-order docking 80",
+    true
+  ],
+  [
+    "L3 R3: correct narration says only 80",
+    true
+  ],
+  [
+    "L3 R3: any-order docking 70",
+    true
+  ],
+  [
+    "L3 R3: correct narration says only 70",
+    true
+  ],
+  [
+    "L3 R3: rockets launch individually left to right",
+    true
+  ],
+  [
+    "nine rounds reach celebration",
+    true
+  ],
+  [
+    "background removed after game",
+    true
+  ],
+  [
+    "all creature and spaceship cues triggered",
+    true
+  ],
+  [
+    "960: all five pods fit stage",
+    true
+  ],
+  [
+    "1600x750: background fills letterbox margins",
+    true
+  ],
+  [
+    "1000x900: background fills letterbox margins",
+    true
+  ],
+  [
+    "reduced motion: static hint replaces moving ghost",
+    true
+  ],
+  [
+    "reduced motion: next dock accessible after staggered launches",
+    true
+  ],
+  [
+    "no browser errors",
+    true
+  ]
+]
