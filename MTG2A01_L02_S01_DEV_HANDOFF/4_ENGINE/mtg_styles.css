@@ -254,3 +254,56 @@
 @keyframes brRipple{from{transform:translate(-50%,-50%) scale(.4);opacity:.85;}to{transform:translate(-50%,-50%) scale(1.5);opacity:0;}}
 @keyframes brDroplet{0%{transform:translate(0,0) scale(.8);opacity:0;}20%{opacity:.9;}65%{transform:translate(var(--dx),var(--dy)) scale(.7);opacity:.8;}100%{transform:translate(var(--dx),2px) scale(.2);opacity:0;}}
 @media(prefers-reduced-motion:reduce){.br-splash,.mtg-hop-shadow{display:none;}}
+
+
+/* Review refinement: uniform starting labels, persistent emphasis after landing. */
+.br-world .br-num,.br-world.zoomed .br-num{
+ visibility:visible;font-size:min(calc(22px / var(--z,1)),calc(var(--unit) * .62));
+ font-weight:600;padding:calc(3px / var(--z,1)) calc(3px / var(--z,1));
+}
+.br-world .br-num.mark,.br-world.zoomed .br-num.mark{
+ font-size:min(calc(29px / var(--z,1)),calc(var(--unit) * .84));font-weight:850;
+ background:#fff1ae;color:#7b4700;
+}
+.br-num.glow{padding:calc(3px / var(--z,1));}
+.br-rock.glow{animation:brLandingPop .55s ease-out;}
+@keyframes brLandingPop{0%,100%{transform:translateX(-50%) scale(1);}45%{transform:translateX(-50%) scale(1.14);}}
+.nl-lbl,.nl-lbl.big,.sf-hint-nl .nl-lbl{font-size:24px;font-weight:600;}
+.nl-lbl.landed,.sf-hint-nl .nl-lbl.landed{font-size:30px;font-weight:850;background:#fff1ae;}
+.nl-lbl.glow{animation:none;}
+.nl-seg{stroke-width:4;transition:none;}
+.nl-seg.lit{stroke:#ffc629;filter:drop-shadow(0 0 4px #ffd859);}
+.mtg-arc{opacity:1;transition:none;}
+.mtg-opts .mtg-opt.used{display:none;}
+
+/* Candy-coloured lunar playground, following the review deck palette. */
+.sp-root{background-image:url(assets/Images/sc_space_playful.svg);background-color:#44468b;}
+.sp-title{width:max-content;max-width:850px;left:50%;right:auto;transform:translateX(-50%);padding:8px 35px;border-radius:40px;background:#fff7dd;color:#403573;border:3px solid #f2d8ff;box-shadow:0 5px 0 #8a7bc1;font-size:36px;line-height:1.3;}
+.sp-title.big{font-size:43px;top:35px;}
+.sp-card{border:5px solid #fff7df;border-radius:42px;box-shadow:0 9px 0 #7262a7,0 16px 30px #25205a40;background-image:radial-gradient(circle at 22px 28px,#ffffff80 0 5px,transparent 6px),radial-gradient(circle at 92% 15%,#fff8bb 0 9px,transparent 10px);}
+.sp-card.c0{background-color:#dcd9ff;}.sp-card.c1{background-color:#ffdae3;}.sp-card.c2{background-color:#d4f5e7;}
+.sp-card-play{border:4px solid #fff;background:#7bcda4;color:white;box-shadow:0 5px 0 #58a987;}
+.sp-card.c1 .sp-card-play{background:#f58d9f;color:white;box-shadow:0 5px 0 #d46a8d;}
+.sp-card.c2 .sp-card-play{background:#9d9be8;color:white;box-shadow:0 5px 0 #7873c1;}
+.sp-round{background:#fff7dd;color:#51417b;border:3px solid #d9caff;box-shadow:0 3px 0 #9581b5;}
+.sp-status{background:#fff8e8;color:#51417b;border:2px solid #cbb5ef;box-shadow:0 4px 0 #9381b550;}
+.sp-pods::after{content:"";position:absolute;left:70px;right:70px;bottom:-36px;height:9px;border-radius:50%;background:repeating-linear-gradient(90deg,#fbd889 0 12px,transparent 12px 30px);opacity:.8;}
+.sp-pod::before{content:"";position:absolute;left:24px;right:24px;bottom:-16px;height:16px;border-radius:50%;background:#c3b0ed;box-shadow:0 3px 0 #8c7bb8;opacity:.65;}
+.sp-pod.filled::before{background:#c7f5ca;}
+.sp-ground::before{content:"";position:absolute;left:205px;right:42px;bottom:17px;height:35px;border-radius:50%;background:#a594d038;border:3px dashed #f6e9ff80;}
+.sp-ground[data-entering="true"] .walker{pointer-events:none;}
+.sp-astro.walker .sp-astro-in{animation:spCurious 3.6s ease-in-out infinite;animation-delay:var(--sway-delay,0s);transform-origin:50% 90%;}
+.sp-ground.motion-paused .sp-astro-in,.sp-astro.dragging .sp-astro-in,.sp-astro.selected .sp-astro-in{animation-play-state:paused;animation-name:spCurious;}
+.sp-astro.leave{bottom:22px;transform:translateX(1450px)!important;opacity:0;transition:transform 1.1s ease-in,opacity 1.1s;}
+@keyframes spCurious{0%,100%{transform:translateY(0) rotate(-2deg);}25%{transform:translateY(-9px) rotate(1.5deg);}50%{transform:translateY(-2px) rotate(2deg);}75%{transform:translateY(-7px) rotate(-1deg);}}
+@media(prefers-reduced-motion:reduce){
+ .sp-astro.walker .sp-astro-in,.br-rock.glow{animation:none!important;}
+ .sp-astro.leave{transition:none;}
+}
+
+/* Keep neighbouring labels separate in the complete 0-50 overview. */
+.br-world.zoomed .br-num,.br-world.zoomed .br-num.mark{
+ padding-left:calc(.5px / var(--z,1));padding-right:calc(.5px / var(--z,1));
+}
+
+.sf-hint-nl .nl-lbl.glow-hold{padding:0 1px;}

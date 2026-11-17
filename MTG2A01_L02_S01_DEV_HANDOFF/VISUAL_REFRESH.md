@@ -69,3 +69,20 @@ Frog hops now use a short crouch, a feet-anchored stretch and gentle tilt during
 The hop keeps its original total duration and destination. Headroom accounts for sprite deformation. Transient effects are noninteractive and removed after playback; leaving a slide also cancels an unfinished hop. Reduced-motion mode moves directly to the destination and suppresses the added effects. No new sounds interrupt the narration.
 
 Verification: 37 visual/input checks and 29 jump-boundary checks passed, including every sampled frog frame, all three motion phases, cleanup, reduced motion, two viewport sizes and no browser errors. Audio was simulated. A mid-flight review screenshot is saved locally as 5_SCREENSHOTS/visual_refresh/tappu_in_flight.png.
+
+
+## November 2026 interaction refinement
+
+All teaching pads share one horizontal centre line and equal spacing. Smaller intermediate leaves keep the same centre; landing pops restore the original dimensions and position. Numbers begin at equal size and weight. Completed landings gain persistent, equal emphasis; upcoming multiples receive no advance emphasis. The complete 0-50 overview keeps all labels visible without overlap.
+
+Red arrows now reveal subcurves of a shared quadratic, with the arrowhead following the curve tangent. Prior and new arrows use the same height. G1-G3 second-attempt hints use a 4px glowing golden line, matching the blue axis, and show each individual interval for one second.
+
+G4-G7 keep the initial answer tray and remove used options from layout, smoothly bringing the remaining options together. Every sequence hint shows the preceding landing and completed jump before revealing the next curved arrow. The hint animal stays at its current number.
+
+The space game uses original resolution-independent artwork in 1_SPEC/art_keyed/sc_space_playful.svg, exported unchanged into 3_BUILD/assets/Images. Its lavender terrain, mint/pink planets, cream title pills and pastel cards follow the embedded game examples on slide 12 of MTG2A01_L02_S01_FINALreview.pptx. No third-party game artwork was copied.
+
+Movement reference inspected: https://www.roomrecess.com/games/SpacePetsSkipCounting/play.html. Animals and distractors enter from the side with staggered timing, then drift and bob with identical treatment. Roaming is bounded to keep numbers apart. The lane pauses during pointing, selection and dragging, keeping animals easy to catch. Entrance interactions unlock when all animals arrive; unused distractors exit after completion. Reduced-motion mode skips entrances and movement.
+
+Automated verification uses simulated audio, not a listening review. The full lesson walk passed 93 checks including all nine game rounds, all wrong-answer ladders, automatic progression and celebration. Existing input/visual checks passed 37 checks (mouse, touch, keyboard, high-density desktop, smaller landscape, camera and reduced motion). All 29 jump-boundary/header checks passed. Focused acceptance results and review screenshots are under 5_SCREENSHOTS/interaction_refinement; run 1_SPEC/_verify_interaction_refinement.py against the rebuilt preview to reproduce them.
+
+Focused acceptance: 57/57 passed, including all initial/visited number states, pad alignment and restoration, recap label separation, three sequential interval hints, seven sequence hints and compacted option trays, moving distractors, paused drag positions and reduced motion. All executable inline JavaScript blocks and embedded JSON passed syntax checks. The final tens-hint spacing was also checked for overlapping labels.

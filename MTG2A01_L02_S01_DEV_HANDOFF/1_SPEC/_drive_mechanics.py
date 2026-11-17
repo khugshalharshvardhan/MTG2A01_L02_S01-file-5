@@ -147,6 +147,7 @@ for lv in range(3):
     js(f"document.querySelectorAll('.sp-card')[{lv}].click()")
     for rnd in range(3):
         ok(f"GAME L{lv+1} R{rnd+1} pods shown", until(f"document.querySelectorAll('.sp-pod').length===5 && !document.querySelector('.sp-pod.fly') && document.querySelectorAll('.sp-pod.filled').length===CARD.slides[10].data.levels[{lv}].rounds[{rnd}].prefilled.length && [...document.querySelectorAll('.sp-podnum')][0].textContent==String(CARD.slides[10].data.levels[{lv}].rounds[{rnd}].seq[0])", 30))
+        ok(f"GAME L{lv+1} R{rnd+1} entrance finishes", until("document.querySelector('.sp-ground').dataset.entering==='false'", 8))
         time.sleep(0.5)
         if lv == 0 and rnd == 0:
             shot("GAME_round")

@@ -32,27 +32,40 @@ function mtgOst(t){ const p = $("promptText"); if(p && t != null) p.textContent 
 function mtgPulse(el, cls, ms){ if(!el) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); if(ms) setTimeout(()=> el.classList.remove(cls), ms); }
 const MTG_SVG = "http://www.w3.org/2000/svg";
 /* dotted red jump arc with an arrowhead, from x1 to x2 at baseline y, into an <svg> */
-function mtgArc(svg, x1, x2, y, lift, label){
-  const g = document.createElementNS(MTG_SVG, "g"); g.setAttribute("class", "mtg-arc");
-  const mx = (x1 + x2) / 2, top = y - lift, cy = top - lift * 0.35;
-  // the head points along the curve's end tangent; the shaft stops at its base so the dots meet the head
-  const tx = x2 - mx, ty = y - cy, tl = Math.hypot(tx, ty) || 1, ux = tx / tl, uy = ty / tl;
-  const HL = 20, HW = 11, bx = x2 - ux * HL, by = y - uy * HL;
-  const d = `M${x1},${y} Q${mx},${cy} ${bx},${by}`;
-  const head = `M${x2},${y} L${bx - uy * HW},${by + ux * HW} L${bx + uy * HW},${by - ux * HW} Z`;
-  // a white halo under the red dots and head keeps them readable over grass, water and stones
-  [["mtg-arc-halo", d], ["mtg-arc-path", d], ["mtg-arc-head", head]].forEach(([cls, dd])=>{
-    const p = document.createElementNS(MTG_SVG, "path");
-    p.setAttribute("d", dd); p.setAttribute("class", cls); g.appendChild(p);
+function mtgArc(svg, x1, x2, y, lift, label, motion={}){
+  const tok=_mtgTok, g=document.createElementNS(MTG_SVG,"g");
+  g.setAttribute("class","mtg-arc show");
+  const mx=(x1+x2)/2, cy=y-2*lift;
+  const paths=["mtg-arc-halo","mtg-arc-path","mtg-arc-head"].map(cls=>{
+    const p=document.createElementNS(MTG_SVG,"path");p.setAttribute("class",cls);g.appendChild(p);return p;
   });
+  const point=t=>({x:x1+(x2-x1)*t,y:y-4*lift*t*(1-t)});
+  // Reveal a subcurve of the same quadratic; the head follows its actual tangent.
+  function draw(t){
+    const tip=point(t),tx=x2-x1,ty=4*lift*(2*t-1),length=Math.hypot(tx,ty)||1;
+    const ux=tx/length,uy=ty/length,head=Math.min(16,Math.abs(x2-x1)*t*.45),hw=head*.48;
+    const u=Math.max(0,t-head/length),base=point(u);
+    const d="M"+x1+","+y+" Q"+(x1+(mx-x1)*u)+","+(y+(cy-y)*u)+" "+base.x+","+base.y;
+    paths[0].setAttribute("d",d);paths[1].setAttribute("d",d);
+    paths[2].setAttribute("d","M"+tip.x+","+tip.y+" L"+(tip.x-ux*head-uy*hw)+","+(tip.y-uy*head+ux*hw)+" L"+(tip.x-ux*head+uy*hw)+","+(tip.y-uy*head-ux*hw)+" Z");
+    g.dataset.progress=t.toFixed(3);
+  }
   if(label){
-    const t = document.createElementNS(MTG_SVG, "text");
-    t.setAttribute("x", mx); t.setAttribute("y", top - lift * 0.2 - 6); t.setAttribute("class", "mtg-arc-lbl");
-    t.textContent = label; g.appendChild(t);
+    const t=document.createElementNS(MTG_SVG,"text");t.setAttribute("x",mx);t.setAttribute("y",y-lift-12);
+    t.setAttribute("class","mtg-arc-lbl");t.textContent=label;g.appendChild(t);
   }
   svg.appendChild(g);
-  requestAnimationFrame(()=> g.classList.add("show"));
-  return g;
+  if(!motion.duration||matchMedia("(prefers-reduced-motion: reduce)").matches){draw(1);return g;}
+  const start=performance.now(),duration=motion.duration;
+  g.dataset.animating="true";draw(0);
+  function frame(now){
+    if(tok!==_mtgTok||!g.isConnected)return;
+    const elapsed=(now-start)/duration;
+    const t=Math.max(0,Math.min(1,(elapsed-(motion.start||0))/((motion.end||1)-(motion.start||0))));
+    draw(t);
+    if(elapsed<1)requestAnimationFrame(frame);else{draw(1);g.dataset.animating="false";}
+  }
+  requestAnimationFrame(frame);return g;
 }
 /* Feet-anchored hop: frog anticipation, flight and soft landing share one clock. */
 function mtgHop(el, x1, x2, lift, ms, cues={}){
@@ -163,17 +176,17 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
 
   const wrap = mtgEl("div", "br-wrap");
   const view = mtgEl("div", "br-view"); view.style.height = VIEW_H + "px"; view.style.width = VIEW_W + "px";
-  const world = mtgEl("div", "br-world"); world.style.width = WORLD_W + "px"; world.style.height = VIEW_H + "px";
+  const world = mtgEl("div", "br-world"); world.style.setProperty("--unit",U+"px"); world.style.width = WORLD_W + "px"; world.style.height = VIEW_H + "px";
   const stones = {}, nums = {};
   for(let n = d.lo; n <= d.hi; n++){
     const big = (n % d.step === 0);
     const s = mtgEl("div", "br-rock" + (big ? " key" : ""));
-    s.style.cssText = `left:${X(n)}px;top:${ROCK_TOP}px;width:${RW}px;height:${RH}px`;
+    const ratio=big?1:.8;
+    s.style.cssText="left:"+X(n)+"px;top:"+(ROCK_TOP+RH*(1-ratio)/2)+"px;width:"+(RW*ratio)+"px;height:"+(RH*ratio)+"px";
     const im = mtgEl("img"); im.src = LOTUS; im.alt = ""; s.appendChild(im);
     world.appendChild(s); stones[n] = s;
-    const lb = mtgEl("div", "br-num" + (big ? " big" : ""), String(n));
+    const lb = mtgEl("div", "br-num", String(n));
     lb.style.left = X(n) + "px"; lb.style.top = NUM_Y + "px";
-    if(!big && U < 30) lb.style.fontSize = Math.max(12, U * 0.52) + "px";
     world.appendChild(lb); nums[n] = lb;
   }
   const svg = document.createElementNS(MTG_SVG, "svg"); svg.setAttribute("class", "br-svg");
@@ -239,15 +252,16 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   }
   paintCamera(0,d.camera?VIEW_W/WORLD_W:1);
 
-  const glow = n => { mtgPulse(stones[n], "glow", 1400); mtgPulse(nums[n], "glow", 1400); };
-  const mark = n => { stones[n].classList.add("mark"); nums[n].classList.add("mark"); mtgPulse(nums[n], "pop", 600); };
+  const visited=new Set();
+  const glow = n => { if(visited.has(n)){mtgPulse(stones[n], "glow", 650);mtgPulse(nums[n], "glow", 650);} };
+  const mark = n => { visited.add(n);stones[n].classList.add("mark");nums[n].classList.add("mark","big"); };
   const clearLit = () => Object.values(stones).forEach(s => s.classList.remove("lit"));
   async function jump(a, b){
     clearLit(); dot.classList.remove("show");
     if(cam==="follow") await rangeCamera(a,b,420);
     const lift=Math.max(12,Math.min(62,FEET_Y-FH-22));
     view.dataset.jumpActive="true";
-    mtgArc(svg,X(a),X(b),STONE_Y-2,lift);
+    mtgArc(svg,X(a),X(b),STONE_Y-2,lift,null,{duration:950,start:.12,end:.84});
     await mtgHop(frog,X(a),X(b),lift,950,{
       onTakeoff:()=>{mtgLeafBob(stones[a]);mtgPondRipple(world,X(a),FEET_Y+5);},
       onLand:()=>{mtgLeafBob(stones[b]);mtgPondRipple(world,X(b),FEET_Y+5);}
@@ -262,8 +276,8 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
     if(c.focus) mtgPulse(c.focus === "friend" ? friend : frog, "focus", 1600);
     if(c.wave) mtgPulse(friend, "wave", 1400);
     if(c.glow != null) glow(c.glow);
-    if(c.dot != null){ dot.style.left = X(c.dot) + "px"; dot.classList.add("show"); stones[c.dot].classList.add("lit"); mtgPulse(nums[c.dot], "pop", 500); }
-    if(c.mark != null) mark(c.mark);
+    if(c.dot != null){ dot.style.left = X(c.dot) + "px"; dot.classList.add("show"); stones[c.dot].classList.add("lit"); }
+    if(c.mark != null && visited.has(c.mark)) glow(c.mark);
     if(c.happy){ mtgPulse(frog, "bounce", 900); mtgPulse(friend, "bounce", 900); }
     const voDone = mtgSay(c.vo, tok);
     if(c.jump){ await mtgWait(250, tok); if(c.span) await spanLight(c.jump[0], c.span[1]); await jump(c.jump[0], c.jump[1]); }
@@ -323,14 +337,14 @@ function mtgNumberLine(o){
     else { const t = document.createElementNS(MTG_SVG, "path"); t.setAttribute("d", `M${X(n)},${o.baseY - (big ? 15 : 10)} V${o.baseY + (big ? 15 : 10)}`); t.setAttribute("class", "nl-tick" + (big ? " big" : "")); svg.appendChild(t); }
     if(n < o.hi){ const s = document.createElementNS(MTG_SVG, "path"); s.setAttribute("d", `M${X(n)},${o.baseY} H${X(n + 1)}`); s.setAttribute("class", "nl-seg"); svg.appendChild(s); segs[n] = s; }
     if(!o.every || n % o.every === 0 || n === o.lo || n === o.hi){
-      const l = mtgEl("div", "nl-lbl" + (big ? " big" : ""), String(n)); l.style.left = X(n) + "px"; l.style.top = (o.baseY + 18) + "px"; root.appendChild(l); labels[n] = l;
+      const l = mtgEl("div", "nl-lbl", String(n)); l.style.left = X(n) + "px"; l.style.top = (o.baseY + 18) + "px"; root.appendChild(l); labels[n] = l;
     }
   }
   root.appendChild(svg);
   return { root, svg, X, U, segs, labels,
     glow(n, ms){ const l = labels[n]; if(l) mtgPulse(l, "glow", ms || 1600); },
-    hold(n){ const l = labels[n]; if(l) l.classList.add("glow-hold"); },
-    async walk(a, b, tok){ for(let n = a; n < b; n++){ segs[n] && segs[n].classList.add("lit"); await mtgWait(Math.max(90, 520 / (b - a)), tok); } },
+    hold(n){ const l = labels[n]; if(l) l.classList.add("glow-hold","landed"); },
+    async walk(a, b, tok){ for(let n=a;n<b;n++){ Object.values(segs).forEach(s=>s.classList.remove("lit")); if(segs[n])segs[n].classList.add("lit");await mtgWait(1000,tok); } },
     unwalk(){ Object.values(segs).forEach(s => s.classList.remove("lit")); } };
 }
 
@@ -345,6 +359,14 @@ function mtgOptions(host, values, onPick){
   host.appendChild(row);
   return { row, cells,
     enable(on){ cells.forEach(c => { if(!c.classList.contains("used") && !c.classList.contains("faded")) c.disabled = !on; }); },
+    consume(b){
+      const before=new Map(cells.filter(c=>c!==b&&!c.classList.contains("used")).map(c=>[c,c.getBoundingClientRect()]));
+      b.classList.add("used");b.disabled=true;b.setAttribute("aria-hidden","true");
+      const scale=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--scale"))||1;
+      if(!matchMedia("(prefers-reduced-motion: reduce)").matches)before.forEach((r,c)=>{
+        c.animate([{transform:"translateX("+((r.left-c.getBoundingClientRect().left)/scale)+"px)"},{transform:"translateX(0)"}],{duration:300,easing:"ease-out"});
+      });
+    },
     wiggle(b){ mtgPulse(b, "wiggle", 600); } };
 }
 /* WA3: fade + disable everything except the answer, pulse it, hand cue — no tick before the tap */
@@ -369,7 +391,11 @@ SlideModules.JUMP_PICK = { mount(host, slide){
   const nl = mtgNumberLine({ lo: d.lo, hi: d.hi, width: 1000, height: 200, baseY: 140,
     every: span > 30 ? 5 : 1, bigEvery: span > 30 ? 10 : (d.step >= 5 ? 5 : 2), cls: "jp-nl" });
   board.appendChild(nl.root);
-  for(let i = 0; i + 1 < d.prior.length; i++) mtgArc(nl.svg, nl.X(d.prior[i]), nl.X(d.prior[i + 1]), 136, Math.min(70, 26 + (d.prior[i + 1] - d.prior[i]) * nl.U * 0.25));
+  const jumpLift=34;
+  for(let i=0;i+1<d.prior.length;i++){
+    mtgArc(nl.svg,nl.X(d.prior[i]),nl.X(d.prior[i+1]),136,jumpLift);
+    nl.hold(d.prior[i+1]);
+  }
   const frog = mtgEl("img", "jp-frog"); frog.src = mtgImg("chr_tappu"); frog.style.left = nl.X(d.at) + "px";
   nl.root.appendChild(frog);
   host.appendChild(board);
@@ -388,8 +414,8 @@ SlideModules.JUMP_PICK = { mount(host, slide){
       mtgRun(async()=>{
         mtgRight(); confettiCannon(); setSwMood("celebrate");
         const voDone = mtgSay(d.correct, tok);
-        const lift = Math.max(0, Math.min(44, frog.offsetTop - 12, 30 + (d.answer - d.at) * nl.U * 0.25));
-        mtgArc(nl.svg, nl.X(d.at), nl.X(d.answer), 136, lift);
+        const lift=jumpLift;
+        mtgArc(nl.svg,nl.X(d.at),nl.X(d.answer),136,lift,null,{duration:900,start:.12,end:.84});
         await mtgHop(frog, nl.X(d.at), nl.X(d.answer), lift, 900);
         nl.hold(d.answer);
         await voDone;
@@ -446,10 +472,14 @@ SlideModules.SEQ_FILL = { mount(host, slide){
   async function hintPopup(bl){
     const ov = mtgEl("div", "sf-hint-ov"), card = mtgEl("div", "sf-hint");
     card.appendChild(mtgEl("div", "sf-hint-title", "संकेत"));
-    const [a, z] = bl.hint_range;
+    const previous=bl.from-bl.step;
+    const a=Math.min(bl.hint_range[0],previous),z=Math.max(bl.hint_range[1],bl.answer);
     const nl = mtgNumberLine({ lo: a, hi: z, width: 760, height: 190, baseY: 128, dots: true, noArrows: false, cls: "sf-hint-nl" });
     const pet = mtgEl("img", "sf-hint-animal"); pet.src = mtgImg(d.animal); pet.style.left = nl.X(bl.from) + "px";
     nl.root.appendChild(pet);
+    const hintLift=66;
+    mtgArc(nl.svg,nl.X(previous),nl.X(bl.from),124,hintLift,"+"+bl.step);
+    nl.hold(bl.from);
     card.appendChild(nl.root);
     card.appendChild(mtgEl("div", "sf-hint-cap", mtgText(bl.hint)));
     ov.appendChild(card); $("stage").appendChild(ov);
@@ -457,7 +487,7 @@ SlideModules.SEQ_FILL = { mount(host, slide){
     const opened = Date.now();
     const voDone = mtgSay(bl.hint, tok);
     await mtgWait(700, tok);
-    mtgArc(nl.svg, nl.X(bl.from), nl.X(bl.answer), 124, Math.min(80, 34 + (bl.answer - bl.from) * nl.U * 0.18), "+" + bl.step);
+    mtgArc(nl.svg,nl.X(bl.from),nl.X(bl.answer),124,hintLift,"+"+bl.step,{duration:900});
     await mtgWait(900, tok);
     nl.hold(bl.answer);
     await voDone;
@@ -474,7 +504,7 @@ SlideModules.SEQ_FILL = { mount(host, slide){
     sfxTap();
     if(v === bl.answer){
       busy = true; opts.enable(false); stopNudge();
-      b.classList.remove("guide"); b.classList.add("used");
+      b.classList.remove("guide"); opts.consume(b);
       SwiftPAL.emit("seq_fill_correct", { slide_id: slide.id, blank: bi, attempts: tries + 1 });
       mtgRun(async()=>{
         mtgRight(); confettiCannon(); setSwMood("celebrate"); mtgOst(mtgText(bl.correct));
@@ -623,14 +653,44 @@ SlideModules.SPACE_PODS = { mount(host, slide){
       scene.appendChild(pods);
       const ground = mtgEl("div", "sp-ground");
       const pool = shuffle(R.seq.filter((n, i) => !R.prefilled.includes(i)).concat(R.distractors));
-      const W = 1333 - 300, x0 = 230, gap = W / pool.length;
+      const W=1333-270,x0=205,gap=W/pool.length;
       const walkers = pool.map((n, k)=>{
         const a = astronaut(L.cast, n, "walker"); a.style.left = (x0 + gap * k + gap / 2 - 75) + "px";
+        a.dataset.home=String(x0+gap*k+gap/2-75);a.style.setProperty("--sway-delay",(-k*.7)+"s");
         ground.appendChild(a); return a;
       });
       scene.appendChild(ground);
       let wrongSaid = false, finished = false, idleT = null, guidedOnce = false, busyVo = false;
       let selected = null, tapLocked = false;
+      // A shared clock keeps correct animals and distractors equally lively.
+      // Pause the whole lane while the child points, selects or drags.
+      const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches,arrival=performance.now();
+      let pausedAt=0,pausedTotal=0;
+      ground.dataset.entering=String(!reduced);
+      function moveAnimals(now){
+        if(tok!==_mtgTok||!ground.isConnected||finished)return;
+        const elapsed=now-arrival,entering=!reduced&&elapsed<900+(walkers.length-1)*180;
+        ground.dataset.entering=String(entering);
+        const paused=!!ground.querySelector(".dragging,.selected,.walker:hover,.walker:focus-visible");
+        if(paused&&!pausedAt)pausedAt=now;
+        if(!paused&&pausedAt){pausedTotal+=now-pausedAt;pausedAt=0;}
+        walkers.forEach((w,k)=>{
+          if(w.classList.contains("snapped"))return;
+          const home=+w.dataset.home;
+          if(reduced){w.style.left=home+"px";return;}
+          if(entering){
+            const t=Math.max(0,Math.min(1,(elapsed-k*180)/900)),ease=1-Math.pow(1-t,3);
+            w.style.left=(home+(1400-home)*(1-ease))+"px";
+          }else if(!paused){
+            const time=(now-arrival-pausedTotal)/1000;
+            w.style.left=(home+18*Math.sin(time*.65+k*1.4))+"px";
+          }
+        });
+        ground.classList.toggle("motion-paused",paused);
+        requestAnimationFrame(moveAnimals);
+      }
+      requestAnimationFrame(moveAnimals);
+
       const status = mtgEl("div", "sp-status", "जानवर चुनिए, फिर खाली यान चुनिए।");
       status.setAttribute("role", "status"); status.setAttribute("aria-live", "polite");
       scene.appendChild(status);
@@ -714,7 +774,7 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         w.setAttribute("role", "button"); w.setAttribute("aria-pressed", "false"); w.tabIndex = 0;
         w.setAttribute("aria-label", String(w.dataset.n) + ", जानवर चुनिए");
         const select = () => {
-          if(finished || busyVo || w.classList.contains("snapped")) return;
+          if(finished || busyVo || ground.dataset.entering==="true" || w.classList.contains("snapped")) return;
           const wasSelected = selected === w; clearSelection();
           if(!wasSelected){
             selected = w; w.classList.add("selected"); w.setAttribute("aria-pressed", "true");
@@ -724,6 +784,8 @@ SlideModules.SPACE_PODS = { mount(host, slide){
           }
         };
         // The engine distinguishes taps from drags for mouse and touch, including preventDefault.
+        const gate=e=>{if(ground.dataset.entering==="true"||finished){e.preventDefault();e.stopImmediatePropagation();}};
+        w.addEventListener("mousedown",gate,true);w.addEventListener("touchstart",gate,{capture:true,passive:false});
         makeDraggable(w, gradeDrop, {onTap:select, onPick:clearSelection});
         w.onkeydown = keyActivate(select);
         w.addEventListener("mousedown", ()=> clearTimeout(idleT)); w.addEventListener("touchstart", ()=> clearTimeout(idleT), { passive: true });

@@ -93,7 +93,7 @@ try:
     shot('05_sequence')
     go(10)
     wait("document.querySelectorAll('.sp-card').length===3")
-    check('space uses scalable SVG',js("return getComputedStyle(document.querySelector('.sp-root')).backgroundImage.includes('sc_space_v2.svg')"))
+    check('space uses scalable SVG',js("return getComputedStyle(document.querySelector('.sp-root')).backgroundImage.includes('sc_space_playful.svg')"))
     shot('06_space_menu')
     js("document.querySelector('.sp-card').click()")
     wait("document.querySelectorAll('.sp-pod').length===5")

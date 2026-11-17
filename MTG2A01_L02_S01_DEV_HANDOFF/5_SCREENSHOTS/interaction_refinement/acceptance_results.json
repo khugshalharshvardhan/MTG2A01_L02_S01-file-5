@@ -1,0 +1,230 @@
+[
+  [
+    "T1 initial numbers have equal size and weight",
+    true
+  ],
+  [
+    "T1 pad centres align with equal consecutive spacing",
+    true
+  ],
+  [
+    "T1 all visited labels retain equal emphasis",
+    true
+  ],
+  [
+    "T1 pads return to their resting position and size",
+    true
+  ],
+  [
+    "T1 arrow grows through ascent and descent",
+    true
+  ],
+  [
+    "T1 recap number labels do not overlap",
+    true
+  ],
+  [
+    "T2 initial numbers have equal size and weight",
+    true
+  ],
+  [
+    "T2 pad centres align with equal consecutive spacing",
+    true
+  ],
+  [
+    "T2 all visited labels retain equal emphasis",
+    true
+  ],
+  [
+    "T2 pads return to their resting position and size",
+    true
+  ],
+  [
+    "T2 arrow grows through ascent and descent",
+    true
+  ],
+  [
+    "T2 recap number labels do not overlap",
+    true
+  ],
+  [
+    "T3 initial numbers have equal size and weight",
+    true
+  ],
+  [
+    "T3 pad centres align with equal consecutive spacing",
+    true
+  ],
+  [
+    "T3 all visited labels retain equal emphasis",
+    true
+  ],
+  [
+    "T3 pads return to their resting position and size",
+    true
+  ],
+  [
+    "T3 arrow grows through ascent and descent",
+    true
+  ],
+  [
+    "T3 recap number labels do not overlap",
+    true
+  ],
+  [
+    "G1 future labels remain uniform",
+    true
+  ],
+  [
+    "G1 golden hint matches axis thickness",
+    true
+  ],
+  [
+    "G1 one unit at a time for approximately one second",
+    true
+  ],
+  [
+    "G1 landing becomes bold while earlier landings remain",
+    true
+  ],
+  [
+    "G2 future labels remain uniform",
+    true
+  ],
+  [
+    "G2 golden hint matches axis thickness",
+    true
+  ],
+  [
+    "G2 one unit at a time for approximately one second",
+    true
+  ],
+  [
+    "G2 landing becomes bold while earlier landings remain",
+    true
+  ],
+  [
+    "G3 future labels remain uniform",
+    true
+  ],
+  [
+    "G3 golden hint matches axis thickness",
+    true
+  ],
+  [
+    "G3 one unit at a time for approximately one second",
+    true
+  ],
+  [
+    "G3 landing becomes bold while earlier landings remain",
+    true
+  ],
+  [
+    "G4 blank 1 starts with a completed preceding jump",
+    true
+  ],
+  [
+    "G4 blank 1 next arrow animates on the curve",
+    true
+  ],
+  [
+    "G4 blank 1 used option leaves no empty slot",
+    true
+  ],
+  [
+    "G5 blank 1 starts with a completed preceding jump",
+    true
+  ],
+  [
+    "G5 blank 1 next arrow animates on the curve",
+    true
+  ],
+  [
+    "G5 blank 1 used option leaves no empty slot",
+    true
+  ],
+  [
+    "G5 blank 2 starts with a completed preceding jump",
+    true
+  ],
+  [
+    "G5 blank 2 next arrow animates on the curve",
+    true
+  ],
+  [
+    "G5 blank 2 used option leaves no empty slot",
+    true
+  ],
+  [
+    "G6 blank 1 starts with a completed preceding jump",
+    true
+  ],
+  [
+    "G6 blank 1 next arrow animates on the curve",
+    true
+  ],
+  [
+    "G6 blank 1 used option leaves no empty slot",
+    true
+  ],
+  [
+    "G6 blank 2 starts with a completed preceding jump",
+    true
+  ],
+  [
+    "G6 blank 2 next arrow animates on the curve",
+    true
+  ],
+  [
+    "G6 blank 2 used option leaves no empty slot",
+    true
+  ],
+  [
+    "G7 blank 1 starts with a completed preceding jump",
+    true
+  ],
+  [
+    "G7 blank 1 next arrow animates on the curve",
+    true
+  ],
+  [
+    "G7 blank 1 used option leaves no empty slot",
+    true
+  ],
+  [
+    "G7 blank 2 starts with a completed preceding jump",
+    true
+  ],
+  [
+    "G7 blank 2 next arrow animates on the curve",
+    true
+  ],
+  [
+    "G7 blank 2 used option leaves no empty slot",
+    true
+  ],
+  [
+    "playful space artwork loads",
+    true
+  ],
+  [
+    "animals enter across the screen",
+    true
+  ],
+  [
+    "correct animals and distractors move gently",
+    true
+  ],
+  [
+    "animal positions and bob pause during a drag",
+    true
+  ],
+  [
+    "reduced motion keeps animals still and immediately available",
+    true
+  ],
+  [
+    "no browser errors",
+    true
+  ]
+]
