@@ -1,0 +1,30 @@
+[
+  [
+    "sfx_ref_correct",
+    0.85
+  ],
+  [
+    "sfx_ref_wrong",
+    0.72
+  ],
+  [
+    "sfx_ref_tap",
+    0.1170625
+  ],
+  [
+    "sfx_frog_hop",
+    0.28
+  ],
+  [
+    "sfx_frog_croak",
+    0.25
+  ],
+  [
+    "sfx_animal_hop",
+    0.2
+  ],
+  [
+    "sfx_water_land",
+    0.32
+  ]
+]

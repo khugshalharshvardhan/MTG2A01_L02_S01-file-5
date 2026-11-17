@@ -21,7 +21,10 @@ window.__arcs=[];window.__segments=[];let last='';
 })();"""
 d.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument',{'source':STUB})
 checks=[]
-def js(s,*args):return d.execute_script(s,*args)
+def js(s,*args):
+ for q in ["document.querySelectorAll('.sp-pod","document.querySelector('.sp-pod","document.querySelectorAll('.walker","document.querySelector('.walker","document.querySelector('.sp-ground"]:
+  s=s.replace(q,q.replace('document.','current.'))
+ return d.execute_script("const current=document.querySelector('.sp-scene.active')||document;"+s,*args)
 def wait(s,seconds=40):return WebDriverWait(d,seconds,poll_frequency=.05).until(lambda _:js('return '+s))
 def ok(name,value):
  checks.append([name,bool(value)]);print(('PASS ' if value else 'FAIL ')+name,flush=True)
@@ -68,10 +71,10 @@ try:
    ok(f'G{i-2} blank {bi+1} next arrow animates on the curve',js("const a=document.querySelectorAll('.sf-hint .mtg-arc')[1];return +a.dataset.progress>0&&+a.dataset.progress<1&&a.querySelector('.mtg-arc-path').getAttribute('d').includes(' Q')"))
    time.sleep(.7);shot(f'G{i-2}_hint_{bi+1}')
    wait("!document.querySelector('.sf-hint-ov')",12);live();click(bl['answer']);time.sleep(.4)
-   ok(f'G{i-2} blank {bi+1} used option leaves no empty slot',js("const cells=[...document.querySelectorAll('.mtg-opt:not(.used)')],r=cells.map(c=>c.getBoundingClientRect());return getComputedStyle(document.querySelector('.mtg-opt.used')).display==='none'&&r.every((v,k)=>!k||Math.abs(v.left-r[k-1].right-34*parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--scale')))<2)"))
+   ok(f'G{i-2} blank {bi+1} used option leaves no empty slot',js("const cells=[...document.querySelectorAll('.mtg-opt:not(.used)')],r=cells.map(c=>c.getBoundingClientRect());return getComputedStyle(document.querySelector('.mtg-opt.used')).display==='none'&&r.every((v,k)=>!k||Math.abs(v.left-r[k-1].right-parseFloat(getComputedStyle(document.querySelector('.mtg-opts')).gap)*parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--scale')))<2)"))
    if bi+1<len(data['blanks']):live()
  go(10);wait("document.querySelectorAll('.sp-card').length===3");shot('space_menu')
- ok('playful space artwork loads',js("return getComputedStyle(document.querySelector('.sp-root')).backgroundImage.includes('sc_space_playful.svg')"))
+ ok('playful space artwork loads',js("return getComputedStyle(document.querySelector('.sp-cosmos')).backgroundImage.includes('sc_space_playful.svg')"))
  js("document.querySelector('.sp-card').click()");wait("document.querySelector('.sp-ground')")
  first=js("return [...document.querySelectorAll('.walker')].map(w=>parseFloat(w.style.left))");time.sleep(.3)
  second=js("return [...document.querySelectorAll('.walker')].map(w=>parseFloat(w.style.left))")

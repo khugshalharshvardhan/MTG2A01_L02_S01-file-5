@@ -1,0 +1,338 @@
+[
+ [
+  "cover: play button becomes tappable",
+  true
+ ],
+ [
+  "cover: idle pulse after ~5 s",
+  true
+ ],
+ [
+  "transition Swifty (peek-up) opens after play",
+  true
+ ],
+ [
+  "T1 mounts after the transition",
+  true
+ ],
+ [
+  "T1 \u0906\u0917\u0947 shown + enabled at end",
+  true
+ ],
+ [
+  "T1 jumps drawn",
+  true
+ ],
+ [
+  "T2 tap 1 offered",
+  true
+ ],
+ [
+  "T2 tap 2 offered",
+  true
+ ],
+ [
+  "T2 \u0906\u0917\u0947 shown + enabled at end",
+  true
+ ],
+ [
+  "T2 jumps drawn",
+  true
+ ],
+ [
+  "T3 tap 1 offered",
+  true
+ ],
+ [
+  "T3 tap 2 offered",
+  true
+ ],
+ [
+  "T3 \u0906\u0917\u0947 shown + enabled at end",
+  true
+ ],
+ [
+  "T3 jumps drawn",
+  true
+ ],
+ [
+  "T3 \u0906\u0917\u0947 \u2192 guided transition",
+  true
+ ],
+ [
+  "guided transition \u2192 G1",
+  true
+ ],
+ [
+  "G1 options live",
+  true
+ ],
+ [
+  "G1 WA3 fades the wrong options",
+  true
+ ],
+ [
+  "G1 WA3 guides the answer",
+  true
+ ],
+ [
+  "G1 \u0906\u0917\u0947 hidden on a question page",
+  true
+ ],
+ [
+  "G1 correct \u2192 moves on by itself",
+  true
+ ],
+ [
+  "G2 options live",
+  true
+ ],
+ [
+  "G2 WA3 fades the wrong options",
+  true
+ ],
+ [
+  "G2 WA3 guides the answer",
+  true
+ ],
+ [
+  "G2 \u0906\u0917\u0947 hidden on a question page",
+  true
+ ],
+ [
+  "G2 correct \u2192 moves on by itself",
+  true
+ ],
+ [
+  "G3 options live",
+  true
+ ],
+ [
+  "G3 WA3 fades the wrong options",
+  true
+ ],
+ [
+  "G3 WA3 guides the answer",
+  true
+ ],
+ [
+  "G3 \u0906\u0917\u0947 hidden on a question page",
+  true
+ ],
+ [
+  "G3 correct \u2192 moves on by itself",
+  true
+ ],
+ [
+  "G4 options live",
+  true
+ ],
+ [
+  "G4 blank 1 hint popup opens",
+  true
+ ],
+ [
+  "G4 blank 1 hint closes by itself",
+  true
+ ],
+ [
+  "G4 blank 1 WA3 guides 38",
+  true
+ ],
+ [
+  "G4 all blanks filled \u2192 moves on by itself",
+  true
+ ],
+ [
+  "G5 options live",
+  true
+ ],
+ [
+  "G5 blank 1 hint popup opens",
+  true
+ ],
+ [
+  "G5 blank 1 hint closes by itself",
+  true
+ ],
+ [
+  "G5 blank 1 WA3 guides 18",
+  true
+ ],
+ [
+  "G5 blank 2 hint popup opens",
+  true
+ ],
+ [
+  "G5 blank 2 hint closes by itself",
+  true
+ ],
+ [
+  "G5 blank 2 WA3 guides 20",
+  true
+ ],
+ [
+  "G5 all blanks filled \u2192 moves on by itself",
+  true
+ ],
+ [
+  "G6 options live",
+  true
+ ],
+ [
+  "G6 blank 1 hint popup opens",
+  true
+ ],
+ [
+  "G6 blank 1 hint closes by itself",
+  true
+ ],
+ [
+  "G6 blank 1 WA3 guides 70",
+  true
+ ],
+ [
+  "G6 blank 2 hint popup opens",
+  true
+ ],
+ [
+  "G6 blank 2 hint closes by itself",
+  true
+ ],
+ [
+  "G6 blank 2 WA3 guides 75",
+  true
+ ],
+ [
+  "G6 all blanks filled \u2192 moves on by itself",
+  true
+ ],
+ [
+  "G7 options live",
+  true
+ ],
+ [
+  "G7 blank 1 hint popup opens",
+  true
+ ],
+ [
+  "G7 blank 1 hint closes by itself",
+  true
+ ],
+ [
+  "G7 blank 1 WA3 guides 70",
+  true
+ ],
+ [
+  "G7 blank 2 hint popup opens",
+  true
+ ],
+ [
+  "G7 blank 2 hint closes by itself",
+  true
+ ],
+ [
+  "G7 blank 2 WA3 guides 90",
+  true
+ ],
+ [
+  "G7 \u2192 practice transition before the game",
+  true
+ ],
+ [
+  "G7 \u2192 game mounts after the transition",
+  true
+ ],
+ [
+  "GAME L1 R1 pods shown",
+  true
+ ],
+ [
+  "GAME L1 R1 all pods filled",
+  true
+ ],
+ [
+  "GAME L1 R2 pods shown",
+  true
+ ],
+ [
+  "GAME L1 R2 all pods filled",
+  true
+ ],
+ [
+  "GAME L1 R3 pods shown",
+  true
+ ],
+ [
+  "GAME L1 R3 all pods filled",
+  true
+ ],
+ [
+  "GAME L1 back to menu with badge",
+  true
+ ],
+ [
+  "GAME L2 R1 pods shown",
+  true
+ ],
+ [
+  "GAME L2 R1 all pods filled",
+  true
+ ],
+ [
+  "GAME L2 R2 pods shown",
+  true
+ ],
+ [
+  "GAME L2 R2 all pods filled",
+  true
+ ],
+ [
+  "GAME L2 R3 pods shown",
+  true
+ ],
+ [
+  "GAME L2 R3 all pods filled",
+  true
+ ],
+ [
+  "GAME L2 back to menu with badge",
+  true
+ ],
+ [
+  "GAME L3 R1 pods shown",
+  true
+ ],
+ [
+  "GAME L3 R1 all pods filled",
+  true
+ ],
+ [
+  "GAME L3 R2 pods shown",
+  true
+ ],
+ [
+  "GAME L3 R2 all pods filled",
+  true
+ ],
+ [
+  "GAME L3 R3 pods shown",
+  true
+ ],
+ [
+  "GAME L3 R3 all pods filled",
+  true
+ ],
+ [
+  "GAME L3 back to menu with badge",
+  true
+ ],
+ [
+  "GAME all levels \u2192 celebration",
+  true
+ ],
+ [
+  "no console errors",
+  true
+ ]
+]

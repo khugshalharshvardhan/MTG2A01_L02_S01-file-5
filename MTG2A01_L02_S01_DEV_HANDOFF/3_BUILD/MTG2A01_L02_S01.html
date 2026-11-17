@@ -4484,7 +4484,7 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
 
 /* == TRAIN STYLES :: END == */
 </style>
-<link rel="preload" as="image" fetchpriority="high" href="assets/Images/chr_tappu.webp"><link rel="preload" as="image" href="assets/Images/sc_pond_v2.webp"><style id="mtgStyles">
+<link rel="preload" as="image" fetchpriority="high" href="assets/Images/lesson_frog.webp"><link rel="preload" as="image" href="assets/Images/sc_pond_v4.webp"><style id="mtgStyles">
 /* [MTG2A01] lesson styles — scoped; nothing here touches existing selectors */
 @keyframes mtgGlow{0%,100%{box-shadow:0 0 0 0 rgba(255,200,40,0);}40%{box-shadow:0 0 0 10px rgba(255,200,40,.55),0 0 26px 10px rgba(255,214,70,.75);}}
 @keyframes mtgPop{0%{transform:translateX(-50%) scale(1);}45%{transform:translateX(-50%) scale(1.35);}100%{transform:translateX(-50%) scale(1);}}
@@ -4742,6 +4742,119 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
 @keyframes brDroplet{0%{transform:translate(0,0) scale(.8);opacity:0;}20%{opacity:.9;}65%{transform:translate(var(--dx),var(--dy)) scale(.7);opacity:.8;}100%{transform:translate(var(--dx),2px) scale(.2);opacity:0;}}
 @media(prefers-reduced-motion:reduce){.br-splash,.mtg-hop-shadow{display:none;}}
 
+/* Lesson v4: the picture meets the frame, with a sky heading and concise footer. */
+.tut-card.br-card{isolation:isolate;background:#f6fbfd;}
+.tut-card.br-card .tut-prompt{position:absolute;left:0;right:0;top:20px;min-height:0;padding:0 100px;z-index:10;font-size:42px;color:#174a69;pointer-events:none;}
+.tut-card.br-card .tut-content{padding:0;justify-content:flex-start;}
+.tut-card.br-card::after{height:80px;}
+.br-wrap{padding-top:0;gap:0;}
+.br-view{flex-shrink:0;background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(255,255,255,.56) 25%,transparent 58%),#b9eff1 url(assets/Images/sc_pond_v4.webp) center/100% 100% no-repeat;border-radius:23px 23px 0 0;box-shadow:none;}
+.br-card .br-cap{min-height:112px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;max-width:none;width:100%;padding:12px 100px 0 150px;color:#173e64;}
+.br-caption-text{margin:0;font:700 25px/1.32 var(--font-hi);text-align:center;max-width:100%;text-wrap:pretty;}
+.br-count-strip{display:flex;justify-content:center;align-items:center;gap:12px;min-height:0;flex-wrap:wrap;}
+.br-count-word{font:800 24px/1.15 var(--font-hi);color:#315d74;padding:3px 10px;border-radius:12px;background:#edf5f8;}
+.br-count-word.current{background:#fff0ae;color:#775000;box-shadow:0 2px 0 #efd789;}
+.br-num,.br-num.big,.br-world.zoomed .br-num.big{box-sizing:border-box;width:46px;height:40px;display:flex;align-items:center;justify-content:center;padding:0;border-radius:12px;font-size:20px;font-weight:650;line-height:1;box-shadow:0 3px 0 rgba(14,80,86,.13);}
+.br-num.big,.br-world.zoomed .br-num.big{font-size:29px;font-weight:800;}
+.br-world .br-rock:not(.key),.br-world .br-num:not(.big){opacity:var(--minor-opacity,1);}
+.br-friend{scale:1;filter:drop-shadow(0 3px 2px rgba(0,65,52,.18));}
+
+/* File9 jl-opt recipe: grey ledge, spring entrance, lateral wrong buzz,
+   green confirmation/glow and disabled alternatives at the third attempt. */
+.mtg-opts{gap:30px;align-items:center;min-height:112px;flex-shrink:0;}
+.mtg-opts:not(.revealed){visibility:hidden;}
+.mtg-opt{position:relative;width:180px;min-width:180px;height:104px;padding:0 22px;border-radius:20px;background:#fff;border:2.69px solid #D5D8DF;box-shadow:0 4px 0 #D9D9D9;font-size:54px;font-weight:800;line-height:1;color:#012F76;display:flex;align-items:center;justify-content:center;transition:border-color .15s,background .15s,box-shadow .15s,opacity .3s;}
+.mtg-opt:not(:disabled):hover{transform:none;border-color:#bec8d5;box-shadow:0 6px 0 #D9D9D9;}
+.mtg-opt:not(:disabled):active{box-shadow:0 2px 0 #D9D9D9;translate:0 2px;}
+.mtg-opt.option-enter{animation:mtgOptionIn .45s cubic-bezier(.3,1.6,.5,1) var(--option-delay,0ms) both;}
+.mtg-opt.right{border:5px solid #00B132;background:#EFFBF2;opacity:1;box-shadow:0 4px 0 #A8E3B9,0 0 6px #00B132,0 0 14px rgba(0,177,50,.45);animation:mtgOptionRight .45s cubic-bezier(.3,1.6,.5,1) both;}
+.mtg-opt.guide{border-color:#00B132;box-shadow:0 4px 0 #D9D9D9,0 0 0 6px rgba(0,177,50,.28);animation:none;}
+.mtg-opt.faded{opacity:.45!important;pointer-events:none;cursor:not-allowed;}
+.mtg-opt.used{opacity:0;visibility:hidden;pointer-events:none;}
+.mtg-opt.option-gone{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .45s ease-out,visibility 0s .45s;}
+@keyframes mtgOptionIn{0%{opacity:0;scale:.3;}100%{opacity:1;scale:1;}}
+@keyframes mtgOptionRight{0%{scale:1;}45%{scale:1.08;}100%{scale:1;}}
+.mtg-question-center,.mtg-sequence-center{justify-content:center;align-items:center;gap:42px;padding-bottom:0;}
+.jp-board{padding:24px 30px 12px;flex-shrink:0;}
+.jp-frog{top:44px;width:112px;height:90px;object-fit:contain;object-position:bottom;}
+.sf-stage{padding:190px 24px 0;flex-shrink:0;}
+.sf-animal{top:64px;height:114px;width:auto;max-width:170px;object-fit:contain;object-position:bottom;}
+.sf-hint-animal{height:112px;top:10px;max-width:160px;object-fit:contain;object-position:bottom;}
+@media(prefers-reduced-motion:reduce){.mtg-opt.option-enter,.mtg-opt.right{animation:none;opacity:1;scale:1;}}
+
+/* Spaceport Adventure: five docks above a separate passenger platform. */
+.sp-root{--mission:#8de1d0;background:#142b46 url(assets/Images/spaceport_bg.svg) center/100% 100% no-repeat;}
+.sp-root[data-step="5"]{--mission:#ffc5b1;}.sp-root[data-step="10"]{--mission:#c4b6f7;}
+.sp-title,.sp-title.big{top:24px;background:none;box-shadow:none;color:#f1faff;font-size:42px;padding:0 30px;text-shadow:0 3px 0 rgba(0,0,0,.15);}
+.sp-title.big{top:32px;font-size:58px;}
+.sp-menu{top:175px;gap:42px;}
+.sp-card{width:300px;height:440px;border:3px solid #e9f8ff;border-radius:34px;padding:18px 12px;box-shadow:0 12px 0 rgba(4,21,39,.25),0 18px 36px rgba(0,0,0,.16);}
+.sp-card.c0{background:#e0f5ee;}.sp-card.c1{background:#fff0e7;}.sp-card.c2{background:#eeeaff;}
+.sp-card.done{opacity:.62;cursor:default;}
+.sp-mission-step{position:absolute;left:15px;top:13px;min-width:38px;height:38px;padding:0 9px;border-radius:50%;color:#335773;background:rgba(255,255,255,.8);font:800 24px/38px var(--font-hi);}
+.sp-card-art{width:260px;height:260px;flex-shrink:0;}
+.sp-card-pod{left:25px;bottom:0;width:210px;height:250px;}
+.sp-card-lbl{margin-top:16px;font-size:29px;background:none;padding:0 10px;}
+.sp-card-play{margin-top:12px;width:68px;height:68px;font-size:32px;}
+.sp-pods{top:124px;gap:22px;}
+.sp-pod{width:210px;height:250px;flex-shrink:0;transform-origin:50% 80%;}
+.sp-pod-img{left:0;bottom:0;width:210px;height:250px;filter:drop-shadow(0 8px 10px rgba(2,20,42,.12));}
+.sp-pod::after{content:"";position:absolute;left:50px;right:50px;bottom:-7px;height:7px;border-radius:8px;background:#497a91;box-shadow:0 3px 0 rgba(4,24,42,.4);opacity:.5;}
+.sp-pod.filled::after{background:var(--mission);opacity:1;box-shadow:0 0 12px var(--mission);}
+.sp-pod .sp-dome{left:52px;top:23px;width:106px;height:111px;border-radius:52px 52px 12px 12px;}
+.sp-card-art .sp-dome{left:77px;top:33px;width:106px;height:111px;border-radius:52px 52px 12px 12px;}
+.sp-dome img{left:0;top:0;width:100%;height:auto;transform:none;}
+.sp-podnum{left:71px;top:154px;width:68px;height:68px;background:#183e5c;border:4px solid #fff;color:#fff;font-size:34px;line-height:1;box-shadow:0 3px 0 #b0c8d7;}
+.sp-pod.hover .sp-pod-img,.sp-pod.cue .sp-pod-img{filter:drop-shadow(0 0 8px var(--mission)) drop-shadow(0 0 15px rgba(210,250,255,.5));}
+.sp-pod.snap{animation:spDock .48s cubic-bezier(.2,.8,.4,1);}
+.sp-pod.wiggle{animation:spReject .45s ease-in-out;}
+.sp-pod.fly{transform:translateY(-650px);opacity:0;transition:transform 1.05s cubic-bezier(.55,.05,.8,.35),opacity .95s .1s;}
+.sp-pod.fly::after{display:none;}
+.sp-engine{position:absolute;left:86px;top:225px;width:38px;height:65px;border-radius:45% 45% 65% 65%;background:linear-gradient(#fff6cc,#ffc965 50%,#f79c68 85%,transparent);transform-origin:50% 0;opacity:0;z-index:0;}
+.sp-pod.engine-on .sp-engine{opacity:1;animation:spEngine .17s ease-in-out infinite alternate;}
+.sp-puff{left:50%;top:83%;width:28px;height:28px;margin:-14px 0 0 -14px;animation-duration:.55s;z-index:1;background:radial-gradient(circle at 35% 30%,#f7fdff,#bed9e2);}
+.sp-ground{height:250px;bottom:22px;}
+.sp-ground::before{content:"";position:absolute;left:230px;right:55px;bottom:10px;height:65px;border-radius:50%;background:rgba(221,247,251,.24);border:2px solid rgba(222,250,255,.38);box-shadow:0 8px 0 rgba(31,78,102,.14);}
+.sp-astro{width:150px;height:198px;bottom:30px;}
+.sp-astro-in{width:150px;height:190px;animation:spBobQuiet 5s ease-in-out infinite;}
+.sp-astro img{width:150px;height:190px;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 5px 4px rgba(13,47,65,.2));}
+.sp-astro.dragging .sp-astro-in,.sp-astro.selected .sp-astro-in{animation:none;}
+.sp-badge{left:50%!important;top:auto!important;bottom:-8px;width:64px;height:64px;margin:0;transform:translateX(-50%);border:4px solid #fff;box-shadow:0 4px 0 rgba(17,60,81,.3);background:#173e5c;font-size:32px;line-height:1;}
+.sp-astro.selected .sp-badge{background:#fff1b0;box-shadow:0 0 0 5px rgba(255,241,176,.28),0 4px 0 rgba(17,60,81,.3);}
+.sp-astro.returning .sp-astro-in{animation:spReturn .4s ease-out;}
+.sp-astro.ghost{height:198px;width:130px;}
+.sp-astro.ghost .sp-astro-in,.sp-astro.ghost img{width:130px;}
+.sp-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);padding:0;white-space:nowrap;background:none;}
+.sp-round{left:30px;right:auto;top:32px;border:0;background:rgba(255,255,255,.07);padding:8px 14px;font-size:19px;display:flex;align-items:center;gap:12px;}
+.sp-progress-dots{display:flex;gap:7px;}.sp-progress-dots i{width:10px;height:10px;border:2px solid #91b6c8;border-radius:50%;}.sp-progress-dots i.active{background:#fff2b8;border-color:#fff2b8;box-shadow:0 0 9px rgba(255,242,184,.5);}.sp-progress-dots i.done{background:#8de1d0;border-color:#8de1d0;}
+.sp-swiftie{width:94px;height:94px;left:22px;bottom:22px;border-width:4px;}
+.sp-audio{right:25px;top:25px;width:60px;height:60px;}.sp-audio:disabled{opacity:.55;cursor:default;}
+body.vo-lock .sp-astro{pointer-events:none!important;}
+@keyframes spDock{0%{scale:1;}35%{scale:.97 1.03;}70%{scale:1.025 .98;}100%{scale:1;}}
+@keyframes spReject{0%,100%{translate:0;}20%{translate:-6px;}45%{translate:6px;}70%{translate:-3px;}}
+@keyframes spEngine{from{scale:.85 .8;}to{scale:1.05 1.1;}}
+@keyframes spReturn{0%{scale:.96;}60%{scale:1.035;}100%{scale:1;}}
+@media(prefers-reduced-motion:reduce){.sp-pod,.sp-pod.fly{transition:none;}.sp-pod.snap,.sp-pod.wiggle,.sp-astro.returning .sp-astro-in,.sp-pod.engine-on .sp-engine{animation:none;}.sp-astro-in{animation:none;}.sp-pod.fly{transform:none;opacity:0;}.sp-puff{display:none;}}
+
+/* One continuous spaceport fills the viewport, including the 16:9 letterbox margins.
+   Scenery moves at two depths; the next dock slides in from the right. */
+body.mtg-game{background:#142b46 url(assets/Images/spaceport_bg.svg) center/cover no-repeat;}
+body.mtg-game .stage-wrap{z-index:1;}
+.stage.mtg-game,.stage.mtg-game .sp-root{background:transparent!important;box-shadow:none;border:0;}
+.sp-universe{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;--travel:0;background:#142b46;}
+.sp-cosmos{position:absolute;inset:0 -400px 0 0;background:url(assets/Images/spaceport_bg.svg) center/100% 100% no-repeat;transform:translateX(calc(var(--travel)*-40px));transition:transform 1.5s cubic-bezier(.45,0,.2,1);}
+.sp-rails{position:absolute;left:0;bottom:0;width:300%;height:19%;background:repeating-linear-gradient(115deg,transparent 0 220px,rgba(212,245,251,.16) 221px 223px,transparent 224px 450px);transform:translateX(calc(var(--travel)*-160px));transition:transform 1.5s cubic-bezier(.45,0,.2,1);}
+.sp-root[data-travelling="true"]{pointer-events:none;}
+.sp-root[data-playable="false"] .sp-astro.walker{pointer-events:none!important;}
+.sp-ground::before{left:95px;right:95px;}
+@media(prefers-reduced-motion:reduce){.sp-cosmos,.sp-rails{transition:none;transform:none;}}
+
+/* Persistent docks in world coordinates; only the camera translates the world. */
+.sp-world{position:absolute;left:0;top:0;width:3999px;height:750px;transform:translateX(0);transition:transform 3.8s cubic-bezier(.4,0,.2,1);will-change:transform;}
+.sp-world>.sp-scene{inset:auto;top:0;bottom:0;width:1333px;}
+.sp-fixed-title{z-index:5;pointer-events:none;}
+.sp-cosmos,.sp-rails{transition-duration:3.8s;transition-timing-function:cubic-bezier(.4,0,.2,1);}
+@media(prefers-reduced-motion:reduce){.sp-world{transition:none;}}
 
 /* Review refinement: uniform starting labels, persistent emphasis after landing. */
 .br-world .br-num,.br-world.zoomed .br-num{
@@ -4763,57 +4876,103 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
 .mtg-arc{opacity:1;transition:none;}
 .mtg-opts .mtg-opt.used{display:none;}
 
-/* Candy-coloured lunar playground, following the review deck palette. */
-.sp-root{background-image:url(assets/Images/sc_space_playful.svg);background-color:#44468b;}
-.sp-title{width:max-content;max-width:850px;left:50%;right:auto;transform:translateX(-50%);padding:8px 35px;border-radius:40px;background:#fff7dd;color:#403573;border:3px solid #f2d8ff;box-shadow:0 5px 0 #8a7bc1;font-size:36px;line-height:1.3;}
-.sp-title.big{font-size:43px;top:35px;}
-.sp-card{border:5px solid #fff7df;border-radius:42px;box-shadow:0 9px 0 #7262a7,0 16px 30px #25205a40;background-image:radial-gradient(circle at 22px 28px,#ffffff80 0 5px,transparent 6px),radial-gradient(circle at 92% 15%,#fff8bb 0 9px,transparent 10px);}
+
+/* Keep every unit visible in the compact overview; emphasis follows actual landings. */
+.br-world .br-num,.br-world.zoomed .br-num{
+ width:auto;height:auto;display:block;min-width:0;opacity:1;
+ font-size:min(calc(22px / var(--z,1)),calc(var(--unit) * .57));
+ padding:3px 1px;
+}
+.br-world .br-num.mark,.br-world.zoomed .br-num.mark{
+ font-size:min(calc(29px / var(--z,1)),calc(var(--unit) * .72));font-weight:850;
+}
+.br-world .br-rock:not(.key){opacity:1;}
+.br-world.overview .br-num{border-radius:4px;}
+.sf-hint-nl .nl-lbl.glow-hold{padding:0 1px;}
+
+/* Pastel lunar scenery fills the existing parallax world and letterbox. */
+body.mtg-game{background:#55559a url(assets/Images/sc_space_playful.svg) center/cover no-repeat;}
+.sp-universe{background:#55559a;}
+.sp-cosmos{background-image:url(assets/Images/sc_space_playful.svg);}
+.sp-title,.sp-title.big{
+ background:#fff7dd;color:#403573;border:3px solid #f2d8ff;border-radius:40px;
+ box-shadow:0 5px 0 #8a7bc1;text-shadow:none;width:max-content;max-width:900px;
+ left:50%;right:auto;transform:translateX(-50%);padding:6px 30px;font-size:36px;
+}
+.sp-title.big{font-size:43px;}
+.sp-card{border:5px solid #fff7df;border-radius:42px;box-shadow:0 9px 0 #7262a7,0 16px 30px #25205a40;
+ background-image:radial-gradient(circle at 22px 28px,#ffffff80 0 5px,transparent 6px),radial-gradient(circle at 92% 15%,#fff8bb 0 9px,transparent 10px);}
 .sp-card.c0{background-color:#dcd9ff;}.sp-card.c1{background-color:#ffdae3;}.sp-card.c2{background-color:#d4f5e7;}
-.sp-card-play{border:4px solid #fff;background:#7bcda4;color:white;box-shadow:0 5px 0 #58a987;}
-.sp-card.c1 .sp-card-play{background:#f58d9f;color:white;box-shadow:0 5px 0 #d46a8d;}
-.sp-card.c2 .sp-card-play{background:#9d9be8;color:white;box-shadow:0 5px 0 #7873c1;}
-.sp-round{background:#fff7dd;color:#51417b;border:3px solid #d9caff;box-shadow:0 3px 0 #9581b5;}
-.sp-status{background:#fff8e8;color:#51417b;border:2px solid #cbb5ef;box-shadow:0 4px 0 #9381b550;}
-.sp-pods::after{content:"";position:absolute;left:70px;right:70px;bottom:-36px;height:9px;border-radius:50%;background:repeating-linear-gradient(90deg,#fbd889 0 12px,transparent 12px 30px);opacity:.8;}
-.sp-pod::before{content:"";position:absolute;left:24px;right:24px;bottom:-16px;height:16px;border-radius:50%;background:#c3b0ed;box-shadow:0 3px 0 #8c7bb8;opacity:.65;}
-.sp-pod.filled::before{background:#c7f5ca;}
-.sp-ground::before{content:"";position:absolute;left:205px;right:42px;bottom:17px;height:35px;border-radius:50%;background:#a594d038;border:3px dashed #f6e9ff80;}
+.sp-card-play{border:4px solid white;background:#7bcda4;color:white;}
+.sp-card.c1 .sp-card-play{background:#f58d9f;color:white;}.sp-card.c2 .sp-card-play{background:#9d9be8;color:white;}
 .sp-ground[data-entering="true"] .walker{pointer-events:none;}
 .sp-astro.walker .sp-astro-in{animation:spCurious 3.6s ease-in-out infinite;animation-delay:var(--sway-delay,0s);transform-origin:50% 90%;}
 .sp-ground.motion-paused .sp-astro-in,.sp-astro.dragging .sp-astro-in,.sp-astro.selected .sp-astro-in{animation-play-state:paused;animation-name:spCurious;}
-.sp-astro.leave{bottom:22px;transform:translateX(1450px)!important;opacity:0;transition:transform 1.1s ease-in,opacity 1.1s;}
+.sp-astro.leave{bottom:30px;transform:translateX(1450px)!important;opacity:0;transition:transform 1.1s ease-in,opacity 1.1s;}
 @keyframes spCurious{0%,100%{transform:translateY(0) rotate(-2deg);}25%{transform:translateY(-9px) rotate(1.5deg);}50%{transform:translateY(-2px) rotate(2deg);}75%{transform:translateY(-7px) rotate(-1deg);}}
 @media(prefers-reduced-motion:reduce){
  .sp-astro.walker .sp-astro-in,.br-rock.glow{animation:none!important;}
  .sp-astro.leave{transition:none;}
 }
 
-/* Keep neighbouring labels separate in the complete 0-50 overview. */
-.br-world.zoomed .br-num,.br-world.zoomed .br-num.mark{
- padding-left:calc(.5px / var(--z,1));padding-right:calc(.5px / var(--z,1));
-}
 
-.sf-hint-nl .nl-lbl.glow-hold{padding:0 1px;}
+.sp-cosmos{background-size:cover;}
 
-/* Pond adventure cover */
-#startGate .sg-card.fc-card{height:580px;padding-top:24px;justify-content:flex-start;background:rgba(246,253,255,.92);border-radius:40px;box-shadow:inset 0 0 0 8px #fff,0 18px 50px rgba(23,76,115,.12);}
-#startGate .fc-card .sg-content{margin-bottom:0;max-width:1000px;gap:12px;}
-#sgTitle.fc-title{font-size:72px;line-height:1.2;margin:0;color:#174a89;text-shadow:none;}
-#startGate .fc-card .sg-sub{display:block!important;font-size:27px;color:#326779;order:2;}
-#sgHero.fc-hero{display:block;margin:0;order:3;}
-.fc-pond{position:relative;width:880px;height:260px;overflow:hidden;background:center/cover no-repeat;border-radius:28px;box-shadow:0 6px 18px rgba(23,104,127,.12);}
-#sgHero .fc-leaf{position:absolute;top:175px;height:auto;transform:translateX(-50%);border-radius:0;box-shadow:none;z-index:1;}
-#sgHero .fc-frog{position:absolute;left:125px;top:72px;width:88px;height:auto;transform:translateX(-50%);border-radius:0;box-shadow:none;z-index:3;}
-#sgHero .fc-friend{position:absolute;left:755px;top:88px;width:88px;height:auto;transform:translateX(-50%) scaleX(-1);border-radius:0;box-shadow:none;z-index:3;}
+/* File9's art-card frame and round play button, with this lesson's pond. */
+@font-face{font-family:"Yatra One";font-style:normal;font-weight:400;font-display:swap;src:url("assets/Fonts/YatraOne-Regular.ttf") format("truetype");}
+#startGate .sg-card.fc-card{position:relative;width:1040px;height:574px;padding:0;border:8px solid #fff;border-radius:40px;background:none;box-shadow:0 18px 40px rgba(0,47,118,.25);isolation:isolate;overflow:visible;justify-content:flex-start;}
+#startGate .fc-card::before{display:none;}
+#startGate .fc-card .sg-content{position:static;width:100%;max-width:none;margin:0;padding:0;gap:0;}
+#sgHero.fc-hero{position:absolute;inset:0;display:block;margin:0;width:100%;height:100%;max-width:none;z-index:0;}
+.fc-pond{position:absolute;inset:0;overflow:hidden;border-radius:32px;background-position:center;background-size:cover;background-repeat:no-repeat;}
+.fc-pond::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,255,255,.78) 25%,rgba(255,255,255,.12) 55%,transparent 68%);pointer-events:none;}
+#sgTitle.fc-title{position:absolute;left:70px;right:70px;top:54px;z-index:4;margin:0;color:#133e64;font-family:"Yatra One",var(--font-hi);font-weight:400;text-align:center;line-height:1.2;letter-spacing:0;text-shadow:0 3px 0 #fff,0 5px 0 #bbd3d7,0 8px 12px rgba(20,69,81,.15);}
+.fc-title-line{display:block;opacity:0;font-size:72px;white-space:nowrap;transform-origin:50% 90%;}
+.fc-ready .fc-title-line{animation:fcTitleArrive .85s cubic-bezier(.2,.9,.25,1.15) both;}
+#startGate .fc-card .sg-sub{display:none!important;}
+#sgHero .fc-leaf{position:absolute;height:auto;transform:translateX(-50%);border-radius:0;box-shadow:none;z-index:2;}
+#sgHero .fc-frog,#sgHero .fc-friend{position:absolute;width:136px;height:110px;object-fit:contain;object-position:bottom;translate:-50% 0;transform:none;transform-origin:50% 100%;border-radius:0;box-shadow:none;z-index:3;filter:drop-shadow(0 3px 2px rgba(0,65,52,.18));}
+#sgHero .fc-friend{scale:1;filter:drop-shadow(0 3px 2px rgba(0,65,52,.18));}
+.fc-ready .fc-frog{animation:fcFrogHello 6.5s ease-in-out infinite;}
+.fc-ready .fc-friend{animation:fcFriendHello 7.2s ease-in-out -1.7s infinite;}
+.fc-cover-splash{position:absolute;width:6px;height:8px;margin-left:-3px;border-radius:50%;background:#ecffff;box-shadow:-26px 5px 0 #d8ffff,26px 4px 0 #ecffff;z-index:2;opacity:0;pointer-events:none;}
+.fc-ready .fc-cover-splash{animation:fcCoverSplash 6.5s ease-out infinite;}
+.fc-cover-splash.friend{display:none;}
 .fc-trail{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;}
-.fc-trail .mtg-arc-path{stroke-width:4;opacity:.7;}
+.fc-trail .mtg-arc-path{stroke-width:4;opacity:.8;}
 .fc-trail .mtg-arc-halo{stroke-width:7;}
-#startGate #sgBtn{width:224px!important;height:68px!important;bottom:26px!important;border-radius:34px!important;font:800 28px var(--font-hi);gap:12px;}
-#startGate #sgBtn::after{display:none;}
-
-#startGate #sgBtn{min-width:224px!important;padding:0 24px!important;color:#174a89!important;background:linear-gradient(#ffd958,#ffbc24)!important;border:4px solid white!important;font-size:28px!important;line-height:1.2;}
+.fc-ready .fc-trail .mtg-arc{animation:fcTrailArrive .7s ease-out var(--trail-delay,0s) both;}
+.fc-water-ring{position:absolute;width:185px;height:32px;margin-left:-92.5px;border:2px solid rgba(231,255,255,.75);border-radius:50%;z-index:1;pointer-events:none;animation:fcWaterRing 4s ease-out infinite;}
+.fc-water-ring.late{animation-delay:-2s;}
+.fc-mote{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff8c7;box-shadow:0 0 9px 3px rgba(255,239,155,.6);z-index:1;pointer-events:none;animation:fcMote 5s ease-in-out var(--mote-delay,0s) infinite;}
+#startGate .fc-card #sgBtn,#startGate .fc-card #sgBtn.sg-waiting{position:absolute;left:50%;bottom:30px;width:140px;min-width:0;height:140px;padding:0;border:0;border-radius:50%;background:none;color:transparent;font-size:0;line-height:0;box-shadow:none;filter:none;z-index:5;visibility:visible;opacity:1;transform:translateX(-50%);animation:none;}
+#startGate .fc-card #sgBtn::before,#startGate .fc-card #sgBtn::after{display:none;content:none;}
+#startGate .fc-card #sgBtn.sg-waiting,#startGate .fc-card #sgBtn:disabled{visibility:hidden;opacity:0;pointer-events:none;animation:none;}
+#startGate .fc-card #sgBtn img{display:block;width:100%;height:100%;pointer-events:none;filter:none;}
+#startGate .fc-card #sgBtn .fc-play-waiting{display:none;}
+#startGate .fc-card #sgBtn.sg-waiting .fc-play-ready{display:none;}
+#startGate .fc-card #sgBtn.sg-waiting .fc-play-waiting{display:block;}
+#startGate .fc-card #sgBtn.fc-play-pop{animation:fcPlayPop .6s cubic-bezier(.34,1.3,.5,1) both;}
+#startGate .fc-card #sgBtn.idle-pulse{animation:fcPlayPulse 1.15s cubic-bezier(.34,.62,.3,1) infinite;}
+#startGate .fc-card #sgBtn:focus-visible{outline:3px solid #0B3D8C;outline-offset:2px;}
+#startGate .fc-card #sgBtn:not(:disabled):active{transform:translateX(-50%) scale(.95);animation:none;}
+#startGate .fc-card .sg-mascot{left:-24px;bottom:-12px;width:208px;height:auto;animation:none;}
+#startGate .fc-card .sg-vo{left:96px;bottom:-16px;}
+@keyframes fcTitleArrive{0%{opacity:0;transform:translateY(20px) rotate(-3deg) scale(.88);}65%{opacity:1;transform:translateY(-3px) rotate(1deg) scale(1.025);}100%{opacity:1;transform:none;}}
+@keyframes fcFrogBreathe{0%,100%{transform:scale(1);}50%{transform:scale(1.018,1.025);}}
+@keyframes fcFrogHello{0%,20%,48%,100%{transform:none;}24%{transform:scale(1.06,.9);}34%{transform:translateY(-30px) rotate(-3deg) scale(.98,1.04);}42%{transform:scale(1.08,.89);}46%{transform:scale(.99,1.02);}70%{transform:scale(1.015,1.02);}}
+@keyframes fcFriendHello{0%,18%,100%{transform:none;}5%{transform:rotate(-3deg);}10%{transform:rotate(3deg);}14%{transform:rotate(-1deg);}55%{transform:scale(1.02,1.025);}}
+@keyframes fcCoverSplash{0%,40%,50%,100%{opacity:0;transform:translateY(0) scale(.3);}42%{opacity:.9;transform:translateY(-3px) scale(1);}47%{opacity:0;transform:translateY(-21px) scale(.6);}}
+@keyframes fcTrailArrive{from{opacity:0;translate:0 8px;}to{opacity:1;translate:0 0;}}
+@keyframes fcWaterRing{0%{opacity:0;transform:scale(.75);}25%{opacity:.7;}100%{opacity:0;transform:scale(1.25);}}
+@keyframes fcMote{0%,100%{opacity:0;transform:translate(0,5px);}35%{opacity:.85;}65%{opacity:.45;transform:translate(16px,-10px);}}
+@keyframes fcPlayPop{0%,100%{transform:translateX(-50%) scale(1);}35%{transform:translateX(-50%) scale(1.20);}60%{transform:translateX(-50%) scale(.93);}80%{transform:translateX(-50%) scale(1.05);}}
+@keyframes fcPlayPulse{0%,100%{transform:translateX(-50%) scale(1);}30%{transform:translateX(-50%) scale(1.10);}58%{transform:translateX(-50%) scale(.985);}}
+#startGate.hidden .fc-card *{animation-play-state:paused!important;}
+@media(prefers-reduced-motion:reduce){#startGate .fc-card .fc-title-line{opacity:1;transform:none;}#startGate .fc-card *,#startGate .fc-card #sgBtn{animation:none!important;}.fc-water-ring,.fc-mote,.fc-cover-splash{display:none;}}
 
 </style>
+<link rel="icon" type="image/webp" href="assets/Images/lesson_frog.webp">
 <style id="swcKitCss">
 /* Swiftie celebration kit — the sprite fills its host's HEIGHT; the art is 420/358 of the host so the
    jump's head-room rises above the host box (the layout box, and anything placed under it, keeps the
@@ -5167,7 +5326,8 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
        }
       ]
      }
-    ]
+    ],
+    "friend": "lesson_friend_gold"
    }
   },
   {
@@ -5361,7 +5521,8 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
        }
       ]
      }
-    ]
+    ],
+    "friend": "lesson_friend_teal"
    }
   },
   {
@@ -5518,7 +5679,8 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
        }
       ]
      }
-    ]
+    ],
+    "friend": "lesson_friend_peach"
    }
   },
   {
@@ -5629,7 +5791,8 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
      "ost": "मेंढक दो कदम की छलाँग लगाकर सोलह पर पहुँचेगा।"
     },
     "correct": "vo_q2_ok",
-    "correct_ost": "सही! 16"
+    "correct_ost": "सही! 16",
+    "frog": "lesson_friend_gold"
    }
   },
   {
@@ -5683,7 +5846,8 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
      "ost": "मेंढक दस कदम की छलाँग लगाकर चालीस पर पहुँचेगा।"
     },
     "correct": "vo_q3_ok",
-    "correct_ost": "सही! 40"
+    "correct_ost": "सही! 40",
+    "frog": "lesson_friend_teal"
    }
   },
   {
@@ -5711,7 +5875,7 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
      37,
      38
     ],
-    "animal": "sp_grasshopper_v3",
+    "animal": "lesson_grasshopper_cute",
     "intro": [
      {
       "vo": "vo_q4_1",
@@ -5788,7 +5952,7 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
      19,
      20
     ],
-    "animal": "sp_rabbit",
+    "animal": "lesson_rabbit_cute",
     "q": [
      {
       "vo": "vo_q5_q"
@@ -5857,7 +6021,7 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
      75,
      80
     ],
-    "animal": "sp_squirrel",
+    "animal": "lesson_squirrel_cute",
     "q": [
      {
       "vo": "vo_q6_q"
@@ -5927,7 +6091,7 @@ body.spk-busy .tut-audio{ pointer-events:none !important; opacity:.45; filter:gr
      75,
      90
     ],
-    "animal": "sp_grasshopper_v3",
+    "animal": "lesson_grasshopper_cute",
     "q": [
      {
       "vo": "vo_q7_q"
@@ -7066,11 +7230,11 @@ function _chainMs(srcs, gapMs){
    no reason to fetch it again and the reviewer keeps hearing the previous take. __AUDIO_V is
    stamped by the builder from the CONTENT of the audio folder, so it changes exactly when a clip
    changes and not otherwise - a fresh URL on every build would defeat caching for no reason. */
-var __AUDIO_V = "b7e4cf6126c3";
+var __AUDIO_V = "97bbb4908218";
 /* [S05] THE LESSON'S PICTURES ARE VERSIONED TOO. They are replaced under the SAME names (obj_bandar.webp
    …), and a browser that had the old file kept drawing it. The builder stamps this from the content of
    assets/Images, so a changed picture gets a new address; unchanged, the cache still works. */
-var __IMG_V = "a9fb4014d702";
+var __IMG_V = "124e25565291";
 const _iv = (u)=> (/^__IMG/.test(__IMG_V) ? u : u + "?v=" + __IMG_V);
 function _av(src){
   if(typeof src !== "string" || src.indexOf("assets/Audio/") < 0) return src;
@@ -21341,7 +21505,7 @@ function buildDevNav(){
    ===================================================================================== */
 let _mtgTok = 0;
 const MTG_STOP = "__mtg_stop__";
-function mtgToken(){ return ++_mtgTok; }
+function mtgToken(){ mtgStopFoley(); return ++_mtgTok; }
 function mtgAlive(tok){ if(tok !== _mtgTok) throw MTG_STOP; }
 function mtgWait(ms, tok){ return new Promise((res, rej)=> setTimeout(()=> (tok === _mtgTok ? res() : rej(MTG_STOP)), ms)); }
 function mtgSrc(id){ if(!id) return null; return (CARD.assets && CARD.assets.audio && CARD.assets.audio[id]) || ("assets/Audio/" + id + "." + AUDIO_EXT); }
@@ -21359,8 +21523,17 @@ function mtgFx(name, fallback, vol){
     a.play().catch(()=>{ if(fallback) fallback(); });
   }catch(e){ if(fallback) fallback(); }
 }
-const mtgRight = ()=> mtgFx("sfx_fb_correct", ()=>{ if(typeof sfxCorrect === "function") sfxCorrect(); });
-const mtgWrong = ()=> mtgFx("sfx_fb_incorrect", ()=>{ if(typeof sfxWrongSoft === "function") sfxWrongSoft(); });
+const mtgRight = (reference=false)=> mtgFx(reference ? "sfx_ref_correct" : "sfx_fb_correct", ()=>{ if(typeof sfxCorrect === "function") sfxCorrect(); });
+const mtgWrong = (reference=false)=> mtgFx(reference ? "sfx_ref_wrong" : "sfx_fb_incorrect", ()=>{ if(typeof sfxWrongSoft === "function") sfxWrongSoft(); });
+const mtgFoley = new Set();
+function mtgStopFoley(){ mtgFoley.forEach(a=>{a.pause();a.removeAttribute("src");});mtgFoley.clear(); }
+function mtgSound(id,volume=.2){
+  if(document.hidden)return;
+  const a=new Audio((typeof _av==="function"?_av: String)("assets/Audio/"+id+".ogg"));
+  a.volume=volume;mtgFoley.add(a);
+  const clear=()=>mtgFoley.delete(a);a.onended=clear;a.onerror=clear;
+  a.play().catch(clear);
+}
 function mtgImg(key){ return "assets/Images/" + key + ".webp"; }
 function mtgOst(t){ const p = $("promptText"); if(p && t != null) p.textContent = t; }
 function mtgPulse(el, cls, ms){ if(!el) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); if(ms) setTimeout(()=> el.classList.remove(cls), ms); }
@@ -21401,14 +21574,26 @@ function mtgArc(svg, x1, x2, y, lift, label, motion={}){
   }
   requestAnimationFrame(frame);return g;
 }
+function mtgMoveArc(g,x1,x2,y,lift){
+  const svg=g.parentNode,replacement=mtgArc(svg,x1,x2,y,lift,g.querySelector("text")?.textContent);
+  ["mtg-arc-halo","mtg-arc-path","mtg-arc-head"].forEach(cls=>g.querySelector("."+cls).setAttribute("d",replacement.querySelector("."+cls).getAttribute("d")));
+  const t=g.querySelector("text"),rt=replacement.querySelector("text");if(t&&rt){t.setAttribute("x",rt.getAttribute("x"));t.setAttribute("y",rt.getAttribute("y"));}
+  replacement.remove();
+}
 /* Feet-anchored hop: frog anticipation, flight and soft landing share one clock. */
 function mtgHop(el, x1, x2, lift, ms, cues={}){
   const frog=el.matches(".br-frog,.jp-frog");
   const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const tok=_mtgTok;
+  const facing=el.dataset.faceFlip==='true'?-1:1,restTransform='translate(-50%,0) scaleX('+facing+')';
+  const voice=()=>{
+    mtgSound(frog?"sfx_frog_hop":"sfx_animal_hop",.20);
+    if(frog)mtgSound("sfx_frog_croak",.16);
+  };
   lift=Math.max(0,Math.min(lift,el.offsetTop-(frog?22:12)));
   if(reduced){
-    el.style.left=x2+"px";el.style.transform="translate(-50%,0)";
+    voice();if(el.matches(".br-frog"))mtgSound("sfx_water_land",.2);
+    el.style.left=x2+"px";el.style.transform=restTransform;
     return Promise.resolve();
   }
   return new Promise(resolve=>{
@@ -21422,7 +21607,7 @@ function mtgHop(el, x1, x2, lift, ms, cues={}){
     el.classList.add("hopping");
     function finish(){
       if(shadow)shadow.remove();
-      el.style.transform="translate(-50%,0)";
+      el.style.transform=restTransform;
       el.classList.remove("hopping");delete el.dataset.hopPhase;
       resolve();
     }
@@ -21439,18 +21624,19 @@ function mtgHop(el, x1, x2, lift, ms, cues={}){
           x=x1+(x2-x1)*u;height=4*u*(1-u);y=-lift*height;
           sx=1+.08*push-.04*stretch;sy=1-.1*push+.07*stretch;
           tilt=direction*5*Math.sin(2*Math.PI*u);el.dataset.hopPhase="air";
-          if(!tookOff){tookOff=true;if(cues.onTakeoff)cues.onTakeoff();}
+          if(!tookOff){tookOff=true;voice();if(cues.onTakeoff)cues.onTakeoff();}
         }else{
           x=x2;const p=Math.sin(Math.PI*(t-.84)/.16);
           sx=1+.10*p;sy=1-.12*p;el.dataset.hopPhase="land";
-          if(!landed){landed=true;if(cues.onLand)cues.onLand();}
+          if(!landed){landed=true;if(el.matches(".br-frog"))mtgSound("sfx_water_land",.22);if(cues.onLand)cues.onLand();}
         }
       }else{
+        if(!tookOff){tookOff=true;voice();}
         const ease=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
         x=x1+(x2-x1)*ease;y=-Math.sin(Math.PI*t)*lift;
       }
       el.style.left=x+"px";
-      el.style.transform="translate(-50%,"+y+"px) rotate("+tilt+"deg) scale("+sx+","+sy+")";
+      el.style.transform="translate(-50%,"+y+"px) rotate("+tilt+"deg) scale("+(sx*facing)+","+sy+")";
       if(shadow){
         shadow.style.left=x+"px";shadow.style.opacity=String(.22-.13*height);
         shadow.style.transform="translateX(-50%) scale("+(1-.35*height)+")";
@@ -21499,13 +21685,13 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   /* the scene bleeds to the frame's inner edges: measure the frame rather than assume its width */
   const _bleedL = card ? Math.max(0, host.offsetLeft - card.clientLeft) : 30;
   const VIEW_W = (card && card.clientWidth) ? card.clientWidth : 1113;
-  const VIEW_H = 282, FEET_Y = 194;
-  const span = d.hi - d.lo, START_SPACE = 110, END_SPACE = 190;
-  const U = d.camera ? 80 : (VIEW_W - START_SPACE - END_SPACE) / span;
-  const RW = Math.min(U * .88, 76), RH = RW * 52 / 160;
-  const WORLD_W = d.camera ? START_SPACE + span * U + END_SPACE : VIEW_W;
+  const VIEW_H = 320, FEET_Y = 226;
+  const span = d.hi - d.lo, START_SPACE = 100, END_SPACE = 220;
+  let U = d.camera ? 80 : (VIEW_W - START_SPACE - END_SPACE) / span;
+  const RW = Math.min(U * .86, 76), RH = RW * 52 / 160;
+  let WORLD_W = d.camera ? START_SPACE + span * U + END_SPACE : VIEW_W;
   const X = n => START_SPACE + (n - d.lo) * U;
-  const ROCK_TOP = FEET_Y - 3, STONE_Y = FEET_Y - 2, NUM_Y = FEET_Y + 32;
+  const ROCK_TOP = FEET_Y - 10, STONE_Y = FEET_Y - 2, NUM_Y = FEET_Y + 38;
   const LOTUS = "assets/Images/prop_lotus.svg";
 
   const wrap = mtgEl("div", "br-wrap");
@@ -21515,8 +21701,8 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   for(let n = d.lo; n <= d.hi; n++){
     const big = (n % d.step === 0);
     const s = mtgEl("div", "br-rock" + (big ? " key" : ""));
-    const ratio=big?1:.8;
-    s.style.cssText="left:"+X(n)+"px;top:"+(ROCK_TOP+RH*(1-ratio)/2)+"px;width:"+(RW*ratio)+"px;height:"+(RH*ratio)+"px";
+    const ratio=big?1:.8,restSize=Math.min(100,U*.86)*ratio,restHeight=restSize*52/160;
+    s.style.cssText="left:"+X(n)+"px;top:"+(ROCK_TOP+(RH-restHeight)/2)+"px;width:"+restSize+"px;height:"+restHeight+"px";
     const im = mtgEl("img"); im.src = LOTUS; im.alt = ""; s.appendChild(im);
     world.appendChild(s); stones[n] = s;
     const lb = mtgEl("div", "br-num", String(n));
@@ -21525,24 +21711,81 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   }
   const svg = document.createElementNS(MTG_SVG, "svg"); svg.setAttribute("class", "br-svg");
   svg.setAttribute("width", WORLD_W); svg.setAttribute("height", VIEW_H); world.appendChild(svg);
+  const bridgeArcs=[];
   const dot = mtgEl("div", "br-dot"); dot.style.top = (ROCK_TOP + RH * 0.3) + "px"; world.appendChild(dot);
   // Distinct landing and resting leaves leave room for both frogs at the far end.
-  const FW = Math.min(70, U * .86), FH = FW * 579 / 477;
-  const FRW = FW, FRH = FRW * 574 / 551, friendX = X(d.hi) + 110;
+  const FW = 104, FH = 84;
+  const FRW = 100, FRH = 81;let friendX = X(d.hi) + 140;
   const rest = mtgEl("img", "br-rest-leaf"); rest.src = LOTUS; rest.alt = "";
-  rest.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-3)+"px;width:110px;height:36px";
+  rest.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-10)+"px;width:136px;height:44px";
   world.appendChild(rest);
-  const friend = mtgEl("img", "br-friend"); friend.src = mtgImg("chr_friend");
+  const friend = mtgEl("img", "br-friend"); friend.src = mtgImg(d.friend || "lesson_friend_gold");
   friend.alt = "टप्पू का दोस्त";
-  friend.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-FRH)+"px;width:"+FRW+"px";
+  friend.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-FRH)+"px;width:"+FRW+"px;height:"+FRH+"px;object-fit:contain";
   world.appendChild(friend);
-  const frog = mtgEl("img", "br-frog"); frog.src = mtgImg("chr_tappu"); frog.alt = "टप्पू";
-  frog.style.width = FW + "px"; frog.style.top = (FEET_Y-FH) + "px";
+  const frog = mtgEl("img", "br-frog"); frog.src = mtgImg("lesson_frog"); frog.alt = "टप्पू";
+  frog.style.width = FW + "px";frog.style.height=FH+"px";frog.style.objectFit="contain";frog.style.top = (FEET_Y-FH) + "px";
   let at = d.lo; frog.style.left = X(at) + "px"; world.appendChild(frog);
   view.appendChild(world); wrap.appendChild(view);
-  const cap = mtgEl("div", "br-cap"); wrap.appendChild(cap);
+  const cap = mtgEl("section", "br-cap");cap.setAttribute("aria-label","साथ में पढ़िए");
+  const captionText=mtgEl("p","br-caption-text"),countStrip=mtgEl("div","br-count-strip");
+  cap.appendChild(captionText);cap.appendChild(countStrip);wrap.appendChild(cap);
   wrap.style.margin = `0 0 0 ${-_bleedL}px`; wrap.style.width = VIEW_W + "px";
   host.appendChild(wrap);
+
+  // A close view for each hop; a separate, equally spaced milestone recap.
+  // Never shrink the characters to squeeze fifty unit labels into one viewport.
+  let overview=false,layoutFrame=0;
+  function paintGeometry(unit){
+    U=unit;WORLD_W=START_SPACE+span*U+END_SPACE;world.style.setProperty("--unit",U+"px");
+    Object.keys(stones).forEach(k=>{
+      const ratio=stones[k].classList.contains("key")?1:.8,size=Math.min(100,U*.86)*ratio,h=size*52/160;
+      stones[k].style.width=size+"px";stones[k].style.height=h+"px";stones[k].style.top=(ROCK_TOP+(RH-h)/2)+"px";
+    });
+    world.style.width=WORLD_W+"px";svg.setAttribute("width",WORLD_W);
+    Object.keys(stones).forEach(k=>{stones[k].style.left=X(+k)+"px";nums[k].style.left=X(+k)+"px";});
+    friendX=X(d.hi)+140;friend.style.left=rest.style.left=friendX+"px";frog.style.left=X(at)+"px";
+    bridgeArcs.forEach(r=>mtgMoveArc(r.node,X(r.from),X(r.to),STONE_Y-2,r.lift));
+    world.dataset.unitSpacing=U.toFixed(3);
+  }
+  function rangeTarget(a,b,unit){
+    const width=START_SPACE+span*unit+END_SPACE,x=n=>START_SPACE+(n-d.lo)*unit;
+    const left=Math.max(0,x(Math.max(d.lo,a))-80),right=b>=d.hi?width:Math.min(width,x(b)+80);
+    const z=Math.min(1,VIEW_W/(right-left));
+    return {x:Math.max(0,Math.min(width*z-VIEW_W,(left+right)*z/2-VIEW_W/2)),z};
+  }
+  function layoutOverview(on,a=at,b=Math.min(d.hi,at+d.step),ms=950){
+    if(!d.camera)return Promise.resolve();
+    const targetUnit=on?(VIEW_W-START_SPACE-END_SPACE)/span:80;
+    if(overview===on&&Math.abs(U-targetUnit)<.01)return Promise.resolve();
+    if(cameraFrame){cancelAnimationFrame(cameraFrame);cameraFrame=0;if(cameraFinish)cameraFinish();cameraFinish=null;}
+    const fromUnit=U,fromCamera={...camera},target=on?{x:0,z:1}:rangeTarget(a,b,targetUnit),start=performance.now();
+    const fromMinor=parseFloat(world.style.getPropertyValue('--minor-opacity')||'1'),toMinor=on?0:1;
+    world.dataset.layoutMoving='true';world.dataset.layoutTarget=on?'compact':'expanded';
+    return new Promise(resolve=>{
+      function tick(now){
+        if(tok!==_mtgTok){layoutFrame=0;resolve();return;}
+        const t=ms&&!reduceMotion()?Math.min(1,(now-start)/ms):1,e=t*t*(3-2*t);
+        paintGeometry(fromUnit+(targetUnit-fromUnit)*e);
+        paintCamera(fromCamera.x+(target.x-fromCamera.x)*e,fromCamera.z+(target.z-fromCamera.z)*e);
+        world.style.setProperty('--minor-opacity',fromMinor+(toMinor-fromMinor)*e);
+        if(t<1)layoutFrame=requestAnimationFrame(tick);
+        else{layoutFrame=0;overview=on;world.classList.toggle('overview',on);world.dataset.layoutMoving='false';resolve();}
+      }
+      tick(start);
+    });
+  }
+  function showCaption(c){
+    const text=mtgText(c.vo);if(!text)return;
+    if(/^vo_c_\d+$/.test(c.vo)){
+      countStrip.querySelectorAll(".current").forEach(e=>e.classList.remove("current"));
+      const chip=mtgEl("span","br-count-word current");chip.textContent=text;countStrip.appendChild(chip);
+    }else{
+      captionText.textContent=text;
+      if(at!==d.hi||countStrip.children.length<5)countStrip.replaceChildren();
+    }
+    cap.dataset.clip=c.vo;
+  }
 
   // Scale, translation and labels share one animation clock anchored at the feet.
   let cam = d.camera ? "all" : null, cameraFrame = 0, cameraFinish = null;
@@ -21552,6 +21795,7 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
     camera={x,z}; world.style.setProperty("--z",z);
     world.classList.toggle("zoomed",z<.48);
     world.style.transform="translate("+(-x)+"px,"+(FEET_Y*(1-z))+"px) scale("+z+")";
+    Object.keys(nums).forEach(k=>{const screenX=X(+k)*z-x;nums[k].style.visibility=screenX<24||screenX>VIEW_W-24?"hidden":"";});
   }
   function cameraTo(x,z,ms=700){
     if(cameraFrame) cancelAnimationFrame(cameraFrame);
@@ -21580,11 +21824,12 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   function applyCam(mode,ms=700){
     if(!d.camera)return Promise.resolve();
     cam=mode;
-    if(mode==="all")return cameraTo(0,VIEW_W/WORLD_W,ms);
-    if(Array.isArray(mode))return rangeCamera(mode[0],mode[1],ms);
+    if(mode==="all")return layoutOverview(true,at,d.hi,ms);
+    if(overview)return layoutOverview(false,at,Math.min(d.hi,at+d.step),950);
+    if(Array.isArray(mode))return rangeCamera(at,Math.min(d.hi,at+d.step),ms);
     return rangeCamera(at,Math.min(d.hi,at+d.step),ms);
   }
-  paintCamera(0,d.camera?VIEW_W/WORLD_W:1);
+  layoutOverview(!!d.camera,at,d.hi,0);paintCamera(0,1);
 
   const visited=new Set();
   const glow = n => { if(visited.has(n)){mtgPulse(stones[n], "glow", 650);mtgPulse(nums[n], "glow", 650);} };
@@ -21592,10 +21837,10 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   const clearLit = () => Object.values(stones).forEach(s => s.classList.remove("lit"));
   async function jump(a, b){
     clearLit(); dot.classList.remove("show");
-    if(cam==="follow") await rangeCamera(a,b,420);
+    if(d.camera){await layoutOverview(false,a,b,950);await rangeCamera(a,b,420);}
     const lift=Math.max(12,Math.min(62,FEET_Y-FH-22));
     view.dataset.jumpActive="true";
-    mtgArc(svg,X(a),X(b),STONE_Y-2,lift,null,{duration:950,start:.12,end:.84});
+    bridgeArcs.push({node:mtgArc(svg,X(a),X(b),STONE_Y-2,lift,null,{duration:950,start:.12,end:.84}),from:a,to:b,lift});
     await mtgHop(frog,X(a),X(b),lift,950,{
       onTakeoff:()=>{mtgLeafBob(stones[a]);mtgPondRipple(world,X(a),FEET_Y+5);},
       onLand:()=>{mtgLeafBob(stones[b]);mtgPondRipple(world,X(b),FEET_Y+5);}
@@ -21613,6 +21858,7 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
     if(c.dot != null){ dot.style.left = X(c.dot) + "px"; dot.classList.add("show"); stones[c.dot].classList.add("lit"); }
     if(c.mark != null && visited.has(c.mark)) glow(c.mark);
     if(c.happy){ mtgPulse(frog, "bounce", 900); mtgPulse(friend, "bounce", 900); }
+    showCaption(c);
     const voDone = mtgSay(c.vo, tok);
     if(c.jump){ await mtgWait(250, tok); if(c.span) await spanLight(c.jump[0], c.span[1]); await jump(c.jump[0], c.jump[1]); }
     await voDone;
@@ -21623,16 +21869,19 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   function waitTap(){
     return new Promise((res, rej)=>{
       frog.classList.add("tappable");
+      frog.setAttribute("role","button");frog.tabIndex=0;frog.setAttribute("aria-label","टप्पू को "+d.step+" कदम कुदाइए");
       let hand = mtgHand(world, X(at) + 6, FEET_Y - FH * .55);
       const again = setInterval(()=>{ if(tok !== _mtgTok){ clearInterval(again); return; } if(!hand){ hand = mtgHand(world, X(at) + 6, FEET_Y - FH * .55); setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800); } }, 6000);
       setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800);
       frog.onclick = ()=>{
         if(tok !== _mtgTok) return rej(MTG_STOP);
         frog.onclick = null; frog.classList.remove("tappable"); clearInterval(again);
+        frog.tabIndex=-1;frog.removeAttribute("role");frog.onkeydown=null;
         if(hand){ hand.remove(); hand = null; }
         sfxTap(); SwiftPAL.emit("teach_tap", { slide_id: slide.id, at });
         res();
       };
+      frog.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();frog.click();}};
     });
   }
   let done = false, lastStep = null;
@@ -21641,7 +21890,7 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
     await mtgWait(350, tok);
     for(const st of d.steps){
       if(st.wait_tap) await waitTap();
-      cap.textContent = st.cap; mtgPulse(cap, "in", 400);
+      countStrip.replaceChildren();cap.dataset.smeText=st.cap;
       lastStep = st;
       for(const c of st.clips) await runClip(c);
       await mtgWait(250, tok);
@@ -21685,14 +21934,22 @@ function mtgNumberLine(o){
 /* option tray shared by JUMP_PICK and SEQ_FILL */
 function mtgOptions(host, values, onPick){
   const row = mtgEl("div", "mtg-opts");
+  let lockedAnswer=null;
   const cells = values.map(v=>{
     const b = mtgEl("button", "mtg-opt", String(v)); b.type = "button"; b.dataset.v = v; b.disabled = true;
-    b.onclick = ()=> onPick(v, b);
+    b.setAttribute('aria-disabled','true');
+    b.onclick = ()=> {if(b.disabled||(lockedAnswer!==null&&v!==lockedAnswer))return;mtgFx("sfx_ref_tap",null,.4);onPick(v, b);};
     row.appendChild(b); return b;
   });
   host.appendChild(row);
   return { row, cells,
-    enable(on){ cells.forEach(c => { if(!c.classList.contains("used") && !c.classList.contains("faded")) c.disabled = !on; }); },
+    enable(on){
+      if(on&&!row.classList.contains("revealed")){row.classList.add("revealed");cells.forEach((c,i)=>{c.style.setProperty("--option-delay",i*65+"ms");c.classList.add("option-enter");});}
+      cells.forEach(c => {
+        c.disabled=!on||c.classList.contains('used')||(lockedAnswer!==null&&+c.dataset.v!==lockedAnswer);
+        c.setAttribute('aria-disabled',String(c.disabled));
+      });
+    },
     consume(b){
       const before=new Map(cells.filter(c=>c!==b&&!c.classList.contains("used")).map(c=>[c,c.getBoundingClientRect()]));
       b.classList.add("used");b.disabled=true;b.setAttribute("aria-hidden","true");
@@ -21701,16 +21958,28 @@ function mtgOptions(host, values, onPick){
         c.animate([{transform:"translateX("+((r.left-c.getBoundingClientRect().left)/scale)+"px)"},{transform:"translateX(0)"}],{duration:300,easing:"ease-out"});
       });
     },
-    wiggle(b){ mtgPulse(b, "wiggle", 600); } };
+    lockTo(answer){
+      lockedAnswer=answer;
+      cells.forEach(c=>{const wrong=+c.dataset.v!==answer&&!c.classList.contains('used');c.classList.toggle('faded',wrong);if(wrong||c.classList.contains('used')){c.disabled=true;c.setAttribute('aria-disabled','true');}});
+    },
+    clearLock(){lockedAnswer=null;cells.forEach(c=>c.classList.remove('faded','guide'));},
+    wiggle(b){
+      if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+      b.animate([{translate:"0 0"},{translate:"-9px 0"},{translate:"9px 0"},{translate:"-6px 0"},{translate:"6px 0"},{translate:"0 0"}],{duration:400,easing:"ease-in-out"});
+    } };
 }
 /* WA3: fade + disable everything except the answer, pulse it, hand cue — no tick before the tap */
 function mtgGuideTo(opts, answer){
+  opts.lockTo(answer);
   let target = null;
   opts.cells.forEach(c=>{
     if(+c.dataset.v === answer && !c.classList.contains("used")){ target = c; c.classList.add("guide"); }
     else if(!c.classList.contains("used")){ c.classList.add("faded"); c.disabled = true; }
   });
-  if(target) pointNudgeAt(target, true);
+  if(target){
+    target.animate([{boxShadow:"0 0 0 0 rgba(0,177,50,0)"},{boxShadow:"0 0 0 8px rgba(0,177,50,.32),0 10px 26px rgba(0,177,50,.34)"},{boxShadow:"0 0 0 0 rgba(0,177,50,0)"}],{duration:1100,iterations:matchMedia("(prefers-reduced-motion:reduce)").matches?1:3,easing:"ease-in-out"});
+    pointNudgeAt(target, true);
+  }
   return target;
 }
 
@@ -21720,17 +21989,18 @@ function mtgGuideTo(opts, answer){
 SlideModules.JUMP_PICK = { mount(host, slide){
   const d = slide.data, tok = mtgToken();
   state.ownsAudio = true;
+  host.classList.add("mtg-question-center");
   const board = mtgEl("div", "jp-board");
   const span = d.hi - d.lo;
   const nl = mtgNumberLine({ lo: d.lo, hi: d.hi, width: 1000, height: 200, baseY: 140,
     every: span > 30 ? 5 : 1, bigEvery: span > 30 ? 10 : (d.step >= 5 ? 5 : 2), cls: "jp-nl" });
   board.appendChild(nl.root);
-  const jumpLift=34;
+  const jumpLift=22;
   for(let i=0;i+1<d.prior.length;i++){
-    mtgArc(nl.svg,nl.X(d.prior[i]),nl.X(d.prior[i+1]),136,jumpLift);
-    nl.hold(d.prior[i+1]);
+    mtgArc(nl.svg,nl.X(d.prior[i]),nl.X(d.prior[i+1]),136,jumpLift);nl.hold(d.prior[i+1]);
   }
-  const frog = mtgEl("img", "jp-frog"); frog.src = mtgImg("chr_tappu"); frog.style.left = nl.X(d.at) + "px";
+  const frog = mtgEl("img", "jp-frog"); frog.src = mtgImg(d.frog || "lesson_frog");frog.alt="मेंढक";frog.style.left = nl.X(d.at) + "px";
+  if(d.frog){frog.dataset.faceFlip='true';frog.style.transform='translate(-50%,0) scaleX(-1)';}
   nl.root.appendChild(frog);
   host.appendChild(board);
   let tries = 0, busy = true, solved = false;
@@ -21739,14 +22009,14 @@ SlideModules.JUMP_PICK = { mount(host, slide){
   state.replayAudio = ()=>{ if(busy || solved) return; busy = true; opts.enable(false); mtgRun(async()=>{ await playQ(); busy = false; opts.enable(true); }); };
   function pick(v, b){
     if(busy || solved) return;
-    sfxTap();
     if(v === d.answer){
       solved = true; busy = true; opts.enable(false); stopNudge();
       b.classList.remove("guide"); b.classList.add("right");
+      opts.cells.forEach(c=>{if(c!==b)c.classList.add("option-gone");});
       SwiftPAL.emit("jump_pick_correct", { slide_id: slide.id, attempts: tries + 1 });
       mtgOst(d.correct_ost);
       mtgRun(async()=>{
-        mtgRight(); confettiCannon(); setSwMood("celebrate");
+        mtgRight(true); confettiCannon(); setSwMood("celebrate");
         const voDone = mtgSay(d.correct, tok);
         const lift=jumpLift;
         mtgArc(nl.svg,nl.X(d.at),nl.X(d.answer),136,lift,null,{duration:900,start:.12,end:.84});
@@ -21758,7 +22028,8 @@ SlideModules.JUMP_PICK = { mount(host, slide){
       return;
     }
     tries++; state.attempts = tries; busy = true; opts.enable(false);
-    opts.wiggle(b); mtgWrong(); setSwMood("tryagain");
+    if(tries>=3)opts.lockTo(d.answer);
+    opts.wiggle(b); mtgWrong(true); setSwMood("tryagain");
     SwiftPAL.emit("jump_pick_wrong", { slide_id: slide.id, attempt: tries, picked: v });
     mtgRun(async()=>{
       await mtgWait(450, tok);
@@ -21780,6 +22051,7 @@ SlideModules.JUMP_PICK = { mount(host, slide){
 SlideModules.SEQ_FILL = { mount(host, slide){
   const d = slide.data, tok = mtgToken();
   state.ownsAudio = true;
+  host.classList.add("mtg-sequence-center");
   const stage = mtgEl("div", "sf-stage");
   const strip = mtgEl("div", "sf-strip");
   const boxes = d.seq.map((n, i)=>{
@@ -21787,7 +22059,7 @@ SlideModules.SEQ_FILL = { mount(host, slide){
     if(d.intro) b.classList.add("hidden");
     strip.appendChild(b); return b;
   });
-  const animal = mtgEl("img", "sf-animal"); animal.src = mtgImg(d.animal);
+  const animal = mtgEl("img", "sf-animal"); animal.src = mtgImg(d.animal);animal.alt=({lesson_grasshopper:"टिड्डा",lesson_rabbit:"खरगोश",lesson_squirrel:"गिलहरी"})[d.animal.replace(/_cute$/,'')]||"";
   stage.appendChild(animal); stage.appendChild(strip); host.appendChild(stage);
   const blanks = d.seq.map((n, i) => n == null ? i : -1).filter(i => i >= 0);
   let bi = 0, tries = 0, busy = true;
@@ -21811,9 +22083,7 @@ SlideModules.SEQ_FILL = { mount(host, slide){
     const nl = mtgNumberLine({ lo: a, hi: z, width: 760, height: 190, baseY: 128, dots: true, noArrows: false, cls: "sf-hint-nl" });
     const pet = mtgEl("img", "sf-hint-animal"); pet.src = mtgImg(d.animal); pet.style.left = nl.X(bl.from) + "px";
     nl.root.appendChild(pet);
-    const hintLift=66;
-    mtgArc(nl.svg,nl.X(previous),nl.X(bl.from),124,hintLift,"+"+bl.step);
-    nl.hold(bl.from);
+    const hintLift=66;mtgArc(nl.svg,nl.X(previous),nl.X(bl.from),124,hintLift,"+"+bl.step);nl.hold(bl.from);
     card.appendChild(nl.root);
     card.appendChild(mtgEl("div", "sf-hint-cap", mtgText(bl.hint)));
     ov.appendChild(card); $("stage").appendChild(ov);
@@ -21835,20 +22105,19 @@ SlideModules.SEQ_FILL = { mount(host, slide){
   function pick(v, b){
     if(busy || bi >= blanks.length) return;
     const bl = d.blanks[bi], idx = blanks[bi];
-    sfxTap();
     if(v === bl.answer){
       busy = true; opts.enable(false); stopNudge();
       b.classList.remove("guide"); opts.consume(b);
       SwiftPAL.emit("seq_fill_correct", { slide_id: slide.id, blank: bi, attempts: tries + 1 });
       mtgRun(async()=>{
-        mtgRight(); confettiCannon(); setSwMood("celebrate"); mtgOst(mtgText(bl.correct));
+        mtgRight(true); confettiCannon(); setSwMood("celebrate"); mtgOst(mtgText(bl.correct));
         const box = boxes[idx]; box.textContent = String(v); box.classList.remove("blank", "active"); box.classList.add("filled");
         mtgPulse(box, "glow", 1500);
         const voDone = mtgSay(bl.correct, tok);
         await hopTo(idx);
         await voDone;
         bi++; tries = 0; state.attempts = 0;
-        opts.cells.forEach(c => c.classList.remove("faded", "guide"));
+        opts.clearLock();
         if(bi >= blanks.length){
           boxes.forEach((bx, k)=> setTimeout(()=> mtgPulse(bx, "glow", 900), k * 140));
           setNavActive(true);
@@ -21858,7 +22127,8 @@ SlideModules.SEQ_FILL = { mount(host, slide){
       return;
     }
     tries++; state.attempts = tries; busy = true; opts.enable(false);
-    opts.wiggle(b); mtgWrong(); setSwMood("tryagain");
+    if(tries>=3)opts.lockTo(bl.answer);
+    opts.wiggle(b); mtgWrong(true); setSwMood("tryagain");
     SwiftPAL.emit("seq_fill_wrong", { slide_id: slide.id, blank: bi, attempt: tries, picked: v });
     mtgRun(async()=>{
       await mtgWait(450, tok);
@@ -21906,31 +22176,34 @@ SlideModules.SPACE_PODS = { mount(host, slide){
   $("stage").classList.add("mtg-game"); document.body.classList.add("mtg-game");
   const root = mtgEl("div", "sp-root"); $("stage").appendChild(root);
   const done = new Set();
-  let curVo = g.menu_vo;
-  /* file4's own header audio chip graphic, cloned so the game's replay button matches it */
-  const audioBtn = mtgEl("button", "sp-audio", ($("audioChip") && $("audioChip").innerHTML) || "🔊"); audioBtn.type = "button"; audioBtn.setAttribute("aria-label", "फिर सुनिए");
-  audioBtn.onclick = ()=>{ state.audioReplays++; play(mtgSrc(curVo), ()=>{}); };
-  const buddy = mtgEl("div", "sp-swiftie", `<img src="assets/UI/sw_head_talking.webp" alt="">`);
-  const scene = mtgEl("div", "sp-scene");
-  root.appendChild(scene); root.appendChild(audioBtn); root.appendChild(buddy);
-  const say = (id)=>{ curVo = id; return mtgSay(id, tok); };
+  let narrationBusy=false,levelRunning=false,travel=0;
+  const universe=mtgEl('div','sp-universe','<div class="sp-cosmos"></div><div class="sp-rails"></div>');
+  universe.setAttribute('aria-hidden','true');document.body.prepend(universe);
+  let scene = mtgEl("div", "sp-scene");root.appendChild(scene);
+  const reduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let lastAnimal=-Infinity;
+  function animalSound(cast){if(performance.now()-lastAnimal<450)return;lastAnimal=performance.now();mtgSound(cast==='sp_frog'?'sfx_frog_croak':cast==='sp_rabbit'?'sfx_space_rabbit':'sfx_space_squirrel',.16);}
+  let narrationQueue=Promise.resolve();
+  const say = id=>{
+    const task=narrationQueue.then(async()=>{mtgAlive(tok);narrationBusy=true;root.dataset.narrating='true';try{await mtgSay(id,tok);}finally{narrationBusy=false;root.dataset.narrating='false';}});
+    narrationQueue=task.catch(()=>{});return task;
+  };
+  const CAST_ART={sp_frog:'spaceport_frog',sp_rabbit:'spaceport_rabbit',sp_squirrel:'spaceport_squirrel'};
+  const castImg=cast=>mtgImg(CAST_ART[cast]||cast);
   const badgeAt = (cast)=> g.badge[cast] || [0.5, 0.65];
   function astronaut(cast, n, cls){
     const a = mtgEl("div", "sp-astro " + (cls || ""));
     const inner = mtgEl("div", "sp-astro-in");
-    const im = mtgEl("img"); im.src = mtgImg(cast); im.draggable = false;
+    const im = mtgEl("img"); im.src = castImg(cast); im.draggable = false;im.alt='';
     const [bx, by] = badgeAt(cast);
     const bd = mtgEl("div", "sp-badge", String(n)); bd.style.left = (bx * 100) + "%"; bd.style.top = (by * 100) + "%";
     inner.appendChild(im); inner.appendChild(bd); a.appendChild(inner); a.dataset.n = n;
     return a;
   }
-  /* an animal riding in a pod: shown through a window cut to the glass dome, so nothing pokes out of it;
-     the helmet is centred in the dome (CARD rider = [helmet centre x, helmet top y] as sprite fractions) */
+  /* The new sprites share a helmet-first silhouette, cropped inside the pod's glass dome. */
   function rider(cast, cls){
     const w = mtgEl("div", "sp-dome");
-    const im = mtgEl("img", cls); im.src = mtgImg(cast); im.draggable = false; im.alt = "";
-    const [cx, top] = (g.rider && g.rider[cast]) || [0.5, 0.05];
-    im.style.transform = `translate(${-cx * 100}%, ${-top * 100}%)`;
+    const im = mtgEl("img", cls); im.src = castImg(cast); im.draggable = false; im.alt = "";
     w.appendChild(im); return w;
   }
   function seat(pod, cast, n){
@@ -21942,8 +22215,8 @@ SlideModules.SPACE_PODS = { mount(host, slide){
   function puff(pod){
     for(let i = 0; i < 7; i++){
       const p = mtgEl("span", "sp-puff");
-      const ang = (i / 7) * Math.PI * 2;
-      p.style.setProperty("--dx", Math.cos(ang) * 70 + "px"); p.style.setProperty("--dy", Math.sin(ang) * 46 + "px");
+      const ang = Math.PI/2+(i / 6-.5)*Math.PI;
+      p.style.setProperty("--dx", Math.cos(ang) * 58 + "px"); p.style.setProperty("--dy", Math.sin(ang) * 36 + "px");
       p.style.animationDelay = (i * 25) + "ms";
       pod.appendChild(p); setTimeout(()=> p.remove(), 900);
     }
@@ -21952,34 +22225,39 @@ SlideModules.SPACE_PODS = { mount(host, slide){
 
   // ---------------- MENU ----------------
   function menu(){
+    levelRunning=false;root.removeAttribute('data-step');root.dataset.playable='false';
     scene.innerHTML = "";
     scene.appendChild(mtgEl("div", "sp-title big", "★ " + g.title + " ★"));
     const row = mtgEl("div", "sp-menu");
     g.levels.forEach((L, i)=>{
       const c = mtgEl("button", "sp-card c" + i + (done.has(i) ? " done" : "")); c.type = "button";
+      c.disabled=done.has(i);c.setAttribute('aria-label',L.label+(done.has(i)?', पूर्ण':', शुरू करें'));
+      c.appendChild(mtgEl('div','sp-mission-step',String(L.step)));
       const art = mtgEl("div", "sp-card-art");
-      const pod = mtgEl("img", "sp-card-pod"); pod.src = mtgImg("sp_pod");
+      const pod = mtgEl("img", "sp-card-pod"); pod.src = 'assets/Images/spaceport_pod.svg';pod.alt='';
       art.appendChild(rider(L.cast, "sp-card-animal")); art.appendChild(pod);
       c.appendChild(art);
       c.appendChild(mtgEl("div", "sp-card-lbl", L.label));
       c.appendChild(mtgEl("div", "sp-card-play", done.has(i) ? "✔" : "▶"));
       if(done.has(i)) c.appendChild(mtgEl("div", "sp-card-badge", "★"));
-      c.onclick = ()=>{ if(done.has(i) || tok !== _mtgTok) return; sfxTap(); stopAudio(); runLevel(i); };
+      c.onclick = ()=>{ if(done.has(i)||levelRunning || tok !== _mtgTok) return;levelRunning=true;sfxTap();mtgSound('sfx_space_ready',.18);runLevel(i); };
       row.appendChild(c);
     });
     scene.appendChild(row);
   }
 
   // ---------------- ROUND ----------------
-  function round(L, r){
-    return new Promise((resolve, reject)=>{
+  function createDock(L, r, world){
+      let resolve,reject;
+      const completed=new Promise((yes,no)=>{resolve=yes;reject=no;});
       const R = L.rounds[r];
-      scene.innerHTML = "";
-      scene.appendChild(mtgEl("div", "sp-title", "★ " + L.label + " ★"));
+      const scene=mtgEl('div','sp-scene');scene.dataset.dock=String(r);scene.style.left=(r*1333)+'px';scene.inert=true;
+      scene.setAttribute('aria-hidden','true');world.appendChild(scene);
       const pods = mtgEl("div", "sp-pods");
       const podEls = R.seq.map((n, i)=>{
         const p = mtgEl("div", "sp-pod dd-zone"); p.dataset.i = i;
-        const im = mtgEl("img", "sp-pod-img"); im.src = mtgImg("sp_pod"); im.draggable = false;
+        const im = mtgEl("img", "sp-pod-img"); im.src = 'assets/Images/spaceport_pod.svg'; im.draggable = false;im.alt='';
+        const engine=mtgEl('span','sp-engine');engine.setAttribute('aria-hidden','true');p.appendChild(engine);
         p.appendChild(im); pods.appendChild(p); return p;
       });
       const nums = [];
@@ -21987,23 +22265,23 @@ SlideModules.SPACE_PODS = { mount(host, slide){
       scene.appendChild(pods);
       const ground = mtgEl("div", "sp-ground");
       const pool = shuffle(R.seq.filter((n, i) => !R.prefilled.includes(i)).concat(R.distractors));
-      const W=1333-270,x0=205,gap=W/pool.length;
+      const W = 1333 - 190, x0 = 95, gap = W / pool.length;
       const walkers = pool.map((n, k)=>{
         const a = astronaut(L.cast, n, "walker"); a.style.left = (x0 + gap * k + gap / 2 - 75) + "px";
-        a.dataset.home=String(x0+gap*k+gap/2-75);a.style.setProperty("--sway-delay",(-k*.7)+"s");
+        a.dataset.home=String(x0+gap*k+gap/2-75);a.style.setProperty("--sway-delay",(-k*.7)+"s");if(!reduced())a.style.left="1400px";
         ground.appendChild(a); return a;
       });
       scene.appendChild(ground);
-      let wrongSaid = false, finished = false, idleT = null, guidedOnce = false, busyVo = false;
+      let wrongSaid = false, finished = false, idleT = null, guidedOnce = false, busyVo = true;
       let selected = null, tapLocked = false;
       // A shared clock keeps correct animals and distractors equally lively.
       // Pause the whole lane while the child points, selects or drags.
-      const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches,arrival=performance.now();
+      let arrival=0;
       let pausedAt=0,pausedTotal=0;
-      ground.dataset.entering=String(!reduced);
+      ground.dataset.entering="true";
       function moveAnimals(now){
         if(tok!==_mtgTok||!ground.isConnected||finished)return;
-        const elapsed=now-arrival,entering=!reduced&&elapsed<900+(walkers.length-1)*180;
+        const elapsed=now-arrival,entering=!reduced()&&elapsed<900+(walkers.length-1)*180;
         ground.dataset.entering=String(entering);
         const paused=!!ground.querySelector(".dragging,.selected,.walker:hover,.walker:focus-visible");
         if(paused&&!pausedAt)pausedAt=now;
@@ -22011,7 +22289,7 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         walkers.forEach((w,k)=>{
           if(w.classList.contains("snapped"))return;
           const home=+w.dataset.home;
-          if(reduced){w.style.left=home+"px";return;}
+          if(reduced()){w.style.left=home+"px";return;}
           if(entering){
             const t=Math.max(0,Math.min(1,(elapsed-k*180)/900)),ease=1-Math.pow(1-t,3);
             w.style.left=(home+(1400-home)*(1-ease))+"px";
@@ -22023,13 +22301,9 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         ground.classList.toggle("motion-paused",paused);
         requestAnimationFrame(moveAnimals);
       }
-      requestAnimationFrame(moveAnimals);
-
       const status = mtgEl("div", "sp-status", "जानवर चुनिए, फिर खाली यान चुनिए।");
       status.setAttribute("role", "status"); status.setAttribute("aria-live", "polite");
       scene.appendChild(status);
-      const roundLabel = mtgEl("div", "sp-round", "दौर " + (r + 1) + " / " + L.rounds.length);
-      scene.appendChild(roundLabel);
       function clearSelection(){
         if(selected){ selected.classList.remove("selected"); selected.setAttribute("aria-pressed", "false"); }
         selected = null;
@@ -22042,6 +22316,11 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         const src = walkers.find(w => +w.dataset.n === n && !w.classList.contains("snapped"));
         if(!src) return;
         target.classList.add("cue");
+        if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+          src.classList.add('selected');
+          setTimeout(()=>{src.classList.remove('selected');target.classList.remove('cue');},2200);
+          return;
+        }
         const gh = astronaut(L.cast, n, "ghost");
         const sr = src.getBoundingClientRect(), tr = target.getBoundingClientRect(), rr = root.getBoundingClientRect();
         const sc = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--scale")) || 1;
@@ -22063,6 +22342,7 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         }, g.inactivity_ms);
       }
       function gradeDrop(zone, tile){
+          if(busyVo||narrationBusy||finished||scene.inert)return;
           if(zone.classList.contains("filled") || tile.classList.contains("snapped")) return;
           clearSelection();
           if(tok !== _mtgTok || finished) return;
@@ -22075,17 +22355,19 @@ SlideModules.SPACE_PODS = { mount(host, slide){
             zone.setAttribute("aria-label", String(n) + ", भरा हुआ यान");
             status.textContent = "सही! " + n;
             mtgRight();
+            mtgSound('sfx_space_dock',.2);
             nums[i] = seat(zone, L.cast, n);
             mtgPulse(nums[i], "glow", 1200); mtgPulse(zone, "snap", 600);
-            busyVo = true; say(`vo_g_n_${n}`).then(()=>{ busyVo = false; }).catch(()=>{});
+            busyVo = true;root.dataset.playable='false'; say(`vo_g_n_${n}`).then(()=>{ busyVo = false;root.dataset.playable=String(!finished); }).catch(()=>{});
             SwiftPAL.emit("space_drop_correct", { slide_id: slide.id, step: L.step, round: r + 1, n });
             if(!needed().length) complete(); else armIdle();
           } else {
             status.textContent = "फिर कोशिश कीजिए।";
             mtgWrong();
+            mtgSound('sfx_space_puff',.15);mtgPulse(tile,'returning',450);
             mtgPulse(zone, "wiggle", 650); puff(zone);
             SwiftPAL.emit("space_drop_wrong", { slide_id: slide.id, step: L.step, round: r + 1, n, pod: i });
-            if(!wrongSaid){ wrongSaid = true; busyVo = true; say(L.wrong).then(()=>{ busyVo = false; }).catch(()=>{}); }
+            if(!wrongSaid){ wrongSaid = true; busyVo = true;root.dataset.playable='false'; say(L.wrong).then(()=>{ busyVo = false;root.dataset.playable='true'; }).catch(()=>{}); }
             armIdle();
           }
       }
@@ -22098,7 +22380,7 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         p.setAttribute("aria-disabled", String(filled));
         p.setAttribute("aria-label", filled ? String(R.seq[i]) + ", भरा हुआ यान" : "खाली यान " + (i + 1));
         const activate = () => {
-          if(!selected || finished || tapLocked || busyVo || p.classList.contains("filled")) return;
+          if(!selected || finished || tapLocked || busyVo || scene.inert || p.classList.contains("filled")) return;
           tapLocked = true; gradeDrop(p, selected);
           setTimeout(() => { tapLocked = false; }, 650);
         };
@@ -22108,9 +22390,10 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         w.setAttribute("role", "button"); w.setAttribute("aria-pressed", "false"); w.tabIndex = 0;
         w.setAttribute("aria-label", String(w.dataset.n) + ", जानवर चुनिए");
         const select = () => {
-          if(finished || busyVo || ground.dataset.entering==="true" || w.classList.contains("snapped")) return;
+          if(finished || busyVo || scene.inert || ground.dataset.entering==="true" || w.classList.contains("snapped")) return;
           const wasSelected = selected === w; clearSelection();
           if(!wasSelected){
+            animalSound(L.cast);
             selected = w; w.classList.add("selected"); w.setAttribute("aria-pressed", "true");
             needed().forEach(p => p.classList.add("select-target"));
             status.textContent = w.dataset.n + " चुना। अब खाली यान चुनिए।";
@@ -22118,41 +22401,74 @@ SlideModules.SPACE_PODS = { mount(host, slide){
           }
         };
         // The engine distinguishes taps from drags for mouse and touch, including preventDefault.
-        const gate=e=>{if(ground.dataset.entering==="true"||finished){e.preventDefault();e.stopImmediatePropagation();}};
+        const gate=e=>{if(ground.dataset.entering==="true"||finished||scene.inert||busyVo||narrationBusy){e.preventDefault();e.stopImmediatePropagation();}};
         w.addEventListener("mousedown",gate,true);w.addEventListener("touchstart",gate,{capture:true,passive:false});
-        makeDraggable(w, gradeDrop, {onTap:select, onPick:clearSelection});
+        makeDraggable(w, gradeDrop, {onTap:select, onPick:()=>{clearSelection();if(!busyVo&&!narrationBusy)animalSound(L.cast);}});
         w.onkeydown = keyActivate(select);
         w.addEventListener("mousedown", ()=> clearTimeout(idleT)); w.addEventListener("touchstart", ()=> clearTimeout(idleT), { passive: true });
       });
       async function complete(){
-        finished = true; clearTimeout(idleT);
+        finished = true;root.dataset.playable='false'; clearTimeout(idleT);
         try{
           await mtgWait(700, tok);
           SwiftPAL.emit("space_round_done", { slide_id: slide.id, step: L.step, round: r + 1 });
           const voDone = say(g.round_done_vo);
           for(let i = 0; i < 5; i++){ mtgPulse(nums[i], "glow", 700); await mtgWait(260, tok); }
-          confettiCannon();
-          podEls.forEach((p, i)=> setTimeout(()=> p.classList.add("fly"), 150 + i * 90));
+          await voDone;
+          scene.inert=true;
+          // The docks already exist along one world. Move its camera while each
+          // rocket lifts off, rather than replacing or sliding a whole screen.
+          const hasNext=r<L.rounds.length-1;
+          const cameraMs=reduced()?80:3800;
+          for(let i=0;i<podEls.length;i++){
+            const pod=podEls[i];pod.classList.add('engine-on');
+            mtgSound('sfx_space_ignite',.12);
+            await mtgWait(reduced()?40:160,tok);
+            pod.classList.add('fly');mtgSound('sfx_space_launch',.13);
+            if(i===0&&hasNext){
+              root.dataset.travelling='true';travel++;universe.style.setProperty('--travel',travel);
+              world.style.transform=`translateX(${-(r+1)*1333}px)`;
+              mtgSound('sfx_space_travel',.18);
+            }
+            await mtgWait(reduced()?40:280,tok);
+          }
           walkers.filter(w => !w.classList.contains("snapped")).forEach(w => w.classList.add("leave"));
-          await voDone; await mtgWait(900, tok);
+          mtgSound('sfx_space_flyby',.17);
+          // Camera started with the first launch; all later rockets stay in view
+          // long enough to leave the ground before the next dock takes focus.
+          await mtgWait(hasNext?Math.max(1100,cameraMs-2040):1100,tok);
+          root.dataset.travelling='false';scene.classList.remove('active');scene.setAttribute('aria-hidden','true');
           resolve();
         } catch(e){ reject(e); }
       }
-      mtgRun(async()=>{
+      return {run:()=>{
+        root.dataset.step=L.step;root.dataset.playable='false';root.dataset.set=String(r);
+        scene.inert=false;scene.classList.add('active');scene.removeAttribute('aria-hidden');
+        arrival=performance.now();requestAnimationFrame(moveAnimals);
+        if(r>0)mtgSound('sfx_space_ready',.14);
+        mtgRun(async()=>{
         await mtgWait(300, tok);
         mtgPulse(nums[0], "glow", 1600);     // the first number glows as it is mentioned
-        busyVo = true; await say(R.vo); busyVo = false;
+        busyVo = true; await say(R.vo);
+        await mtgWait(reduced()?0:Math.max(0,arrival+900+(walkers.length-1)*180-performance.now()),tok);busyVo=false;
         if(r === 0){ ghost(); busyVo = true; await say(g.guide_vo); busyVo = false; }
+        root.dataset.playable='true';
         armIdle();
-      });
-    });
+        });
+        return completed;
+      }};
   }
 
   async function runLevel(i){
     const L = g.levels[i];
+    scene.innerHTML='';
+    const heading=mtgEl('div','sp-title sp-fixed-title','★ '+L.label+' ★');root.appendChild(heading);
+    const world=mtgEl('div','sp-world');root.appendChild(world);
+    const docks=L.rounds.map((_,r)=>createDock(L,r,world));
     try{
-      for(let r = 0; r < L.rounds.length; r++) await round(L, r);
+      for(const dock of docks)await dock.run();
     } catch(e){ if(e !== MTG_STOP) console.error(e); return; }
+    world.remove();heading.remove();
     done.add(i);
     menu();
     mtgRun(async()=>{
@@ -22160,17 +22476,19 @@ SlideModules.SPACE_PODS = { mount(host, slide){
       await say(g.all_done_vo);
       await mtgWait(600, tok);
       root.remove();
+      universe.remove();mtgStopFoley();
       $("stage").classList.remove("mtg-game"); document.body.classList.remove("mtg-game");
       completeSlide(true);
     });
   }
 
   menu();
-  mtgRun(async()=>{ await mtgWait(400, tok); await say(g.menu_vo); });
+  mtgRun(async()=>{ await mtgWait(400, tok);if(!scene.querySelector('.sp-menu'))return;await say(g.menu_vo); });
 }};
 /* leaving the game by any other route (dev jump) must not strand the full-screen layer */
 (function(){ const _m = mountSlide; window.mountSlide = mountSlide = function(i){
   _mtgTok++;
+  document.querySelectorAll('.sp-universe').forEach(e=>e.remove());
   if(CARD.slides[i] && CARD.slides[i].type !== "SPACE_PODS"){ document.querySelectorAll(".sp-root, .sf-hint-ov").forEach(e => e.remove()); $("stage").classList.remove("mtg-game"); document.body.classList.remove("mtg-game"); }
   return _m(i);
 }; })();
@@ -22188,27 +22506,47 @@ SlideModules.SPACE_PODS = { mount(host, slide){
     const card=document.querySelector("#startGate .sg-card"),title=$("sgTitle"),hero=$("sgHero");
     if(!card||!title||!hero){ready();return;}
     card.classList.add("fc-card");title.classList.add("fc-title");
+    title.setAttribute("aria-label",CARD.title.hi);title.replaceChildren();
+    title.appendChild(mtgEl("span","fc-title-line",CARD.title.hi));
     const sub=card.querySelector(".sg-sub");
-    if(sub)sub.textContent="दो-दो, पाँच-पाँच और दस-दस की कूद";
+    if(sub)sub.remove();
     hero.classList.add("fc-hero");hero.innerHTML="";
     const pond=mtgEl("div","fc-pond");
-    pond.style.backgroundImage='url("'+mtgImg("sc_pond_v2")+'")';
+    pond.style.backgroundImage='url("'+mtgImg("sc_pond_v4")+'")';
+    const W=card.clientWidth,H=card.clientHeight,feet=Math.round(H*.63);
     const leaf=(x,w=100)=>{
       const im=mtgEl("img","fc-leaf");im.src="assets/Images/prop_lotus.svg";im.alt="";
-      im.style.cssText="left:"+x+"px;width:"+w+"px";pond.appendChild(im);
+      im.style.cssText="left:"+x+"px;top:"+(feet-14)+"px;width:"+w+"px";pond.appendChild(im);
     };
-    leaf(125,120);leaf(755,130);[300,440,580].forEach(x=>leaf(x,78));
+    const positions=[W*.16,W*.34,W*.5,W*.66,W*.84];
+    leaf(positions[0],190);leaf(positions[4],190);positions.slice(1,4).forEach(x=>leaf(x,96));
     const svg=document.createElementNS(MTG_SVG,"svg");
-    svg.setAttribute("class","fc-trail");svg.setAttribute("viewBox","0 0 880 260");
-    [125,300,440,580].forEach((x,i)=>mtgArc(svg,x,[300,440,580,755][i],177,60));
+    svg.setAttribute("class","fc-trail");svg.setAttribute("viewBox","0 0 "+W+" "+H);
+    positions.slice(0,4).forEach((x,i)=>mtgArc(svg,x,positions[i+1],feet,52).style.setProperty("--trail-delay",(.4+i*.22)+"s"));
     pond.appendChild(svg);
-    const frog=mtgEl("img","fc-frog");frog.src=mtgImg("chr_tappu");frog.alt="टप्पू";frog.style.left="125px";
-    const friend=mtgEl("img","fc-friend");friend.src=mtgImg("chr_friend");friend.alt="टप्पू का दोस्त";
+    const frog=mtgEl("img","fc-frog");frog.src=mtgImg("lesson_frog");frog.alt="टप्पू";frog.style.left=positions[0]+"px";frog.style.top=(feet-110)+"px";
+    const friend=mtgEl("img","fc-friend");friend.src=mtgImg("lesson_friend_gold");friend.alt="टप्पू का दोस्त";friend.style.left=positions[4]+"px";friend.style.top=(feet-110)+"px";
     pond.appendChild(frog);pond.appendChild(friend);hero.appendChild(pond);
-    const btn=$("sgBtn");if(btn){btn.setAttribute("aria-label","शुरू करें");btn.textContent="शुरू करें  ▶";}
-    if(matchMedia("(prefers-reduced-motion: reduce)").matches){ready();return;}
-    frog.animate([{transform:"translate(-50%,0)"},{transform:"translate(-50%,-16px)"},{transform:"translate(-50%,0)"}],{duration:650,easing:"ease-in-out"}).onfinish=ready;
-    setTimeout(ready,1200);
+    [positions[0],positions[4]].forEach((x,i)=>{const splash=mtgEl("i","fc-cover-splash"+(i?" friend":""));splash.style.left=x+"px";splash.style.top=(feet+8)+"px";splash.setAttribute("aria-hidden","true");pond.appendChild(splash);});
+    [positions[0],positions[4]].forEach(x=>{
+      [false,true].forEach(late=>{const ring=mtgEl("i","fc-water-ring"+(late?" late":""));ring.style.left=x+"px";ring.style.top=(feet+22)+"px";pond.appendChild(ring);});
+    });
+    for(let i=0;i<5;i++){const mote=mtgEl("i","fc-mote");mote.style.cssText="left:"+(W*(.25+i*.12))+"px;top:"+(feet+25+(i%2)*30)+"px;--mote-delay:"+(-i*.9)+"s";mote.setAttribute("aria-hidden","true");pond.appendChild(mote);}
+    const btn=$("sgBtn");if(btn){
+      btn.setAttribute("aria-label","शुरू करें");btn.innerHTML='<img class="fc-play-ready" src="assets/Images/btn-play-round.svg" alt="" draggable="false"><img class="fc-play-waiting" src="assets/Images/btn-play-round-waiting.svg" alt="" draggable="false">';
+      let wasReady=false;
+      new MutationObserver(()=>{
+        const isReady=!btn.disabled&&!btn.classList.contains("sg-waiting");
+        if(isReady&&!wasReady){btn.classList.add("fc-play-pop");setTimeout(()=>btn.classList.remove("fc-play-pop"),900);}
+        wasReady=isReady;
+      }).observe(btn,{attributes:true,attributeFilter:["class","disabled"]});
+    }
+    // The ready signal follows the actual sprites, so a fast tap cannot outrun the pads.
+    const font=document.fonts.load('64px "Yatra One"').catch(()=>{});
+    Promise.all([font,...pond.querySelectorAll("img")].map(im=>im instanceof HTMLImageElement?im.decode().catch(()=>{}):im)).then(()=>{
+      card.classList.add("fc-ready");setTimeout(ready,matchMedia("(prefers-reduced-motion: reduce)").matches?0:1000);
+    });
+    setTimeout(()=>{card.classList.add("fc-ready");ready();},6000);
   }
   const start=Date.now();
   function wait(){if(document.body.classList.contains("loaded")||Date.now()-start>8000)build();else setTimeout(wait,100);}

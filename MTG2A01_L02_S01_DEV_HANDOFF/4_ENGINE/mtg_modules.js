@@ -7,7 +7,7 @@
    ===================================================================================== */
 let _mtgTok = 0;
 const MTG_STOP = "__mtg_stop__";
-function mtgToken(){ return ++_mtgTok; }
+function mtgToken(){ mtgStopFoley(); return ++_mtgTok; }
 function mtgAlive(tok){ if(tok !== _mtgTok) throw MTG_STOP; }
 function mtgWait(ms, tok){ return new Promise((res, rej)=> setTimeout(()=> (tok === _mtgTok ? res() : rej(MTG_STOP)), ms)); }
 function mtgSrc(id){ if(!id) return null; return (CARD.assets && CARD.assets.audio && CARD.assets.audio[id]) || ("assets/Audio/" + id + "." + AUDIO_EXT); }
@@ -25,8 +25,17 @@ function mtgFx(name, fallback, vol){
     a.play().catch(()=>{ if(fallback) fallback(); });
   }catch(e){ if(fallback) fallback(); }
 }
-const mtgRight = ()=> mtgFx("sfx_fb_correct", ()=>{ if(typeof sfxCorrect === "function") sfxCorrect(); });
-const mtgWrong = ()=> mtgFx("sfx_fb_incorrect", ()=>{ if(typeof sfxWrongSoft === "function") sfxWrongSoft(); });
+const mtgRight = (reference=false)=> mtgFx(reference ? "sfx_ref_correct" : "sfx_fb_correct", ()=>{ if(typeof sfxCorrect === "function") sfxCorrect(); });
+const mtgWrong = (reference=false)=> mtgFx(reference ? "sfx_ref_wrong" : "sfx_fb_incorrect", ()=>{ if(typeof sfxWrongSoft === "function") sfxWrongSoft(); });
+const mtgFoley = new Set();
+function mtgStopFoley(){ mtgFoley.forEach(a=>{a.pause();a.removeAttribute("src");});mtgFoley.clear(); }
+function mtgSound(id,volume=.2){
+  if(document.hidden)return;
+  const a=new Audio((typeof _av==="function"?_av: String)("assets/Audio/"+id+".ogg"));
+  a.volume=volume;mtgFoley.add(a);
+  const clear=()=>mtgFoley.delete(a);a.onended=clear;a.onerror=clear;
+  a.play().catch(clear);
+}
 function mtgImg(key){ return "assets/Images/" + key + ".webp"; }
 function mtgOst(t){ const p = $("promptText"); if(p && t != null) p.textContent = t; }
 function mtgPulse(el, cls, ms){ if(!el) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); if(ms) setTimeout(()=> el.classList.remove(cls), ms); }
@@ -67,14 +76,26 @@ function mtgArc(svg, x1, x2, y, lift, label, motion={}){
   }
   requestAnimationFrame(frame);return g;
 }
+function mtgMoveArc(g,x1,x2,y,lift){
+  const svg=g.parentNode,replacement=mtgArc(svg,x1,x2,y,lift,g.querySelector("text")?.textContent);
+  ["mtg-arc-halo","mtg-arc-path","mtg-arc-head"].forEach(cls=>g.querySelector("."+cls).setAttribute("d",replacement.querySelector("."+cls).getAttribute("d")));
+  const t=g.querySelector("text"),rt=replacement.querySelector("text");if(t&&rt){t.setAttribute("x",rt.getAttribute("x"));t.setAttribute("y",rt.getAttribute("y"));}
+  replacement.remove();
+}
 /* Feet-anchored hop: frog anticipation, flight and soft landing share one clock. */
 function mtgHop(el, x1, x2, lift, ms, cues={}){
   const frog=el.matches(".br-frog,.jp-frog");
   const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const tok=_mtgTok;
+  const facing=el.dataset.faceFlip==='true'?-1:1,restTransform='translate(-50%,0) scaleX('+facing+')';
+  const voice=()=>{
+    mtgSound(frog?"sfx_frog_hop":"sfx_animal_hop",.20);
+    if(frog)mtgSound("sfx_frog_croak",.16);
+  };
   lift=Math.max(0,Math.min(lift,el.offsetTop-(frog?22:12)));
   if(reduced){
-    el.style.left=x2+"px";el.style.transform="translate(-50%,0)";
+    voice();if(el.matches(".br-frog"))mtgSound("sfx_water_land",.2);
+    el.style.left=x2+"px";el.style.transform=restTransform;
     return Promise.resolve();
   }
   return new Promise(resolve=>{
@@ -88,7 +109,7 @@ function mtgHop(el, x1, x2, lift, ms, cues={}){
     el.classList.add("hopping");
     function finish(){
       if(shadow)shadow.remove();
-      el.style.transform="translate(-50%,0)";
+      el.style.transform=restTransform;
       el.classList.remove("hopping");delete el.dataset.hopPhase;
       resolve();
     }
@@ -105,18 +126,19 @@ function mtgHop(el, x1, x2, lift, ms, cues={}){
           x=x1+(x2-x1)*u;height=4*u*(1-u);y=-lift*height;
           sx=1+.08*push-.04*stretch;sy=1-.1*push+.07*stretch;
           tilt=direction*5*Math.sin(2*Math.PI*u);el.dataset.hopPhase="air";
-          if(!tookOff){tookOff=true;if(cues.onTakeoff)cues.onTakeoff();}
+          if(!tookOff){tookOff=true;voice();if(cues.onTakeoff)cues.onTakeoff();}
         }else{
           x=x2;const p=Math.sin(Math.PI*(t-.84)/.16);
           sx=1+.10*p;sy=1-.12*p;el.dataset.hopPhase="land";
-          if(!landed){landed=true;if(cues.onLand)cues.onLand();}
+          if(!landed){landed=true;if(el.matches(".br-frog"))mtgSound("sfx_water_land",.22);if(cues.onLand)cues.onLand();}
         }
       }else{
+        if(!tookOff){tookOff=true;voice();}
         const ease=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
         x=x1+(x2-x1)*ease;y=-Math.sin(Math.PI*t)*lift;
       }
       el.style.left=x+"px";
-      el.style.transform="translate(-50%,"+y+"px) rotate("+tilt+"deg) scale("+sx+","+sy+")";
+      el.style.transform="translate(-50%,"+y+"px) rotate("+tilt+"deg) scale("+(sx*facing)+","+sy+")";
       if(shadow){
         shadow.style.left=x+"px";shadow.style.opacity=String(.22-.13*height);
         shadow.style.transform="translateX(-50%) scale("+(1-.35*height)+")";
@@ -165,13 +187,13 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   /* the scene bleeds to the frame's inner edges: measure the frame rather than assume its width */
   const _bleedL = card ? Math.max(0, host.offsetLeft - card.clientLeft) : 30;
   const VIEW_W = (card && card.clientWidth) ? card.clientWidth : 1113;
-  const VIEW_H = 282, FEET_Y = 194;
-  const span = d.hi - d.lo, START_SPACE = 110, END_SPACE = 190;
-  const U = d.camera ? 80 : (VIEW_W - START_SPACE - END_SPACE) / span;
-  const RW = Math.min(U * .88, 76), RH = RW * 52 / 160;
-  const WORLD_W = d.camera ? START_SPACE + span * U + END_SPACE : VIEW_W;
+  const VIEW_H = 320, FEET_Y = 226;
+  const span = d.hi - d.lo, START_SPACE = 100, END_SPACE = 220;
+  let U = d.camera ? 80 : (VIEW_W - START_SPACE - END_SPACE) / span;
+  const RW = Math.min(U * .86, 76), RH = RW * 52 / 160;
+  let WORLD_W = d.camera ? START_SPACE + span * U + END_SPACE : VIEW_W;
   const X = n => START_SPACE + (n - d.lo) * U;
-  const ROCK_TOP = FEET_Y - 3, STONE_Y = FEET_Y - 2, NUM_Y = FEET_Y + 32;
+  const ROCK_TOP = FEET_Y - 10, STONE_Y = FEET_Y - 2, NUM_Y = FEET_Y + 38;
   const LOTUS = "assets/Images/prop_lotus.svg";
 
   const wrap = mtgEl("div", "br-wrap");
@@ -181,8 +203,8 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   for(let n = d.lo; n <= d.hi; n++){
     const big = (n % d.step === 0);
     const s = mtgEl("div", "br-rock" + (big ? " key" : ""));
-    const ratio=big?1:.8;
-    s.style.cssText="left:"+X(n)+"px;top:"+(ROCK_TOP+RH*(1-ratio)/2)+"px;width:"+(RW*ratio)+"px;height:"+(RH*ratio)+"px";
+    const ratio=big?1:.8,restSize=Math.min(100,U*.86)*ratio,restHeight=restSize*52/160;
+    s.style.cssText="left:"+X(n)+"px;top:"+(ROCK_TOP+(RH-restHeight)/2)+"px;width:"+restSize+"px;height:"+restHeight+"px";
     const im = mtgEl("img"); im.src = LOTUS; im.alt = ""; s.appendChild(im);
     world.appendChild(s); stones[n] = s;
     const lb = mtgEl("div", "br-num", String(n));
@@ -191,24 +213,81 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   }
   const svg = document.createElementNS(MTG_SVG, "svg"); svg.setAttribute("class", "br-svg");
   svg.setAttribute("width", WORLD_W); svg.setAttribute("height", VIEW_H); world.appendChild(svg);
+  const bridgeArcs=[];
   const dot = mtgEl("div", "br-dot"); dot.style.top = (ROCK_TOP + RH * 0.3) + "px"; world.appendChild(dot);
   // Distinct landing and resting leaves leave room for both frogs at the far end.
-  const FW = Math.min(70, U * .86), FH = FW * 579 / 477;
-  const FRW = FW, FRH = FRW * 574 / 551, friendX = X(d.hi) + 110;
+  const FW = 104, FH = 84;
+  const FRW = 100, FRH = 81;let friendX = X(d.hi) + 140;
   const rest = mtgEl("img", "br-rest-leaf"); rest.src = LOTUS; rest.alt = "";
-  rest.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-3)+"px;width:110px;height:36px";
+  rest.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-10)+"px;width:136px;height:44px";
   world.appendChild(rest);
-  const friend = mtgEl("img", "br-friend"); friend.src = mtgImg("chr_friend");
+  const friend = mtgEl("img", "br-friend"); friend.src = mtgImg(d.friend || "lesson_friend_gold");
   friend.alt = "टप्पू का दोस्त";
-  friend.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-FRH)+"px;width:"+FRW+"px";
+  friend.style.cssText = "left:"+friendX+"px;top:"+(FEET_Y-FRH)+"px;width:"+FRW+"px;height:"+FRH+"px;object-fit:contain";
   world.appendChild(friend);
-  const frog = mtgEl("img", "br-frog"); frog.src = mtgImg("chr_tappu"); frog.alt = "टप्पू";
-  frog.style.width = FW + "px"; frog.style.top = (FEET_Y-FH) + "px";
+  const frog = mtgEl("img", "br-frog"); frog.src = mtgImg("lesson_frog"); frog.alt = "टप्पू";
+  frog.style.width = FW + "px";frog.style.height=FH+"px";frog.style.objectFit="contain";frog.style.top = (FEET_Y-FH) + "px";
   let at = d.lo; frog.style.left = X(at) + "px"; world.appendChild(frog);
   view.appendChild(world); wrap.appendChild(view);
-  const cap = mtgEl("div", "br-cap"); wrap.appendChild(cap);
+  const cap = mtgEl("section", "br-cap");cap.setAttribute("aria-label","साथ में पढ़िए");
+  const captionText=mtgEl("p","br-caption-text"),countStrip=mtgEl("div","br-count-strip");
+  cap.appendChild(captionText);cap.appendChild(countStrip);wrap.appendChild(cap);
   wrap.style.margin = `0 0 0 ${-_bleedL}px`; wrap.style.width = VIEW_W + "px";
   host.appendChild(wrap);
+
+  // A close view for each hop; a separate, equally spaced milestone recap.
+  // Never shrink the characters to squeeze fifty unit labels into one viewport.
+  let overview=false,layoutFrame=0;
+  function paintGeometry(unit){
+    U=unit;WORLD_W=START_SPACE+span*U+END_SPACE;world.style.setProperty("--unit",U+"px");
+    Object.keys(stones).forEach(k=>{
+      const ratio=stones[k].classList.contains("key")?1:.8,size=Math.min(100,U*.86)*ratio,h=size*52/160;
+      stones[k].style.width=size+"px";stones[k].style.height=h+"px";stones[k].style.top=(ROCK_TOP+(RH-h)/2)+"px";
+    });
+    world.style.width=WORLD_W+"px";svg.setAttribute("width",WORLD_W);
+    Object.keys(stones).forEach(k=>{stones[k].style.left=X(+k)+"px";nums[k].style.left=X(+k)+"px";});
+    friendX=X(d.hi)+140;friend.style.left=rest.style.left=friendX+"px";frog.style.left=X(at)+"px";
+    bridgeArcs.forEach(r=>mtgMoveArc(r.node,X(r.from),X(r.to),STONE_Y-2,r.lift));
+    world.dataset.unitSpacing=U.toFixed(3);
+  }
+  function rangeTarget(a,b,unit){
+    const width=START_SPACE+span*unit+END_SPACE,x=n=>START_SPACE+(n-d.lo)*unit;
+    const left=Math.max(0,x(Math.max(d.lo,a))-80),right=b>=d.hi?width:Math.min(width,x(b)+80);
+    const z=Math.min(1,VIEW_W/(right-left));
+    return {x:Math.max(0,Math.min(width*z-VIEW_W,(left+right)*z/2-VIEW_W/2)),z};
+  }
+  function layoutOverview(on,a=at,b=Math.min(d.hi,at+d.step),ms=950){
+    if(!d.camera)return Promise.resolve();
+    const targetUnit=on?(VIEW_W-START_SPACE-END_SPACE)/span:80;
+    if(overview===on&&Math.abs(U-targetUnit)<.01)return Promise.resolve();
+    if(cameraFrame){cancelAnimationFrame(cameraFrame);cameraFrame=0;if(cameraFinish)cameraFinish();cameraFinish=null;}
+    const fromUnit=U,fromCamera={...camera},target=on?{x:0,z:1}:rangeTarget(a,b,targetUnit),start=performance.now();
+    const fromMinor=parseFloat(world.style.getPropertyValue('--minor-opacity')||'1'),toMinor=on?0:1;
+    world.dataset.layoutMoving='true';world.dataset.layoutTarget=on?'compact':'expanded';
+    return new Promise(resolve=>{
+      function tick(now){
+        if(tok!==_mtgTok){layoutFrame=0;resolve();return;}
+        const t=ms&&!reduceMotion()?Math.min(1,(now-start)/ms):1,e=t*t*(3-2*t);
+        paintGeometry(fromUnit+(targetUnit-fromUnit)*e);
+        paintCamera(fromCamera.x+(target.x-fromCamera.x)*e,fromCamera.z+(target.z-fromCamera.z)*e);
+        world.style.setProperty('--minor-opacity',fromMinor+(toMinor-fromMinor)*e);
+        if(t<1)layoutFrame=requestAnimationFrame(tick);
+        else{layoutFrame=0;overview=on;world.classList.toggle('overview',on);world.dataset.layoutMoving='false';resolve();}
+      }
+      tick(start);
+    });
+  }
+  function showCaption(c){
+    const text=mtgText(c.vo);if(!text)return;
+    if(/^vo_c_\d+$/.test(c.vo)){
+      countStrip.querySelectorAll(".current").forEach(e=>e.classList.remove("current"));
+      const chip=mtgEl("span","br-count-word current");chip.textContent=text;countStrip.appendChild(chip);
+    }else{
+      captionText.textContent=text;
+      if(at!==d.hi||countStrip.children.length<5)countStrip.replaceChildren();
+    }
+    cap.dataset.clip=c.vo;
+  }
 
   // Scale, translation and labels share one animation clock anchored at the feet.
   let cam = d.camera ? "all" : null, cameraFrame = 0, cameraFinish = null;
@@ -218,6 +297,7 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
     camera={x,z}; world.style.setProperty("--z",z);
     world.classList.toggle("zoomed",z<.48);
     world.style.transform="translate("+(-x)+"px,"+(FEET_Y*(1-z))+"px) scale("+z+")";
+    Object.keys(nums).forEach(k=>{const screenX=X(+k)*z-x;nums[k].style.visibility=screenX<24||screenX>VIEW_W-24?"hidden":"";});
   }
   function cameraTo(x,z,ms=700){
     if(cameraFrame) cancelAnimationFrame(cameraFrame);
@@ -246,11 +326,12 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   function applyCam(mode,ms=700){
     if(!d.camera)return Promise.resolve();
     cam=mode;
-    if(mode==="all")return cameraTo(0,VIEW_W/WORLD_W,ms);
-    if(Array.isArray(mode))return rangeCamera(mode[0],mode[1],ms);
+    if(mode==="all")return layoutOverview(true,at,d.hi,ms);
+    if(overview)return layoutOverview(false,at,Math.min(d.hi,at+d.step),950);
+    if(Array.isArray(mode))return rangeCamera(at,Math.min(d.hi,at+d.step),ms);
     return rangeCamera(at,Math.min(d.hi,at+d.step),ms);
   }
-  paintCamera(0,d.camera?VIEW_W/WORLD_W:1);
+  layoutOverview(!!d.camera,at,d.hi,0);paintCamera(0,1);
 
   const visited=new Set();
   const glow = n => { if(visited.has(n)){mtgPulse(stones[n], "glow", 650);mtgPulse(nums[n], "glow", 650);} };
@@ -258,10 +339,10 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   const clearLit = () => Object.values(stones).forEach(s => s.classList.remove("lit"));
   async function jump(a, b){
     clearLit(); dot.classList.remove("show");
-    if(cam==="follow") await rangeCamera(a,b,420);
+    if(d.camera){await layoutOverview(false,a,b,950);await rangeCamera(a,b,420);}
     const lift=Math.max(12,Math.min(62,FEET_Y-FH-22));
     view.dataset.jumpActive="true";
-    mtgArc(svg,X(a),X(b),STONE_Y-2,lift,null,{duration:950,start:.12,end:.84});
+    bridgeArcs.push({node:mtgArc(svg,X(a),X(b),STONE_Y-2,lift,null,{duration:950,start:.12,end:.84}),from:a,to:b,lift});
     await mtgHop(frog,X(a),X(b),lift,950,{
       onTakeoff:()=>{mtgLeafBob(stones[a]);mtgPondRipple(world,X(a),FEET_Y+5);},
       onLand:()=>{mtgLeafBob(stones[b]);mtgPondRipple(world,X(b),FEET_Y+5);}
@@ -279,6 +360,7 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
     if(c.dot != null){ dot.style.left = X(c.dot) + "px"; dot.classList.add("show"); stones[c.dot].classList.add("lit"); }
     if(c.mark != null && visited.has(c.mark)) glow(c.mark);
     if(c.happy){ mtgPulse(frog, "bounce", 900); mtgPulse(friend, "bounce", 900); }
+    showCaption(c);
     const voDone = mtgSay(c.vo, tok);
     if(c.jump){ await mtgWait(250, tok); if(c.span) await spanLight(c.jump[0], c.span[1]); await jump(c.jump[0], c.jump[1]); }
     await voDone;
@@ -289,16 +371,19 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
   function waitTap(){
     return new Promise((res, rej)=>{
       frog.classList.add("tappable");
+      frog.setAttribute("role","button");frog.tabIndex=0;frog.setAttribute("aria-label","टप्पू को "+d.step+" कदम कुदाइए");
       let hand = mtgHand(world, X(at) + 6, FEET_Y - FH * .55);
       const again = setInterval(()=>{ if(tok !== _mtgTok){ clearInterval(again); return; } if(!hand){ hand = mtgHand(world, X(at) + 6, FEET_Y - FH * .55); setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800); } }, 6000);
       setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800);
       frog.onclick = ()=>{
         if(tok !== _mtgTok) return rej(MTG_STOP);
         frog.onclick = null; frog.classList.remove("tappable"); clearInterval(again);
+        frog.tabIndex=-1;frog.removeAttribute("role");frog.onkeydown=null;
         if(hand){ hand.remove(); hand = null; }
         sfxTap(); SwiftPAL.emit("teach_tap", { slide_id: slide.id, at });
         res();
       };
+      frog.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();frog.click();}};
     });
   }
   let done = false, lastStep = null;
@@ -307,7 +392,7 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
     await mtgWait(350, tok);
     for(const st of d.steps){
       if(st.wait_tap) await waitTap();
-      cap.textContent = st.cap; mtgPulse(cap, "in", 400);
+      countStrip.replaceChildren();cap.dataset.smeText=st.cap;
       lastStep = st;
       for(const c of st.clips) await runClip(c);
       await mtgWait(250, tok);
@@ -351,14 +436,22 @@ function mtgNumberLine(o){
 /* option tray shared by JUMP_PICK and SEQ_FILL */
 function mtgOptions(host, values, onPick){
   const row = mtgEl("div", "mtg-opts");
+  let lockedAnswer=null;
   const cells = values.map(v=>{
     const b = mtgEl("button", "mtg-opt", String(v)); b.type = "button"; b.dataset.v = v; b.disabled = true;
-    b.onclick = ()=> onPick(v, b);
+    b.setAttribute('aria-disabled','true');
+    b.onclick = ()=> {if(b.disabled||(lockedAnswer!==null&&v!==lockedAnswer))return;mtgFx("sfx_ref_tap",null,.4);onPick(v, b);};
     row.appendChild(b); return b;
   });
   host.appendChild(row);
   return { row, cells,
-    enable(on){ cells.forEach(c => { if(!c.classList.contains("used") && !c.classList.contains("faded")) c.disabled = !on; }); },
+    enable(on){
+      if(on&&!row.classList.contains("revealed")){row.classList.add("revealed");cells.forEach((c,i)=>{c.style.setProperty("--option-delay",i*65+"ms");c.classList.add("option-enter");});}
+      cells.forEach(c => {
+        c.disabled=!on||c.classList.contains('used')||(lockedAnswer!==null&&+c.dataset.v!==lockedAnswer);
+        c.setAttribute('aria-disabled',String(c.disabled));
+      });
+    },
     consume(b){
       const before=new Map(cells.filter(c=>c!==b&&!c.classList.contains("used")).map(c=>[c,c.getBoundingClientRect()]));
       b.classList.add("used");b.disabled=true;b.setAttribute("aria-hidden","true");
@@ -367,16 +460,28 @@ function mtgOptions(host, values, onPick){
         c.animate([{transform:"translateX("+((r.left-c.getBoundingClientRect().left)/scale)+"px)"},{transform:"translateX(0)"}],{duration:300,easing:"ease-out"});
       });
     },
-    wiggle(b){ mtgPulse(b, "wiggle", 600); } };
+    lockTo(answer){
+      lockedAnswer=answer;
+      cells.forEach(c=>{const wrong=+c.dataset.v!==answer&&!c.classList.contains('used');c.classList.toggle('faded',wrong);if(wrong||c.classList.contains('used')){c.disabled=true;c.setAttribute('aria-disabled','true');}});
+    },
+    clearLock(){lockedAnswer=null;cells.forEach(c=>c.classList.remove('faded','guide'));},
+    wiggle(b){
+      if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+      b.animate([{translate:"0 0"},{translate:"-9px 0"},{translate:"9px 0"},{translate:"-6px 0"},{translate:"6px 0"},{translate:"0 0"}],{duration:400,easing:"ease-in-out"});
+    } };
 }
 /* WA3: fade + disable everything except the answer, pulse it, hand cue — no tick before the tap */
 function mtgGuideTo(opts, answer){
+  opts.lockTo(answer);
   let target = null;
   opts.cells.forEach(c=>{
     if(+c.dataset.v === answer && !c.classList.contains("used")){ target = c; c.classList.add("guide"); }
     else if(!c.classList.contains("used")){ c.classList.add("faded"); c.disabled = true; }
   });
-  if(target) pointNudgeAt(target, true);
+  if(target){
+    target.animate([{boxShadow:"0 0 0 0 rgba(0,177,50,0)"},{boxShadow:"0 0 0 8px rgba(0,177,50,.32),0 10px 26px rgba(0,177,50,.34)"},{boxShadow:"0 0 0 0 rgba(0,177,50,0)"}],{duration:1100,iterations:matchMedia("(prefers-reduced-motion:reduce)").matches?1:3,easing:"ease-in-out"});
+    pointNudgeAt(target, true);
+  }
   return target;
 }
 
@@ -386,17 +491,18 @@ function mtgGuideTo(opts, answer){
 SlideModules.JUMP_PICK = { mount(host, slide){
   const d = slide.data, tok = mtgToken();
   state.ownsAudio = true;
+  host.classList.add("mtg-question-center");
   const board = mtgEl("div", "jp-board");
   const span = d.hi - d.lo;
   const nl = mtgNumberLine({ lo: d.lo, hi: d.hi, width: 1000, height: 200, baseY: 140,
     every: span > 30 ? 5 : 1, bigEvery: span > 30 ? 10 : (d.step >= 5 ? 5 : 2), cls: "jp-nl" });
   board.appendChild(nl.root);
-  const jumpLift=34;
+  const jumpLift=22;
   for(let i=0;i+1<d.prior.length;i++){
-    mtgArc(nl.svg,nl.X(d.prior[i]),nl.X(d.prior[i+1]),136,jumpLift);
-    nl.hold(d.prior[i+1]);
+    mtgArc(nl.svg,nl.X(d.prior[i]),nl.X(d.prior[i+1]),136,jumpLift);nl.hold(d.prior[i+1]);
   }
-  const frog = mtgEl("img", "jp-frog"); frog.src = mtgImg("chr_tappu"); frog.style.left = nl.X(d.at) + "px";
+  const frog = mtgEl("img", "jp-frog"); frog.src = mtgImg(d.frog || "lesson_frog");frog.alt="मेंढक";frog.style.left = nl.X(d.at) + "px";
+  if(d.frog){frog.dataset.faceFlip='true';frog.style.transform='translate(-50%,0) scaleX(-1)';}
   nl.root.appendChild(frog);
   host.appendChild(board);
   let tries = 0, busy = true, solved = false;
@@ -405,14 +511,14 @@ SlideModules.JUMP_PICK = { mount(host, slide){
   state.replayAudio = ()=>{ if(busy || solved) return; busy = true; opts.enable(false); mtgRun(async()=>{ await playQ(); busy = false; opts.enable(true); }); };
   function pick(v, b){
     if(busy || solved) return;
-    sfxTap();
     if(v === d.answer){
       solved = true; busy = true; opts.enable(false); stopNudge();
       b.classList.remove("guide"); b.classList.add("right");
+      opts.cells.forEach(c=>{if(c!==b)c.classList.add("option-gone");});
       SwiftPAL.emit("jump_pick_correct", { slide_id: slide.id, attempts: tries + 1 });
       mtgOst(d.correct_ost);
       mtgRun(async()=>{
-        mtgRight(); confettiCannon(); setSwMood("celebrate");
+        mtgRight(true); confettiCannon(); setSwMood("celebrate");
         const voDone = mtgSay(d.correct, tok);
         const lift=jumpLift;
         mtgArc(nl.svg,nl.X(d.at),nl.X(d.answer),136,lift,null,{duration:900,start:.12,end:.84});
@@ -424,7 +530,8 @@ SlideModules.JUMP_PICK = { mount(host, slide){
       return;
     }
     tries++; state.attempts = tries; busy = true; opts.enable(false);
-    opts.wiggle(b); mtgWrong(); setSwMood("tryagain");
+    if(tries>=3)opts.lockTo(d.answer);
+    opts.wiggle(b); mtgWrong(true); setSwMood("tryagain");
     SwiftPAL.emit("jump_pick_wrong", { slide_id: slide.id, attempt: tries, picked: v });
     mtgRun(async()=>{
       await mtgWait(450, tok);
@@ -446,6 +553,7 @@ SlideModules.JUMP_PICK = { mount(host, slide){
 SlideModules.SEQ_FILL = { mount(host, slide){
   const d = slide.data, tok = mtgToken();
   state.ownsAudio = true;
+  host.classList.add("mtg-sequence-center");
   const stage = mtgEl("div", "sf-stage");
   const strip = mtgEl("div", "sf-strip");
   const boxes = d.seq.map((n, i)=>{
@@ -453,7 +561,7 @@ SlideModules.SEQ_FILL = { mount(host, slide){
     if(d.intro) b.classList.add("hidden");
     strip.appendChild(b); return b;
   });
-  const animal = mtgEl("img", "sf-animal"); animal.src = mtgImg(d.animal);
+  const animal = mtgEl("img", "sf-animal"); animal.src = mtgImg(d.animal);animal.alt=({lesson_grasshopper:"टिड्डा",lesson_rabbit:"खरगोश",lesson_squirrel:"गिलहरी"})[d.animal.replace(/_cute$/,'')]||"";
   stage.appendChild(animal); stage.appendChild(strip); host.appendChild(stage);
   const blanks = d.seq.map((n, i) => n == null ? i : -1).filter(i => i >= 0);
   let bi = 0, tries = 0, busy = true;
@@ -477,9 +585,7 @@ SlideModules.SEQ_FILL = { mount(host, slide){
     const nl = mtgNumberLine({ lo: a, hi: z, width: 760, height: 190, baseY: 128, dots: true, noArrows: false, cls: "sf-hint-nl" });
     const pet = mtgEl("img", "sf-hint-animal"); pet.src = mtgImg(d.animal); pet.style.left = nl.X(bl.from) + "px";
     nl.root.appendChild(pet);
-    const hintLift=66;
-    mtgArc(nl.svg,nl.X(previous),nl.X(bl.from),124,hintLift,"+"+bl.step);
-    nl.hold(bl.from);
+    const hintLift=66;mtgArc(nl.svg,nl.X(previous),nl.X(bl.from),124,hintLift,"+"+bl.step);nl.hold(bl.from);
     card.appendChild(nl.root);
     card.appendChild(mtgEl("div", "sf-hint-cap", mtgText(bl.hint)));
     ov.appendChild(card); $("stage").appendChild(ov);
@@ -501,20 +607,19 @@ SlideModules.SEQ_FILL = { mount(host, slide){
   function pick(v, b){
     if(busy || bi >= blanks.length) return;
     const bl = d.blanks[bi], idx = blanks[bi];
-    sfxTap();
     if(v === bl.answer){
       busy = true; opts.enable(false); stopNudge();
       b.classList.remove("guide"); opts.consume(b);
       SwiftPAL.emit("seq_fill_correct", { slide_id: slide.id, blank: bi, attempts: tries + 1 });
       mtgRun(async()=>{
-        mtgRight(); confettiCannon(); setSwMood("celebrate"); mtgOst(mtgText(bl.correct));
+        mtgRight(true); confettiCannon(); setSwMood("celebrate"); mtgOst(mtgText(bl.correct));
         const box = boxes[idx]; box.textContent = String(v); box.classList.remove("blank", "active"); box.classList.add("filled");
         mtgPulse(box, "glow", 1500);
         const voDone = mtgSay(bl.correct, tok);
         await hopTo(idx);
         await voDone;
         bi++; tries = 0; state.attempts = 0;
-        opts.cells.forEach(c => c.classList.remove("faded", "guide"));
+        opts.clearLock();
         if(bi >= blanks.length){
           boxes.forEach((bx, k)=> setTimeout(()=> mtgPulse(bx, "glow", 900), k * 140));
           setNavActive(true);
@@ -524,7 +629,8 @@ SlideModules.SEQ_FILL = { mount(host, slide){
       return;
     }
     tries++; state.attempts = tries; busy = true; opts.enable(false);
-    opts.wiggle(b); mtgWrong(); setSwMood("tryagain");
+    if(tries>=3)opts.lockTo(bl.answer);
+    opts.wiggle(b); mtgWrong(true); setSwMood("tryagain");
     SwiftPAL.emit("seq_fill_wrong", { slide_id: slide.id, blank: bi, attempt: tries, picked: v });
     mtgRun(async()=>{
       await mtgWait(450, tok);
@@ -572,31 +678,34 @@ SlideModules.SPACE_PODS = { mount(host, slide){
   $("stage").classList.add("mtg-game"); document.body.classList.add("mtg-game");
   const root = mtgEl("div", "sp-root"); $("stage").appendChild(root);
   const done = new Set();
-  let curVo = g.menu_vo;
-  /* file4's own header audio chip graphic, cloned so the game's replay button matches it */
-  const audioBtn = mtgEl("button", "sp-audio", ($("audioChip") && $("audioChip").innerHTML) || "🔊"); audioBtn.type = "button"; audioBtn.setAttribute("aria-label", "फिर सुनिए");
-  audioBtn.onclick = ()=>{ state.audioReplays++; play(mtgSrc(curVo), ()=>{}); };
-  const buddy = mtgEl("div", "sp-swiftie", `<img src="assets/UI/sw_head_talking.webp" alt="">`);
-  const scene = mtgEl("div", "sp-scene");
-  root.appendChild(scene); root.appendChild(audioBtn); root.appendChild(buddy);
-  const say = (id)=>{ curVo = id; return mtgSay(id, tok); };
+  let narrationBusy=false,levelRunning=false,travel=0;
+  const universe=mtgEl('div','sp-universe','<div class="sp-cosmos"></div><div class="sp-rails"></div>');
+  universe.setAttribute('aria-hidden','true');document.body.prepend(universe);
+  let scene = mtgEl("div", "sp-scene");root.appendChild(scene);
+  const reduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let lastAnimal=-Infinity;
+  function animalSound(cast){if(performance.now()-lastAnimal<450)return;lastAnimal=performance.now();mtgSound(cast==='sp_frog'?'sfx_frog_croak':cast==='sp_rabbit'?'sfx_space_rabbit':'sfx_space_squirrel',.16);}
+  let narrationQueue=Promise.resolve();
+  const say = id=>{
+    const task=narrationQueue.then(async()=>{mtgAlive(tok);narrationBusy=true;root.dataset.narrating='true';try{await mtgSay(id,tok);}finally{narrationBusy=false;root.dataset.narrating='false';}});
+    narrationQueue=task.catch(()=>{});return task;
+  };
+  const CAST_ART={sp_frog:'spaceport_frog',sp_rabbit:'spaceport_rabbit',sp_squirrel:'spaceport_squirrel'};
+  const castImg=cast=>mtgImg(CAST_ART[cast]||cast);
   const badgeAt = (cast)=> g.badge[cast] || [0.5, 0.65];
   function astronaut(cast, n, cls){
     const a = mtgEl("div", "sp-astro " + (cls || ""));
     const inner = mtgEl("div", "sp-astro-in");
-    const im = mtgEl("img"); im.src = mtgImg(cast); im.draggable = false;
+    const im = mtgEl("img"); im.src = castImg(cast); im.draggable = false;im.alt='';
     const [bx, by] = badgeAt(cast);
     const bd = mtgEl("div", "sp-badge", String(n)); bd.style.left = (bx * 100) + "%"; bd.style.top = (by * 100) + "%";
     inner.appendChild(im); inner.appendChild(bd); a.appendChild(inner); a.dataset.n = n;
     return a;
   }
-  /* an animal riding in a pod: shown through a window cut to the glass dome, so nothing pokes out of it;
-     the helmet is centred in the dome (CARD rider = [helmet centre x, helmet top y] as sprite fractions) */
+  /* The new sprites share a helmet-first silhouette, cropped inside the pod's glass dome. */
   function rider(cast, cls){
     const w = mtgEl("div", "sp-dome");
-    const im = mtgEl("img", cls); im.src = mtgImg(cast); im.draggable = false; im.alt = "";
-    const [cx, top] = (g.rider && g.rider[cast]) || [0.5, 0.05];
-    im.style.transform = `translate(${-cx * 100}%, ${-top * 100}%)`;
+    const im = mtgEl("img", cls); im.src = castImg(cast); im.draggable = false; im.alt = "";
     w.appendChild(im); return w;
   }
   function seat(pod, cast, n){
@@ -608,8 +717,8 @@ SlideModules.SPACE_PODS = { mount(host, slide){
   function puff(pod){
     for(let i = 0; i < 7; i++){
       const p = mtgEl("span", "sp-puff");
-      const ang = (i / 7) * Math.PI * 2;
-      p.style.setProperty("--dx", Math.cos(ang) * 70 + "px"); p.style.setProperty("--dy", Math.sin(ang) * 46 + "px");
+      const ang = Math.PI/2+(i / 6-.5)*Math.PI;
+      p.style.setProperty("--dx", Math.cos(ang) * 58 + "px"); p.style.setProperty("--dy", Math.sin(ang) * 36 + "px");
       p.style.animationDelay = (i * 25) + "ms";
       pod.appendChild(p); setTimeout(()=> p.remove(), 900);
     }
@@ -618,34 +727,39 @@ SlideModules.SPACE_PODS = { mount(host, slide){
 
   // ---------------- MENU ----------------
   function menu(){
+    levelRunning=false;root.removeAttribute('data-step');root.dataset.playable='false';
     scene.innerHTML = "";
     scene.appendChild(mtgEl("div", "sp-title big", "★ " + g.title + " ★"));
     const row = mtgEl("div", "sp-menu");
     g.levels.forEach((L, i)=>{
       const c = mtgEl("button", "sp-card c" + i + (done.has(i) ? " done" : "")); c.type = "button";
+      c.disabled=done.has(i);c.setAttribute('aria-label',L.label+(done.has(i)?', पूर्ण':', शुरू करें'));
+      c.appendChild(mtgEl('div','sp-mission-step',String(L.step)));
       const art = mtgEl("div", "sp-card-art");
-      const pod = mtgEl("img", "sp-card-pod"); pod.src = mtgImg("sp_pod");
+      const pod = mtgEl("img", "sp-card-pod"); pod.src = 'assets/Images/spaceport_pod.svg';pod.alt='';
       art.appendChild(rider(L.cast, "sp-card-animal")); art.appendChild(pod);
       c.appendChild(art);
       c.appendChild(mtgEl("div", "sp-card-lbl", L.label));
       c.appendChild(mtgEl("div", "sp-card-play", done.has(i) ? "✔" : "▶"));
       if(done.has(i)) c.appendChild(mtgEl("div", "sp-card-badge", "★"));
-      c.onclick = ()=>{ if(done.has(i) || tok !== _mtgTok) return; sfxTap(); stopAudio(); runLevel(i); };
+      c.onclick = ()=>{ if(done.has(i)||levelRunning || tok !== _mtgTok) return;levelRunning=true;sfxTap();mtgSound('sfx_space_ready',.18);runLevel(i); };
       row.appendChild(c);
     });
     scene.appendChild(row);
   }
 
   // ---------------- ROUND ----------------
-  function round(L, r){
-    return new Promise((resolve, reject)=>{
+  function createDock(L, r, world){
+      let resolve,reject;
+      const completed=new Promise((yes,no)=>{resolve=yes;reject=no;});
       const R = L.rounds[r];
-      scene.innerHTML = "";
-      scene.appendChild(mtgEl("div", "sp-title", "★ " + L.label + " ★"));
+      const scene=mtgEl('div','sp-scene');scene.dataset.dock=String(r);scene.style.left=(r*1333)+'px';scene.inert=true;
+      scene.setAttribute('aria-hidden','true');world.appendChild(scene);
       const pods = mtgEl("div", "sp-pods");
       const podEls = R.seq.map((n, i)=>{
         const p = mtgEl("div", "sp-pod dd-zone"); p.dataset.i = i;
-        const im = mtgEl("img", "sp-pod-img"); im.src = mtgImg("sp_pod"); im.draggable = false;
+        const im = mtgEl("img", "sp-pod-img"); im.src = 'assets/Images/spaceport_pod.svg'; im.draggable = false;im.alt='';
+        const engine=mtgEl('span','sp-engine');engine.setAttribute('aria-hidden','true');p.appendChild(engine);
         p.appendChild(im); pods.appendChild(p); return p;
       });
       const nums = [];
@@ -653,23 +767,23 @@ SlideModules.SPACE_PODS = { mount(host, slide){
       scene.appendChild(pods);
       const ground = mtgEl("div", "sp-ground");
       const pool = shuffle(R.seq.filter((n, i) => !R.prefilled.includes(i)).concat(R.distractors));
-      const W=1333-270,x0=205,gap=W/pool.length;
+      const W = 1333 - 190, x0 = 95, gap = W / pool.length;
       const walkers = pool.map((n, k)=>{
         const a = astronaut(L.cast, n, "walker"); a.style.left = (x0 + gap * k + gap / 2 - 75) + "px";
-        a.dataset.home=String(x0+gap*k+gap/2-75);a.style.setProperty("--sway-delay",(-k*.7)+"s");
+        a.dataset.home=String(x0+gap*k+gap/2-75);a.style.setProperty("--sway-delay",(-k*.7)+"s");if(!reduced())a.style.left="1400px";
         ground.appendChild(a); return a;
       });
       scene.appendChild(ground);
-      let wrongSaid = false, finished = false, idleT = null, guidedOnce = false, busyVo = false;
+      let wrongSaid = false, finished = false, idleT = null, guidedOnce = false, busyVo = true;
       let selected = null, tapLocked = false;
       // A shared clock keeps correct animals and distractors equally lively.
       // Pause the whole lane while the child points, selects or drags.
-      const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches,arrival=performance.now();
+      let arrival=0;
       let pausedAt=0,pausedTotal=0;
-      ground.dataset.entering=String(!reduced);
+      ground.dataset.entering="true";
       function moveAnimals(now){
         if(tok!==_mtgTok||!ground.isConnected||finished)return;
-        const elapsed=now-arrival,entering=!reduced&&elapsed<900+(walkers.length-1)*180;
+        const elapsed=now-arrival,entering=!reduced()&&elapsed<900+(walkers.length-1)*180;
         ground.dataset.entering=String(entering);
         const paused=!!ground.querySelector(".dragging,.selected,.walker:hover,.walker:focus-visible");
         if(paused&&!pausedAt)pausedAt=now;
@@ -677,7 +791,7 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         walkers.forEach((w,k)=>{
           if(w.classList.contains("snapped"))return;
           const home=+w.dataset.home;
-          if(reduced){w.style.left=home+"px";return;}
+          if(reduced()){w.style.left=home+"px";return;}
           if(entering){
             const t=Math.max(0,Math.min(1,(elapsed-k*180)/900)),ease=1-Math.pow(1-t,3);
             w.style.left=(home+(1400-home)*(1-ease))+"px";
@@ -689,13 +803,9 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         ground.classList.toggle("motion-paused",paused);
         requestAnimationFrame(moveAnimals);
       }
-      requestAnimationFrame(moveAnimals);
-
       const status = mtgEl("div", "sp-status", "जानवर चुनिए, फिर खाली यान चुनिए।");
       status.setAttribute("role", "status"); status.setAttribute("aria-live", "polite");
       scene.appendChild(status);
-      const roundLabel = mtgEl("div", "sp-round", "दौर " + (r + 1) + " / " + L.rounds.length);
-      scene.appendChild(roundLabel);
       function clearSelection(){
         if(selected){ selected.classList.remove("selected"); selected.setAttribute("aria-pressed", "false"); }
         selected = null;
@@ -708,6 +818,11 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         const src = walkers.find(w => +w.dataset.n === n && !w.classList.contains("snapped"));
         if(!src) return;
         target.classList.add("cue");
+        if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+          src.classList.add('selected');
+          setTimeout(()=>{src.classList.remove('selected');target.classList.remove('cue');},2200);
+          return;
+        }
         const gh = astronaut(L.cast, n, "ghost");
         const sr = src.getBoundingClientRect(), tr = target.getBoundingClientRect(), rr = root.getBoundingClientRect();
         const sc = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--scale")) || 1;
@@ -729,6 +844,7 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         }, g.inactivity_ms);
       }
       function gradeDrop(zone, tile){
+          if(busyVo||narrationBusy||finished||scene.inert)return;
           if(zone.classList.contains("filled") || tile.classList.contains("snapped")) return;
           clearSelection();
           if(tok !== _mtgTok || finished) return;
@@ -741,17 +857,19 @@ SlideModules.SPACE_PODS = { mount(host, slide){
             zone.setAttribute("aria-label", String(n) + ", भरा हुआ यान");
             status.textContent = "सही! " + n;
             mtgRight();
+            mtgSound('sfx_space_dock',.2);
             nums[i] = seat(zone, L.cast, n);
             mtgPulse(nums[i], "glow", 1200); mtgPulse(zone, "snap", 600);
-            busyVo = true; say(`vo_g_n_${n}`).then(()=>{ busyVo = false; }).catch(()=>{});
+            busyVo = true;root.dataset.playable='false'; say(`vo_g_n_${n}`).then(()=>{ busyVo = false;root.dataset.playable=String(!finished); }).catch(()=>{});
             SwiftPAL.emit("space_drop_correct", { slide_id: slide.id, step: L.step, round: r + 1, n });
             if(!needed().length) complete(); else armIdle();
           } else {
             status.textContent = "फिर कोशिश कीजिए।";
             mtgWrong();
+            mtgSound('sfx_space_puff',.15);mtgPulse(tile,'returning',450);
             mtgPulse(zone, "wiggle", 650); puff(zone);
             SwiftPAL.emit("space_drop_wrong", { slide_id: slide.id, step: L.step, round: r + 1, n, pod: i });
-            if(!wrongSaid){ wrongSaid = true; busyVo = true; say(L.wrong).then(()=>{ busyVo = false; }).catch(()=>{}); }
+            if(!wrongSaid){ wrongSaid = true; busyVo = true;root.dataset.playable='false'; say(L.wrong).then(()=>{ busyVo = false;root.dataset.playable='true'; }).catch(()=>{}); }
             armIdle();
           }
       }
@@ -764,7 +882,7 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         p.setAttribute("aria-disabled", String(filled));
         p.setAttribute("aria-label", filled ? String(R.seq[i]) + ", भरा हुआ यान" : "खाली यान " + (i + 1));
         const activate = () => {
-          if(!selected || finished || tapLocked || busyVo || p.classList.contains("filled")) return;
+          if(!selected || finished || tapLocked || busyVo || scene.inert || p.classList.contains("filled")) return;
           tapLocked = true; gradeDrop(p, selected);
           setTimeout(() => { tapLocked = false; }, 650);
         };
@@ -774,9 +892,10 @@ SlideModules.SPACE_PODS = { mount(host, slide){
         w.setAttribute("role", "button"); w.setAttribute("aria-pressed", "false"); w.tabIndex = 0;
         w.setAttribute("aria-label", String(w.dataset.n) + ", जानवर चुनिए");
         const select = () => {
-          if(finished || busyVo || ground.dataset.entering==="true" || w.classList.contains("snapped")) return;
+          if(finished || busyVo || scene.inert || ground.dataset.entering==="true" || w.classList.contains("snapped")) return;
           const wasSelected = selected === w; clearSelection();
           if(!wasSelected){
+            animalSound(L.cast);
             selected = w; w.classList.add("selected"); w.setAttribute("aria-pressed", "true");
             needed().forEach(p => p.classList.add("select-target"));
             status.textContent = w.dataset.n + " चुना। अब खाली यान चुनिए।";
@@ -784,41 +903,74 @@ SlideModules.SPACE_PODS = { mount(host, slide){
           }
         };
         // The engine distinguishes taps from drags for mouse and touch, including preventDefault.
-        const gate=e=>{if(ground.dataset.entering==="true"||finished){e.preventDefault();e.stopImmediatePropagation();}};
+        const gate=e=>{if(ground.dataset.entering==="true"||finished||scene.inert||busyVo||narrationBusy){e.preventDefault();e.stopImmediatePropagation();}};
         w.addEventListener("mousedown",gate,true);w.addEventListener("touchstart",gate,{capture:true,passive:false});
-        makeDraggable(w, gradeDrop, {onTap:select, onPick:clearSelection});
+        makeDraggable(w, gradeDrop, {onTap:select, onPick:()=>{clearSelection();if(!busyVo&&!narrationBusy)animalSound(L.cast);}});
         w.onkeydown = keyActivate(select);
         w.addEventListener("mousedown", ()=> clearTimeout(idleT)); w.addEventListener("touchstart", ()=> clearTimeout(idleT), { passive: true });
       });
       async function complete(){
-        finished = true; clearTimeout(idleT);
+        finished = true;root.dataset.playable='false'; clearTimeout(idleT);
         try{
           await mtgWait(700, tok);
           SwiftPAL.emit("space_round_done", { slide_id: slide.id, step: L.step, round: r + 1 });
           const voDone = say(g.round_done_vo);
           for(let i = 0; i < 5; i++){ mtgPulse(nums[i], "glow", 700); await mtgWait(260, tok); }
-          confettiCannon();
-          podEls.forEach((p, i)=> setTimeout(()=> p.classList.add("fly"), 150 + i * 90));
+          await voDone;
+          scene.inert=true;
+          // The docks already exist along one world. Move its camera while each
+          // rocket lifts off, rather than replacing or sliding a whole screen.
+          const hasNext=r<L.rounds.length-1;
+          const cameraMs=reduced()?80:3800;
+          for(let i=0;i<podEls.length;i++){
+            const pod=podEls[i];pod.classList.add('engine-on');
+            mtgSound('sfx_space_ignite',.12);
+            await mtgWait(reduced()?40:160,tok);
+            pod.classList.add('fly');mtgSound('sfx_space_launch',.13);
+            if(i===0&&hasNext){
+              root.dataset.travelling='true';travel++;universe.style.setProperty('--travel',travel);
+              world.style.transform=`translateX(${-(r+1)*1333}px)`;
+              mtgSound('sfx_space_travel',.18);
+            }
+            await mtgWait(reduced()?40:280,tok);
+          }
           walkers.filter(w => !w.classList.contains("snapped")).forEach(w => w.classList.add("leave"));
-          await voDone; await mtgWait(900, tok);
+          mtgSound('sfx_space_flyby',.17);
+          // Camera started with the first launch; all later rockets stay in view
+          // long enough to leave the ground before the next dock takes focus.
+          await mtgWait(hasNext?Math.max(1100,cameraMs-2040):1100,tok);
+          root.dataset.travelling='false';scene.classList.remove('active');scene.setAttribute('aria-hidden','true');
           resolve();
         } catch(e){ reject(e); }
       }
-      mtgRun(async()=>{
+      return {run:()=>{
+        root.dataset.step=L.step;root.dataset.playable='false';root.dataset.set=String(r);
+        scene.inert=false;scene.classList.add('active');scene.removeAttribute('aria-hidden');
+        arrival=performance.now();requestAnimationFrame(moveAnimals);
+        if(r>0)mtgSound('sfx_space_ready',.14);
+        mtgRun(async()=>{
         await mtgWait(300, tok);
         mtgPulse(nums[0], "glow", 1600);     // the first number glows as it is mentioned
-        busyVo = true; await say(R.vo); busyVo = false;
+        busyVo = true; await say(R.vo);
+        await mtgWait(reduced()?0:Math.max(0,arrival+900+(walkers.length-1)*180-performance.now()),tok);busyVo=false;
         if(r === 0){ ghost(); busyVo = true; await say(g.guide_vo); busyVo = false; }
+        root.dataset.playable='true';
         armIdle();
-      });
-    });
+        });
+        return completed;
+      }};
   }
 
   async function runLevel(i){
     const L = g.levels[i];
+    scene.innerHTML='';
+    const heading=mtgEl('div','sp-title sp-fixed-title','★ '+L.label+' ★');root.appendChild(heading);
+    const world=mtgEl('div','sp-world');root.appendChild(world);
+    const docks=L.rounds.map((_,r)=>createDock(L,r,world));
     try{
-      for(let r = 0; r < L.rounds.length; r++) await round(L, r);
+      for(const dock of docks)await dock.run();
     } catch(e){ if(e !== MTG_STOP) console.error(e); return; }
+    world.remove();heading.remove();
     done.add(i);
     menu();
     mtgRun(async()=>{
@@ -826,17 +978,19 @@ SlideModules.SPACE_PODS = { mount(host, slide){
       await say(g.all_done_vo);
       await mtgWait(600, tok);
       root.remove();
+      universe.remove();mtgStopFoley();
       $("stage").classList.remove("mtg-game"); document.body.classList.remove("mtg-game");
       completeSlide(true);
     });
   }
 
   menu();
-  mtgRun(async()=>{ await mtgWait(400, tok); await say(g.menu_vo); });
+  mtgRun(async()=>{ await mtgWait(400, tok);if(!scene.querySelector('.sp-menu'))return;await say(g.menu_vo); });
 }};
 /* leaving the game by any other route (dev jump) must not strand the full-screen layer */
 (function(){ const _m = mountSlide; window.mountSlide = mountSlide = function(i){
   _mtgTok++;
+  document.querySelectorAll('.sp-universe').forEach(e=>e.remove());
   if(CARD.slides[i] && CARD.slides[i].type !== "SPACE_PODS"){ document.querySelectorAll(".sp-root, .sf-hint-ov").forEach(e => e.remove()); $("stage").classList.remove("mtg-game"); document.body.classList.remove("mtg-game"); }
   return _m(i);
 }; })();

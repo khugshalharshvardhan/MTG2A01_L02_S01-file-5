@@ -1,0 +1,462 @@
+[
+  [
+    "1333: cover full width and top aligned",
+    true
+  ],
+  [
+    "1333: frogs supported by enlarged leaves",
+    true
+  ],
+  [
+    "1333: T1 full bleed picture",
+    true
+  ],
+  [
+    "1333: T1 equal number containers",
+    true
+  ],
+  [
+    "1333: T1 finishes with short text",
+    true
+  ],
+  [
+    "1333: T1 every hop frame inside picture",
+    true
+  ],
+  [
+    "1333: T1 hop, croak and water sounds",
+    true
+  ],
+  [
+    "1333: T2 full bleed picture",
+    true
+  ],
+  [
+    "1333: T2 equal number containers",
+    true
+  ],
+  [
+    "1333: T2 hop 1 stays readable",
+    true
+  ],
+  [
+    "1333: T2 hop 2 stays readable",
+    true
+  ],
+  [
+    "1333: T2 finishes with short text",
+    true
+  ],
+  [
+    "1333: T2 every hop frame inside picture",
+    true
+  ],
+  [
+    "1333: T2 hop, croak and water sounds",
+    true
+  ],
+  [
+    "1333: T3 full bleed picture",
+    true
+  ],
+  [
+    "1333: T3 equal number containers",
+    true
+  ],
+  [
+    "1333: T3 hop 1 stays readable",
+    true
+  ],
+  [
+    "1333: T3 hop 2 stays readable",
+    true
+  ],
+  [
+    "1333: T3 finishes with short text",
+    true
+  ],
+  [
+    "1333: T3 every hop frame inside picture",
+    true
+  ],
+  [
+    "1333: T3 hop, croak and water sounds",
+    true
+  ],
+  [
+    "1333: G1 natural animal loaded",
+    true
+  ],
+  [
+    "1333: G1 activity vertically centred",
+    true
+  ],
+  [
+    "1333: G1 blank 1 third-attempt lock",
+    true
+  ],
+  [
+    "1333: G1 all hop frames inside activity",
+    true
+  ],
+  [
+    "1333: G1 File9 feedback audio requested",
+    true
+  ],
+  [
+    "1333: G2 natural animal loaded",
+    true
+  ],
+  [
+    "1333: G2 activity vertically centred",
+    true
+  ],
+  [
+    "1333: G2 blank 1 third-attempt lock",
+    true
+  ],
+  [
+    "1333: G2 all hop frames inside activity",
+    true
+  ],
+  [
+    "1333: G2 File9 feedback audio requested",
+    true
+  ],
+  [
+    "1333: G3 natural animal loaded",
+    true
+  ],
+  [
+    "1333: G3 activity vertically centred",
+    true
+  ],
+  [
+    "1333: G3 blank 1 third-attempt lock",
+    true
+  ],
+  [
+    "1333: G3 all hop frames inside activity",
+    true
+  ],
+  [
+    "1333: G3 File9 feedback audio requested",
+    true
+  ],
+  [
+    "1333: G4 natural animal loaded",
+    true
+  ],
+  [
+    "1333: G4 blank 1 third-attempt lock",
+    true
+  ],
+  [
+    "1333: G4 all hop frames inside activity",
+    true
+  ],
+  [
+    "1333: G4 File9 feedback audio requested",
+    true
+  ],
+  [
+    "1333: G5 natural animal loaded",
+    true
+  ],
+  [
+    "1333: G5 blank 1 third-attempt lock",
+    true
+  ],
+  [
+    "1333: G5 blank 2 third-attempt lock",
+    true
+  ],
+  [
+    "1333: G5 all hop frames inside activity",
+    true
+  ],
+  [
+    "1333: G5 File9 feedback audio requested",
+    true
+  ],
+  [
+    "1333: G6 natural animal loaded",
+    true
+  ],
+  [
+    "1333: G6 blank 1 third-attempt lock",
+    true
+  ],
+  [
+    "1333: G6 blank 2 third-attempt lock",
+    true
+  ],
+  [
+    "1333: G6 all hop frames inside activity",
+    true
+  ],
+  [
+    "1333: G6 File9 feedback audio requested",
+    true
+  ],
+  [
+    "1333: G7 natural animal loaded",
+    true
+  ],
+  [
+    "1333: G7 blank 1 third-attempt lock",
+    true
+  ],
+  [
+    "1333: G7 blank 2 third-attempt lock",
+    true
+  ],
+  [
+    "1333: G7 all hop frames inside activity",
+    true
+  ],
+  [
+    "1333: G7 File9 feedback audio requested",
+    true
+  ],
+  [
+    "1333: effects toggle silences hop sounds",
+    true
+  ],
+  [
+    "960: cover full width and top aligned",
+    true
+  ],
+  [
+    "960: frogs supported by enlarged leaves",
+    true
+  ],
+  [
+    "960: T1 full bleed picture",
+    true
+  ],
+  [
+    "960: T1 equal number containers",
+    true
+  ],
+  [
+    "960: T1 finishes with short text",
+    true
+  ],
+  [
+    "960: T1 every hop frame inside picture",
+    true
+  ],
+  [
+    "960: T1 hop, croak and water sounds",
+    true
+  ],
+  [
+    "960: T2 full bleed picture",
+    true
+  ],
+  [
+    "960: T2 equal number containers",
+    true
+  ],
+  [
+    "960: T2 hop 1 stays readable",
+    true
+  ],
+  [
+    "960: T2 hop 2 stays readable",
+    true
+  ],
+  [
+    "960: T2 finishes with short text",
+    true
+  ],
+  [
+    "960: T2 every hop frame inside picture",
+    true
+  ],
+  [
+    "960: T2 hop, croak and water sounds",
+    true
+  ],
+  [
+    "960: T3 full bleed picture",
+    true
+  ],
+  [
+    "960: T3 equal number containers",
+    true
+  ],
+  [
+    "960: T3 hop 1 stays readable",
+    true
+  ],
+  [
+    "960: T3 hop 2 stays readable",
+    true
+  ],
+  [
+    "960: T3 finishes with short text",
+    true
+  ],
+  [
+    "960: T3 every hop frame inside picture",
+    true
+  ],
+  [
+    "960: T3 hop, croak and water sounds",
+    true
+  ],
+  [
+    "960: G1 natural animal loaded",
+    true
+  ],
+  [
+    "960: G1 activity vertically centred",
+    true
+  ],
+  [
+    "960: G1 blank 1 third-attempt lock",
+    true
+  ],
+  [
+    "960: G1 all hop frames inside activity",
+    true
+  ],
+  [
+    "960: G1 File9 feedback audio requested",
+    true
+  ],
+  [
+    "960: G2 natural animal loaded",
+    true
+  ],
+  [
+    "960: G2 activity vertically centred",
+    true
+  ],
+  [
+    "960: G2 blank 1 third-attempt lock",
+    true
+  ],
+  [
+    "960: G2 all hop frames inside activity",
+    true
+  ],
+  [
+    "960: G2 File9 feedback audio requested",
+    true
+  ],
+  [
+    "960: G3 natural animal loaded",
+    true
+  ],
+  [
+    "960: G3 activity vertically centred",
+    true
+  ],
+  [
+    "960: G3 blank 1 third-attempt lock",
+    true
+  ],
+  [
+    "960: G3 all hop frames inside activity",
+    true
+  ],
+  [
+    "960: G3 File9 feedback audio requested",
+    true
+  ],
+  [
+    "960: G4 natural animal loaded",
+    true
+  ],
+  [
+    "960: G4 blank 1 third-attempt lock",
+    true
+  ],
+  [
+    "960: G4 all hop frames inside activity",
+    true
+  ],
+  [
+    "960: G4 File9 feedback audio requested",
+    true
+  ],
+  [
+    "960: G5 natural animal loaded",
+    true
+  ],
+  [
+    "960: G5 blank 1 third-attempt lock",
+    true
+  ],
+  [
+    "960: G5 blank 2 third-attempt lock",
+    true
+  ],
+  [
+    "960: G5 all hop frames inside activity",
+    true
+  ],
+  [
+    "960: G5 File9 feedback audio requested",
+    true
+  ],
+  [
+    "960: G6 natural animal loaded",
+    true
+  ],
+  [
+    "960: G6 blank 1 third-attempt lock",
+    true
+  ],
+  [
+    "960: G6 blank 2 third-attempt lock",
+    true
+  ],
+  [
+    "960: G6 all hop frames inside activity",
+    true
+  ],
+  [
+    "960: G6 File9 feedback audio requested",
+    true
+  ],
+  [
+    "960: G7 natural animal loaded",
+    true
+  ],
+  [
+    "960: G7 blank 1 third-attempt lock",
+    true
+  ],
+  [
+    "960: G7 blank 2 third-attempt lock",
+    true
+  ],
+  [
+    "960: G7 all hop frames inside activity",
+    true
+  ],
+  [
+    "960: G7 File9 feedback audio requested",
+    true
+  ],
+  [
+    "960: effects toggle silences hop sounds",
+    true
+  ],
+  [
+    "space game keeps three astronaut casts and nine rounds",
+    true
+  ],
+  [
+    "reduced motion completes long sequence without flight effects",
+    true
+  ],
+  [
+    "no browser console errors",
+    true
+  ]
+]

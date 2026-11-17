@@ -28,7 +28,9 @@ def shot(name):
 
 
 def js(s, *a):
-    return d.execute_script(s, *a)
+    for q in ["document.querySelectorAll('.sp-pod","document.querySelector('.sp-pod","document.querySelectorAll('.sp-astro.walker","document.querySelector('.sp-ground"]:
+        s=s.replace(q,q.replace('document.','current.'))
+    return d.execute_script("const current=document.querySelector('.sp-scene.active')||document;"+s, *a)
 
 
 def until(cond, timeout=40, step=0.15):
@@ -148,6 +150,7 @@ for lv in range(3):
     for rnd in range(3):
         ok(f"GAME L{lv+1} R{rnd+1} pods shown", until(f"document.querySelectorAll('.sp-pod').length===5 && !document.querySelector('.sp-pod.fly') && document.querySelectorAll('.sp-pod.filled').length===CARD.slides[10].data.levels[{lv}].rounds[{rnd}].prefilled.length && [...document.querySelectorAll('.sp-podnum')][0].textContent==String(CARD.slides[10].data.levels[{lv}].rounds[{rnd}].seq[0])", 30))
         ok(f"GAME L{lv+1} R{rnd+1} entrance finishes", until("document.querySelector('.sp-ground').dataset.entering==='false'", 8))
+        until("document.querySelector('.sp-root[data-playable=\"true\"][data-narrating=\"false\"]')",10)
         time.sleep(0.5)
         if lv == 0 and rnd == 0:
             shot("GAME_round")

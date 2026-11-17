@@ -1,5 +1,83 @@
 # Visual refresh
 
+## Spaceport Adventure
+
+The practice game now uses a quiet starfield and curved spaceport deck filling the entire browser, including margins outside the 16:9 play area. New transparent frog, rabbit and squirrel astronauts match the friendly lesson cast. Number badges remain prominent on waiting passengers and occupied pods, including 100. The three counting-game cards have distinct pastel colours. All three docks are built in advance along one persistent 3999px world. The heading stays fixed outside that world. After a set is filled, rockets launch left to right at roughly 440ms intervals. A 3.8-second camera track starts with the first launch, revealing the already-existing next dock and its passengers. No scene is replaced or recreated between sets. Distant scenery and nearby deck rails move at different speeds. Input stays locked until the camera stops and the next dock's narration finishes. There is no round counter, speaker button or Swifty portrait in the game.
+
+Correct docking adds a gentle squash and number glow; wrong drops add a small puff below the number. Each rocket ignites individually before lifting off. Animal selection triggers a short frog croak or playful synthesized rabbit/squirrel chirp, with a cooldown preventing double sounds on taps. Ready chimes, engine ignition, flyby and camera-travel sweeps join the dock, puff and launch effects. These are quiet event cues rather than long loops competing with number narration. Six additional effects are generated locally with `prepare_spaceport.py --audio-only`.
+
+The PPT's nine number sets, two prefills per set, locked first pod, shuffled correct passengers/distractors, same animal within each counting game, any-order placement, number-only correct VO, first-wrong-only VO, initial demonstration with one inactivity repeat, ground exit for distractors and completed-menu badges are preserved. As requested, the visible round structure is replaced by continuous parallax travel. The menu returns once a counting game's three authored sets are complete. The permanent instruction bar is visually removed while its live status remains available to assistive technology. Reduced motion replaces moving guidance with a static highlight and skips camera travel. Narration remains serialized. The full-window backdrop is removed on leaving the game.
+
+The source `1_SPEC/MTG2A01_L02_S01_FINALreview.pptx` was re-read directly for this update (slides 13–16). Slide 14's wrong-drop rule explicitly says first incorrect drop gets VO, subsequent incorrect drops get the same visual feedback without repeating VO, and both distractors and misplaced correct animals receive it. It does not prescribe a three-attempt lock or third-error hint. Following the user's instruction to prefer the PPT if it differs, game passengers remain available after the third wrong drop. First-drag and one 7-second inactivity hand demonstrations follow slide 13. G1–G7's separate third-attempt option lock is retained. Sequential launches override slide 14's original simultaneous launch at the user's explicit request.
+
+Assets and exact image prompts: `1_SPEC/visual_refresh/spaceport_provenance.json`; retained masters: `1_SPEC/visual_refresh/spaceport/`; reproducible exports and synthesized audio: `1_SPEC/prepare_spaceport.py`. The background and pod are native SVG assets. Run the standard builder to refresh `3_BUILD`.
+
+Validation: `1_SPEC/_verify_spaceport.py` passed 119/119 checks across all nine sets with mouse, keyboard and touch input, reverse-order docking, three incorrect drops, narration IDs, idle guidance, individual left-to-right launches, persistent world and title identity, six camera tracks overlapping launches with distinct parallax depths and locked input, menu completion, celebration, full-window backgrounds, reduced-motion progression, effect triggers and scene cleanup. No browser errors. Screenshots and receipts: `5_SCREENSHOTS/spaceport/`, including individual-launch screenshots and `results.json`. `1_SPEC/_verify_spaceport_media.py` previously decoded all nine shipped spaceport sound effects in Chrome without audio stubs; interaction tests shorten VO to keep the run practical. `1_SPEC/_verify_spaceport_background.py` checks seamless stage edges at normal, wide and tall viewport sizes. JavaScript syntax and `git diff --check` passed.
+
+## Explicit third-attempt option lock
+
+G1–G7 now store the terminal answer in the option tray, independently of visual classes. The third wrong tap immediately disables and fades all incorrect options. The correct option becomes selectable once the feedback VO ends. Replay cannot release the terminal lock; a correctly filled blank clears it for the next blank while keeping used options disabled. Disabled buttons also reject direct handler calls and expose `aria-disabled`. The faded style overrides the entrance animation's retained opacity.
+
+Verification: `1_SPEC/_verify_third_attempt.py` passed all 64 checks across every question and blank, including attempts one/two, immediate third-error disabling, visible fading, correct-only selection, replay, handler guards and next-blank reset. No browser errors. Receipt: `5_SCREENSHOTS/third_attempt/results.json`.
+
+## Cover, continuous expansion and cute cast — v5
+
+The cover title is now one line with no subtitle. The reference round Play button is hidden while the landing VO runs and becomes visible only when the existing audio gate releases it. Tappu performs a small anticipation/hop/landing cycle with a timed splash, while the gold companion gives a separate gentle reaction. Reduced motion shows a still scene.
+
+The long-number scenes now interpolate unit spacing, leaf and label positions, jump-arc geometry, minor-label opacity and camera position on one requestAnimationFrame timeline. Expansion takes 950ms; recap contraction follows the camera cue duration. Arc nodes are retained rather than destroyed and rebuilt. The frog's feet share the camera anchor, so its on-screen size and baseline remain stable. Leaving the slide cancels the pending transition through the normal mount token.
+
+Three distinct gold, teal and peach frog companions replace mirrored copies of Tappu. T1/T2/T3 have separate friends; G2/G3 use the gold and teal frogs, mirrored to face the jump direction. New round, friendly rabbit, squirrel and grasshopper sprites are shared by the sequence scenes and their hints. The space-game cast and mechanics remain unchanged.
+
+New artwork was made with the built-in image-generation tool. Exact prompts and original generated paths: `1_SPEC/visual_refresh/cast_v5_provenance.json`. Selected masters: `1_SPEC/visual_refresh/cast_v5/`. Exported project assets: `1_SPEC/art_keyed/lesson_friend_*.webp` and `lesson_*_cute.webp`, prepared with `1_SPEC/prepare_cast_v5.py` and copied by the standard builder.
+
+Current checks: `python -X utf8 1_SPEC/_verify_cast_motion_v5.py` and `python -X utf8 1_SPEC/_drive_mechanics.py 5_SCREENSHOTS/cast_motion_v5_regression`. The first check simulates a three-second landing VO and verifies that Play stays hidden until its actual end event; it also samples intermediate layout frames, stable arcs, clipping, sprite loading, mirroring and reduced motion at two viewport sizes. Evidence: `5_SCREENSHOTS/cast_motion_v5/`.
+
+Final verification: 44/44 focused checks and 84/84 full lesson regression checks passed. No browser console errors. Expansion was sampled over approximately 950ms and recap contraction over approximately 700ms at both viewport sizes. The space-game implementation and its nine-round configuration remain unchanged.
+
+## File9 cover and SME read-along follow-up
+
+The current cover uses File9's 1040 × 574 art-card frame, 8px white border, 40px radius and shadow. Its original round gold and grey play SVGs are copied without modification, rendered at 140 × 140 with the same 30px bottom inset. The lesson's existing disabled/start/audio gates are retained, with File9-style ready pop and idle pulse.
+
+Pond artwork fills the entire cover. A white sky veil supports the dark navy/green, two-line Devanagari display title. The locally bundled Yatra One font and SIL OFL license are in `1_SPEC/fonts/` and copied to `3_BUILD/assets/Fonts/`; source: https://github.com/google/fonts/tree/main/ofl/yatraone. Title entry, sequential jump trails, grounded frog breathing, water rings and small water glints animate the cover. Reduced-motion mode shows a still composition with the title visible.
+
+The added “ध्वनि चालू” effects controls are removed from every screen. Narration replay and the previously added quiet foley remain available as before.
+
+T1–T3 now display every original authored narration clip as it is spoken. Complete explanations are preserved; counting clips build a separate read-along word strip. The caption panel replaces the short equations introduced in v4. The pond is 320 design pixels high, preserving space for the longest explanation, counting strip and Next button without overlaps. No narration files or space-game mechanics were changed.
+
+Current QA: `python -X utf8 1_SPEC/_verify_cover_sme.py`, followed by `python -X utf8 1_SPEC/_drive_mechanics.py 5_SCREENSHOTS/cover_sme_regression` with `MTG_TEST_URL` set to the local preview. Evidence is saved in `5_SCREENSHOTS/cover_sme/` and `cover_sme_regression/`. The older v4 verifier's expected cover frame, caption and removed-control checks have been brought up to date.
+
+Final results: 64/64 cover/SME checks and 84/84 full-lesson regression checks passed, with no browser console or missing-resource errors. All authored audio-text metadata remains unchanged. File9's two play-button SVGs match their source hashes. The local preview server uses a larger request queue to handle simultaneous browser asset loads.
+
+## Lesson v4 — pond layout, lesson animals and File9 options (2026-11-12)
+
+The cover and T1–T3 use `sc_pond_v4.webp`, an open-water background without edge foliage or flowers. The picture meets the container's inner top and side edges; the heading sits over the sky. A separate footer holds one short prompt or counting equation and the navigation. Full spoken explanations are retained. Enlarged resting pads support the frogs at a shared feet baseline.
+
+All teaching number labels use a fixed 46 × 40 design-pixel box; only the font size changes between landing numbers and skipped numbers. T2/T3 use a close view for each jump and a milestone overview for the recap, keeping the frog at a readable size. Unit labels and pads are hidden only in the milestone overview; the close view preserves the unit spacing used to demonstrate each jump.
+
+G1–G3 centre the number line and option tray vertically. G1–G7 use new natural frog, rabbit, squirrel and grasshopper sprites; main scenes and hint popups use the same animals. The space game's astronaut sprites, level data and `SPACE_PODS` implementation are unchanged.
+
+Options follow File9's `jl-opt` design: white face, grey ledge, spring entrance, lateral wrong-answer shake, green correct feedback, and a three-pulse green hint. Third-attempt guidance disables and fades all incorrect choices, leaving the answer for the child to select. Used sequence options disappear and the remaining choices are restored for the next blank. The exact File9 correct, wrong and tap sound files are retained in `1_SPEC/interaction_audio/`.
+
+Original synthesised hop, croak and water-landing sounds play independently of narration. A sound-effects toggle is available on the cover and lesson screens. Leaving an activity stops its foley; reduced motion still provides the audio cue without playing the flight or splash animation.
+
+Artwork was made with the built-in image-generation tool. Prompts and original generated paths are in `1_SPEC/visual_refresh/lesson_v4_provenance.json`; copied masters are retained in `1_SPEC/visual_refresh/lesson_v4/`. Project assets are in `1_SPEC/art_keyed/lesson_*.webp` and `sc_pond_v4.webp`. `prepare_lesson_v4.py` performs alpha-bound trimming, export and deterministic sound preparation. Normal builds use the retained project assets and need no image API or File9 checkout.
+
+Rebuild and review from the handoff directory:
+
+```powershell
+python -X utf8 1_SPEC/build_skill_MTG2A01_L02_S01.py
+python -X utf8 1_SPEC/_serve_preview.py 8942
+# In another terminal:
+$env:MTG_TEST_URL='http://127.0.0.1:8942/MTG2A01_L02_S01.html'
+python -X utf8 1_SPEC/_verify_lesson_v4.py
+python -X utf8 1_SPEC/_verify_lesson_v4.py --real-audio
+python -X utf8 1_SPEC/_drive_mechanics.py 5_SCREENSHOTS/lesson_v4_regression
+```
+
+The lesson v4 checks cover both 1333 × 750 and 960 × 540 layouts, equal number boxes, grounded cover frogs, frame-by-frame hop bounds, readable long-sequence characters, keyboard frog taps, every guided blank's third-attempt lock, File9 feedback requests, sound muting and reduced motion. Interaction tests simulate narration; the separate audio check decodes all seven new effects in Chrome. Screenshots and receipts live in `5_SCREENSHOTS/lesson_v4/` and `lesson_v4_regression/`.
+
+Final verification: 115/115 lesson layout and interaction checks, 14/14 sound-control placement checks (`--controls`), 84/84 full-lesson regression checks, and all seven sound effects decoded successfully. No browser console errors. Source/generated JavaScript syntax and `git diff --check` passed.
+
 The lesson now uses a generated opaque pond backdrop, independent of the counting camera, and original vector space scenery. Original assets are retained.
 
 ## Source files
@@ -86,3 +164,10 @@ Movement reference inspected: https://www.roomrecess.com/games/SpacePetsSkipCoun
 Automated verification uses simulated audio, not a listening review. The full lesson walk passed 93 checks including all nine game rounds, all wrong-answer ladders, automatic progression and celebration. Existing input/visual checks passed 37 checks (mouse, touch, keyboard, high-density desktop, smaller landscape, camera and reduced motion). All 29 jump-boundary/header checks passed. Focused acceptance results and review screenshots are under 5_SCREENSHOTS/interaction_refinement; run 1_SPEC/_verify_interaction_refinement.py against the rebuilt preview to reproduce them.
 
 Focused acceptance: 57/57 passed, including all initial/visited number states, pad alignment and restoration, recap label separation, three sequential interval hints, seven sequence hints and compacted option trays, moving distractors, paused drag positions and reduced motion. All executable inline JavaScript blocks and embedded JSON passed syntax checks. The final tens-hint spacing was also checked for overlapping labels.
+
+
+### Integrated with the newer spaceport work
+
+Before publishing, merged origin/main commits 2d4e1eb and 8f54f24. The newer cover, distinct natural lesson characters, narration captions, frog/animal sounds, third-attempt answer locks, rocket artwork, staggered launches, persistent docks and parallax travel are retained. The new pastel SVG supplies the scenery for that persistent world. Entrances start only when a dock becomes active, and narration/input stay coordinated with arrival. The newer smooth teaching layout transition remains, with every unit pad aligned and every number visible in the overview.
+
+Final integrated verification: 57 focused interaction checks, 119 spaceport checks, 44 cover/cast/motion checks, 29 jump boundary checks and 64 third-attempt checks all passed (313 total). These cover all nine rounds, any-order answers, wrong drops, mouse/touch/keyboard, launch/travel sequencing, smaller and wide/tall viewports, reduced motion, preserved locks and no browser errors. Executable inline JavaScript and embedded JSON passed syntax checks; the final parallax artwork was checked after removing SVG letterboxing. Audio remains simulated in these automated runs. The earlier 93/37 results above describe the pre-merge baseline, not the final integrated revision.

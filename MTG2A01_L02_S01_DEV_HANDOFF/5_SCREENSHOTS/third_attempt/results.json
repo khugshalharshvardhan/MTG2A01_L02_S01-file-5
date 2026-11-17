@@ -1,0 +1,258 @@
+[
+  [
+    "G1 blank 1 attempt 1 keeps remaining choices available",
+    true
+  ],
+  [
+    "G1 blank 1 attempt 2 keeps remaining choices available",
+    true
+  ],
+  [
+    "G1 blank 1 locks wrong choices immediately on third error",
+    true
+  ],
+  [
+    "G1 blank 1 only correct answer enabled and wrong choices visibly disabled",
+    true
+  ],
+  [
+    "G1 blank 1 replay preserves correct-only selection",
+    true
+  ],
+  [
+    "G1 blank 1 disabled handler cannot submit another wrong answer",
+    true
+  ],
+  [
+    "G2 blank 1 attempt 1 keeps remaining choices available",
+    true
+  ],
+  [
+    "G2 blank 1 attempt 2 keeps remaining choices available",
+    true
+  ],
+  [
+    "G2 blank 1 locks wrong choices immediately on third error",
+    true
+  ],
+  [
+    "G2 blank 1 only correct answer enabled and wrong choices visibly disabled",
+    true
+  ],
+  [
+    "G2 blank 1 replay preserves correct-only selection",
+    true
+  ],
+  [
+    "G2 blank 1 disabled handler cannot submit another wrong answer",
+    true
+  ],
+  [
+    "G3 blank 1 attempt 1 keeps remaining choices available",
+    true
+  ],
+  [
+    "G3 blank 1 attempt 2 keeps remaining choices available",
+    true
+  ],
+  [
+    "G3 blank 1 locks wrong choices immediately on third error",
+    true
+  ],
+  [
+    "G3 blank 1 only correct answer enabled and wrong choices visibly disabled",
+    true
+  ],
+  [
+    "G3 blank 1 replay preserves correct-only selection",
+    true
+  ],
+  [
+    "G3 blank 1 disabled handler cannot submit another wrong answer",
+    true
+  ],
+  [
+    "G4 blank 1 attempt 1 keeps remaining choices available",
+    true
+  ],
+  [
+    "G4 blank 1 attempt 2 keeps remaining choices available",
+    true
+  ],
+  [
+    "G4 blank 1 locks wrong choices immediately on third error",
+    true
+  ],
+  [
+    "G4 blank 1 only correct answer enabled and wrong choices visibly disabled",
+    true
+  ],
+  [
+    "G4 blank 1 replay preserves correct-only selection",
+    true
+  ],
+  [
+    "G4 blank 1 disabled handler cannot submit another wrong answer",
+    true
+  ],
+  [
+    "G5 blank 1 attempt 1 keeps remaining choices available",
+    true
+  ],
+  [
+    "G5 blank 1 attempt 2 keeps remaining choices available",
+    true
+  ],
+  [
+    "G5 blank 1 locks wrong choices immediately on third error",
+    true
+  ],
+  [
+    "G5 blank 1 only correct answer enabled and wrong choices visibly disabled",
+    true
+  ],
+  [
+    "G5 blank 1 replay preserves correct-only selection",
+    true
+  ],
+  [
+    "G5 blank 1 disabled handler cannot submit another wrong answer",
+    true
+  ],
+  [
+    "G5 blank 1 next blank releases lock but keeps used choices disabled",
+    true
+  ],
+  [
+    "G5 blank 2 attempt 1 keeps remaining choices available",
+    true
+  ],
+  [
+    "G5 blank 2 attempt 2 keeps remaining choices available",
+    true
+  ],
+  [
+    "G5 blank 2 locks wrong choices immediately on third error",
+    true
+  ],
+  [
+    "G5 blank 2 only correct answer enabled and wrong choices visibly disabled",
+    true
+  ],
+  [
+    "G5 blank 2 replay preserves correct-only selection",
+    true
+  ],
+  [
+    "G5 blank 2 disabled handler cannot submit another wrong answer",
+    true
+  ],
+  [
+    "G6 blank 1 attempt 1 keeps remaining choices available",
+    true
+  ],
+  [
+    "G6 blank 1 attempt 2 keeps remaining choices available",
+    true
+  ],
+  [
+    "G6 blank 1 locks wrong choices immediately on third error",
+    true
+  ],
+  [
+    "G6 blank 1 only correct answer enabled and wrong choices visibly disabled",
+    true
+  ],
+  [
+    "G6 blank 1 replay preserves correct-only selection",
+    true
+  ],
+  [
+    "G6 blank 1 disabled handler cannot submit another wrong answer",
+    true
+  ],
+  [
+    "G6 blank 1 next blank releases lock but keeps used choices disabled",
+    true
+  ],
+  [
+    "G6 blank 2 attempt 1 keeps remaining choices available",
+    true
+  ],
+  [
+    "G6 blank 2 attempt 2 keeps remaining choices available",
+    true
+  ],
+  [
+    "G6 blank 2 locks wrong choices immediately on third error",
+    true
+  ],
+  [
+    "G6 blank 2 only correct answer enabled and wrong choices visibly disabled",
+    true
+  ],
+  [
+    "G6 blank 2 replay preserves correct-only selection",
+    true
+  ],
+  [
+    "G6 blank 2 disabled handler cannot submit another wrong answer",
+    true
+  ],
+  [
+    "G7 blank 1 attempt 1 keeps remaining choices available",
+    true
+  ],
+  [
+    "G7 blank 1 attempt 2 keeps remaining choices available",
+    true
+  ],
+  [
+    "G7 blank 1 locks wrong choices immediately on third error",
+    true
+  ],
+  [
+    "G7 blank 1 only correct answer enabled and wrong choices visibly disabled",
+    true
+  ],
+  [
+    "G7 blank 1 replay preserves correct-only selection",
+    true
+  ],
+  [
+    "G7 blank 1 disabled handler cannot submit another wrong answer",
+    true
+  ],
+  [
+    "G7 blank 1 next blank releases lock but keeps used choices disabled",
+    true
+  ],
+  [
+    "G7 blank 2 attempt 1 keeps remaining choices available",
+    true
+  ],
+  [
+    "G7 blank 2 attempt 2 keeps remaining choices available",
+    true
+  ],
+  [
+    "G7 blank 2 locks wrong choices immediately on third error",
+    true
+  ],
+  [
+    "G7 blank 2 only correct answer enabled and wrong choices visibly disabled",
+    true
+  ],
+  [
+    "G7 blank 2 replay preserves correct-only selection",
+    true
+  ],
+  [
+    "G7 blank 2 disabled handler cannot submit another wrong answer",
+    true
+  ],
+  [
+    "no browser errors",
+    true
+  ]
+]

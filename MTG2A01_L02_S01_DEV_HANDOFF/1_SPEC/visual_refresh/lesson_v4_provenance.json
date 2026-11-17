@@ -1,0 +1,36 @@
+{
+  "tool": "built-in image_gen",
+  "created": "2026-11-12",
+  "assets": [
+    {
+      "key": "pond",
+      "prompt": "Use case: illustration-story. Asset type: wide background for a Hindi children's counting game. Create a polished storybook 2D painted landscape, very wide 3:1 panoramic composition. Upper 45 percent is clean pale blue sky with subtle soft clouds at extreme corners and a distant low green horizon. Lower 55 percent is a calm turquoise pond, open uncluttered water across the entire width with subtle soft ripples. A thin distant grassy bank only at the horizon. Absolutely NO lily pads, NO leaves in foreground or at left/right edges, NO lotus flowers, NO flowers anywhere, NO animals, NO stones, NO text or numbers. UI will place separate frogs and lily pads on the water and a navy heading in the upper sky, so preserve open sky and open water. Warm welcoming premium educational illustration, restrained details, crisp but softly shaded, no borders.",
+      "transparent": false,
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a1cf3f-fbc0-73e1-b4bf-e43ca0905f80\\exec-8d70d937-aa06-4480-b468-c55592cbe25a.png"
+    },
+    {
+      "key": "frog",
+      "prompt": "Use case: illustration-story. Asset type: transparent isolated 2D game sprite. One friendly actual green frog, natural animal body, crouching seated on its four feet, facing slightly to the right in 3/4 view, both large back feet and front feet visibly grounded on a single flat baseline. Full body, compact wide silhouette, expressive warm eyes, cheerful gentle smile, lime and emerald green back with pale cream belly. Polished children's storybook game illustration with crisp outlines and soft shading. No suit, no helmet, no clothes, no accessories, no lily pad, no ground plane, no text, no other animals. Genuine transparent background. Tight composition with 5 percent clear padding, entire feet and body visible.",
+      "transparent": true,
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a1cf3f-fbc0-73e1-b4bf-e43ca0905f80\\exec-2c04a8e7-b787-4924-ad31-2a4538852c4a.png"
+    },
+    {
+      "key": "rabbit",
+      "prompt": "Use case: illustration-story. Asset type: transparent isolated 2D game sprite. One friendly actual rabbit, natural animal body, sitting on its haunches with front and back paws resting on a single flat baseline, facing slightly right in 3/4 view. Warm ivory fur, soft tan shading, pink ear interiors, long ears, little fluffy tail, expressive warm eyes. Polished children's storybook game illustration with crisp outlines and soft shading, matching a cute green frog educational game. Full body including all paws and ears. No suit, no helmet, no clothes, no accessories, no ground plane, no text, no other animals. Genuine transparent background, 5 percent clear padding.",
+      "transparent": true,
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a1cf3f-fbc0-73e1-b4bf-e43ca0905f80\\exec-b1b7a70b-892a-4761-80e1-d505992a3862.png"
+    },
+    {
+      "key": "squirrel",
+      "prompt": "Use case: illustration-story. Asset type: transparent isolated 2D game sprite. One friendly actual Indian squirrel, natural animal body, seated with all visible paws on a single flat baseline, facing slightly right in 3/4 view. Warm chestnut and caramel brown fur with subtle cream stripes on back, cream belly, large fluffy curved tail and expressive warm eyes. Polished children's storybook game illustration with crisp outlines and soft shading, matching a cute green frog educational game. Full body and entire tail visible. No suit, no helmet, no clothes, no accessories, no ground plane, no text, no other animals. Genuine transparent background, 5 percent clear padding.",
+      "transparent": true,
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a1cf3f-fbc0-73e1-b4bf-e43ca0905f80\\exec-21239d82-334a-4253-858d-4d621d611d2f.png"
+    },
+    {
+      "key": "grasshopper",
+      "prompt": "Use case: illustration-story. Asset type: transparent isolated 2D game sprite. One friendly actual green grasshopper, natural insect body in side 3/4 view facing right, compact horizontal silhouette, six anatomically plausible legs including two distinctive folded large hind legs, feet on a flat baseline, two slim antennae, folded green wings, expressive warm eyes and gentle smile. Polished children's storybook game illustration with crisp outlines and soft shading, matching a cute frog educational game. Full body including all antennae and feet. No suit, no helmet, no clothes, no accessories, no ground plane, no text, no other animals. Genuine transparent background, 5 percent clear padding.",
+      "transparent": true,
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a1cf3f-fbc0-73e1-b4bf-e43ca0905f80\\exec-748950b4-7fb0-4d29-abfa-4d355575c5b7.png"
+    }
+  ]
+}

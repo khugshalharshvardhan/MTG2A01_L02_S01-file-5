@@ -1,0 +1,47 @@
+[
+  {
+    "duration": 0.22,
+    "effect": "dock",
+    "peak": 0.24036093056201935
+  },
+  {
+    "duration": 0.25,
+    "effect": "puff",
+    "peak": 0.3926071226596832
+  },
+  {
+    "duration": 0.85,
+    "effect": "launch",
+    "peak": 0.45468541979789734
+  },
+  {
+    "duration": 0.38,
+    "effect": "rabbit",
+    "peak": 0.3169902563095093
+  },
+  {
+    "duration": 0.42,
+    "effect": "squirrel",
+    "peak": 0.31710076332092285
+  },
+  {
+    "duration": 0.48,
+    "effect": "ready",
+    "peak": 0.1808478981256485
+  },
+  {
+    "duration": 0.38,
+    "effect": "ignite",
+    "peak": 0.4287396967411041
+  },
+  {
+    "duration": 1.05,
+    "effect": "flyby",
+    "peak": 0.5178136825561523
+  },
+  {
+    "duration": 1.5,
+    "effect": "travel",
+    "peak": 0.41066163778305054
+  }
+]

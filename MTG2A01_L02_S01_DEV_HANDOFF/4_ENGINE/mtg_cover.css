@@ -1,17 +1,52 @@
-/* Pond adventure cover */
-#startGate .sg-card.fc-card{height:580px;padding-top:24px;justify-content:flex-start;background:rgba(246,253,255,.92);border-radius:40px;box-shadow:inset 0 0 0 8px #fff,0 18px 50px rgba(23,76,115,.12);}
-#startGate .fc-card .sg-content{margin-bottom:0;max-width:1000px;gap:12px;}
-#sgTitle.fc-title{font-size:72px;line-height:1.2;margin:0;color:#174a89;text-shadow:none;}
-#startGate .fc-card .sg-sub{display:block!important;font-size:27px;color:#326779;order:2;}
-#sgHero.fc-hero{display:block;margin:0;order:3;}
-.fc-pond{position:relative;width:880px;height:260px;overflow:hidden;background:center/cover no-repeat;border-radius:28px;box-shadow:0 6px 18px rgba(23,104,127,.12);}
-#sgHero .fc-leaf{position:absolute;top:175px;height:auto;transform:translateX(-50%);border-radius:0;box-shadow:none;z-index:1;}
-#sgHero .fc-frog{position:absolute;left:125px;top:72px;width:88px;height:auto;transform:translateX(-50%);border-radius:0;box-shadow:none;z-index:3;}
-#sgHero .fc-friend{position:absolute;left:755px;top:88px;width:88px;height:auto;transform:translateX(-50%) scaleX(-1);border-radius:0;box-shadow:none;z-index:3;}
+/* File9's art-card frame and round play button, with this lesson's pond. */
+@font-face{font-family:"Yatra One";font-style:normal;font-weight:400;font-display:swap;src:url("assets/Fonts/YatraOne-Regular.ttf") format("truetype");}
+#startGate .sg-card.fc-card{position:relative;width:1040px;height:574px;padding:0;border:8px solid #fff;border-radius:40px;background:none;box-shadow:0 18px 40px rgba(0,47,118,.25);isolation:isolate;overflow:visible;justify-content:flex-start;}
+#startGate .fc-card::before{display:none;}
+#startGate .fc-card .sg-content{position:static;width:100%;max-width:none;margin:0;padding:0;gap:0;}
+#sgHero.fc-hero{position:absolute;inset:0;display:block;margin:0;width:100%;height:100%;max-width:none;z-index:0;}
+.fc-pond{position:absolute;inset:0;overflow:hidden;border-radius:32px;background-position:center;background-size:cover;background-repeat:no-repeat;}
+.fc-pond::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,255,255,.78) 25%,rgba(255,255,255,.12) 55%,transparent 68%);pointer-events:none;}
+#sgTitle.fc-title{position:absolute;left:70px;right:70px;top:54px;z-index:4;margin:0;color:#133e64;font-family:"Yatra One",var(--font-hi);font-weight:400;text-align:center;line-height:1.2;letter-spacing:0;text-shadow:0 3px 0 #fff,0 5px 0 #bbd3d7,0 8px 12px rgba(20,69,81,.15);}
+.fc-title-line{display:block;opacity:0;font-size:72px;white-space:nowrap;transform-origin:50% 90%;}
+.fc-ready .fc-title-line{animation:fcTitleArrive .85s cubic-bezier(.2,.9,.25,1.15) both;}
+#startGate .fc-card .sg-sub{display:none!important;}
+#sgHero .fc-leaf{position:absolute;height:auto;transform:translateX(-50%);border-radius:0;box-shadow:none;z-index:2;}
+#sgHero .fc-frog,#sgHero .fc-friend{position:absolute;width:136px;height:110px;object-fit:contain;object-position:bottom;translate:-50% 0;transform:none;transform-origin:50% 100%;border-radius:0;box-shadow:none;z-index:3;filter:drop-shadow(0 3px 2px rgba(0,65,52,.18));}
+#sgHero .fc-friend{scale:1;filter:drop-shadow(0 3px 2px rgba(0,65,52,.18));}
+.fc-ready .fc-frog{animation:fcFrogHello 6.5s ease-in-out infinite;}
+.fc-ready .fc-friend{animation:fcFriendHello 7.2s ease-in-out -1.7s infinite;}
+.fc-cover-splash{position:absolute;width:6px;height:8px;margin-left:-3px;border-radius:50%;background:#ecffff;box-shadow:-26px 5px 0 #d8ffff,26px 4px 0 #ecffff;z-index:2;opacity:0;pointer-events:none;}
+.fc-ready .fc-cover-splash{animation:fcCoverSplash 6.5s ease-out infinite;}
+.fc-cover-splash.friend{display:none;}
 .fc-trail{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;}
-.fc-trail .mtg-arc-path{stroke-width:4;opacity:.7;}
+.fc-trail .mtg-arc-path{stroke-width:4;opacity:.8;}
 .fc-trail .mtg-arc-halo{stroke-width:7;}
-#startGate #sgBtn{width:224px!important;height:68px!important;bottom:26px!important;border-radius:34px!important;font:800 28px var(--font-hi);gap:12px;}
-#startGate #sgBtn::after{display:none;}
-
-#startGate #sgBtn{min-width:224px!important;padding:0 24px!important;color:#174a89!important;background:linear-gradient(#ffd958,#ffbc24)!important;border:4px solid white!important;font-size:28px!important;line-height:1.2;}
+.fc-ready .fc-trail .mtg-arc{animation:fcTrailArrive .7s ease-out var(--trail-delay,0s) both;}
+.fc-water-ring{position:absolute;width:185px;height:32px;margin-left:-92.5px;border:2px solid rgba(231,255,255,.75);border-radius:50%;z-index:1;pointer-events:none;animation:fcWaterRing 4s ease-out infinite;}
+.fc-water-ring.late{animation-delay:-2s;}
+.fc-mote{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff8c7;box-shadow:0 0 9px 3px rgba(255,239,155,.6);z-index:1;pointer-events:none;animation:fcMote 5s ease-in-out var(--mote-delay,0s) infinite;}
+#startGate .fc-card #sgBtn,#startGate .fc-card #sgBtn.sg-waiting{position:absolute;left:50%;bottom:30px;width:140px;min-width:0;height:140px;padding:0;border:0;border-radius:50%;background:none;color:transparent;font-size:0;line-height:0;box-shadow:none;filter:none;z-index:5;visibility:visible;opacity:1;transform:translateX(-50%);animation:none;}
+#startGate .fc-card #sgBtn::before,#startGate .fc-card #sgBtn::after{display:none;content:none;}
+#startGate .fc-card #sgBtn.sg-waiting,#startGate .fc-card #sgBtn:disabled{visibility:hidden;opacity:0;pointer-events:none;animation:none;}
+#startGate .fc-card #sgBtn img{display:block;width:100%;height:100%;pointer-events:none;filter:none;}
+#startGate .fc-card #sgBtn .fc-play-waiting{display:none;}
+#startGate .fc-card #sgBtn.sg-waiting .fc-play-ready{display:none;}
+#startGate .fc-card #sgBtn.sg-waiting .fc-play-waiting{display:block;}
+#startGate .fc-card #sgBtn.fc-play-pop{animation:fcPlayPop .6s cubic-bezier(.34,1.3,.5,1) both;}
+#startGate .fc-card #sgBtn.idle-pulse{animation:fcPlayPulse 1.15s cubic-bezier(.34,.62,.3,1) infinite;}
+#startGate .fc-card #sgBtn:focus-visible{outline:3px solid #0B3D8C;outline-offset:2px;}
+#startGate .fc-card #sgBtn:not(:disabled):active{transform:translateX(-50%) scale(.95);animation:none;}
+#startGate .fc-card .sg-mascot{left:-24px;bottom:-12px;width:208px;height:auto;animation:none;}
+#startGate .fc-card .sg-vo{left:96px;bottom:-16px;}
+@keyframes fcTitleArrive{0%{opacity:0;transform:translateY(20px) rotate(-3deg) scale(.88);}65%{opacity:1;transform:translateY(-3px) rotate(1deg) scale(1.025);}100%{opacity:1;transform:none;}}
+@keyframes fcFrogBreathe{0%,100%{transform:scale(1);}50%{transform:scale(1.018,1.025);}}
+@keyframes fcFrogHello{0%,20%,48%,100%{transform:none;}24%{transform:scale(1.06,.9);}34%{transform:translateY(-30px) rotate(-3deg) scale(.98,1.04);}42%{transform:scale(1.08,.89);}46%{transform:scale(.99,1.02);}70%{transform:scale(1.015,1.02);}}
+@keyframes fcFriendHello{0%,18%,100%{transform:none;}5%{transform:rotate(-3deg);}10%{transform:rotate(3deg);}14%{transform:rotate(-1deg);}55%{transform:scale(1.02,1.025);}}
+@keyframes fcCoverSplash{0%,40%,50%,100%{opacity:0;transform:translateY(0) scale(.3);}42%{opacity:.9;transform:translateY(-3px) scale(1);}47%{opacity:0;transform:translateY(-21px) scale(.6);}}
+@keyframes fcTrailArrive{from{opacity:0;translate:0 8px;}to{opacity:1;translate:0 0;}}
+@keyframes fcWaterRing{0%{opacity:0;transform:scale(.75);}25%{opacity:.7;}100%{opacity:0;transform:scale(1.25);}}
+@keyframes fcMote{0%,100%{opacity:0;transform:translate(0,5px);}35%{opacity:.85;}65%{opacity:.45;transform:translate(16px,-10px);}}
+@keyframes fcPlayPop{0%,100%{transform:translateX(-50%) scale(1);}35%{transform:translateX(-50%) scale(1.20);}60%{transform:translateX(-50%) scale(.93);}80%{transform:translateX(-50%) scale(1.05);}}
+@keyframes fcPlayPulse{0%,100%{transform:translateX(-50%) scale(1);}30%{transform:translateX(-50%) scale(1.10);}58%{transform:translateX(-50%) scale(.985);}}
+#startGate.hidden .fc-card *{animation-play-state:paused!important;}
+@media(prefers-reduced-motion:reduce){#startGate .fc-card .fc-title-line{opacity:1;transform:none;}#startGate .fc-card *,#startGate .fc-card #sgBtn{animation:none!important;}.fc-water-ring,.fc-mote,.fc-cover-splash{display:none;}}
