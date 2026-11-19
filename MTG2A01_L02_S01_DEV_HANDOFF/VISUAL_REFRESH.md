@@ -186,3 +186,7 @@ Verification: 17 targeted checks and all 57 interaction checks passed (74 total)
 ### Slightly rounder guided jump arrows
 
 Raised the shared G1-G3 jump arc from 22px to 34px, a modest 12px increase. Completed arrows and newly animated arrows use the same curve; the frog hop follows that height with checked headroom. All 29 frame/header boundary checks passed at 1333x750 and 960x540, and three geometry checks confirmed equal prior/new arc heights.
+
+### Retain completed hint intervals
+
+The shared G1-G3 interval hint now adds one golden unit segment each second without clearing the preceding segments. The full highlighted distance remains while the child chooses an answer. Verified all three questions for cumulative segment counts, approximately one-second timing, retained highlights after input unlocks, unchanged axis thickness and no browser errors.

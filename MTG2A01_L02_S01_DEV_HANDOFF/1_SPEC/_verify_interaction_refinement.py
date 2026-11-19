@@ -54,7 +54,7 @@ try:
   ok(f'G{i-2} golden hint matches axis thickness',js("return getComputedStyle(document.querySelector('.nl-seg.lit')).strokeWidth===getComputedStyle(document.querySelector('.nl-axis')).strokeWidth"))
   live()
   samples=js("return __segments.filter(s=>s.line)")
-  ok(f'G{i-2} one unit at a time for approximately one second',len(samples)==data['answer']-data['at'] and all('|' not in s['line'] for s in samples) and all(850<samples[k+1]['time']-samples[k]['time']<1250 for k in range(len(samples)-1)))
+  ok(f'G{i-2} adds one unit each second and retains preceding intervals',len(samples)==data['answer']-data['at'] and all(len(s['line'].split('|'))==k+1 for k,s in enumerate(samples)) and all(850<samples[k+1]['time']-samples[k]['time']<1250 for k in range(len(samples)-1)))
   click(data['answer']);wait("document.querySelector('.jp-frog.hopping')")
   # Capture the complete landing state atomically, before the automatic departure.
   landing=wait("(()=>{const a=[...document.querySelectorAll('.nl-lbl.landed')];return a.some(e=>+e.textContent==="+str(data['answer'])+")?a.map(e=>({n:+e.textContent,size:getComputedStyle(e).fontSize,weight:getComputedStyle(e).fontWeight})):false})()")

@@ -430,7 +430,7 @@ function mtgNumberLine(o){
   return { root, svg, X, U, segs, labels,
     glow(n, ms){ const l = labels[n]; if(l) mtgPulse(l, "glow", ms || 1600); },
     hold(n){ const l = labels[n]; if(l) l.classList.add("landed"); },
-    async walk(a, b, tok){ for(let n=a;n<b;n++){ Object.values(segs).forEach(s=>s.classList.remove("lit")); if(segs[n])segs[n].classList.add("lit");await mtgWait(1000,tok); } },
+    async walk(a, b, tok){ Object.values(segs).forEach(s=>s.classList.remove("lit")); for(let n=a;n<b;n++){ if(segs[n])segs[n].classList.add("lit");await mtgWait(1000,tok); } },
     unwalk(){ Object.values(segs).forEach(s => s.classList.remove("lit")); } };
 }
 
@@ -539,7 +539,7 @@ SlideModules.JUMP_PICK = { mount(host, slide){
       await mtgWait(450, tok);
       if(tries === 1){ mtgOst(d.wa1.ost); if(d.wa1.replay_q) await playQ(); else await mtgSay(d.wa1.vo, tok); }
       else if(tries === 2){ mtgOst(d.wa2.ost); state.hintUsed = true;
-        const voDone = mtgSay(d.wa2.vo, tok); await mtgWait(300, tok); await nl.walk(d.at, d.answer, tok);nl.glow(d.answer,1500); await voDone; await mtgWait(500, tok); nl.unwalk(); }
+        const voDone = mtgSay(d.wa2.vo, tok); await mtgWait(300, tok); await nl.walk(d.at, d.answer, tok);nl.glow(d.answer,1500); await voDone; await mtgWait(500, tok); }
       else { mtgOst(d.wa3.ost); state.scaffoldLevel = 3; await mtgSay(d.wa3.vo, tok); mtgGuideTo(opts, d.answer); }
       busy = false; opts.enable(true);
       if(tries >= 3) opts.cells.forEach(c => { if(c.classList.contains("faded")) c.disabled = true; });
