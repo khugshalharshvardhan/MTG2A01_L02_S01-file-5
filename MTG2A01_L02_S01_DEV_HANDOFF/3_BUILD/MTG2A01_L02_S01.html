@@ -21602,7 +21602,7 @@ function mtgHop(el, x1, x2, lift, ms, cues={}){
     mtgSound(frog?"sfx_frog_hop":"sfx_animal_hop",.20);
     if(frog)mtgSound("sfx_frog_croak",.16);
   };
-  lift=Math.max(0,Math.min(lift,el.offsetTop-(frog?22:12)));
+  lift=Math.max(0,Math.min(lift,el.offsetTop-(el.matches(".jp-frog")?10:frog?22:12)));
   if(reduced){
     voice();if(el.matches(".br-frog"))mtgSound("sfx_water_land",.2);
     el.style.left=x2+"px";el.style.transform=restTransform;
@@ -22008,7 +22008,7 @@ SlideModules.JUMP_PICK = { mount(host, slide){
   const nl = mtgNumberLine({ lo: d.lo, hi: d.hi, width: 1000, height: 200, baseY: 140,
     every: span > 30 ? 5 : 1, bigEvery: span > 30 ? 10 : (d.step >= 5 ? 5 : 2), cls: "jp-nl" });
   board.appendChild(nl.root);
-  const jumpLift=22;
+  const jumpLift=34;
   d.prior.forEach(n=>nl.hold(n));
   for(let i=0;i+1<d.prior.length;i++){
     mtgArc(nl.svg,nl.X(d.prior[i]),nl.X(d.prior[i+1]),136,jumpLift);nl.hold(d.prior[i+1]);

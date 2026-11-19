@@ -182,3 +182,7 @@ The shared spaceport pod SVG no longer includes the glass canopy, outline or ref
 Teaching recap endpoints now include the starting 0 after the first jump, with the same visible emphasis as completed landing numbers. Guided number lines include every historical endpoint, so 40, 45 and 50 are equally bold. Permanent bold styling is separate from temporary gold: guided labels have no persistent gold background or halo, question introductions do not glow, and hints briefly glow their spoken/current or destination numbers before clearing.
 
 Verification: 17 targeted checks and all 57 interaction checks passed (74 total), covering fingertip placement and visible 0 at 1333x750 and 960x540, initial historical number styling, temporary hint glow and cleanup, exported open-top art, successful astronaut docking, all seven sequence hints, option compaction, movement, reduced motion and no browser errors. Executable built JavaScript and embedded JSON passed syntax checks. Audio is simulated. Targeted evidence: 5_SCREENSHOTS/nov19_corrections/results.json; test: 1_SPEC/_verify_nov19_corrections.py.
+
+### Slightly rounder guided jump arrows
+
+Raised the shared G1-G3 jump arc from 22px to 34px, a modest 12px increase. Completed arrows and newly animated arrows use the same curve; the frog hop follows that height with checked headroom. All 29 frame/header boundary checks passed at 1333x750 and 960x540, and three geometry checks confirmed equal prior/new arc heights.
