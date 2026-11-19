@@ -171,3 +171,14 @@ Focused acceptance: 57/57 passed, including all initial/visited number states, p
 Before publishing, merged origin/main commits 2d4e1eb and 8f54f24. The newer cover, distinct natural lesson characters, narration captions, frog/animal sounds, third-attempt answer locks, rocket artwork, staggered launches, persistent docks and parallax travel are retained. The new pastel SVG supplies the scenery for that persistent world. Entrances start only when a dock becomes active, and narration/input stay coordinated with arrival. The newer smooth teaching layout transition remains, with every unit pad aligned and every number visible in the overview.
 
 Final integrated verification: 57 focused interaction checks, 119 spaceport checks, 44 cover/cast/motion checks, 29 jump boundary checks and 64 third-attempt checks all passed (313 total). These cover all nine rounds, any-order answers, wrong drops, mouse/touch/keyboard, launch/travel sequencing, smaller and wide/tall viewports, reduced motion, preserved locks and no browser errors. Executable inline JavaScript and embedded JSON passed syntax checks; the final parallax artwork was checked after removing SVG letterboxing. Audio remains simulated in these automated runs. The earlier 93/37 results above describe the pre-merge baseline, not the final integrated revision.
+
+
+## November 19 corrections
+
+The teaching hand is now 54x68 design pixels. Its fingertip targets Tappu's body centre instead of placing the entire hand to his right. The same placement applies to repeated cues; reduced motion keeps the hand still.
+
+The shared spaceport pod SVG no longer includes the glass canopy, outline or reflection. The astronauts retain their own helmets. Menu artwork and all empty/occupied ships share the open-top asset; seating, number badges and hit areas stay intact.
+
+Teaching recap endpoints now include the starting 0 after the first jump, with the same visible emphasis as completed landing numbers. Guided number lines include every historical endpoint, so 40, 45 and 50 are equally bold. Permanent bold styling is separate from temporary gold: guided labels have no persistent gold background or halo, question introductions do not glow, and hints briefly glow their spoken/current or destination numbers before clearing.
+
+Verification: 17 targeted checks and all 57 interaction checks passed (74 total), covering fingertip placement and visible 0 at 1333x750 and 960x540, initial historical number styling, temporary hint glow and cleanup, exported open-top art, successful astronaut docking, all seven sequence hints, option compaction, movement, reduced motion and no browser errors. Executable built JavaScript and embedded JSON passed syntax checks. Audio is simulated. Targeted evidence: 5_SCREENSHOTS/nov19_corrections/results.json; test: 1_SPEC/_verify_nov19_corrections.py.

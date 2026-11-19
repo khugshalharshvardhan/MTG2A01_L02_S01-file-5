@@ -430,3 +430,15 @@ body.mtg-game{background:#55559a url(assets/Images/sc_space_playful.svg) center/
 
 
 .sp-cosmos{background-size:cover;}
+
+/* Compact cue: the SVG fingertip, rather than its top-left corner, targets Tappu. */
+.br-world .mtg-hand{width:54px;height:68px;animation:mtgTappuCue 1s ease-in-out infinite;}
+@keyframes mtgTappuCue{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+/* Completed number-line endpoints stay bold; gold is a temporary spoken cue. */
+.nl-lbl.landed,.sf-hint-nl .nl-lbl.landed,.nl-lbl.glow-hold{
+ background:transparent;box-shadow:none;color:var(--navy);
+}
+.nl-lbl.glow,.sf-hint-nl .nl-lbl.glow{
+ background:#fff1ae;border-radius:12px;box-shadow:0 0 12px 5px rgba(255,216,72,.7);
+}
+@media(prefers-reduced-motion:reduce){.br-world .mtg-hand{animation:none!important;}}

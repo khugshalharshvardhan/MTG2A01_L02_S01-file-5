@@ -4918,6 +4918,18 @@ body.mtg-game{background:#55559a url(assets/Images/sc_space_playful.svg) center/
 
 .sp-cosmos{background-size:cover;}
 
+/* Compact cue: the SVG fingertip, rather than its top-left corner, targets Tappu. */
+.br-world .mtg-hand{width:54px;height:68px;animation:mtgTappuCue 1s ease-in-out infinite;}
+@keyframes mtgTappuCue{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+/* Completed number-line endpoints stay bold; gold is a temporary spoken cue. */
+.nl-lbl.landed,.sf-hint-nl .nl-lbl.landed,.nl-lbl.glow-hold{
+ background:transparent;box-shadow:none;color:var(--navy);
+}
+.nl-lbl.glow,.sf-hint-nl .nl-lbl.glow{
+ background:#fff1ae;border-radius:12px;box-shadow:0 0 12px 5px rgba(255,216,72,.7);
+}
+@media(prefers-reduced-motion:reduce){.br-world .mtg-hand{animation:none!important;}}
+
 /* File9's art-card frame and round play button, with this lesson's pond. */
 @font-face{font-family:"Yatra One";font-style:normal;font-weight:400;font-display:swap;src:url("assets/Fonts/YatraOne-Regular.ttf") format("truetype");}
 #startGate .sg-card.fc-card{position:relative;width:1040px;height:574px;padding:0;border:8px solid #fff;border-radius:40px;background:none;box-shadow:0 18px 40px rgba(0,47,118,.25);isolation:isolate;overflow:visible;justify-content:flex-start;}
@@ -7234,7 +7246,7 @@ var __AUDIO_V = "97bbb4908218";
 /* [S05] THE LESSON'S PICTURES ARE VERSIONED TOO. They are replaced under the SAME names (obj_bandar.webp
    …), and a browser that had the old file kept drawing it. The builder stamps this from the content of
    assets/Images, so a changed picture gets a new address; unchanged, the cache still works. */
-var __IMG_V = "124e25565291";
+var __IMG_V = "a64e0d38b49c";
 const _iv = (u)=> (/^__IMG/.test(__IMG_V) ? u : u + "?v=" + __IMG_V);
 function _av(src){
   if(typeof src !== "string" || src.indexOf("assets/Audio/") < 0) return src;
@@ -21670,7 +21682,7 @@ function mtgLeafBob(leaf){
   ],{duration:430,easing:"ease-out"});
 }
 /* our own hand cue (the engine's nudge hand lives in .slide-stage and is hidden by some layers) */
-function mtgHand(parent, x, y){ const h = mtgEl("img", "mtg-hand"); h.src = "assets/UI/nudge_hand_new.svg"; h.style.left = x + "px"; h.style.top = y + "px"; parent.appendChild(h); return h; }
+function mtgHand(parent, x, y){ const h = mtgEl("img", "mtg-hand"); h.src = "assets/UI/nudge_hand_new.svg"; h.style.left = (x-20) + "px"; h.style.top = (y-4) + "px"; parent.appendChild(h); return h; }
 
 /* =====================================================================================
    BRIDGE_TEACH — टप्पू crosses the stone bridge (deck slides 4–6)
@@ -21839,6 +21851,7 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
     clearLit(); dot.classList.remove("show");
     if(d.camera){await layoutOverview(false,a,b,950);await rangeCamera(a,b,420);}
     const lift=Math.max(12,Math.min(62,FEET_Y-FH-22));
+    mark(a); // Keep the starting endpoint visible alongside every completed landing.
     view.dataset.jumpActive="true";
     bridgeArcs.push({node:mtgArc(svg,X(a),X(b),STONE_Y-2,lift,null,{duration:950,start:.12,end:.84}),from:a,to:b,lift});
     await mtgHop(frog,X(a),X(b),lift,950,{
@@ -21870,8 +21883,8 @@ SlideModules.BRIDGE_TEACH = { mount(host, slide){
     return new Promise((res, rej)=>{
       frog.classList.add("tappable");
       frog.setAttribute("role","button");frog.tabIndex=0;frog.setAttribute("aria-label","टप्पू को "+d.step+" कदम कुदाइए");
-      let hand = mtgHand(world, X(at) + 6, FEET_Y - FH * .55);
-      const again = setInterval(()=>{ if(tok !== _mtgTok){ clearInterval(again); return; } if(!hand){ hand = mtgHand(world, X(at) + 6, FEET_Y - FH * .55); setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800); } }, 6000);
+      let hand = mtgHand(world, X(at), FEET_Y - FH * .55);
+      const again = setInterval(()=>{ if(tok !== _mtgTok){ clearInterval(again); return; } if(!hand){ hand = mtgHand(world, X(at), FEET_Y - FH * .55); setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800); } }, 6000);
       setTimeout(()=>{ if(hand){ hand.remove(); hand = null; } }, 1800);
       frog.onclick = ()=>{
         if(tok !== _mtgTok) return rej(MTG_STOP);
@@ -21926,7 +21939,7 @@ function mtgNumberLine(o){
   root.appendChild(svg);
   return { root, svg, X, U, segs, labels,
     glow(n, ms){ const l = labels[n]; if(l) mtgPulse(l, "glow", ms || 1600); },
-    hold(n){ const l = labels[n]; if(l) l.classList.add("glow-hold","landed"); },
+    hold(n){ const l = labels[n]; if(l) l.classList.add("landed"); },
     async walk(a, b, tok){ for(let n=a;n<b;n++){ Object.values(segs).forEach(s=>s.classList.remove("lit")); if(segs[n])segs[n].classList.add("lit");await mtgWait(1000,tok); } },
     unwalk(){ Object.values(segs).forEach(s => s.classList.remove("lit")); } };
 }
@@ -21996,6 +22009,7 @@ SlideModules.JUMP_PICK = { mount(host, slide){
     every: span > 30 ? 5 : 1, bigEvery: span > 30 ? 10 : (d.step >= 5 ? 5 : 2), cls: "jp-nl" });
   board.appendChild(nl.root);
   const jumpLift=22;
+  d.prior.forEach(n=>nl.hold(n));
   for(let i=0;i+1<d.prior.length;i++){
     mtgArc(nl.svg,nl.X(d.prior[i]),nl.X(d.prior[i+1]),136,jumpLift);nl.hold(d.prior[i+1]);
   }
@@ -22005,7 +22019,7 @@ SlideModules.JUMP_PICK = { mount(host, slide){
   host.appendChild(board);
   let tries = 0, busy = true, solved = false;
   const opts = mtgOptions(host, d.options, (v, b)=> pick(v, b));
-  const playQ = async()=>{ for(const c of d.q){ mtgAlive(tok); if(c.glow != null) nl.glow(c.glow, 1800); await mtgSay(c.vo, tok); } };
+  const playQ = async()=>{ for(const c of d.q){ mtgAlive(tok); await mtgSay(c.vo, tok); } };
   state.replayAudio = ()=>{ if(busy || solved) return; busy = true; opts.enable(false); mtgRun(async()=>{ await playQ(); busy = false; opts.enable(true); }); };
   function pick(v, b){
     if(busy || solved) return;
@@ -22035,7 +22049,7 @@ SlideModules.JUMP_PICK = { mount(host, slide){
       await mtgWait(450, tok);
       if(tries === 1){ mtgOst(d.wa1.ost); if(d.wa1.replay_q) await playQ(); else await mtgSay(d.wa1.vo, tok); }
       else if(tries === 2){ mtgOst(d.wa2.ost); state.hintUsed = true;
-        const voDone = mtgSay(d.wa2.vo, tok); await mtgWait(300, tok); await nl.walk(d.at, d.answer, tok); await voDone; await mtgWait(500, tok); nl.unwalk(); }
+        const voDone = mtgSay(d.wa2.vo, tok); await mtgWait(300, tok); await nl.walk(d.at, d.answer, tok);nl.glow(d.answer,1500); await voDone; await mtgWait(500, tok); nl.unwalk(); }
       else { mtgOst(d.wa3.ost); state.scaffoldLevel = 3; await mtgSay(d.wa3.vo, tok); mtgGuideTo(opts, d.answer); }
       busy = false; opts.enable(true);
       if(tries >= 3) opts.cells.forEach(c => { if(c.classList.contains("faded")) c.disabled = true; });
@@ -22083,17 +22097,18 @@ SlideModules.SEQ_FILL = { mount(host, slide){
     const nl = mtgNumberLine({ lo: a, hi: z, width: 760, height: 190, baseY: 128, dots: true, noArrows: false, cls: "sf-hint-nl" });
     const pet = mtgEl("img", "sf-hint-animal"); pet.src = mtgImg(d.animal); pet.style.left = nl.X(bl.from) + "px";
     nl.root.appendChild(pet);
-    const hintLift=66;mtgArc(nl.svg,nl.X(previous),nl.X(bl.from),124,hintLift,"+"+bl.step);nl.hold(bl.from);
+    const hintLift=66;mtgArc(nl.svg,nl.X(previous),nl.X(bl.from),124,hintLift,"+"+bl.step);nl.hold(previous);nl.hold(bl.from);
     card.appendChild(nl.root);
     card.appendChild(mtgEl("div", "sf-hint-cap", mtgText(bl.hint)));
     ov.appendChild(card); $("stage").appendChild(ov);
     requestAnimationFrame(()=> ov.classList.add("show"));
     const opened = Date.now();
+    nl.glow(bl.from,1200);
     const voDone = mtgSay(bl.hint, tok);
     await mtgWait(700, tok);
     mtgArc(nl.svg,nl.X(bl.from),nl.X(bl.answer),124,hintLift,"+"+bl.step,{duration:900});
     await mtgWait(900, tok);
-    nl.hold(bl.answer);
+    nl.hold(bl.answer);nl.glow(bl.answer,2600);
     await voDone;
     await mtgWait(Math.max(900, 5000 - (Date.now() - opened)), tok);   // deck: the popup stays ~5 s
     ov.classList.remove("show"); setTimeout(()=> ov.remove(), 300);

@@ -40,7 +40,7 @@ try:
   for _ in range(2 if i else 0):
    wait("document.querySelector('.br-frog.tappable')",65);js("document.querySelector('.br-frog.tappable').click()")
   wait("!document.getElementById('navBtn').disabled",65);time.sleep(.8)
-  ok(f'T{i+1} all visited labels retain equal emphasis',js("const d=CARD.slides[state.idx].data;const a=[...document.querySelectorAll('.br-num.mark')];const styles=a.map(e=>{const s=getComputedStyle(e);return s.fontSize+':'+s.fontWeight});return a.length===d.hi/d.step&&new Set(styles).size===1&&[...document.querySelectorAll('.br-num:not(.mark)')].every(e=>!e.classList.contains('big'))"))
+  ok(f'T{i+1} all visited labels retain equal emphasis',js("const d=CARD.slides[state.idx].data;const a=[...document.querySelectorAll('.br-num.mark')];const styles=a.map(e=>{const s=getComputedStyle(e);return s.fontSize+':'+s.fontWeight});return a.length===(d.hi-d.lo)/d.step+1&&new Set(styles).size===1&&[...document.querySelectorAll('.br-num:not(.mark)')].every(e=>!e.classList.contains('big'))"))
   ok(f'T{i+1} pads return to their resting position and size',js("return [...document.querySelectorAll('.br-rock')].every(e=>{const m=new DOMMatrix(getComputedStyle(e).transform);return Math.abs(m.a-1)<.001&&Math.abs(m.d-1)<.001&&Math.abs(m.e+e.getBoundingClientRect().width/(parseFloat(getComputedStyle(document.querySelector('.br-world')).getPropertyValue('--z'))||1)/2)<1})"))
   ok(f'T{i+1} arrow grows through ascent and descent',js("const a=__arcs;return a.some(v=>v.t<.4)&&a.some(v=>v.t>.6)&&a.every(v=>v.d.includes(' Q')&&!v.d.includes('NaN'))"))
   ok(f'T{i+1} recap number labels do not overlap',js("const a=[...document.querySelectorAll('.br-num')].map(e=>e.getBoundingClientRect());return a.every((r,k)=>!k||r.left>=a[k-1].right-.5)"))
@@ -58,7 +58,7 @@ try:
   click(data['answer']);wait("document.querySelector('.jp-frog.hopping')")
   # Capture the complete landing state atomically, before the automatic departure.
   landing=wait("(()=>{const a=[...document.querySelectorAll('.nl-lbl.landed')];return a.some(e=>+e.textContent==="+str(data['answer'])+")?a.map(e=>({n:+e.textContent,size:getComputedStyle(e).fontSize,weight:getComputedStyle(e).fontWeight})):false})()")
-  expected=set(data['prior'][1:]+[data['answer']])
+  expected=set(data['prior']+[data['answer']])
   ok(f'G{i-2} landing becomes bold while earlier landings remain',expected.issubset({x['n'] for x in landing}) and len({x['size']+':'+x['weight'] for x in landing})==1)
  for i in range(6,10):
   go(i);live();data=js("return CARD.slides[state.idx].data")

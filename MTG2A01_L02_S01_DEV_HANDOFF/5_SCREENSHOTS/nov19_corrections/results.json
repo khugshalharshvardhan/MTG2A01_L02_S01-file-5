@@ -1,0 +1,70 @@
+[
+  [
+    "1333 T2: compact hand fingertip targets Tappu",
+    true
+  ],
+  [
+    "1333 T2: zero labels the beginning of the completed curves",
+    true
+  ],
+  [
+    "1333 T3: compact hand fingertip targets Tappu",
+    true
+  ],
+  [
+    "1333 T3: zero labels the beginning of the completed curves",
+    true
+  ],
+  [
+    "960 T2: compact hand fingertip targets Tappu",
+    true
+  ],
+  [
+    "960 T2: zero labels the beginning of the completed curves",
+    true
+  ],
+  [
+    "960 T3: compact hand fingertip targets Tappu",
+    true
+  ],
+  [
+    "960 T3: zero labels the beginning of the completed curves",
+    true
+  ],
+  [
+    "G1: first and subsequent completed numbers are equally bold without gold",
+    true
+  ],
+  [
+    "G1: destination glows temporarily during second-attempt hint",
+    true
+  ],
+  [
+    "G1: glow clears without removing historical bold numbers",
+    true
+  ],
+  [
+    "G2: first and subsequent completed numbers are equally bold without gold",
+    true
+  ],
+  [
+    "G3: first and subsequent completed numbers are equally bold without gold",
+    true
+  ],
+  [
+    "ship source and exported artwork have no glass canopy or reflection",
+    true
+  ],
+  [
+    "open ship still seats and locks the correct astronaut",
+    true
+  ],
+  [
+    "no browser errors",
+    true
+  ],
+  [
+    "built JavaScript and embedded JSON are valid",
+    true
+  ]
+]
